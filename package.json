@@ -1,0 +1,25 @@
+{
+  "name": "react-template",
+  "scripts": {
+    "dev": "npm run client:dev",
+    "build": "npm run server:build && npm run client:build",
+    "build:win": "npm run server:build:win && npm run client:build:win",
+    "client:dev": "cd client && npm run dev",
+    "client:build": "cd client && npm run build",
+    "server:dev": "cd server && npm run dev",
+    "server:build": "cd server && npm run build",
+    "server:build:win": "cd server && npm run build:win",
+    "pm2:start": "cd server && npm run pm2:start",
+    "pm2:restart": "cd server && npm run pm2:restart",
+    "pm2:reload": "cd server && npm run pm2:reload",
+    "pm2:stop": "cd server && npm run pm2:stop",
+    "pm2:delete": "cd server && npm run pm2:delete",
+    "install:prod": "cd server && npm run install:prod",
+    "reinstall-module": "rm -rf node_modules && rm -f package-lock.json && npm i && cd client && npm run reinstall-module && cd .. && cd server && npm run reinstall-module"
+  },
+  "eslintConfig": {},
+  "devDependencies": {
+    "eslint": "8.57.0",
+    "prettier": "^3.2.5"
+  }
+}

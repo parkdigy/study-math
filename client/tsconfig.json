@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "preserveSymlinks": true,
+    "baseUrl": "./",
+    "paths": {
+      "@sass": ["src/sass"],
+      "@types": ["src/@types"],
+      "@common": ["src/common"],
+      "@comp": ["src/component"],
+      "@ccomp": ["src/component/Common"],
+      "@const": ["src/constant"],
+      "@context": ["src/context"],
+      "@app": ["src/common/app"],
+      "@api": ["src/common/api"],
+      "@util": ["src/common/util"]
+    },
+    "typeRoots": [
+      "node_modules/@types",
+      "src/@types"
+    ]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "src/**/*.test.tsx"]
+}
