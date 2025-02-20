@@ -1,5 +1,5 @@
-@import './custom';
-@import './custom.opacity';
-@import './custom.text';
-@import './custom.margin.padding';
-@import './custom.width.height';
+@use './custom';
+@use './custom_opacity';
+@use './custom_text';
+@use './custom_margin_padding';
+@use './custom_width_height';
