@@ -16,7 +16,7 @@ const ErrorRetry: React.FC<Props> = ({ onRetry }) => {
         </div>
         {onRetry && (
           <div className='ErrorRetry-retry-container'>
-            <button onClick={onRetry}>재시도</button>
+            <div onClick={onRetry}>재시도</div>
           </div>
         )}
       </div>
