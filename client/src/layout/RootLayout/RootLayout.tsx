@@ -139,7 +139,7 @@ const RootLayout = withErrorBoundary(() => {
             }}
           />
         ) : (
-          <ErrorRetry onRetry={() => window.location.reload()} />
+          <ErrorRetry error={error as Error} onRetry={() => window.location.reload()} />
         )}
       </>
     );
