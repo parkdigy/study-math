@@ -5,7 +5,7 @@
 import '../../init';
 
 import React, { useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router';
 import { AppContextProvider, LoadingContextProvider } from '@context';
 import { AxiosLoading, ErrorRetry, Loading, LoadingCommands } from '@ccomp';
 import RootLayoutAppInitializer from './RootLayoutAppInitializer';

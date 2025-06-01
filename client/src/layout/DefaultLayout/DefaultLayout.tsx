@@ -6,7 +6,7 @@ import React from 'react';
 import MainRouter from '../../router';
 import { useAppState } from '@context';
 import app from '@app';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 const DefaultLayout = () => {
   const { removeHtmlLoading } = useAppState();
