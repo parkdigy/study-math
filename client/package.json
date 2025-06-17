@@ -31,7 +31,7 @@
     "@pdg/data": "^1.0.1",
     "@pdg/date-time": "^1.0.2",
     "@pdg/react-hook": "^1.0.30",
-    "@pdg/types": "^1.0.1",
+    "@pdg/types": "^1.0.2",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.6.0",
     "@soda/friendly-errors-webpack-plugin": "^1.8.1",
     "@types/jest": "^29.5.14",
