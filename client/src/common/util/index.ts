@@ -1,7 +1,3 @@
-import PdgUtil from '@pdg/util';
-
-export const util = {
-  ...PdgUtil,
-};
+export const util = {};
 
 export default util;

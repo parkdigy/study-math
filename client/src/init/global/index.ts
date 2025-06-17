@@ -1,6 +1,6 @@
 import './react';
 import './mediaQuery';
-import './PdgUtil';
+import './pdg';
 import './log';
 import './classnames';
 import './color';
