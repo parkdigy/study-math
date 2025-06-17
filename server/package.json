@@ -17,6 +17,7 @@
     "git:commit": "cd .. && npm run git:commit",
     "git:push": "cd .. && npm run git:push",
     "git:commit:push": "cd .. && npm run git:commit:push",
+    "git:merge:mirror": "cd .. && npm run git:merge:mirror",
     "pm2:start": "pm2 start ecosystem.config.js",
     "pm2:restart": "pm2 delete ecosystem.config.js && pm2 start ecosystem.config.js",
     "pm2:reload": "pm2 reload ecosystem.config.js --force --update-env",

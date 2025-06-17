@@ -11,6 +11,7 @@
     "git:commit": "cd .. && npm run git:commit",
     "git:push": "cd .. && npm run git:push",
     "git:commit:push": "cd .. && npm run git:commit:push",
+    "git:merge:mirror": "cd .. && npm run git:merge:mirror",
     "reinstall": "npm run reinstall:module",
     "reinstall:module": "rm -rf node_modules && rm -f package-lock.json && npm i",
     "lint": "eslint src",
