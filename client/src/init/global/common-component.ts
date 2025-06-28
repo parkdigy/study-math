@@ -15,29 +15,24 @@ import {
   TProps as _TProps,
 } from '@ccomp';
 
+/* eslint-disable no-var */
 declare global {
-  // eslint-disable-next-line no-var
   var Box: typeof _Box;
   type BoxProps = _BoxProps;
-  // eslint-disable-next-line no-var
   var Stack: typeof _Stack;
   type StackProps = _StackProps;
-  // eslint-disable-next-line no-var
   var Div: typeof _Div;
   type DivProps = _DivProps;
-  // eslint-disable-next-line no-var
   var Span: typeof _Span;
   type SpanProps = _SpanProps;
-  // eslint-disable-next-line no-var
   var Flex: typeof _Flex;
   type FlexProps = _FlexProps;
-  // eslint-disable-next-line no-var
   var Img: typeof _Img;
   type ImgProps = _ImgProps;
-  // eslint-disable-next-line no-var
   var T: typeof _T;
   type TProps = _TProps;
 }
+/* eslint-enable no-var */
 
 globalThis.Box = _Box;
 globalThis.Stack = _Stack;
