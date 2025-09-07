@@ -38,5 +38,6 @@ globalThis.Box = _Box;
 globalThis.Stack = _Stack;
 globalThis.Div = _Div;
 globalThis.Span = _Span;
+globalThis.Flex = _Flex;
 globalThis.Img = _Img;
 globalThis.T = _T;
