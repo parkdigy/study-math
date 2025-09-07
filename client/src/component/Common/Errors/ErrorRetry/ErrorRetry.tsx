@@ -6,7 +6,6 @@ import React from 'react';
 import { ErrorRetryProps as Props } from './ErrorRetry.types';
 import Button from '../../Button';
 import Icon from '../../Icon';
-import styled from 'styled-components';
 
 const ErrorRetry: React.FC<Props> = ({ message, fullScreen, fullSize, onRetry }) => {
   /********************************************************************************************************************

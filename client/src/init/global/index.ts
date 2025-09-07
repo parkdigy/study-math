@@ -5,3 +5,4 @@ import './log';
 import './classnames';
 import './color';
 import './common-component';
+import './styled-components';

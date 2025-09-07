@@ -4,7 +4,6 @@
 
 import React from 'react';
 import { ButtonProps as Props } from './Button.types';
-import styled from 'styled-components';
 
 const Button = React.forwardRef<HTMLButtonElement, Props>(
   ({ color, fullWidth, className: initClassName, size, ...props }, ref) => {
