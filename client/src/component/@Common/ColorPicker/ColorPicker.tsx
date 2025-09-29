@@ -2,7 +2,7 @@ import React, { CSSProperties } from 'react';
 import { ColorPickerProps as Props } from './ColorPicker.types';
 import { HexAlphaColorPicker } from 'react-colorful';
 import './ColorPicker.scss';
-import { useAutoUpdateState, useRefState } from '@pdg/react-hook';
+import { useRefState } from '@pdg/react-hook';
 import { useWindowSize } from 'usehooks-ts';
 
 export const ColorPicker = ({ className, defaultColor, color: initColor, onChange }: Props) => {
@@ -11,7 +11,6 @@ export const ColorPicker = ({ className, defaultColor, color: initColor, onChang
    * ******************************************************************************************************************/
 
   const id = useId();
-  const theme = useTheme();
   const { width: windowWidth } = useWindowSize();
 
   /********************************************************************************************************************
@@ -26,11 +25,18 @@ export const ColorPicker = ({ className, defaultColor, color: initColor, onChang
    * ******************************************************************************************************************/
 
   const [isOpenRef, isOpen, setIsOpen] = useRefState(false);
-  const [color, _setColor] = useAutoUpdateState(ifUndefined(initColor, ifUndefined(defaultColor, theme.colors.text)));
+  const [color, _setColor] = useState(ifUndefined(initColor, defaultColor));
 
   /********************************************************************************************************************
    * Effect
    * ******************************************************************************************************************/
+
+  useEffect(() => {
+    if (!isOpen) {
+      _setColor(initColor);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initColor]);
 
   /** 외부 영역 클릭 시 팝오버 닫기 */
   useEffect(() => {

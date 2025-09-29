@@ -6,7 +6,7 @@ interface Props {
   titlePosition: Required<FormProps['titlePosition']>;
 }
 
-export const Dev_Form_Textarea_Variant = ({ titlePosition }: Props) => {
+const Dev_Form_Textarea_Variant = ({ titlePosition }: Props) => {
   return (
     <Dev_Panel>
       <Form titlePosition={titlePosition} titleWidth={70} onSubmit={() => ll('submit')}>
@@ -33,4 +33,4 @@ export const Dev_Form_Textarea_Variant = ({ titlePosition }: Props) => {
   );
 };
 
-export default Dev_Form_Textarea_Variant;
+export default React.memo(Dev_Form_Textarea_Variant);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, FormCheckbox, FormControlGroup, FormProps, FormSelect } from '@ccomp';
+import { Form, FormCheckbox, FormControlGroup, FormProps, FormSelect, FormText } from '@ccomp';
 import { Dev_Panel } from '../../@Common';
 
 interface Props {
@@ -14,19 +14,18 @@ export const Dev_Form_ControlGroup = ({ titlePosition }: Props) => {
       <Form titlePosition={titlePosition} titleWidth={130} onSubmit={() => ll('submit')}>
         <Stack spacing={15}>
           <FormControlGroup title='FormControlGroup' showControlError>
-            <Stack flex={1} row center spacing={10}>
+            <Stack flex={1} row center wrap spacing={10}>
+              <FormText flex={1} title='FormText' name='FormText' placeholder='텍스트' required />
               <FormSelect
                 flex={1}
-                title='선택'
+                title='FormSelect'
                 name='FormSelect'
                 items={Items}
                 searchable
                 required
                 placeholder='선택'
               />
-              <FormCheckbox title='체크박스' name='FormCheckbox'>
-                체크박스
-              </FormCheckbox>
+              <FormCheckbox title='체크박스' name='FormCheckbox' label='체크박스' />
             </Stack>
           </FormControlGroup>
 

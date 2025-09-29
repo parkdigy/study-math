@@ -3,7 +3,7 @@ import { FormTitleProps as Props } from './FormTitle.types';
 import { useFormState } from '../../FormContext';
 import './FormTitle.scss';
 
-export const FormTitle = ({ className, labelProps, disabled, height, error, required, children }: Props) => {
+export const FormTitle = ({ className, labelProps, disabled, height, width, error, required, children }: Props) => {
   /********************************************************************************************************************
    * Use
    * ******************************************************************************************************************/
@@ -23,7 +23,7 @@ export const FormTitle = ({ className, labelProps, disabled, height, error, requ
         disabled && 'FormTitle-disabled',
         titlePosition === 'left' && 'FormTitle-left'
       )}
-      width={titlePosition === 'left' ? titleWidth : undefined}
+      width={titlePosition === 'left' ? ifUndefined(width, titleWidth) : undefined}
       height={height}
     >
       <T {...labelProps}>

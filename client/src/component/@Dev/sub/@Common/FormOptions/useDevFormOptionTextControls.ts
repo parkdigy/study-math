@@ -54,6 +54,27 @@ export const useDevFormOptionTextControls = ({
   );
 
   /********************************************************************************************************************
+   * helperText
+   * ******************************************************************************************************************/
+  const [helperText, helperTextControl] = useDevFormControl(
+    'helperText',
+    flatOptions.includes('helperText'),
+    defaultData?.helperText,
+    {
+      ...useFormControlData,
+      props: optionProps?.helperText,
+    }
+  );
+
+  /********************************************************************************************************************
+   * label
+   * ******************************************************************************************************************/
+  const [label, labelControl] = useDevFormControl('label', flatOptions.includes('label'), defaultData?.label, {
+    ...useFormControlData,
+    props: optionProps?.label,
+  });
+
+  /********************************************************************************************************************
    * Return
    * ******************************************************************************************************************/
 
@@ -66,5 +87,9 @@ export const useDevFormOptionTextControls = ({
     urlControl,
     message,
     messageControl,
+    helperText,
+    helperTextControl,
+    label,
+    labelControl,
   };
 };

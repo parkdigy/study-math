@@ -28,8 +28,8 @@ export const Dev_Form = () => {
    * State
    * ******************************************************************************************************************/
 
+  const [activeTab, setActiveTab] = useState<TabValue>('text');
   const [titlePosition, setTitlePosition] = useState<FormProps['titlePosition']>('top');
-  const [activeTab, setActiveTab] = useState<TabValue>('select');
 
   /********************************************************************************************************************
    * Render
@@ -43,9 +43,11 @@ export const Dev_Form = () => {
 
       <Dev_Panel row spacing={20} borderWidth={1} borderStyle='solid' borderColor='opacity15' borderRadius={10}>
         <Form>
-          <FormCheckbox name='titlePosition' onChange={(checked) => setTitlePosition(checked ? 'left' : 'top')}>
-            왼쪽 타이틀
-          </FormCheckbox>
+          <FormCheckbox
+            name='titlePosition'
+            label='왼쪽 타이틀'
+            onChange={(checked) => setTitlePosition(checked ? 'left' : 'top')}
+          />
         </Form>
       </Dev_Panel>
 

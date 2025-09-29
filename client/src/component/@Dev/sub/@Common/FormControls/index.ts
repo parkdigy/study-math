@@ -21,6 +21,7 @@ export * from './Url';
 export * from './Title';
 export * from './Placeholder';
 export * from './Message';
+export * from './HelperText';
 
 /** Boolean Controls */
 export * from './Disabled';

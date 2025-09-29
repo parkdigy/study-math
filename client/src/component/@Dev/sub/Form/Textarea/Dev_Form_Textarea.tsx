@@ -7,17 +7,17 @@ import { toast } from '@common';
 import Dev_Form_Textarea_Variant from './Dev_Form_Textarea_Variant';
 
 const _formOptions = [
-  [{ option: 'title', cols: 2 }, 'rows'],
+  ['title', 'rows'],
   '|',
-  'placeholder',
+  ['placeholder', 'helperText'],
   '|',
   ['required', 'disabled', 'subControl', 'hideTitle'],
 ] as const;
 type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
-const _formOptionsSelectControlOptions: Dev_FormOptionsRadioGroupOption[] = ['rows'];
+const _formOptionsSelectControlOptions: Dev_FormOptionsRadioGroupOption[] = [];
 const _formOptionsDefaultData: Dev_FormOptionsData = {
-  title: '문장',
-  placeholder: '문장을 입력해 주세요',
+  title: 'FormTextarea',
+  placeholder: '입력해 주세요',
 };
 
 interface Props {
@@ -31,7 +31,14 @@ export const Dev_Form_Textarea = ({ titlePosition }: Props) => {
 
   const [_data, setData] = useState<Pick<Dev_FormOptionsData, _formOptions>>({});
 
-  const { subControl, ...data } = _data;
+  const { subControl, title, placeholder, helperText, ...otherData } = _data;
+
+  const data = {
+    title: ifEmpty(title, undefined),
+    placeholder: ifEmpty(placeholder, undefined),
+    helperText: ifEmpty(helperText, undefined),
+    ...otherData,
+  };
 
   /********************************************************************************************************************
    * Render

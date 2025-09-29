@@ -6,11 +6,17 @@ import code from './Dev_Form_Text.code.md';
 import Dev_Form_Text_Variant from './Dev_Form_Text_Variant';
 import { toast } from '@toast';
 
-const _formOptions = [['title', 'placeholder'], '|', ['required', 'disabled', 'subControl', 'hideTitle']] as const;
+const _formOptions = [
+  ['title', 'placeholder'],
+  '|',
+  'helperText',
+  '|',
+  ['required', 'disabled', 'subControl', 'hideTitle'],
+] as const;
 type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
 const _formOptionsDefaultData: Dev_FormOptionsData = {
-  title: '텍스트',
-  placeholder: '텍스트를 입력해 주세요',
+  title: 'FormText',
+  placeholder: '입력해 주세요',
 };
 
 interface Props {
@@ -24,7 +30,14 @@ export const Dev_Form_Text = ({ titlePosition }: Props) => {
 
   const [_data, setData] = useState<Pick<Dev_FormOptionsData, _formOptions>>({});
 
-  const { subControl, ...data } = _data;
+  const { subControl, title, placeholder, helperText, ...otherData } = _data;
+
+  const data = {
+    title: ifEmpty(title, undefined),
+    placeholder: ifEmpty(placeholder, undefined),
+    helperText: ifEmpty(helperText, undefined),
+    ...otherData,
+  };
 
   /********************************************************************************************************************
    * Render
@@ -44,6 +57,7 @@ export const Dev_Form_Text = ({ titlePosition }: Props) => {
             <Stack spacing={20} fullWidth>
               <FormText
                 name='FormText'
+                titleWidth={80}
                 subControl={
                   subControl ? (
                     <Button type='button' onClick={() => toast.info('하위 컨트롤 클릭')}>

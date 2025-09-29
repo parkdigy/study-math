@@ -16,6 +16,7 @@ export const FormControlBase = ({
   name,
   title,
   titleProps,
+  titleWidth,
   hideTitle: initHideTitle,
   required,
   disabled,
@@ -79,6 +80,7 @@ export const FormControlBase = ({
         <FormTitle
           labelProps={titleProps}
           height={titlePosition === 'left' ? childrenHeight : undefined}
+          width={titleWidth}
           error={error !== false}
           required={required}
           disabled={disabled}

@@ -14,6 +14,7 @@ export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
       error: initError = false,
       rules,
       linkName,
+      helperText: initHelperText,
       onChange,
       onErrorChange,
       onValidate,
@@ -53,15 +54,20 @@ export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
     const helperText = useMemo(() => {
       if (rules) {
         return (
-          <Stack row center spacing={5} wrap>
-            <RuleCheck title='대소문자' checked={isContainsAlphabet} error={error !== false} />
-            <RuleCheck title='숫자' checked={isContainsNumeric} error={error !== false} />
-            <RuleCheck title='특수문자' checked={isContainsSpecialChar} error={error !== false} />
-            <RuleCheck title='8자리 이상' checked={isOverLength} error={error !== false} />
+          <Stack spacing={3}>
+            <Stack row center spacing={5} wrap>
+              <RuleCheck title='대소문자' checked={isContainsAlphabet} error={error !== false} />
+              <RuleCheck title='숫자' checked={isContainsNumeric} error={error !== false} />
+              <RuleCheck title='특수문자' checked={isContainsSpecialChar} error={error !== false} />
+              <RuleCheck title='8자리 이상' checked={isOverLength} error={error !== false} />
+            </Stack>
+            {initHelperText}
           </Stack>
         );
+      } else {
+        return initHelperText;
       }
-    }, [error, isContainsAlphabet, isContainsNumeric, isContainsSpecialChar, isOverLength, rules]);
+    }, [error, initHelperText, isContainsAlphabet, isContainsNumeric, isContainsSpecialChar, isOverLength, rules]);
 
     /********************************************************************************************************************
      * Effect

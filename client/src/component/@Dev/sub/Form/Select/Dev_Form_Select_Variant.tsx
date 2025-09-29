@@ -8,7 +8,7 @@ interface Props {
 
 const Items = new Array(20).fill(0).map((_, i) => lv(`아이템 ${i + 1}`, `${i + 1}`, { disabled: i % 3 === 1 }));
 
-export const Dev_Form_Select_Variant = ({ titlePosition }: Props) => {
+const Dev_Form_Select_Variant = ({ titlePosition }: Props) => {
   return (
     <Dev_Panel>
       <Form titlePosition={titlePosition} titleWidth={60} onSubmit={() => ll('submit')}>
@@ -49,4 +49,4 @@ export const Dev_Form_Select_Variant = ({ titlePosition }: Props) => {
   );
 };
 
-export default Dev_Form_Select_Variant;
+export default React.memo(Dev_Form_Select_Variant);

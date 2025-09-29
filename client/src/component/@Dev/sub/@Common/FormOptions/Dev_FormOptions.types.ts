@@ -6,6 +6,7 @@ import {
   Dev_FormControl_ColorProps,
   Dev_FormControl_DisabledProps,
   Dev_FormControl_FontWeightProps,
+  Dev_FormControl_HelperTextProps,
   Dev_FormControl_HideTitleProps,
   Dev_FormControl_IconButtonVariantProps,
   Dev_FormControl_IconPositionProps,
@@ -31,6 +32,8 @@ import {
 import { Dev_CodeProps } from '../Code';
 import { AllColors } from '@theme';
 import { FormControlCommonProps, FormProps, GridProps } from '@ccomp';
+import { Dev_FormControl_LabelProps } from '../FormControls/Label';
+import { Dev_FormControl_FormCheckboxTypeProps } from '../FormControls/FormCheckboxType';
 
 export type Dev_FormOptionsOption =
   /** Multi Option Controls */
@@ -48,11 +51,14 @@ export type Dev_FormOptionsOption =
   | 'size'
   | 'spacing'
   | 'rows'
+  | 'formCheckboxType'
   /** Text Controls */
   | 'url'
   | 'title'
   | 'message'
   | 'placeholder'
+  | 'helperText'
+  | 'label'
   /** Boolean Controls */
   | 'disabled'
   | 'loading'
@@ -81,7 +87,8 @@ export type Dev_FormOptionsRadioGroupOption =
   | 'iconSpacing'
   | 'size'
   | 'spacing'
-  | 'rows';
+  | 'rows'
+  | 'formCheckboxType';
 
 export interface Dev_FormOptionsData<
   TColors extends AllColors = AllColors,
@@ -102,11 +109,14 @@ export interface Dev_FormOptionsData<
   iconPosition?: Dev_FormControl_IconPositionProps['value'];
   iconSpacing?: Dev_FormControl_IconSpacingProps['value'];
   rows?: Dev_FormControl_RowsProps['value'];
+  formCheckboxType?: Dev_FormControl_FormCheckboxTypeProps['value'];
   /** Text Controls */
   url?: Dev_FormControl_UrlProps['value'];
   title?: Dev_FormControl_TitleProps['value'];
   placeholder?: Dev_FormControl_PlaceholderProps['value'];
   message?: Dev_FormControl_MessageProps['value'];
+  helperText?: Dev_FormControl_HelperTextProps['value'];
+  label?: Dev_FormControl_LabelProps['value'];
   /** Boolean Controls */
   loading?: Dev_FormControl_LoadingProps['value'];
   disabled?: Dev_FormControl_DisabledProps['value'];
@@ -144,11 +154,14 @@ export interface Dev_FormOptionsControlPropsMap {
   size?: Pick<Dev_FormControl_SizeProps, keyof Dev_FormOptionsControlCommonProps>;
   spacing?: Pick<Dev_FormControl_SpacingProps, keyof Dev_FormOptionsControlCommonProps>;
   rows?: Pick<Dev_FormControl_RowsProps, keyof Dev_FormOptionsControlCommonProps>;
+  formCheckboxType?: Pick<Dev_FormControl_FormCheckboxTypeProps, keyof Dev_FormOptionsControlCommonProps>;
   /** Text Controls */
   title?: Pick<Dev_FormControl_TitleProps, keyof Dev_FormOptionsControlCommonProps>;
   placeholder?: Pick<Dev_FormControl_PlaceholderProps, keyof Dev_FormOptionsControlCommonProps>;
   url?: Pick<Dev_FormControl_UrlProps, keyof Dev_FormOptionsControlCommonProps>;
   message?: Pick<Dev_FormControl_MessageProps, keyof Dev_FormOptionsControlCommonProps>;
+  helperText?: Pick<Dev_FormControl_HelperTextProps, keyof Dev_FormOptionsControlCommonProps>;
+  label?: Pick<Dev_FormControl_LabelProps, keyof Dev_FormOptionsControlCommonProps>;
   /** Boolean Controls */
   loading?: Pick<Dev_FormControl_LoadingProps, keyof Dev_FormOptionsControlCommonProps>;
   disabled?: Pick<Dev_FormControl_DisabledProps, keyof Dev_FormOptionsControlCommonProps>;

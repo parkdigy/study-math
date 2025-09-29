@@ -1,6 +1,7 @@
 export interface FormTitleProps {
   children?: ReactNode;
   className?: string;
+  width?: number;
   height?: number;
   error?: boolean;
   required?: boolean;

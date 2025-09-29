@@ -28,13 +28,12 @@ export const Dev_FormControl_Cols = ({
     <Dev_PanelItem icon='ViewColumn' title='컬럼 수 (cols)' mt={-5}>
       <FormCheckbox
         name='isResponsiveCols'
+        label='반응형 컬럼 수 사용'
         disabled={disabled}
         checked={useResponsive}
         onChange={onChangeUseResponsive}
         mb={3}
-      >
-        반응형 컬럼 수 사용
-      </FormCheckbox>
+      />
 
       {useResponsive ? (
         <Grid cols={{ mobileSm: 2, mobileMd: 3, mobileLg: 4, tabletSm: 5, tabletMd: 7, desktopSm: 9 }} spacing={10}>

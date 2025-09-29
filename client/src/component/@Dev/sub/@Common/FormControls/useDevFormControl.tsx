@@ -34,6 +34,9 @@ import { Dev_FormControl_SubControl } from './SubControl';
 import { Dev_FormControl_Rules } from './Rules';
 import { Dev_FormControl_Rows } from './Rows';
 import { Dev_FormControl_Clearable } from './Clearable';
+import { Dev_FormControl_HelperText } from './HelperText';
+import { Dev_FormControl_Label } from './Label';
+import { Dev_FormControl_FormCheckboxType } from './FormCheckboxType';
 
 export type UseDevFormControlData<TOption extends Exclude<Dev_FormOptionsOption, 'cols'>> = {
   screenSize: ScreenSizeInfo;
@@ -113,6 +116,8 @@ function useDevFormControl<TOption extends Exclude<Dev_FormOptionsOption, 'cols'
     <Dev_FormControl_IconSpacing {...multiOptionDefaultProps} />
   ) : option === 'rows' ? (
     <Dev_FormControl_Rows {...multiOptionDefaultProps} />
+  ) : option === 'formCheckboxType' ? (
+    <Dev_FormControl_FormCheckboxType {...multiOptionDefaultProps} />
   ) : /** Text Controls */ option === 'title' ? (
     <Dev_FormControl_Title {...defaultProps} />
   ) : option === 'placeholder' ? (
@@ -121,6 +126,10 @@ function useDevFormControl<TOption extends Exclude<Dev_FormOptionsOption, 'cols'
     <Dev_FormControl_Url {...defaultProps} />
   ) : option === 'message' ? (
     <Dev_FormControl_Message {...defaultProps} />
+  ) : option === 'helperText' ? (
+    <Dev_FormControl_HelperText {...defaultProps} />
+  ) : option === 'label' ? (
+    <Dev_FormControl_Label {...defaultProps} />
   ) : /** Boolean Controls */ option === 'loading' ? (
     <Dev_FormControl_Loading {...defaultProps} />
   ) : option === 'disabled' ? (

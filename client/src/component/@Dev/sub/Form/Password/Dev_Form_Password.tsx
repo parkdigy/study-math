@@ -9,12 +9,14 @@ import Dev_Form_Password_Variant from './Dev_Form_Password_Variant';
 const _formOptions = [
   ['title', 'placeholder'],
   '|',
+  'helperText',
+  '|',
   ['rules', 'required', 'disabled', 'subControl', 'hideTitle'],
 ] as const;
 type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
 const _formOptionsDefaultData: Dev_FormOptionsData = {
-  title: '비밀번호',
-  placeholder: '비밀번호를 입력해 주세요',
+  title: 'FormPassword',
+  placeholder: '입력해 주세요',
 };
 
 interface Props {
@@ -28,7 +30,14 @@ export const Dev_Form_Password = ({ titlePosition }: Props) => {
 
   const [_data, setData] = useState<Pick<Dev_FormOptionsData, _formOptions>>({});
 
-  const { subControl, ...data } = _data;
+  const { subControl, title, placeholder, helperText, ...otherData } = _data;
+
+  const data = {
+    title: ifEmpty(title, undefined),
+    placeholder: ifEmpty(placeholder, undefined),
+    helperText: ifEmpty(helperText, undefined),
+    ...otherData,
+  };
 
   /********************************************************************************************************************
    * Render
@@ -48,6 +57,7 @@ export const Dev_Form_Password = ({ titlePosition }: Props) => {
             <Stack spacing={20} fullWidth>
               <FormPassword
                 name='FormPassword'
+                titleWidth={110}
                 subControl={
                   subControl ? (
                     <Button type='button' onClick={() => toast.info('하위 컨트롤 클릭')}>

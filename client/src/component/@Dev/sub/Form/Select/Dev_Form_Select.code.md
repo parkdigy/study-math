@@ -1,3 +1,3 @@
 ```react
-<FormSelect $[props] />
+<FormSelect $[props] items={...} />
 ```

@@ -110,6 +110,8 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
     iconSpacingControl,
     rows,
     rowsControl,
+    formCheckboxType,
+    formCheckboxTypeControl,
   } = useDevFormOptionMultiOptionControls({
     flatOptions,
     optionProps,
@@ -120,13 +122,25 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
   });
 
   /** Text Controls */
-  const { title, titleControl, placeholder, placeholderControl, url, urlControl, message, messageControl } =
-    useDevFormOptionTextControls({
-      flatOptions,
-      optionProps,
-      defaultData,
-      useFormControlData,
-    });
+  const {
+    title,
+    titleControl,
+    placeholder,
+    placeholderControl,
+    url,
+    urlControl,
+    message,
+    messageControl,
+    helperText,
+    helperTextControl,
+    label,
+    labelControl,
+  } = useDevFormOptionTextControls({
+    flatOptions,
+    optionProps,
+    defaultData,
+    useFormControlData,
+  });
 
   /** Boolean Controls */
   const {
@@ -220,6 +234,9 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
         case 'rows':
           newData.rows = rows;
           break;
+        case 'formCheckboxType':
+          newData.formCheckboxType = formCheckboxType;
+          break;
 
         /** Text Controls */
         case 'title':
@@ -233,6 +250,12 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
           break;
         case 'url':
           newData.url = url;
+          break;
+        case 'helperText':
+          newData.helperText = helperText;
+          break;
+        case 'label':
+          newData.label = label;
           break;
 
         /** Boolean Controls */
@@ -321,6 +344,9 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
     rules,
     rows,
     clearable,
+    helperText,
+    label,
+    formCheckboxType,
   ]);
 
   /********************************************************************************************************************
@@ -455,6 +481,8 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
                             return iconSpacingControl;
                           case 'rows':
                             return rowsControl;
+                          case 'formCheckboxType':
+                            return formCheckboxTypeControl;
 
                           /** Text Controls */
                           case 'title':
@@ -465,6 +493,10 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
                             return urlControl;
                           case 'message':
                             return messageControl;
+                          case 'helperText':
+                            return helperTextControl;
+                          case 'label':
+                            return labelControl;
 
                           /** Boolean Controls */
                           case 'loading':

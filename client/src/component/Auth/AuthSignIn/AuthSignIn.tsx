@@ -49,7 +49,7 @@ export const AuthSignIn = ({}: Props) => {
               <FormPassword name='password' title='비밀번호' placeholder='비밀번호를 입력해 주세요' required />
 
               <Stack row center justifyContent='space-between'>
-                <FormCheckbox name='stay'>로그인 상태 유지</FormCheckbox>
+                <FormCheckbox name='stay' label='로그인 상태 유지' />
               </Stack>
             </Stack>
 

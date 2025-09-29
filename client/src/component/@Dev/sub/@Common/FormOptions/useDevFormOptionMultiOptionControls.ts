@@ -173,6 +173,19 @@ export const useDevFormOptionMultiOptionControls = ({
   });
 
   /********************************************************************************************************************
+   * formCheckboxType
+   * ******************************************************************************************************************/
+  const [formCheckboxType, formCheckboxTypeControl] = useDevFormControl(
+    'formCheckboxType',
+    flatOptions.includes('formCheckboxType'),
+    defaultData?.formCheckboxType,
+    {
+      ...useFormControlData,
+      props: optionProps?.formCheckboxType,
+    }
+  );
+
+  /********************************************************************************************************************
    * Return
    * ******************************************************************************************************************/
 
@@ -205,5 +218,7 @@ export const useDevFormOptionMultiOptionControls = ({
     iconSpacingControl,
     rows,
     rowsControl,
+    formCheckboxType,
+    formCheckboxTypeControl,
   };
 };

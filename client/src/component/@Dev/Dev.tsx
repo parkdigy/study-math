@@ -58,7 +58,7 @@ export const Dev = ({}: Props) => {
    * State
    * ******************************************************************************************************************/
 
-  const [activeTab, setActiveTab] = useState<TabValue>('form');
+  const [activeTab, setActiveTab] = useState<TabValue>('color');
 
   /********************************************************************************************************************
    * Render

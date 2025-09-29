@@ -12,6 +12,7 @@ export interface FormControlCommonProps<T> extends BoxStyleProps {
   name: string;
   title?: string;
   titleProps?: Omit<TProps, 'children'>;
+  titleWidth?: number;
   hideTitle?: boolean;
   required?: boolean;
   disabled?: boolean;

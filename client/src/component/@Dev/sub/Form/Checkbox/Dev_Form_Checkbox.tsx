@@ -1,79 +1,83 @@
 import React from 'react';
-import { Form, FormCheckbox, FormProps } from '@ccomp';
-import { Dev_Panel } from '../../@Common';
+import { FormCheckbox, FormProps } from '@ccomp';
+import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../../@Common';
+import Dev_Form_Checkbox_Variant from './Dev_Form_Checkbox_Variant';
+import { FlattenArray } from '@pdg/types';
+import code from './Dev_Form_Checkbox.code.md';
+import { toast } from '@common';
+
+const _formOptions = [
+  'formCheckboxType',
+  '|',
+  ['title', 'label'],
+  '|',
+  'helperText',
+  '|',
+  ['disabled', 'subControl', 'hideTitle'],
+] as const;
+type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
+const _formOptionsDefaultData: Dev_FormOptionsData = {
+  title: 'FormRadioGroup',
+  label: '체크박스',
+};
 
 interface Props {
   titlePosition: FormProps['titlePosition'];
 }
 
 export const Dev_Form_Checkbox = ({ titlePosition }: Props) => {
+  /********************************************************************************************************************
+   * Data
+   * ******************************************************************************************************************/
+
+  const [_data, setData] = useState<Pick<Dev_FormOptionsData, _formOptions>>({});
+
+  const { subControl, formCheckboxType, title, label, helperText, ...otherData } = _data;
+
+  const data = {
+    type: formCheckboxType,
+    title: ifEmpty(title, undefined),
+    label: ifEmpty(label, undefined),
+    helperText: ifEmpty(helperText, undefined),
+    ...otherData,
+  };
+
+  /********************************************************************************************************************
+   * Render
+   * ******************************************************************************************************************/
+
   return (
-    <Dev_Panel>
-      <Form titlePosition={titlePosition} titleWidth={140} onSubmit={() => ll('submit')}>
-        <Stack spacing={15}>
-          <Divider />
+    <Stack spacing={20}>
+      <Dev_Panel>
+        <Dev_FormOptions
+          options={_formOptions}
+          defaultData={_formOptionsDefaultData}
+          formProps={{ titlePosition }}
+          code={code}
+          codePropsMap={{ props: { ...data, subControl: subControl ? '{...}' : undefined } }}
+          onChange={setData}
+          onGetTest={() => (
+            <Stack spacing={20} fullWidth>
+              <FormCheckbox
+                name='FormCheckbox'
+                titleWidth={120}
+                subControl={
+                  subControl ? (
+                    <Button type='button' onClick={() => toast.info('하위 컨트롤 클릭')}>
+                      하위 컨트롤
+                    </Button>
+                  ) : undefined
+                }
+                {...data}
+              />
+              <Button>Submit</Button>
+            </Stack>
+          )}
+        />
+      </Dev_Panel>
 
-          <FormCheckbox title='체크박스' name='FormCheckbox_default'>
-            기본
-          </FormCheckbox>
-
-          <Divider />
-
-          <FormCheckbox title='체크박스' name='FormCheckbox_disabled' disabled>
-            비활성
-          </FormCheckbox>
-
-          <Divider />
-
-          <FormCheckbox
-            title='체크박스'
-            name='FormCheckbox_subControl'
-            subControl={
-              <Button type='button' size='sm'>
-                버튼
-              </Button>
-            }
-          >
-            하위 컨트롤
-          </FormCheckbox>
-
-          <Divider />
-
-          <FormCheckbox title='체크박스' name='FormCheckbox_hideTitle' hideTitle>
-            제목 숨김
-          </FormCheckbox>
-
-          <Divider />
-
-          <FormCheckbox type='switch' title='스위치 - 기본' name='FormCheckbox_switch_default' />
-
-          <Divider />
-
-          <FormCheckbox type='switch' title='스위치 - 비활성' name='FormCheckbox_switch_disabled' disabled />
-
-          <Divider />
-
-          <FormCheckbox
-            type='switch'
-            title='스위치 - 하위 컨트롤'
-            name='FormCheckbox_switch_subControl'
-            subControl={
-              <Button type='button' size='sm'>
-                버튼
-              </Button>
-            }
-          />
-
-          <Divider />
-
-          <FormCheckbox type='switch' title='스위치 - 제목 숨김' name='FormCheckbox_switch_hideTitle' hideTitle />
-
-          <Divider />
-
-          <Button type='submit'>Submit</Button>
-        </Stack>
-      </Form>
-    </Dev_Panel>
+      <Dev_Form_Checkbox_Variant titlePosition={titlePosition} />
+    </Stack>
   );
 };
 
