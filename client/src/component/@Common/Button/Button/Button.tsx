@@ -160,8 +160,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
           'Button',
           `Button-size-${sizeCssName}`,
           `Button-variant-${variant}`,
-          `font-size-${sizeCssName}`,
-          // backgroundIsDark ? 'Button-dark-color' : 'Button-light-color',
+          variant === 'text' ? `font-${sizeCssName}` : `font-size-${sizeCssName}`,
           loading && 'Button-loading'
         )}
         outlineColor={outlineColor}
