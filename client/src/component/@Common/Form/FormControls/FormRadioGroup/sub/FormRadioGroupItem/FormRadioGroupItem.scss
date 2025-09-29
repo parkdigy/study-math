@@ -9,6 +9,10 @@
   outline-offset: 3px;
   user-select: none;
 
+  .Icon {
+    cursor: pointer;
+  }
+
   // 포커스 시 아웃라인 표시
   &:focus-visible {
     outline-width: thin;

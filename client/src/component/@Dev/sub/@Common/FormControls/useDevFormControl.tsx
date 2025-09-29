@@ -37,6 +37,8 @@ import { Dev_FormControl_Clearable } from './Clearable';
 import { Dev_FormControl_HelperText } from './HelperText';
 import { Dev_FormControl_Label } from './Label';
 import { Dev_FormControl_FormCheckboxType } from './FormCheckboxType';
+import { Dev_FormControl_CurrentPage } from './CurrentPage';
+import { Dev_FormControl_LastPage } from './LastPage';
 
 export type UseDevFormControlData<TOption extends Exclude<Dev_FormOptionsOption, 'cols'>> = {
   screenSize: ScreenSizeInfo;
@@ -118,6 +120,10 @@ function useDevFormControl<TOption extends Exclude<Dev_FormOptionsOption, 'cols'
     <Dev_FormControl_Rows {...multiOptionDefaultProps} />
   ) : option === 'formCheckboxType' ? (
     <Dev_FormControl_FormCheckboxType {...multiOptionDefaultProps} />
+  ) : option === 'currentPage' ? (
+    <Dev_FormControl_CurrentPage {...multiOptionDefaultProps} />
+  ) : option === 'lastPage' ? (
+    <Dev_FormControl_LastPage {...multiOptionDefaultProps} />
   ) : /** Text Controls */ option === 'title' ? (
     <Dev_FormControl_Title {...defaultProps} />
   ) : option === 'placeholder' ? (

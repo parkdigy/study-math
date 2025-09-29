@@ -15,6 +15,8 @@ export * from './IconButtonVariant';
 export * from './AlertType';
 export * from './Rotate';
 export * from './Rows';
+export * from './CurrentPage';
+export * from './LastPage';
 
 /** Text Controls */
 export * from './Url';

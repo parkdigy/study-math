@@ -13,6 +13,7 @@ import {
   Dev_Icon,
   Dev_Img,
   Dev_LoadingIndicator,
+  Dev_Pagination,
   Dev_T,
   Dev_Toast,
   Dev_Tooltip,
@@ -34,6 +35,7 @@ const TabValue = [
   'errorRetry',
   'form',
   'alert',
+  'pagination',
 ] as const;
 type TabValue = (typeof TabValue)[number];
 const TabItems = [
@@ -50,6 +52,7 @@ const TabItems = [
   lv('툴팁', 'tooltip'),
   lv('오류', 'errorRetry'),
   lv('얼럿', 'alert'),
+  lv('페이징', 'pagination'),
   lv('Form', 'form'),
 ] as Lv<string, TabValue, { disabled?: boolean }>[];
 
@@ -96,6 +99,8 @@ export const Dev = ({}: Props) => {
         <Dev_Form />
       ) : activeTab === 'alert' ? (
         <Dev_Alert />
+      ) : activeTab === 'pagination' ? (
+        <Dev_Pagination />
       ) : null}
     </PageRootContainer>
   );

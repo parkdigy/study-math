@@ -12,3 +12,4 @@ export * from './T';
 export * from './Toast';
 export * from './Tooltip';
 export * from './Alert';
+export * from './Pagination';

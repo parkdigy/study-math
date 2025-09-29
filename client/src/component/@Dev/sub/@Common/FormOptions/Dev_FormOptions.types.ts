@@ -4,6 +4,7 @@ import {
   Dev_FormControl_ButtonVariantProps,
   Dev_FormControl_ClearableProps,
   Dev_FormControl_ColorProps,
+  Dev_FormControl_CurrentPageProps,
   Dev_FormControl_DisabledProps,
   Dev_FormControl_FontWeightProps,
   Dev_FormControl_HelperTextProps,
@@ -12,6 +13,7 @@ import {
   Dev_FormControl_IconPositionProps,
   Dev_FormControl_IconProps,
   Dev_FormControl_IconSpacingProps,
+  Dev_FormControl_LastPageProps,
   Dev_FormControl_LoadingProps,
   Dev_FormControl_MessageProps,
   Dev_FormControl_OnRetryProps,
@@ -34,6 +36,7 @@ import { AllColors } from '@theme';
 import { FormControlCommonProps, FormProps, GridProps } from '@ccomp';
 import { Dev_FormControl_LabelProps } from '../FormControls/Label';
 import { Dev_FormControl_FormCheckboxTypeProps } from '../FormControls/FormCheckboxType';
+import { CSSProperties } from 'react';
 
 export type Dev_FormOptionsOption =
   /** Multi Option Controls */
@@ -52,6 +55,8 @@ export type Dev_FormOptionsOption =
   | 'spacing'
   | 'rows'
   | 'formCheckboxType'
+  | 'currentPage'
+  | 'lastPage'
   /** Text Controls */
   | 'url'
   | 'title'
@@ -88,7 +93,9 @@ export type Dev_FormOptionsRadioGroupOption =
   | 'size'
   | 'spacing'
   | 'rows'
-  | 'formCheckboxType';
+  | 'formCheckboxType'
+  | 'currentPage'
+  | 'lastPage';
 
 export interface Dev_FormOptionsData<
   TColors extends AllColors = AllColors,
@@ -110,6 +117,8 @@ export interface Dev_FormOptionsData<
   iconSpacing?: Dev_FormControl_IconSpacingProps['value'];
   rows?: Dev_FormControl_RowsProps['value'];
   formCheckboxType?: Dev_FormControl_FormCheckboxTypeProps['value'];
+  currentPage?: Dev_FormControl_CurrentPageProps['value'];
+  lastPage?: Dev_FormControl_LastPageProps['value'];
   /** Text Controls */
   url?: Dev_FormControl_UrlProps['value'];
   title?: Dev_FormControl_TitleProps['value'];
@@ -155,6 +164,8 @@ export interface Dev_FormOptionsControlPropsMap {
   spacing?: Pick<Dev_FormControl_SpacingProps, keyof Dev_FormOptionsControlCommonProps>;
   rows?: Pick<Dev_FormControl_RowsProps, keyof Dev_FormOptionsControlCommonProps>;
   formCheckboxType?: Pick<Dev_FormControl_FormCheckboxTypeProps, keyof Dev_FormOptionsControlCommonProps>;
+  currentPage?: Pick<Dev_FormControl_CurrentPageProps, keyof Dev_FormOptionsControlCommonProps>;
+  lastPage?: Pick<Dev_FormControl_LastPageProps, keyof Dev_FormOptionsControlCommonProps>;
   /** Text Controls */
   title?: Pick<Dev_FormControl_TitleProps, keyof Dev_FormOptionsControlCommonProps>;
   placeholder?: Pick<Dev_FormControl_PlaceholderProps, keyof Dev_FormOptionsControlCommonProps>;
@@ -198,6 +209,7 @@ export interface Dev_FormOptionsProps<
   codePropsMap: Dev_CodeProps['propsMap'];
   gridCols?: GridProps['cols'];
   defaultData?: Partial<Dev_FormOptionsData<TColors, TBackgroundColors>>;
+  testBackgroundColor?: AllColors | CSSProperties['backgroundColor'];
   onChange: (data: Dev_FormOptionsData<TColors, TBackgroundColors>) => void;
   onGetTest: (data: Dev_FormOptionsData<TColors, TBackgroundColors>) => ReactNode;
 }

@@ -1,0 +1,3 @@
+```react
+<Pagination $[props] />
+```

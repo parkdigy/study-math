@@ -34,7 +34,6 @@ export const Dev_Alert = () => {
           defaultData={_formOptionDefaultData}
           code={code}
           codePropsMap={{ alert: data }}
-          gridCols={1}
           onChange={setData}
           onGetTest={() => (
             <Box fullWidth>

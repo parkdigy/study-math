@@ -28,6 +28,7 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
   codePropsMap,
   testPosition = 'top',
   defaultData,
+  testBackgroundColor,
   onChange,
   onGetTest,
 }: Props<TColors, TBackgroundColors>) {
@@ -112,6 +113,10 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
     rowsControl,
     formCheckboxType,
     formCheckboxTypeControl,
+    currentPage,
+    currentPageControl,
+    lastPage,
+    lastPageControl,
   } = useDevFormOptionMultiOptionControls({
     flatOptions,
     optionProps,
@@ -237,6 +242,12 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
         case 'formCheckboxType':
           newData.formCheckboxType = formCheckboxType;
           break;
+        case 'currentPage':
+          newData.currentPage = currentPage;
+          break;
+        case 'lastPage':
+          newData.lastPage = lastPage;
+          break;
 
         /** Text Controls */
         case 'title':
@@ -347,6 +358,8 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
     helperText,
     label,
     formCheckboxType,
+    currentPage,
+    lastPage,
   ]);
 
   /********************************************************************************************************************
@@ -378,7 +391,9 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
         mb={testPosition === 'top' ? 10 : undefined}
         mt={testPosition === 'bottom' ? 10 : undefined}
       >
-        <Dev_Panel className='Dev_FormOptions_TestControl_Content'>{onGetTest(data)}</Dev_Panel>
+        <Dev_Panel className='Dev_FormOptions_TestControl_Content' backgroundColor={testBackgroundColor}>
+          {onGetTest(data)}
+        </Dev_Panel>
         <Box mh={10}>
           {showCode && (
             <Dev_Code
@@ -403,7 +418,7 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
         </Box>
       </Box>
     ),
-    [code, codePropsMap, data, onGetTest, showCode, testPosition]
+    [code, codePropsMap, data, onGetTest, showCode, testBackgroundColor, testPosition]
   );
 
   /********************************************************************************************************************
@@ -483,6 +498,10 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
                             return rowsControl;
                           case 'formCheckboxType':
                             return formCheckboxTypeControl;
+                          case 'currentPage':
+                            return currentPageControl;
+                          case 'lastPage':
+                            return lastPageControl;
 
                           /** Text Controls */
                           case 'title':

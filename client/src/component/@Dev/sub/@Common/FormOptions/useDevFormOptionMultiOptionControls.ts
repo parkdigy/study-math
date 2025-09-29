@@ -186,6 +186,32 @@ export const useDevFormOptionMultiOptionControls = ({
   );
 
   /********************************************************************************************************************
+   * currentPage
+   * ******************************************************************************************************************/
+  const [currentPage, currentPageControl] = useDevFormControl(
+    'currentPage',
+    flatOptions.includes('currentPage'),
+    defaultData?.currentPage,
+    {
+      ...useFormControlData,
+      props: optionProps?.currentPage,
+    }
+  );
+
+  /********************************************************************************************************************
+   * lastPage
+   * ******************************************************************************************************************/
+  const [lastPage, lastPageControl] = useDevFormControl(
+    'lastPage',
+    flatOptions.includes('lastPage'),
+    defaultData?.lastPage,
+    {
+      ...useFormControlData,
+      props: optionProps?.lastPage,
+    }
+  );
+
+  /********************************************************************************************************************
    * Return
    * ******************************************************************************************************************/
 
@@ -220,5 +246,9 @@ export const useDevFormOptionMultiOptionControls = ({
     rowsControl,
     formCheckboxType,
     formCheckboxTypeControl,
+    currentPage,
+    currentPageControl,
+    lastPage,
+    lastPageControl,
   };
 };
