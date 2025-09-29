@@ -55,9 +55,13 @@ const RootLayout = () => {
   }, [colorScheme]);
 
   useEffect(() => {
+    app.setLocation(location);
+  }, [location]);
+
+  useEffect(() => {
     window.scrollTo({ top: app.getNavigateScrollTopPos() });
     app.setNavigateScrollTopPos(0);
-  }, [location.pathname, location.hash]);
+  }, [location.pathname, location.search, location.hash]);
 
   /********************************************************************************************************************
    * Function

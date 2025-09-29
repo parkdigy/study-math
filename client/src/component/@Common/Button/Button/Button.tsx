@@ -8,8 +8,8 @@ import { ButtonProps as Props } from './Button.types';
 import { LoadingIndicator } from '../../Loadings';
 import { CustomComponent, CustomComponentProps } from '../../CustomComponent';
 import Color from 'color';
-import './Button.scss';
 import app from '@app';
+import './Button.scss';
 
 const Button = React.forwardRef<HTMLButtonElement, Props>(
   (

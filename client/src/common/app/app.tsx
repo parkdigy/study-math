@@ -7,10 +7,23 @@ import { Theme } from '@theme';
 
 let _colorScheme: 'light' | 'dark' = 'light';
 let _theme: Theme = Theme;
+let _location: Location<any> | undefined;
 let _navigate: NavigateFunction | undefined;
 let _navigateScrollTopPos = 0;
 
 const app = {
+  /********************************************************************************************************************
+   * Location
+   * ******************************************************************************************************************/
+
+  setLocation(location: Location<any>) {
+    _location = location;
+  },
+
+  getLocation() {
+    return _location;
+  },
+
   /********************************************************************************************************************
    * Navigate
    * ******************************************************************************************************************/
@@ -32,7 +45,12 @@ const app = {
   navigate(path: string, replace = false, scrollTopPos = 0) {
     if (_navigate) {
       _navigateScrollTopPos = scrollTopPos;
-      _navigate(path, { replace });
+      const currentPath = `${_location?.pathname}${_location?.search}${_location?.hash}`;
+      if (path === currentPath) {
+        window.scrollTo({ left: 0, top: 0 });
+      } else {
+        _navigate(path, { replace });
+      }
     } else {
       console.log('!Not set navigate.');
     }
