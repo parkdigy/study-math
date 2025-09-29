@@ -15,7 +15,7 @@ const Colors: [keyof Theme['colors'], keyof Theme['colors']][] = [
 export const Dev_Color = () => {
   return (
     <Panel spacing={20}>
-      <TTitleLarge700 color='primary'>Color</TTitleLarge700>
+      <TTitleLarge700 color='primary'>컬러</TTitleLarge700>
 
       <Divider />
 

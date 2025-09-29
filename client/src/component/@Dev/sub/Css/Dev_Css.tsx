@@ -2,7 +2,15 @@ import React from 'react';
 import { AllColors, getFriendlyNameOfSize, Sizes, Theme } from '@theme';
 import util from '@util';
 import app from '@app';
-import { Divider, Grid } from '@ccomp';
+import { Divider, Grid, Tabs } from '@ccomp';
+
+const TabValue = ['size', 'color'] as const;
+type TabValue = (typeof TabValue)[number];
+const TabItems = [lv('크기 (Size)', 'size'), lv('색상 (Color)', 'color')] as Lv<
+  string,
+  TabValue,
+  { disabled?: boolean }
+>[];
 
 export const Dev_Css = () => {
   /********************************************************************************************************************
@@ -12,6 +20,12 @@ export const Dev_Css = () => {
   const theme = useTheme();
 
   /********************************************************************************************************************
+   * State
+   * ******************************************************************************************************************/
+
+  const [activeTab, setActiveTab] = useState<TabValue>('size');
+
+  /********************************************************************************************************************
    * Render
    * ******************************************************************************************************************/
 
@@ -19,77 +33,77 @@ export const Dev_Css = () => {
     <Panel spacing={20}>
       <TTitleLarge700 color='primary'>CSS</TTitleLarge700>
 
-      <Divider />
+      <Tabs items={TabItems} value={activeTab} onChange={setActiveTab} />
 
-      <Grid cols={{ mobileLg: 2, tabletMd: 3, desktopSm: 4 }} spacing={10}>
-        {Sizes.map((size, idx) => {
-          const friendlyName = theme.css.names.sizes[getFriendlyNameOfSize(size)];
-          const sizeInfo = theme.sizes[size];
-          const fontVarName = `font-${size}`;
-          const fontFriendlyVarName = `font-${friendlyName}`;
-          const fontSizeVarName = `var(--size-${size}-font-size)`;
-          const fontSizeFriendlyVarName = `var(--size-${friendlyName}-font-size)`;
-          const lineHeightVarName = `var(--size-${size}-line-height)`;
-          const lineHeightFriendlyVarName = `var(--size-${friendlyName}-line-height)`;
+      {activeTab === 'size' ? (
+        <Grid cols={{ mobileLg: 2, tabletMd: 3, desktopSm: 4 }} spacing={10}>
+          {Sizes.map((size, idx) => {
+            const friendlyName = theme.css.names.sizes[getFriendlyNameOfSize(size)];
+            const sizeInfo = theme.sizes[size];
+            const fontVarName = `font-${size}`;
+            const fontFriendlyVarName = `font-${friendlyName}`;
+            const fontSizeVarName = `var(--size-${size}-font-size)`;
+            const fontSizeFriendlyVarName = `var(--size-${friendlyName}-font-size)`;
+            const lineHeightVarName = `var(--size-${size}-line-height)`;
+            const lineHeightFriendlyVarName = `var(--size-${friendlyName}-line-height)`;
 
-          return (
+            return (
+              <Col key={idx}>
+                <Container>
+                  <Stack spacing={10}>
+                    <TTitleSmall color='primary' center>
+                      {friendlyName} ({size})
+                    </TTitleSmall>
+
+                    <Divider />
+
+                    {/* Font Size */}
+                    <T center opacity={0.7}>
+                      Font Size : {sizeInfo.fontSize}px
+                      <br />
+                      Line Height : {sizeInfo.lineHeight}
+                    </T>
+                    <CopyButton name={fontFriendlyVarName} />
+                    <CopyButton name={fontVarName} />
+
+                    <Divider />
+
+                    {/* Font Size */}
+                    <T center opacity={0.7}>
+                      Font Size : {sizeInfo.fontSize}px
+                    </T>
+                    <CopyButton name={fontSizeFriendlyVarName} />
+                    <CopyButton name={fontSizeVarName} />
+                    <CopyButton name={`font-size-${friendlyName}`} />
+                    <CopyButton name={`font-size-${size}`} />
+
+                    <Divider />
+
+                    {/* Line Height */}
+                    <T center opacity={0.7}>
+                      Line Height : {sizeInfo.lineHeight}
+                    </T>
+                    <CopyButton name={lineHeightFriendlyVarName} />
+                    <CopyButton name={lineHeightVarName} />
+                    <CopyButton name={`line-height-${friendlyName}`} />
+                    <CopyButton name={`line-height-${size}`} />
+                  </Stack>
+                </Container>
+              </Col>
+            );
+          })}
+        </Grid>
+      ) : activeTab === 'color' ? (
+        <Grid cols={{ mobileLg: 2, tabletMd: 3, desktopSm: 4 }} spacing={10}>
+          {AllColors.map((color, idx) => (
             <Col key={idx}>
               <Container>
-                <Stack spacing={10}>
-                  <TTitleSmall color='primary' center>
-                    {friendlyName} ({size})
-                  </TTitleSmall>
-
-                  <Divider />
-
-                  {/* Font Size */}
-                  <T center opacity={0.7}>
-                    Font Size : {sizeInfo.fontSize}px
-                    <br />
-                    Line Height : {sizeInfo.lineHeight}
-                  </T>
-                  <CopyButton name={fontFriendlyVarName} />
-                  <CopyButton name={fontVarName} />
-
-                  <Divider />
-
-                  {/* Font Size */}
-                  <T center opacity={0.7}>
-                    Font Size : {sizeInfo.fontSize}px
-                  </T>
-                  <CopyButton name={fontSizeFriendlyVarName} />
-                  <CopyButton name={fontSizeVarName} />
-                  <CopyButton name={`font-size-${friendlyName}`} />
-                  <CopyButton name={`font-size-${size}`} />
-
-                  <Divider />
-
-                  {/* Line Height */}
-                  <T center opacity={0.7}>
-                    Line Height : {sizeInfo.lineHeight}
-                  </T>
-                  <CopyButton name={lineHeightFriendlyVarName} />
-                  <CopyButton name={lineHeightVarName} />
-                  <CopyButton name={`line-height-${friendlyName}`} />
-                  <CopyButton name={`line-height-${size}`} />
-                </Stack>
+                <Item color={color as keyof Theme['colors']} />
               </Container>
             </Col>
-          );
-        })}
-      </Grid>
-
-      <Divider />
-
-      <Grid cols={{ mobileLg: 2, tabletMd: 3, desktopSm: 4 }} spacing={10}>
-        {AllColors.map((color, idx) => (
-          <Col key={idx}>
-            <Container>
-              <Item color={color as keyof Theme['colors']} />
-            </Container>
-          </Col>
-        ))}
-      </Grid>
+          ))}
+        </Grid>
+      ) : null}
     </Panel>
   );
 };
