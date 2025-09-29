@@ -53,6 +53,14 @@ import {
   T700 as _T700,
   T800 as _T800,
   T900 as _T900,
+  TPrimary as _TPrimary,
+  TSecondary as _TSecondary,
+  TSuccess as _TSuccess,
+  TWarning as _TWarning,
+  TError as _TError,
+  TAccent as _TAccent,
+  TBlurry as _TBlurry,
+  TLighten as _TLighten,
   TCaption as _TCaption,
   TCaptionBold as _TCaptionBold,
   TCaption100 as _TCaption100,
@@ -210,6 +218,14 @@ declare global {
   var T700: typeof _T700;
   var T800: typeof _T800;
   var T900: typeof _T900;
+  var TPrimary: typeof _TPrimary;
+  var TSecondary: typeof _TSecondary;
+  var TSuccess: typeof _TSuccess;
+  var TWarning: typeof _TWarning;
+  var TError: typeof _TError;
+  var TAccent: typeof _TAccent;
+  var TBlurry: typeof _TBlurry;
+  var TLighten: typeof _TLighten;
   var TCaption: typeof _TCaption;
   var TCaptionBold: typeof _TCaptionBold;
   var TCaption100: typeof _TCaption100;
@@ -347,6 +363,14 @@ globalThis.T600 = _T600;
 globalThis.T700 = _T700;
 globalThis.T800 = _T800;
 globalThis.T900 = _T900;
+globalThis.TPrimary = _TPrimary;
+globalThis.TSecondary = _TSecondary;
+globalThis.TSuccess = _TSuccess;
+globalThis.TWarning = _TWarning;
+globalThis.TError = _TError;
+globalThis.TAccent = _TAccent;
+globalThis.TBlurry = _TBlurry;
+globalThis.TLighten = _TLighten;
 globalThis.TCaption = _TCaption;
 globalThis.TCaptionBold = _TCaptionBold;
 globalThis.TCaption100 = _TCaption100;

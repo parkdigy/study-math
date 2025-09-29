@@ -6,7 +6,7 @@ import util from '@util';
 const Dev_T_Variant_Size_FontWeight = () => {
   return (
     <Dev_Panel>
-      <Dev_PanelItem title='크기/두께 별 컴포넌트' row center spacing={10} wrap>
+      <Dev_PanelItem title='크기/두께별 컴포넌트' row center spacing={10} wrap>
         {FriendlyNameSizes.map((size, idx) => (
           <React.Fragment key={idx}>
             <Divider />
@@ -267,11 +267,8 @@ const Item = ({
   }
 
   return Component ? (
-    <Tooltip
-      place='top-start'
-      content={`<${componentName}${ifUndefined(fontWeight, '')}>...</${componentName}${ifUndefined(fontWeight, '')}>`}
-    >
-      <Component wordBreak='break-all'>{`<${componentName}${ifUndefined(fontWeight, '')}>`}</Component>
+    <Tooltip place='top-start' content={`<${Component.name}>...</${Component.name}>`}>
+      <Component wordBreak='break-all'>{`<${Component.name}>`}</Component>
     </Tooltip>
   ) : null;
 };

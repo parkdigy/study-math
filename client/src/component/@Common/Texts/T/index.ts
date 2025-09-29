@@ -8,3 +8,4 @@ export * from './T.types';
 
 export * from './TFontWeight';
 export * from './TSize';
+export * from './TColor';

@@ -4,7 +4,7 @@ import { Dev_Panel, Dev_PanelItem } from '../@Common';
 const Dev_T_Variant_FontWeight = () => {
   return (
     <Dev_Panel>
-      <Dev_PanelItem title='두께 별 컴포넌트' row center spacing={10} wrap>
+      <Dev_PanelItem title='두께별 컴포넌트' row center spacing={10} wrap>
         <Divider />
 
         {new Array(9).fill(0).map((_, idx) => (
@@ -45,8 +45,8 @@ const Item = ({ fontWeight }: { fontWeight: 100 | 200 | 300 | 400 | 500 | 600 | 
                     : T900;
 
   return (
-    <Tooltip place='top-start' content={`<T${fontWeight}>...</T${fontWeight}>`}>
-      <Component>{`<T${fontWeight}>`}</Component>
+    <Tooltip place='top-start' content={`<${Component.name}>...</${Component.name}>`}>
+      <Component>{`<${Component.name}>`}</Component>
     </Tooltip>
   );
 };

@@ -9,7 +9,6 @@ import { LoadingIndicator } from '../../Loadings';
 import { CustomComponent, CustomComponentProps } from '../../CustomComponent';
 import Color from 'color';
 import './Button.scss';
-import { isUrl } from '@pdg/compare';
 import app from '@app';
 
 const Button = React.forwardRef<HTMLButtonElement, Props>(
@@ -130,7 +129,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
       (e: React.MouseEvent<HTMLButtonElement>) => {
         // URL 이 있으면 해당 URL 로 이동
         if (url) {
-          if (isUrl(url)) {
+          if (url.includes('://')) {
             // 외부 URL
             if (externalUrlOpenInThisTab) {
               window.location.href = url;
