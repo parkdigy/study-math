@@ -1,0 +1,58 @@
+@use '@sass/util';
+
+.FormTextarea {
+  .FormTextarea_textarea {
+    $font-size: 15px;
+    $line-height: 1.2;
+    $padding: 12px;
+    $text-color: var(--color-text);
+    $background-color: var(--color-background);
+    $border-color: var(--color-opacity-15);
+    $border-radius: 5px;
+    $outline-color: var(--color-primary);
+    $error-border-outline-color: util.apply-opacity-value(var(--color-error), 0.5);
+    $placeholder-color: util.apply-opacity-value(var(--color-text), 0.5);
+
+    width: 100%;
+    padding: $padding;
+    font-size: $font-size;
+    line-height: $line-height;
+    color: $text-color;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    background-color: $background-color;
+    outline: 0 solid $outline-color;
+    resize: none;
+
+    &.FormTextarea_textarea-focused {
+      outline-width: thin;
+    }
+
+    &.FormTextarea_textarea-error {
+      border-color: $error-border-outline-color;
+
+      &.FormTextarea_textarea-focused {
+        outline-color: $error-border-outline-color;
+      }
+    }
+
+    &.FormTextarea_textarea-disabled {
+      opacity: 0.5;
+    }
+
+    // Placeholder
+    &::placeholder {
+      color: $placeholder-color;
+    }
+    &::-webkit-input-placeholder {
+      color: $placeholder-color;
+    }
+    &:-moz-placeholder {
+      color: $placeholder-color;
+      opacity: 1;
+    }
+    &:-ms-input-placeholder {
+      color: $placeholder-color;
+    }
+  }
+}

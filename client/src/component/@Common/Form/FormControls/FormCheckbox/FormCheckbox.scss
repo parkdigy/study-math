@@ -1,0 +1,40 @@
+.FormCheckbox {
+  .FormCheckboxControl {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    margin: 5px 0;
+    padding-right: 1px;
+    cursor: pointer;
+    outline: 0 solid var(--color-primary);
+    outline-offset: 3px;
+    user-select: none;
+
+    // 아이콘
+    > i {
+      cursor: pointer;
+    }
+
+    // 포커스 시 아웃라인 표시
+    &:focus-visible {
+      outline-width: thin;
+    }
+
+    // 라벨
+    .FormCheckboxLabel {
+      font-size: var(--size-lg-font-size);
+    }
+  }
+
+  // disabled 상태
+  &.FormCheckbox-disabled .FormCheckboxControl {
+    opacity: 0.5;
+    cursor: default;
+  }
+
+  // 오류 상태 - 테두리 색상 변경
+  &.FormCheckbox-error .FormCheckboxControl {
+    outline-color: var(--color-error);
+  }
+}

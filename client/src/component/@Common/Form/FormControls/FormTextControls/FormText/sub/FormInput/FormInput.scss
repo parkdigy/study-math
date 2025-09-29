@@ -1,0 +1,77 @@
+@use 'sass:color';
+@use '@sass/util';
+
+.FormInput {
+  $font-size: 15px;
+  $line-height: 1.2;
+  $padding: 12px;
+  $text-color: var(--color-text);
+  $background-color: var(--color-background);
+  $border-color: var(--color-opacity-15);
+  $border-radius: 5px;
+  $outline-color: var(--color-primary);
+  $error-border-outline-color: util.apply-opacity-value(var(--color-error), 0.5);
+  $placeholder-color: util.apply-opacity-value(var(--color-text), 0.5);
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  background-color: $background-color;
+  outline: 0 solid $outline-color;
+
+  &.FormInput-focused {
+    outline-width: thin;
+  }
+
+  &.FormInput-error {
+    border-color: $error-border-outline-color;
+
+    &.FormInput-focused {
+      outline-color: $error-border-outline-color;
+    }
+  }
+
+  &.FormInput-disabled {
+    opacity: 0.5;
+  }
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 우측 영역
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  .FormInput-right {
+    margin: -$padding 0;
+  }
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Input
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  input {
+    padding: $padding;
+    font-size: $font-size;
+    line-height: $line-height;
+    color: $text-color;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    flex: 1;
+    width: 0;
+
+    // Placeholder
+    &::placeholder {
+      color: $placeholder-color;
+    }
+    &::-webkit-input-placeholder {
+      color: $placeholder-color;
+    }
+    &:-moz-placeholder {
+      color: $placeholder-color;
+      opacity: 1;
+    }
+    &:-ms-input-placeholder {
+      color: $placeholder-color;
+    }
+  }
+}

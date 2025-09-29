@@ -1,0 +1,23 @@
+import React from 'react';
+import { ImgLogo } from '@asset_images';
+import { Dev_Panel } from '../@Common';
+
+export const Dev_Img = () => {
+  return (
+    <Panel spacing={20}>
+      <TTitleLarge700 color='primary'>이미지 (Img)</TTitleLarge700>
+
+      <Divider />
+
+      <Dev_Panel>
+        <Stack row center spacing={10} wrap>
+          <Tooltip place='top-start' content='<Img src="..." />'>
+            <Img src={ImgLogo} height={50} />
+          </Tooltip>
+        </Stack>
+      </Dev_Panel>
+    </Panel>
+  );
+};
+
+export default Dev_Img;

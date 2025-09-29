@@ -1,0 +1,9 @@
+.FormControlContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  &.FormControlContainer-row {
+    flex-direction: row;
+  }
+}

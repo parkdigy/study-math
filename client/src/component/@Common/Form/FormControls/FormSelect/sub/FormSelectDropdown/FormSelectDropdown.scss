@@ -1,0 +1,39 @@
+.FormSelectDropdown__Container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 4px);
+  z-index: 1;
+  padding-bottom: 10px;
+
+  .FormSelectDropdown {
+    padding: 5px;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-opacity-05);
+    border-radius: 6px;
+    cursor: default;
+    box-shadow:
+      0 1px 1px rgba(0, 0, 0, 0.12),
+      0 2px 2px rgba(0, 0, 0, 0.12),
+      0 4px 4px rgba(0, 0, 0, 0.12),
+      0 8px 8px rgba(0, 0, 0, 0.12),
+      0 16px 16px rgba(0, 0, 0, 0.12);
+
+    // 스크롤바 (SimpleBar)
+    .FormSelect-SimpleBar {
+      max-height: 314px;
+
+      // 스크롤바 노출 상태일 때, 아이템이 스크롤바를 침범하지 않게 우측 여백 확보
+      &.simplebar-scrollable-y .simplebar-content {
+        margin-right: 14px;
+      }
+    }
+
+    // 아이템이 없을 때, 표시 텍스트
+    .FormSelectDropdown-empty-items {
+      padding: 7px 10px;
+      font-size: var(--size-lg-font-size);
+      opacity: 0.5;
+    }
+  }
+}

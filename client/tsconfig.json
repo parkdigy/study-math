@@ -12,16 +12,19 @@
     "preserveSymlinks": true,
     "baseUrl": "./",
     "paths": {
-      "@sass": ["src/sass"],
       "@types": ["src/@types"],
+      "@asset_images": ["src/@assets/images"],
+      "@sass": ["src/sass"],
+      "@theme": ["src/theme"],
       "@common": ["src/common"],
       "@comp": ["src/component"],
-      "@ccomp": ["src/component/Common"],
+      "@ccomp": ["src/component/@Common"],
       "@const": ["src/constant"],
       "@context": ["src/context"],
       "@app": ["src/common/app"],
       "@api": ["src/common/api"],
-      "@util": ["src/common/util"]
+      "@util": ["src/common/util"],
+      "@toast": ["src/common/toast"]
     },
     "typeRoots": [
       "node_modules/@types",

@@ -1,0 +1,27 @@
+@use '@sass/util';
+
+.FormSelectDropdownItem {
+  font-size: var(--size-lg-font-size);
+  padding: 7px 10px;
+  border-radius: 4px;
+  user-select: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  // 활성 아이템
+  &.FormSelectDropdownItem-temp-active {
+    background-color: util.apply-opacity-value(var(--color-primary), 0.4);
+  }
+
+  // 선택 아이템
+  &.FormSelectDropdownItem-active {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+
+  // 비활성화 아이템
+  &.FormSelectDropdownItem-disabled {
+    opacity: 0.5;
+  }
+}

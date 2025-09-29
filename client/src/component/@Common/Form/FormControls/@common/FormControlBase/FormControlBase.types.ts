@@ -1,0 +1,33 @@
+import { FormControlType } from '../../../FormContext';
+import { BoxStyleProps } from '../../../../Layout';
+
+export interface FormControlCommands {
+  focus: () => void;
+  validate: () => boolean;
+  setError: (error: string | boolean) => void;
+}
+
+export interface FormControlCommonProps<T> extends BoxStyleProps {
+  className?: string;
+  name: string;
+  title?: string;
+  titleProps?: Omit<TProps, 'children'>;
+  hideTitle?: boolean;
+  required?: boolean;
+  disabled?: boolean;
+  helperText?: ReactNode;
+  error?: string | boolean;
+  hideError?: boolean;
+  subControl?: ReactNode;
+  value?: T;
+  onChange?: (value: T) => void;
+  onValidate?: (value: T) => string | boolean;
+  onErrorChange?: (error: string | boolean) => void;
+}
+
+export interface FormControlBaseProps
+  extends Omit<FormControlCommonProps<any>, 'value' | 'onChange' | 'onValidate' | 'onErrorChange'> {
+  type: FormControlType;
+  commands: FormControlCommands | null;
+  children: ReactNode;
+}

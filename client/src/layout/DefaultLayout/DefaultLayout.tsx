@@ -1,16 +1,11 @@
-/********************************************************************************************************************
- * 기본 레이아웃 컴포넌트
- * ******************************************************************************************************************/
-
 import React from 'react';
-import MainRouter from '../../router';
+import { MainRouter } from '../../router';
 import { useAppState } from '@context';
-import app from '@app';
-import { useLocation } from 'react-router';
+import { ErrorBoundary, Footer, Header } from '@comp';
+import './DefaultLayout.scss';
 
 const DefaultLayout = () => {
   const { removeHtmlLoading } = useAppState();
-  const location = useLocation();
 
   /********************************************************************************************************************
    * Effect
@@ -21,16 +16,22 @@ const DefaultLayout = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    window.scrollTo({ top: app.getNavigateScrollTopPos() });
-    app.setNavigateScrollTopPos(0);
-  }, [location.pathname, location.hash]);
-
   /********************************************************************************************************************
    * Render
    * ******************************************************************************************************************/
 
-  return <MainRouter />;
+  return (
+    <div className='DefaultLayout'>
+      <Header layout='default' />
+      <div className='DefaultLayout-content-container'>
+        <ErrorBoundary>
+          <MainRouter />
+        </ErrorBoundary>
+      </div>
+
+      <Footer layout='default' />
+    </div>
+  );
 };
 
 export default DefaultLayout;

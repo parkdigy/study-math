@@ -1,0 +1,15 @@
+import { FormControlCommands, FormControlCommonProps } from '../@common';
+
+export interface FormCheckboxCommands extends FormControlCommands {
+  getChecked: () => boolean;
+  setChecked: (checked: boolean) => void;
+  toggle: () => void;
+}
+
+export interface FormCheckboxProps extends Omit<FormControlCommonProps<boolean>, 'value' | 'required' | 'onChange'> {
+  children?: ReactNode;
+  type?: 'checkbox' | 'switch';
+  disabled?: boolean;
+  checked?: boolean;
+  onChange?: (checked: boolean) => void;
+}

@@ -2,30 +2,25 @@
  * 루트 레이아웃 컴포넌트
  * ******************************************************************************************************************/
 
-import '../../init';
-
 import React, { useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router';
-import { AppContextProvider, LoadingContextProvider } from '@context';
-import { AxiosLoading, ErrorRetry, Loading, LoadingCommands } from '@ccomp';
+import { Route, Routes, useLocation } from 'react-router';
+import { AppContextProvider, AppContextValue, LoadingContextProvider, ScreenSizeContextProvider } from '@context';
+import { AxiosLoading, ErrorRetry, ToastContainer } from '@ccomp';
 import RootLayoutAppInitializer from './RootLayoutAppInitializer';
-import { useErrorBoundary, withErrorBoundary } from 'react-use-error-boundary';
-import { loadable } from '@common';
+import { config } from '@common';
+import AuthLayout from '../AuthLayout';
 import DefaultLayout from '../DefaultLayout';
-import '../../sass/index.scss';
+import { AuthInfo } from '@const';
+import { ThemeProvider } from '@theme';
+import { DevButtons } from './sub';
+import app from '@app';
 
-const RootLayout = withErrorBoundary(() => {
+const RootLayout = () => {
   /********************************************************************************************************************
    * Use
    * ******************************************************************************************************************/
 
-  const [error] = useErrorBoundary((error) => {
-    const errorName = (error as Error).name;
-    if (errorName === 'ChunkLoadError') {
-      setErrorName(errorName);
-      loadable.checkUpdate();
-    }
-  });
+  const location = useLocation();
 
   /********************************************************************************************************************
    * Ref
@@ -37,34 +32,32 @@ const RootLayout = withErrorBoundary(() => {
    * State
    * ******************************************************************************************************************/
 
-  const [errorName, setErrorName] = useState<string | undefined>();
+  const [colorScheme, setColorScheme] = useState<'light' | 'dark'>(
+    // 시스템 설정에 따른 테마 적용
+    // window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    'light'
+  );
+  const [auth, setAuth] = useState<AuthInfo | null>();
+  const [authError, setAuthError] = useState(false);
+  const [isLock, setIsLock] = useState(false);
 
   /********************************************************************************************************************
    * Effect
    * ******************************************************************************************************************/
 
   useEffect(() => {
-    hideHtmlLoading();
+    loadAuth();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  /********************************************************************************************************************
-   * Effect
-   * ******************************************************************************************************************/
+  useEffect(() => {
+    app.setColorScheme(colorScheme);
+  }, [colorScheme]);
 
   useEffect(() => {
-    if (error) {
-      const htmlLoadingEl = document.getElementById('___appLoading');
-      if (htmlLoadingEl) {
-        htmlLoadingEl.classList.remove('show');
-        htmlLoadingEl.classList.add('hide');
-
-        setTimeout(() => {
-          htmlLoadingEl.classList.add('hide-complete');
-        }, 300);
-      }
-    }
-  }, [error]);
+    window.scrollTo({ top: app.getNavigateScrollTopPos() });
+    app.setNavigateScrollTopPos(0);
+  }, [location.pathname, location.hash]);
 
   /********************************************************************************************************************
    * Function
@@ -123,43 +116,105 @@ const RootLayout = withErrorBoundary(() => {
     }
   }, [getHtmlLoading]);
 
+  const loadAuth = useCallback(
+    (retry = false) => {
+      showHtmlLoading();
+
+      setAuthError(false);
+
+      setTimeout(
+        () => {
+          // Auth.info()
+          //   .then(({ data }) => {
+          //     setAuth(ifUndefined(data, null));
+          //   })
+          //   .catch(() => {
+          //     setAuthError(true);
+          //   })
+          //   .finally(() => {
+          //     hideHtmlLoading();
+          //   });
+          setAuth(null);
+          hideHtmlLoading();
+        },
+        retry ? 300 : 0
+      );
+    },
+    [hideHtmlLoading, showHtmlLoading]
+  );
+
+  /********************************************************************************************************************
+   * Context Value
+   * ******************************************************************************************************************/
+
+  const contextValue: AppContextValue = {
+    // 테마
+    colorScheme,
+    setColorScheme,
+    toggleColorScheme: () => setColorScheme((prev) => (prev === 'light' ? 'dark' : 'light')),
+    // 인증
+    auth: ifUndefined(auth, null),
+    setAuth,
+    clearAuth: () => setAuth(null),
+    // 화면 잠금
+    isLock,
+    setIsLock,
+    // HTML 로딩
+    showHtmlLoading,
+    hideHtmlLoading,
+    removeHtmlLoading,
+  };
+
   /********************************************************************************************************************
    * Render
    * ******************************************************************************************************************/
 
-  if (error) {
-    return (
-      <>
-        {errorName === 'ChunkLoadError' ? (
-          <Loading
-            ref={(commands: LoadingCommands) => {
-              if (commands) {
-                commands.show();
-              }
-            }}
-          />
-        ) : (
-          <ErrorRetry fullScreen onRetry={() => window.location.reload()} />
-        )}
-      </>
-    );
-  } else {
-    return (
-      <BrowserRouter>
-        <AppContextProvider value={{ showHtmlLoading, hideHtmlLoading, removeHtmlLoading }}>
-          <RootLayoutAppInitializer />
-
+  return (
+    <ThemeProvider colorScheme={colorScheme}>
+      <ScreenSizeContextProvider>
+        <AppContextProvider value={contextValue}>
           <LoadingContextProvider>
-            <AxiosLoading />
+            <div className='RootLayout'>
+              {auth === undefined ? (
+                <>
+                  {authError ? (
+                    <Flex height='100vh'>
+                      <ErrorRetry
+                        message={
+                          <>
+                            서버에 연결할 수 없습니다.
+                            <br />
+                            잠시 후 재시도 해주세요.
+                          </>
+                        }
+                        onRetry={() => loadAuth(true)}
+                      />
+                    </Flex>
+                  ) : null}
+                </>
+              ) : (
+                <>
+                  <RootLayoutAppInitializer />
 
-            <Routes>
-              <Route path='/*' element={<DefaultLayout />} />
-            </Routes>
+                  <AxiosLoading />
+
+                  <Routes>
+                    <Route path='/auth/*' element={<AuthLayout />} />
+                    <Route path='/*' element={<DefaultLayout />} />
+                  </Routes>
+
+                  {config.env === 'local' && <DevButtons />}
+
+                  <Dialog />
+                  <ToastContainer />
+                </>
+              )}
+            </div>
           </LoadingContextProvider>
         </AppContextProvider>
-      </BrowserRouter>
-    );
-  }
-});
+      </ScreenSizeContextProvider>
+    </ThemeProvider>
+  );
+};
 
 export default RootLayout;

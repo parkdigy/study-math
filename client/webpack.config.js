@@ -11,6 +11,8 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const CopyPlugin = require('copy-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { SourceMapDevToolPlugin } = require('webpack');
+const SyntaxHighlighter = require('react-syntax-highlighter');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 /* eslint-enable */
 
 /********************************************************************************************************************
@@ -39,6 +41,7 @@ class MyHtmlPlugin {
             window.$$MyAppConfig = {
               version: window.$$MyAppConfig.version,
               env: '${isProduction ? '<%= appEnv %>' : env.APP_ENV}',
+              title: '${isProduction ? '<%= title %>' : env.APP_NAME}',
             };
           </script>
         `;
@@ -56,16 +59,19 @@ class MyHtmlPlugin {
  * ******************************************************************************************************************/
 
 const alias = {
-  '@sass': path.resolve(__dirname, 'src/sass'),
   '@types': path.resolve(__dirname, 'src/@types'),
+  '@asset_images': path.resolve(__dirname, 'src/@assets/images'),
+  '@sass': path.resolve(__dirname, 'src/sass'),
+  '@theme': path.resolve(__dirname, 'src/theme'),
   '@common': path.resolve(__dirname, 'src/common'),
   '@comp': path.resolve(__dirname, 'src/component'),
-  '@ccomp': path.resolve(__dirname, 'src/component/Common'),
+  '@ccomp': path.resolve(__dirname, 'src/component/@Common'),
   '@const': path.resolve(__dirname, 'src/constant'),
   '@context': path.resolve(__dirname, 'src/context'),
   '@app': path.resolve(__dirname, 'src/common/app'),
   '@api': path.resolve(__dirname, 'src/common/api'),
   '@util': path.resolve(__dirname, 'src/common/util'),
+  '@toast': path.resolve(__dirname, 'src/common/toast'),
 };
 
 /********************************************************************************************************************
@@ -77,11 +83,21 @@ const options = {
   devtool,
   target: 'web',
   entry: './src',
-  stats: isProduction,
+  stats: isProduction
+    ? 'normal'
+    : {
+        all: false,
+        loggingDebug: ['sass-loader'],
+      },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias,
   },
+  externals: isProduction
+    ? {
+        'react-syntax-highlighter': SyntaxHighlighter,
+      }
+    : undefined,
   output: {
     path: outputPath,
     publicPath: '/',
@@ -171,11 +187,14 @@ const options = {
     }),
     ...(isProduction
       ? [
+          new MiniCssExtractPlugin({
+            filename: 'css/[name].[contenthash].css', // 추출된 CSS 파일명 설정
+          }),
           new CleanWebpackPlugin.CleanWebpackPlugin({
             cleanOnceBeforeBuildPatterns: ['*'],
           }),
           new BundleAnalyzerPlugin({
-            openAnalyzer: false,
+            openAnalyzer: true,
             analyzerMode: 'static',
             reportFilename: '../build/report.html',
           }),
@@ -192,6 +211,14 @@ const options = {
   ],
   module: {
     rules: [
+      ...(isProduction
+        ? [
+            {
+              test: /src\/component\/@Dev\/.*/,
+              use: 'ignore-loader',
+            },
+          ]
+        : []),
       {
         test: /\.(ts|tsx)$/,
         include: path.resolve(__dirname, 'src'),
@@ -231,21 +258,24 @@ const options = {
       {
         test: /\.(sa|sc)ss$/,
         exclude: /node_modules/,
-        use: [
-          'style-loader',
-          'css-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              // eslint-disable-next-line @typescript-eslint/no-require-imports,no-undef
-              implementation: require('sass'),
-            },
-          },
-        ],
+        use: [isProduction ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif)(\?\S*)?$/,
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.(png|jpe?g|gif)(\?\S*)?$/,
         use: 'url-loader?limit=100000&name=[name].[ext]',
+      },
+      {
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        use: ['@svgr/webpack', 'url-loader?limit=100000&name=[name].[ext]'],
+      },
+      {
+        test: /\.(txt|md)$/i,
+        use: 'raw-loader',
       },
     ],
   },

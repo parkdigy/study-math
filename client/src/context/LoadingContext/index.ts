@@ -1,8 +1,10 @@
-import LoadingContext from './LoadingContext';
+import LoadingContextProvider from './LoadingContextProvider';
 
-export default LoadingContext;
+export default LoadingContextProvider;
 
-export { LoadingContext };
+export { LoadingContextProvider };
+
+export * from './LoadingContextProvider.types';
 
 export * from './LoadingContext.types';
 

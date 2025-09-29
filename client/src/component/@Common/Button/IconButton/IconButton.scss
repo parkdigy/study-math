@@ -1,0 +1,43 @@
+@use '@sass/variables' as v;
+@use '@sass/util';
+
+.IconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  cursor: pointer;
+  color: var(--color);
+  background-color: var(--background-color);
+  outline-width: 0 solid var(--outline-color);
+
+  * {
+    cursor: pointer;
+  }
+
+  &:focus-visible {
+    outline-width: 3px;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &.IconButton-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: default;
+    > i {
+      cursor: default;
+    }
+  }
+
+  // 기본 스타일
+  &.IconButton-variant-default {
+  }
+
+  // 둥근 스타일
+  &.IconButton-variant-rounded {
+    border-radius: 50%;
+  }
+}

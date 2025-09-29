@@ -1,0 +1,10 @@
+.Dev {
+  .FormRadioGroupItem .T,
+  .FormCheckboxLabel {
+    font-size: var(--size-body-font-size) !important;
+  }
+
+  .FormRadioGroup .FormControlBase-ControlContainer {
+    justify-content: space-between;
+  }
+}

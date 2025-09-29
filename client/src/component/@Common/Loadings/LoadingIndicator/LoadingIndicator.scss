@@ -1,0 +1,16 @@
+@use '@sass/variables' as v;
+.LoadingIndicator {
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  display: inline-block;
+  user-select: none;
+  border-radius: 50%;
+  border-style: solid;
+  border-bottom-color: transparent;
+  animation: spin 1s linear infinite;
+  border-width: 3px;
+}

@@ -1,0 +1,108 @@
+@use '@sass/util';
+
+.FormSearchInputWrapper {
+  $font-size: 15px;
+  $line-height: 1.2;
+  $padding: 12px;
+  $text-color: var(--color-text);
+  $background-color: var(--color-background);
+  $border-color: var(--color-opacity-15);
+  $outline-color: var(--color-primary);
+  $error-border-outline-color: util.apply-opacity-value(var(--color-error), 0.5);
+  $placeholder-color: util.apply-opacity-value(var(--color-text), 0.5);
+  $selected-placeholder-color: var(--color-text);
+
+  // 숨김 상태
+  &:not(.FormSearchInputWrapper-show) {
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+
+  // 노출 상태
+  &.FormSearchInputWrapper-show {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    padding-right: $padding;
+    background-color: $background-color;
+    color: $text-color;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    outline: thin solid $outline-color;
+    width: 100%;
+  }
+
+  .FormSelectInput {
+    flex: 1;
+    width: 0;
+    padding: $padding 0 $padding $padding;
+    border: none;
+    outline: none;
+    font-size: $font-size;
+    line-height: $line-height;
+    background-color: $background-color;
+    color: $text-color;
+
+    // 포커스 아닌 상태에서 커서 기본값
+    &:not(:focus) {
+      cursor: default;
+    }
+
+    // 숨김 상태
+    &.FormSelectInput-hidden {
+      position: absolute;
+      border: none;
+      width: 0;
+      height: 0;
+      outline: none;
+      padding: 0;
+      z-index: -1;
+    }
+
+    // 노출 상태
+    &:not(.FormSelectInput-hidden) {
+      // 오류 시 테두리, 아웃라인 색상 변경
+      &.FormSelectInput-error {
+        border-color: $error-border-outline-color;
+        outline-color: $error-border-outline-color;
+      }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Placeholder
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    &::placeholder {
+      color: $placeholder-color;
+    }
+    &::-webkit-input-placeholder {
+      color: $placeholder-color;
+    }
+    &:-moz-placeholder {
+      color: $placeholder-color;
+      opacity: 1;
+    }
+    &:-ms-input-placeholder {
+      color: $placeholder-color;
+    }
+
+    &.FormSelectInput-selected {
+      &::placeholder {
+        color: $selected-placeholder-color;
+      }
+      &::-webkit-input-placeholder {
+        color: $selected-placeholder-color;
+      }
+      &:-moz-placeholder {
+        color: $selected-placeholder-color;
+        opacity: 1;
+      }
+      &:-ms-input-placeholder {
+        color: $selected-placeholder-color;
+      }
+    }
+  }
+}

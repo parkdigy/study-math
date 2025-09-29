@@ -1,9 +1,4 @@
 export interface LoadingContextValue {
-  showLoading(): void;
-  hideLoading(): void;
+  showLoading: () => void;
+  hideLoading: () => void;
 }
-
-export const LoadingContextDefaultValue: LoadingContextValue = {
-  showLoading() {},
-  hideLoading() {},
-};

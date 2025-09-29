@@ -1,0 +1,122 @@
+@charset "utf-8";
+@use 'sass:meta';
+@use 'sass:string';
+@use 'sass:list';
+@use 'sass:map';
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// str-replace : 문자열 치환
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@function str-replace($string, $search, $replace: '') {
+  $index: string.index($string, $search);
+
+  @if $index {
+    @return string.slice($string, 1, $index - 1) + $replace +
+      str-replace(string.slice($string, $index + string.length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// to-number : 문자열을 숫자로 변환
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@function to-number($value) {
+  @if meta.type-of($value) == 'number' {
+    @return $value;
+  } @else if meta.type-of($value) != 'string' {
+    @error 'Value for `to-number` should be a number or a string.';
+  }
+
+  $result: 0;
+  $digits: 0;
+  $minus: string.slice($value, 1, 1) == '-';
+  $numbers: (
+    '0': 0,
+    '1': 1,
+    '2': 2,
+    '3': 3,
+    '4': 4,
+    '5': 5,
+    '6': 6,
+    '7': 7,
+    '8': 8,
+    '9': 9,
+  );
+
+  @for $i from if($minus, 2, 1) through string.length($value) {
+    $character: string.slice($value, $i, $i);
+
+    @if (list.index(map.keys($numbers), $character) or $character == '.') {
+      @if $character == '.' {
+        $digits: 1;
+      } @else if $digits == 0 {
+        $result: $result * 10 + map.get($numbers, $character);
+      } @else {
+        $digits: $digits * 10;
+        $result: $result + map.get($numbers, $character) / $digits;
+      }
+    }
+  }
+
+  @return if($minus, -$result, $result);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// get-opacity-value : opacity 관련 color 이름에서 값 추출
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@function get-opacity-value($color) {
+  $value-text: str-replace(
+    str-replace(str-replace(str-replace($color, 'opacity-reverse-0', ''), 'opacity-reverse-', ''), 'opacity-0', ''),
+    'opacity-',
+    ''
+  );
+  @return to-number($value-text);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// apply-opacity-value : 색상에 opacity 값 적용
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@function apply-opacity-value($color, $opacity) {
+  @return rgb(from $color r g b / $opacity);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// text-opacity-color : var(--color-text) 색상에 opacity 값 적용
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@function primary-opacity-color($opacity) {
+  @return apply-opacity-value(var(--color-primary), $opacity);
+}
+@function secondary-opacity-color($opacity) {
+  @return apply-opacity-value(var(--color-secondary), $opacity);
+}
+@function success-opacity-color($opacity) {
+  @return apply-opacity-value(var(--color-success), $opacity);
+}
+@function warning-opacity-color($opacity) {
+  @return apply-opacity-value(var(--color-warning), $opacity);
+}
+@function error-opacity-color($opacity) {
+  @return apply-opacity-value(var(--color-error), $opacity);
+}
+@function text-opacity-color($opacity) {
+  @return apply-opacity-value(var(--color-text), $opacity);
+}
+@function text-accent-opacity-color($opacity) {
+  @return apply-opacity-value(var(--color-text-accent), $opacity);
+}
+@function text-lighten-opacity-color($opacity) {
+  @return apply-opacity-value(var(--color-text-lighten), $opacity);
+}
+@function text-blurry-opacity-color($opacity) {
+  @return apply-opacity-value(var(--color-text-blurry), $opacity);
+}
+@function background-opacity-color($opacity) {
+  @return apply-opacity-value(var(--color-background), $opacity);
+}
+@function panel-background-opacity-color($opacity) {
+  @return apply-opacity-value(var(--color-panel-background), $opacity);
+}
+@function divider-opacity-color($opacity) {
+  @return apply-opacity-value(var(--color-divider), $opacity);
+}

@@ -1,0 +1,98 @@
+import React, { HTMLProps } from 'react';
+import { BoxProps as Props } from './Box.types';
+import { CustomComponent } from '../../CustomComponent';
+import { AllColors, AllSizes } from '@theme';
+import './Box.scss';
+import util from '@util';
+
+export const Box = React.forwardRef<HTMLDivElement, Props>(
+  (
+    {
+      component = 'div',
+      className,
+      color: initColor,
+      backgroundColor: initBackgroundColor,
+      borderColor: initBorderColor,
+      borderTopColor: initBorderTopColor,
+      borderBottomColor: initBorderBottomColor,
+      borderLeftColor: initBorderLeftColor,
+      borderRightColor: initBorderRightColor,
+      center,
+      size,
+      fontSize,
+      ...props
+    },
+    ref
+  ) => {
+    /********************************************************************************************************************
+     * Use
+     * ******************************************************************************************************************/
+
+    const theme = useTheme();
+
+    /********************************************************************************************************************
+     * Variable
+     * ******************************************************************************************************************/
+
+    const color = initColor && contains(AllColors, initColor) ? util.css.toCssVarName(initColor, 'color') : initColor;
+    const backgroundColor = initBackgroundColor
+      ? contains(AllColors, initBackgroundColor)
+        ? theme.css.vars.colors[initBackgroundColor as AllColors]
+        : initBackgroundColor
+      : undefined;
+    const borderColor = initBorderColor
+      ? contains(AllColors, initBorderColor)
+        ? theme.css.vars.colors[initBorderColor as AllColors]
+        : initBorderColor
+      : undefined;
+    const borderTopColor = initBorderTopColor
+      ? contains(AllColors, initBorderTopColor)
+        ? theme.css.vars.colors[initBorderTopColor as AllColors]
+        : initBorderTopColor
+      : undefined;
+    const borderBottomColor = initBorderBottomColor
+      ? contains(AllColors, initBorderBottomColor)
+        ? theme.css.vars.colors[initBorderBottomColor as AllColors]
+        : initBorderBottomColor
+      : undefined;
+    const borderLeftColor = initBorderLeftColor
+      ? contains(AllColors, initBorderLeftColor)
+        ? theme.css.vars.colors[initBorderLeftColor as AllColors]
+        : initBorderLeftColor
+      : undefined;
+    const borderRightColor = initBorderRightColor
+      ? contains(AllColors, initBorderRightColor)
+        ? theme.css.vars.colors[initBorderRightColor as AllColors]
+        : initBorderRightColor
+      : undefined;
+
+    const isNamedSize = fontSize === undefined && size && contains(AllSizes, size);
+
+    /********************************************************************************************************************
+     * Render
+     * ******************************************************************************************************************/
+
+    return (
+      <CustomComponent<HTMLProps<HTMLDivElement>>
+        component={component}
+        ref={ref}
+        className={classnames(
+          className,
+          center && 'Box-center',
+          size && isNamedSize && `font-${theme.css.names.sizes[size]}`
+        )}
+        color={color}
+        backgroundColor={backgroundColor}
+        borderColor={borderColor}
+        borderTopColor={borderTopColor}
+        borderBottomColor={borderBottomColor}
+        borderLeftColor={borderLeftColor}
+        borderRightColor={borderRightColor}
+        fontSize={fontSize === undefined ? (isNamedSize ? undefined : size) : fontSize}
+        {...props}
+      />
+    );
+  }
+);
+
+export default Box;

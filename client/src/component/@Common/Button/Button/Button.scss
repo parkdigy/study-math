@@ -1,0 +1,83 @@
+@use 'sass:math';
+@use 'sass:string';
+@use 'sass:list';
+@use '@sass/variables' as v;
+@use '@sass/util';
+
+.Button {
+  border: 0;
+  border-radius: 4px;
+  outline-width: 0;
+  outline-style: solid;
+  max-width: 100%;
+  user-select: none;
+
+  &:focus-visible {
+    outline-width: 3px;
+  }
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // disabled 또는 loading 상태
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  &[disabled],
+  &.Button-loading {
+    pointer-events: none;
+    cursor: default;
+    * {
+      cursor: default;
+    }
+  }
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // disabled 상태
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  &[disabled] {
+    opacity: 0.4;
+  }
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // disabled, loading 상태가 아닌 경우
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  &:not([disabled]):not(.Button-loading) {
+    cursor: pointer;
+    * {
+      cursor: pointer;
+    }
+
+    // 버튼 Hover 시 효과
+    &:hover {
+      &.Button-variant-contained {
+        &.Button-dark-color {
+          filter: brightness(1.07); // contained 버튼 어두운 색상인 경우
+        }
+        &.Button-light-color {
+          filter: brightness(0.93); // contained 버튼 밝은 색상인 경우
+        }
+      }
+      &.Button-variant-outlined,
+      &.Button-variant-text {
+        &.Button-dark-color {
+          filter: brightness(1.2); // outlined, text 버튼 어두운 색상인 경우
+        }
+        &.Button-light-color {
+          filter: brightness(0.8); // outlined, text 버튼 밝은 색상인 경우
+        }
+      }
+    }
+  }
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 라벨
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  > .Button-label {
+    > .Button-label-text {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+}

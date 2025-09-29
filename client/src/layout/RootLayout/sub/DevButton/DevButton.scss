@@ -1,0 +1,15 @@
+.DevButton {
+  background-color: var(--color-opacity-10);
+  padding: 10px;
+  border-radius: 20px;
+  user-select: none;
+  cursor: pointer;
+
+  .Icon {
+    cursor: pointer;
+  }
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+}

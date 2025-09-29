@@ -1,0 +1,29 @@
+@use '@sass/util';
+
+.FormTitle {
+  display: flex;
+  flex-direction: column;
+  padding: 2px;
+  justify-content: center;
+  position: relative;
+  font-size: 13px;
+  user-select: none;
+
+  &.FormTitle-error {
+    color: util.apply-opacity-value(var(--color-error), 0.7);
+  }
+
+  &.FormTitle-disabled {
+    opacity: 0.5;
+  }
+
+  &.FormTitle-left {
+    font-size: 14px;
+  }
+
+  // 필수 입력 별표
+  > div > span {
+    color: var(--color-error);
+    padding-left: 4px;
+  }
+}

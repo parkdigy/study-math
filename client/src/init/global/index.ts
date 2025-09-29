@@ -1,8 +1,7 @@
-import './styled-components';
+import './forwardRef';
+import './theme';
 import './react';
-import './mediaQuery';
 import './pdg';
 import './log';
 import './classnames';
-import './color';
 import './common-component';

@@ -1,8 +1,10 @@
-import AppContext from './AppContext';
+import AppContextProvider from './AppContextProvider';
 
-export default AppContext;
+export default AppContextProvider;
 
-export { AppContext };
+export { AppContextProvider };
+
+export * from './AppContextProvider.types';
 
 export * from './AppContext.types';
 

@@ -1,0 +1,75 @@
+@use '@sass/util';
+
+.FormSelectControl {
+  $font-size: 15px;
+  $line-height: 1.2;
+  $padding: 12px;
+  $text-color: var(--color-text);
+  $background-color: var(--color-background);
+  $border-color: var(--color-opacity-15);
+  $outline-color: var(--color-primary);
+  $error-border-outline-color: util.apply-opacity-value(var(--color-error), 0.5);
+  $placeholder-color: util.apply-opacity-value(var(--color-text), 0.5);
+  $selected-placeholder-color: var(--color-text);
+
+  cursor: default;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+
+  // 라벨
+  .FormSelectControlLabel {
+    flex: 1;
+    font-size: $font-size;
+    line-height: $line-height;
+    position: relative;
+
+    // Placeholder 색상 지정
+    &.FormSelectControlPlaceholder {
+      color: $placeholder-color;
+    }
+
+    // 실제 라벨
+    > div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      user-select: none;
+    }
+  }
+
+  // 노출 상태
+  &.FormSelectControl-show {
+    background-color: $background-color;
+    color: $text-color;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    padding: $padding;
+    appearance: none;
+    outline: 0 solid $outline-color;
+
+    // 오류 시 테두리, 아웃라인 색상 변경
+    &.FormSelectControl-error {
+      border-color: $error-border-outline-color;
+      outline-color: $error-border-outline-color;
+    }
+
+    // 포커스 시 아웃라인 표시
+    &.FormSelectControl-focused {
+      outline-width: thin;
+    }
+  }
+
+  // 비활성화 상태
+  &.FormSelectControl-disabled {
+    opacity: 0.5;
+  }
+}

@@ -1,3 +1,6 @@
+@charset "utf-8";
+@use './variables' as v;
+
 html,
 body,
 div,
@@ -78,21 +81,35 @@ summary,
 time,
 mark,
 audio,
-video,
-main {
+video {
   margin: 0;
   padding: 0;
   border: 0;
   vertical-align: top;
-  word-break: keep-all;
-  line-height: unset;
-}
-* {
   box-sizing: border-box;
+  word-break: keep-all;
 }
 *:before,
 *:after {
   box-sizing: border-box;
+}
+
+body,
+pre,
+textarea,
+button,
+input {
+  font-family:
+    'Pretendard Variable',
+    Pretendard,
+    -apple-system,
+    system-ui,
+    Roboto,
+    'Apple SD Gothic Neo',
+    'Noto Sans KR',
+    'Malgun Gothic',
+    'Apple Color Emoji',
+    sans-serif;
 }
 
 html,
@@ -101,11 +118,128 @@ body,
   height: 100%;
 }
 
-body,
-input,
-button,
-textarea,
-pre,
-select {
-  font-family: inherit;
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// HTML5 display-role reset for older browsers
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+ol,
+ul li {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+a {
+  text-decoration: none;
+}
+i,
+em,
+address {
+  font-style: normal;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  border: 0;
+  vertical-align: top;
+}
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+textarea {
+  vertical-align: top;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 아이폰 가로모드 텍스트 크기 조정
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+* {
+  -webkit-text-size-adjust: none;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Body 기본 테마 스타일
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+body {
+  font-size: var(--size-md-font-size);
+  line-height: var(--size-md-line-height);
+  font-weight: 400;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  min-height: 100vh;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 테마 - Size 별 폰트 관련 Class 정의
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+@each $size in v.$theme-all-sizes {
+  .font-#{$size} {
+    font-size: var(--size-#{$size}-font-size);
+    line-height: var(--size-#{$size}-line-height);
+  }
+  .font-size-#{$size} {
+    font-size: var(--size-#{$size}-font-size);
+  }
+  .line-height-#{$size} {
+    line-height: var(--size-#{$size}-line-height);
+  }
+  .size-#{$size} {
+    width: var(--size-#{$size}-font-size);
+    height: var(--size-#{$size}-font-size);
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 테마 - Color 별 Class 정의
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+@each $color in v.$theme-all-colors {
+  .color-#{$color} {
+    color: var(--color-#{$color});
+  }
+  .background-color-#{$color} {
+    background-color: var(--color-#{$color});
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// simplebar-react : 다크 테마 시 스크롤바 색상 변경
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+:root[data-color-scheme='dark'] body .simplebar-scrollbar::before {
+  background: #ffffff;
 }

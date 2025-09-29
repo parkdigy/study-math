@@ -1,0 +1,6 @@
+.Grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols), 1fr);
+  grid-gap: var(--grid-spacing);
+  grid-auto-rows: minmax(0, auto);
+}

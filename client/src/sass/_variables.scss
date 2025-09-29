@@ -1,0 +1,72 @@
+@charset "utf-8";
+@use 'sass:list';
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Background Url
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+$bg-url: '/assets/images';
+$bg-icon: $bg-url + '/icon';
+$bg-browser: $bg-url + '/browser_logos';
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 테마 - 사이즈 변수
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// 기본 사이즈
+$theme-sizes: 'xs', 'sm', 'md', 'lg', 'xl', 'x2l', 'x3l', 'x4l', 'x5l';
+
+// 친화적 사이즈
+$theme-friendly-name-sizes:
+  'caption', 'body-small', 'body', 'body-large', 'title-small', 'title', 'title-large', 'headline', 'headline-large';
+
+// 전체 사이즈
+$theme-all-sizes:
+  'xs', 'sm', 'md', 'lg', 'xl', 'x2l', 'x3l', 'x4l', 'x5l', 'caption', 'body-small', 'body', 'body-large',
+  'title-small', 'title', 'title-large', 'headline', 'headline-large';
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 테마 - 컬러 변수
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// 기본 컬러
+$theme-default-colors: 'primary', 'secondary', 'success', 'warning', 'error';
+
+// 기본 On 컬러
+$theme-default-on-colors: 'on-primary', 'on-secondary', 'on-success', 'on-warning', 'on-error';
+
+// 텍스트 컬러
+$theme-text-colors: 'text', 'text-accent', 'text-lighten', 'text-blurry';
+
+// 기타 컬러
+$etc-colors: 'background', 'panel-background', 'dialog-backdrop', 'divider';
+
+// 투명 컬러
+$theme-opacity-colors:
+  'opacity-01', 'opacity-02', 'opacity-03', 'opacity-04', 'opacity-05', 'opacity-06', 'opacity-07', 'opacity-08',
+  'opacity-09', 'opacity-10', 'opacity-15', 'opacity-20', 'opacity-25', 'opacity-30', 'opacity-35', 'opacity-40',
+  'opacity-45', 'opacity-50', 'opacity-55', 'opacity-60', 'opacity-65', 'opacity-70', 'opacity-75', 'opacity-80',
+  'opacity-85', 'opacity-90', 'opacity-95';
+
+// 투명 반전 컬러
+$theme-opacity-reverse-colors:
+  'opacity-reverse-01', 'opacity-reverse-02', 'opacity-reverse-03', 'opacity-reverse-04', 'opacity-reverse-05',
+  'opacity-reverse-06', 'opacity-reverse-07', 'opacity-reverse-08', 'opacity-reverse-09', 'opacity-reverse-10',
+  'opacity-reverse-15', 'opacity-reverse-20', 'opacity-reverse-25', 'opacity-reverse-30', 'opacity-reverse-35',
+  'opacity-reverse-40', 'opacity-reverse-45', 'opacity-reverse-50', 'opacity-reverse-55', 'opacity-reverse-60',
+  'opacity-reverse-65', 'opacity-reverse-70', 'opacity-reverse-75', 'opacity-reverse-80', 'opacity-reverse-85',
+  'opacity-reverse-90', 'opacity-reverse-95';
+
+// 버튼 컬러 : $theme-default-colors, $theme-text-colors, $theme-opacity-colors
+$theme-button-colors: list.join(list.join($theme-default-colors, $theme-text-colors), $theme-opacity-colors);
+
+// 전체 컬러
+$theme-all-colors: list.join(
+  list.join(
+    list.join(
+      list.join(list.join($theme-default-colors, $theme-default-on-colors), $theme-text-colors),
+      $theme-opacity-colors
+    ),
+    $theme-opacity-reverse-colors
+  ),
+  $etc-colors
+);

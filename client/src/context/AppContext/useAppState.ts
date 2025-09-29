@@ -4,8 +4,8 @@ import { useContext } from 'react';
 
 export default function useAppState(): AppContextValue {
   const value = useContext(AppContext);
-  if (value === undefined) {
-    throw new Error('useAppState should be used within AppContext.Provider');
+  if (empty(value)) {
+    throw new Error('useAppState should be used within AppContextProvider');
   }
   return value;
 }

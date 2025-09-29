@@ -1,0 +1,41 @@
+.Alert {
+  color: var(--color-text-accent);
+  padding: 8px 13px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+
+  .Alert-icon {
+    font-size: 1.2rem !important;
+    margin-top: 2px;
+  }
+
+  &.Alert-has-title {
+    gap: 10px;
+
+    .Alert-icon {
+      font-size: 1.6rem !important;
+      margin-top: 5ox;
+    }
+  }
+
+  .Alert-body {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    .Alert-body-title {
+      font-size: 15px;
+      font-weight: 500;
+      margin-top: 3px;
+    }
+    .Alert-body-content {
+      font-size: 14px;
+      line-height: 1.4;
+      margin-top: 2px;
+    }
+  }
+}

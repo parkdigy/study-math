@@ -1,0 +1,55 @@
+@use '@sass/util';
+
+.Dev_FormOptions {
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 컨트롤
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  .Dev_FormOptions_Controls {
+    > .GridCol {
+      position: relative;
+      &:not(:first-of-type):before {
+        content: '';
+        height: 100%;
+        position: absolute;
+        left: -10px;
+        border-left: 1px solid var(--color-divider);
+      }
+    }
+  }
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 테스트 컨트롤
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  .Dev_FormOptions_TestControl {
+    // 컨텐츠
+    .Dev_FormOptions_TestControl_Content {
+      background-color: util.apply-opacity-value(var(--color-primary), 0.03);
+      border: 2px solid var(--color-primary);
+      align-items: center;
+    }
+
+    // 코드 펼치기/접기 버튼
+    .Dev_FormOptions_TestControl_CodeExpandButton {
+      background-color: var(--color-opacity-07);
+      padding: 6px 5px 5px;
+      cursor: pointer;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      * {
+        cursor: pointer;
+      }
+
+      &.show-code {
+        padding-top: 5px;
+      }
+
+      &:hover {
+        background-color: var(--color-opacity-10);
+      }
+    }
+  }
+}

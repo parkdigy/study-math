@@ -1,0 +1,17 @@
+.FormSelectRight {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin: -10px 0;
+
+  // 삭제 버튼
+  .FormSelectRightClear {
+    cursor: pointer;
+  }
+
+  // 우측 화살표
+  .FormSelectRightArrow {
+    cursor: pointer;
+  }
+}

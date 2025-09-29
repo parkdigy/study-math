@@ -3,8 +3,8 @@
  * ******************************************************************************************************************/
 
 import { createContext } from 'react';
-import { LoadingContextDefaultValue, LoadingContextValue } from './LoadingContext.types';
+import { LoadingContextValue } from './LoadingContext.types';
 
-const LoadingContext = createContext<LoadingContextValue>(LoadingContextDefaultValue);
+const LoadingContext = createContext<LoadingContextValue>({} as LoadingContextValue);
 
 export default LoadingContext;
