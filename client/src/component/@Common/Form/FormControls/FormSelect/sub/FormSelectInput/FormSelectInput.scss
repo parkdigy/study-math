@@ -1,4 +1,5 @@
 @use '@sass/util';
+@use '@sass/mixin-placeholder';
 
 .FormSearchInputWrapper {
   $font-size: var(--size-body-font-size);
@@ -88,46 +89,10 @@
     // Placeholder
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    &::placeholder {
-      font-size: $font-size;
-      line-height: $line-height;
-      font-weight: $font-weight;
-      color: $placeholder-color;
-    }
-    &::-webkit-input-placeholder {
-      font-size: $font-size;
-      line-height: $line-height;
-      font-weight: $font-weight;
-      color: $placeholder-color;
-    }
-    &:-moz-placeholder {
-      font-size: $font-size;
-      line-height: $line-height;
-      font-weight: $font-weight;
-      color: $placeholder-color;
-      opacity: 1;
-    }
-    &:-ms-input-placeholder {
-      font-size: $font-size;
-      line-height: $line-height;
-      font-weight: $font-weight;
-      color: $placeholder-color;
-    }
+    @include mixin-placeholder.all($font-size, $line-height, $font-weight, $placeholder-color);
 
     &[data-selected='true'] {
-      &::placeholder {
-        color: $text-color;
-      }
-      &::-webkit-input-placeholder {
-        color: $text-color;
-      }
-      &:-moz-placeholder {
-        color: $text-color;
-        opacity: 1;
-      }
-      &:-ms-input-placeholder {
-        color: $text-color;
-      }
+      @include mixin-placeholder.color($text-color);
     }
   }
 }

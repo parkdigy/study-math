@@ -1,5 +1,6 @@
 @use 'sass:color';
 @use '@sass/util';
+@use '@sass/mixin-placeholder';
 
 .FormInput {
   $font-size: var(--size-body-font-size);
@@ -70,30 +71,6 @@
     width: 0;
 
     // Placeholder
-    &::placeholder {
-      font-size: $font-size;
-      line-height: $line-height;
-      font-weight: $font-weight;
-      color: $placeholder-color;
-    }
-    &::-webkit-input-placeholder {
-      font-size: $font-size;
-      line-height: $line-height;
-      font-weight: $font-weight;
-      color: $placeholder-color;
-    }
-    &:-moz-placeholder {
-      font-size: $font-size;
-      line-height: $line-height;
-      font-weight: $font-weight;
-      color: $placeholder-color;
-      opacity: 1;
-    }
-    &:-ms-input-placeholder {
-      font-size: $font-size;
-      line-height: $line-height;
-      font-weight: $font-weight;
-      color: $placeholder-color;
-    }
+    @include mixin-placeholder.all($font-size, $line-height, $font-weight, $placeholder-color);
   }
 }

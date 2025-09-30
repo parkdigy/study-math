@@ -1,0 +1,49 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 전체 적용
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@mixin all($font-size, $line-height, $font-weight, $color) {
+  &::placeholder {
+    font-size: $font-size;
+    line-height: $line-height;
+    font-weight: $font-weight;
+    color: $color;
+  }
+  &::-webkit-input-placeholder {
+    font-size: $font-size;
+    line-height: $line-height;
+    font-weight: $font-weight;
+    color: $color;
+  }
+  &:-moz-placeholder {
+    font-size: $font-size;
+    line-height: $line-height;
+    font-weight: $font-weight;
+    color: $color;
+    opacity: 1;
+  }
+  &:-ms-input-placeholder {
+    font-size: $font-size;
+    line-height: $line-height;
+    font-weight: $font-weight;
+    color: $color;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// color 만 적용
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@mixin color($color) {
+  &::placeholder {
+    color: $color;
+  }
+  &::-webkit-input-placeholder {
+    color: $color;
+  }
+  &:-moz-placeholder {
+    color: $color;
+    opacity: 1;
+  }
+  &:-ms-input-placeholder {
+    color: $color;
+  }
+}

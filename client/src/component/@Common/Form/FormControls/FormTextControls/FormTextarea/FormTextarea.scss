@@ -1,9 +1,11 @@
 @use '@sass/util';
+@use '@sass/mixin-placeholder';
 
 .FormTextarea {
   .FormTextarea_textarea {
     $font-size: 15px;
     $line-height: 1.2;
+    $font-weight: 500;
     $padding: 17px 20px;
     $text-color: var(--color-text);
     $background-color: var(--color-background);
@@ -17,6 +19,7 @@
     padding: $padding;
     font-size: $font-size;
     line-height: $line-height;
+    font-weight: $font-weight;
     color: $text-color;
     border: 1px solid $border-color;
     border-radius: $border-radius;
@@ -41,18 +44,6 @@
     }
 
     // Placeholder
-    &::placeholder {
-      color: $placeholder-color;
-    }
-    &::-webkit-input-placeholder {
-      color: $placeholder-color;
-    }
-    &:-moz-placeholder {
-      color: $placeholder-color;
-      opacity: 1;
-    }
-    &:-ms-input-placeholder {
-      color: $placeholder-color;
-    }
+    @include mixin-placeholder.all($font-size, $line-height, $font-weight, $placeholder-color);
   }
 }
