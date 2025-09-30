@@ -1,38 +1,109 @@
 .FormRadioGroupItem {
+  $label-color: var(--color-text-lighten);
+  $label-font-size: var(--size-body-font-size);
+  $label-line-height: var(--size-body-line-height);
+
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  margin-top: -5px;
   cursor: pointer;
-  outline: 0 solid var(--color-primary);
-  outline-offset: 3px;
   user-select: none;
-
-  .Icon {
-    cursor: pointer;
-  }
-
-  // 포커스 시 아웃라인 표시
-  &:focus-visible {
-    outline-width: thin;
-  }
+  flex-shrink: 0;
+  outline: none;
 
   // 비활성화 상태
-  &.FormRadioGroupItem-disabled {
+  &[data-disabled='true'] {
     cursor: default;
-    opacity: 0.5;
   }
 
-  // 아이콘, 레이블 컨테이너
-  > .FormRadioGroupItem_IconLabelContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Radio 유형
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  &[data-type='radio'] {
+    outline: 0 solid var(--color-primary);
+    outline-offset: 3px;
 
-    // 라벨
-    > .T {
+    // 포커스 시 아웃라인 표시
+    &:focus-visible {
+      outline-width: thin;
+    }
+
+    .FormRadioGroupItemRadio {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      // 라벨
+      > .T {
+        white-space: nowrap;
+        color: $label-color;
+        font-size: $label-font-size;
+        line-height: $label-line-height;
+      }
+    }
+
+    // 비활성화 상태
+    &[data-disabled='true'] .FormRadioGroupItemRadio {
+      > .T {
+        color: var(--color-opacity-35);
+      }
+    }
+  }
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Button, Small Button 유형
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  &[data-type='button'],
+  &[data-type='smallButton'] {
+    border-radius: 100px;
+
+    .FormRadioGroupItemButton {
+      border: 1px solid var(--color-opacity-20);
+      border-radius: 100px;
+      padding: 10px 18px;
+      width: 100%;
+      background-color: var(--color-background);
+      font-size: var(--size-body-font-size);
+      line-height: var(--size-body-line-height);
+      color: var(--color-text-lighten);
       white-space: nowrap;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &[data-type='smallButton'] .FormRadioGroupItemButton {
+      padding: 4px 13px;
+    }
+
+    // 비활성화 상태
+    &[data-disabled='true'] .FormRadioGroupItemButton {
+      background-color: var(--color-opacity-03);
+      border-color: var(--color-opacity-10);
+      color: var(--color-opacity-25);
+    }
+
+    // Button 유형 - Focus Visible 상태
+    &:focus-visible {
+      .FormRadioGroupItemButton {
+        border-color: var(--color-primary);
+      }
+    }
+
+    &[data-error='true'] {
+      .FormRadioGroupItemButton {
+        border-color: var(--color-error);
+      }
+    }
+
+    &[data-active='true'] {
+      .FormRadioGroupItemButton {
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
+        color: var(--color-on-primary);
+      }
     }
   }
 }

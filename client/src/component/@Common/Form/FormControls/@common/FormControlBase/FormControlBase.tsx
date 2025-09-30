@@ -20,6 +20,7 @@ export const FormControlBase = ({
   hideTitle: initHideTitle,
   required,
   disabled,
+  controlHelperText,
   helperText,
   error,
   hideError: initHideError,
@@ -27,6 +28,7 @@ export const FormControlBase = ({
   // FormControlBaseProps
   type,
   commands,
+  spacing = 10,
   children,
   // BoxStyleProps
   ...boxStyleProps
@@ -75,7 +77,7 @@ export const FormControlBase = ({
   const hideError = initHideError || !!controlGroupState;
 
   return (
-    <FormControlContainer className={classnames(className, 'FormControlBase')} {...boxStyleProps}>
+    <FormControlContainer className={classnames(className, 'FormControlBase')} gap={spacing} {...boxStyleProps}>
       {!hideTitle && notEmpty(title) && (
         <FormTitle
           labelProps={titleProps}
@@ -89,7 +91,7 @@ export const FormControlBase = ({
         </FormTitle>
       )}
 
-      <FormControlContentContainer>
+      <FormControlContentContainer spacing={spacing}>
         <Stack
           className='FormControlBase-ControlContainer'
           ref={titlePosition === 'left' ? childrenRef : undefined}
@@ -102,6 +104,7 @@ export const FormControlBase = ({
           {children}
           {subControl}
         </Stack>
+        {controlHelperText}
         {notEmpty(helperText) && <FormHelperText>{helperText}</FormHelperText>}
         {!hideError && typeof error === 'string' && notEmpty(error) && <FormErrorText>{error}</FormErrorText>}
       </FormControlContentContainer>

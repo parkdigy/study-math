@@ -10,6 +10,8 @@ import {
 } from '@pdg/react-hook';
 import { useFormControlGroupState, useFormState } from '../../FormContext';
 import './FormCheckbox.scss';
+import { IconActive, IconDefault, IconError, IconSwitchActive, IconSwitchDefault } from './icons';
+import { koreanAppendRul } from '@pdg/korean';
 
 export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
   (
@@ -27,6 +29,8 @@ export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
       onErrorChange,
       onValidate,
       // FormControlBaseProps
+      title,
+      required,
       ...formControlBaseProps
     },
     ref
@@ -60,13 +64,47 @@ export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
     const disabled = initDisabled || formDisabled;
 
     /********************************************************************************************************************
-     * State
+     * Effect
      * ******************************************************************************************************************/
 
     useFirstSkipEffect(() => {
       onErrorChange?.(error);
       controlGroupState && controlGroupState.onErrorChange(name, error);
     }, [error]);
+
+    useFirstSkipEffect(() => {
+      if (error) {
+        validate();
+      }
+    }, [checked]);
+
+    /********************************************************************************************************************
+     * Function
+     * ******************************************************************************************************************/
+
+    const validate = useCallback(() => {
+      let error: string | boolean = false;
+
+      if (required && !checkedRef.current) {
+        if (notEmpty(title)) {
+          error = `${koreanAppendRul(title)} 확인하지 않았습니다.`;
+        } else {
+          error = '필수 확인 항목입니다.';
+        }
+      }
+
+      if (onValidateRef.current) {
+        error = onValidateRef.current(checkedRef.current);
+      }
+
+      if (error === false) {
+        setError(false);
+        return true;
+      } else {
+        setError(error);
+        return false;
+      }
+    }, [checkedRef, onValidateRef, required, setError, title]);
 
     /********************************************************************************************************************
      * Commands
@@ -77,21 +115,7 @@ export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
         focus() {
           innerRef.current?.focus();
         },
-        validate() {
-          let error: string | boolean = false;
-
-          if (onValidateRef.current) {
-            error = onValidateRef.current(checkedRef.current);
-          }
-
-          if (error === false) {
-            setError(false);
-            return true;
-          } else {
-            setError(error);
-            return false;
-          }
-        },
+        validate,
         setError,
         getChecked() {
           return checkedRef.current;
@@ -104,7 +128,7 @@ export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
           commands.setChecked(!checkedRef.current);
         },
       }),
-      [_setChecked, checkedRef, onChangeRef, onValidateRef, setError]
+      [_setChecked, checkedRef, onChangeRef, setError, validate]
     );
 
     useForwardRef(ref, commands);
@@ -115,15 +139,13 @@ export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
 
     return (
       <FormControlBase
-        className={classnames(
-          className,
-          'FormCheckbox',
-          disabled && 'FormCheckbox-disabled',
-          error === false && 'FormCheckbox-error'
-        )}
+        className={classnames(className, 'FormCheckbox')}
         type='checkbox'
+        title={title}
+        spacing={12}
         name={name}
         commands={commands}
+        required={required}
         error={error}
         disabled={disabled}
         {...formControlBaseProps}
@@ -131,18 +153,18 @@ export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
         <div
           ref={innerRef}
           className='FormCheckboxControl'
+          data-disabled={disabled}
+          data-error={error !== false}
           tabIndex={0}
           onClick={disabled ? undefined : commands.toggle}
           onKeyDown={disabled ? undefined : (e) => (e.key === 'Enter' || e.key === ' ') && commands.toggle()}
         >
           {type === 'checkbox' ? (
             // 체크박스 아이콘
-            <Icon size={20}>{checked ? 'CheckBox' : 'CheckBoxOutlineBlank'}</Icon>
+            <Img src={error ? IconError : checked ? IconActive : IconDefault} width={20} height={22} />
           ) : (
             // 스위치 아이콘
-            <Icon size={50} color={checked ? 'primary' : undefined} mv={-10}>
-              {checked ? 'ToggleOn' : 'ToggleOff'}
-            </Icon>
+            <Img src={checked ? IconSwitchActive : IconSwitchDefault} width={50} height={30} />
           )}
 
           {/* 라벨 */}

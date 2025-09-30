@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { FormControlContentContainerProps as Props } from './FormControlContentContainer.types';
+import './FormControlContentContainer.scss';
 
-export const FormControlContentContainer = ({ children, className }: Props) => {
+export const FormControlContentContainer = ({ children, className, spacing = 10 }: Props) => {
   return (
-    <Stack className={classnames(className, 'FormControlContentContainer')} flex={1} spacing={5}>
+    <div
+      className={classnames(className, 'FormControlContentContainer')}
+      style={{ '--gap': `${spacing}px` } as CSSProperties}
+    >
       {children}
-    </Stack>
+    </div>
   );
 };
 

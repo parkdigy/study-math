@@ -1,15 +1,19 @@
 import React from 'react';
 import { FormErrorTextProps as Props } from './FormErrorText.types';
+import './FormErrorText.scss';
 
 export const FormErrorText = ({ children, className, absolute }: Props) => {
   return (
     <Box className={classnames(className, 'FormErrorText')} position='relative'>
       {absolute && <>&nbsp;</>}
-      <Box position={absolute ? 'absolute' : undefined} top={absolute ? 0 : undefined}>
+      <Box
+        className='FormErrorText__Content'
+        position={absolute ? 'absolute' : undefined}
+        top={absolute ? 0 : undefined}
+      >
+        <Icon>Error</Icon>
         {notEmpty(children) && (typeof children === 'string' || typeof children === 'number') ? (
-          <T color='error' size={14} pv={2} whiteSpace={absolute ? 'nowrap' : undefined}>
-            {children}
-          </T>
+          <T whiteSpace={absolute ? 'nowrap' : undefined}>{children}</T>
         ) : (
           children
         )}

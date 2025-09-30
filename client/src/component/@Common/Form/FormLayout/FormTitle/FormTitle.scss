@@ -3,27 +3,29 @@
 .FormTitle {
   display: flex;
   flex-direction: column;
-  padding: 2px;
   justify-content: center;
   position: relative;
-  font-size: 13px;
   user-select: none;
+  color: var(--color-text-accent);
+  font-size: var(--size-body-font-size);
+  line-height: var(--size-body-line-height);
 
-  &.FormTitle-error {
+  &[data-error='true'] {
     color: util.apply-opacity-value(var(--color-error), 0.7);
   }
 
-  &.FormTitle-disabled {
-    opacity: 0.5;
-  }
+  // 텍스트
+  > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
-  &.FormTitle-left {
-    font-size: 14px;
-  }
-
-  // 필수 입력 별표
-  > div > span {
-    color: var(--color-error);
-    padding-left: 4px;
+    // 필수 입력 별표
+    > span {
+      color: var(--color-error);
+      font-size: var(--size-body-large-font-size);
+      line-height: var(--size-body-font-size);
+      padding-left: 3px;
+    }
   }
 }

@@ -13,7 +13,7 @@ const _formOptions = [
   '|',
   'helperText',
   '|',
-  ['disabled', 'subControl', 'hideTitle'],
+  ['required', 'disabled', 'subControl', 'hideTitle'],
 ] as const;
 type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
 const _formOptionsDefaultData: Dev_FormOptionsData = {

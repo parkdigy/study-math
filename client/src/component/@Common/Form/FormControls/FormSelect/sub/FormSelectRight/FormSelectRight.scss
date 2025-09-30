@@ -2,16 +2,27 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 12px;
-  margin: -10px 0;
+  gap: 15px;
+  margin: -2px 0;
 
   // 삭제 버튼
   .FormSelectRightClear {
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 0;
+    margin: -15px 0;
   }
 
   // 우측 화살표
   .FormSelectRightArrow {
+    padding: 23px 20px;
+    margin: -23px -20px -23px 0;
     cursor: pointer;
+
+    &[data-open-dropdown='true'] {
+      transform: rotate(180deg);
+    }
   }
 }

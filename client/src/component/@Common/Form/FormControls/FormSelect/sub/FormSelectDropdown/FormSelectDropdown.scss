@@ -21,7 +21,7 @@
 
     // 스크롤바 (SimpleBar)
     .FormSelect-SimpleBar {
-      max-height: 314px;
+      max-height: 300px;
 
       // 스크롤바 노출 상태일 때, 아이템이 스크롤바를 침범하지 않게 우측 여백 확보
       &.simplebar-scrollable-y .simplebar-content {

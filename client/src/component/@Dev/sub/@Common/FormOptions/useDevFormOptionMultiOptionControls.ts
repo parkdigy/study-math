@@ -186,6 +186,32 @@ export const useDevFormOptionMultiOptionControls = ({
   );
 
   /********************************************************************************************************************
+   * formRadioGroupType
+   * ******************************************************************************************************************/
+  const [formRadioGroupType, formRadioGroupTypeControl] = useDevFormControl(
+    'formRadioGroupType',
+    flatOptions.includes('formRadioGroupType'),
+    defaultData?.formRadioGroupType,
+    {
+      ...useFormControlData,
+      props: optionProps?.formRadioGroupType,
+    }
+  );
+
+  /********************************************************************************************************************
+   * formSelectSize
+   * ******************************************************************************************************************/
+  const [formSelectSize, formSelectSizeControl] = useDevFormControl(
+    'formSelectSize',
+    flatOptions.includes('formSelectSize'),
+    defaultData?.formSelectSize,
+    {
+      ...useFormControlData,
+      props: optionProps?.formSelectSize,
+    }
+  );
+
+  /********************************************************************************************************************
    * currentPage
    * ******************************************************************************************************************/
   const [currentPage, currentPageControl] = useDevFormControl(
@@ -246,6 +272,10 @@ export const useDevFormOptionMultiOptionControls = ({
     rowsControl,
     formCheckboxType,
     formCheckboxTypeControl,
+    formRadioGroupType,
+    formRadioGroupTypeControl,
+    formSelectSize,
+    formSelectSizeControl,
     currentPage,
     currentPageControl,
     lastPage,

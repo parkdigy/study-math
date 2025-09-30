@@ -41,7 +41,7 @@ export const Icon = ({
       component='i'
       className={classnames(className, 'Icon', iconClassName, isNamedColor && `color-${theme.css.names.colors[color]}`)}
       color={isNamedColor ? undefined : color}
-      fontSize={fontSize}
+      cssVars={{ '--font-size': typeof fontSize === 'number' ? `${fontSize}px` : fontSize }}
       transform={ifUndefined(transform, rotate ? `rotate(${rotate}deg)` : undefined)}
       {...props}
     >

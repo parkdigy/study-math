@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormSelectSize } from '../../FormSelect.types';
 
 export interface FormSelectInputCommands {
   focus: () => void;
@@ -7,6 +8,7 @@ export interface FormSelectInputCommands {
 
 export interface FormSelectInputProps {
   id: string;
+  size: FormSelectSize;
   show: boolean;
   itemLabel: string | undefined;
   placeholder: string | undefined;

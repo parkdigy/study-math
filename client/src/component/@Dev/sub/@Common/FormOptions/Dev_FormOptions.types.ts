@@ -7,6 +7,9 @@ import {
   Dev_FormControl_CurrentPageProps,
   Dev_FormControl_DisabledProps,
   Dev_FormControl_FontWeightProps,
+  Dev_FormControl_FormCheckboxTypeProps,
+  Dev_FormControl_FormRadioGroupTypeProps,
+  Dev_FormControl_FormSelectSizeProps,
   Dev_FormControl_HelperTextProps,
   Dev_FormControl_HideTitleProps,
   Dev_FormControl_IconButtonVariantProps,
@@ -35,8 +38,8 @@ import { Dev_CodeProps } from '../Code';
 import { AllColors } from '@theme';
 import { FormControlCommonProps, FormProps, GridProps } from '@ccomp';
 import { Dev_FormControl_LabelProps } from '../FormControls/Label';
-import { Dev_FormControl_FormCheckboxTypeProps } from '../FormControls/FormCheckboxType';
 import { CSSProperties } from 'react';
+import { Dev_FormControl_SearchableProps } from '../FormControls/Searchable';
 
 export type Dev_FormOptionsOption =
   /** Multi Option Controls */
@@ -55,6 +58,8 @@ export type Dev_FormOptionsOption =
   | 'spacing'
   | 'rows'
   | 'formCheckboxType'
+  | 'formRadioGroupType'
+  | 'formSelectSize'
   | 'currentPage'
   | 'lastPage'
   /** Text Controls */
@@ -75,6 +80,7 @@ export type Dev_FormOptionsOption =
   | 'subControl'
   | 'rules'
   | 'clearable'
+  | 'searchable'
   /** Cols Controls */
   | 'cols';
 
@@ -94,6 +100,8 @@ export type Dev_FormOptionsRadioGroupOption =
   | 'spacing'
   | 'rows'
   | 'formCheckboxType'
+  | 'formRadioGroupType'
+  | 'formSelectSize'
   | 'currentPage'
   | 'lastPage';
 
@@ -117,6 +125,8 @@ export interface Dev_FormOptionsData<
   iconSpacing?: Dev_FormControl_IconSpacingProps['value'];
   rows?: Dev_FormControl_RowsProps['value'];
   formCheckboxType?: Dev_FormControl_FormCheckboxTypeProps['value'];
+  formRadioGroupType?: Dev_FormControl_FormRadioGroupTypeProps['value'];
+  formSelectSize?: Dev_FormControl_FormSelectSizeProps['value'];
   currentPage?: Dev_FormControl_CurrentPageProps['value'];
   lastPage?: Dev_FormControl_LastPageProps['value'];
   /** Text Controls */
@@ -137,6 +147,7 @@ export interface Dev_FormOptionsData<
   subControl?: Dev_FormControl_SubControlProps['value'];
   rules?: Dev_FormControl_RulesProps['value'];
   clearable?: Dev_FormControl_ClearableProps['value'];
+  searchable?: Dev_FormControl_SearchableProps['value'];
   /** Cols Controls */
   cols?: GridProps['cols'];
 }
@@ -164,6 +175,8 @@ export interface Dev_FormOptionsControlPropsMap {
   spacing?: Pick<Dev_FormControl_SpacingProps, keyof Dev_FormOptionsControlCommonProps>;
   rows?: Pick<Dev_FormControl_RowsProps, keyof Dev_FormOptionsControlCommonProps>;
   formCheckboxType?: Pick<Dev_FormControl_FormCheckboxTypeProps, keyof Dev_FormOptionsControlCommonProps>;
+  formRadioGroupType?: Pick<Dev_FormControl_FormRadioGroupTypeProps, keyof Dev_FormOptionsControlCommonProps>;
+  formSelectSize?: Pick<Dev_FormControl_FormSelectSizeProps, keyof Dev_FormOptionsControlCommonProps>;
   currentPage?: Pick<Dev_FormControl_CurrentPageProps, keyof Dev_FormOptionsControlCommonProps>;
   lastPage?: Pick<Dev_FormControl_LastPageProps, keyof Dev_FormOptionsControlCommonProps>;
   /** Text Controls */
@@ -184,6 +197,7 @@ export interface Dev_FormOptionsControlPropsMap {
   subControl?: Pick<Dev_FormControl_SubControlProps, keyof Dev_FormOptionsControlCommonProps>;
   rules?: Pick<Dev_FormControl_RulesProps, keyof Dev_FormOptionsControlCommonProps>;
   clearable?: Pick<Dev_FormControl_ClearableProps, keyof Dev_FormOptionsControlCommonProps>;
+  searchable?: Pick<Dev_FormControl_SearchableProps, keyof Dev_FormOptionsControlCommonProps>;
 }
 
 export interface Dev_FormOptionsProps<

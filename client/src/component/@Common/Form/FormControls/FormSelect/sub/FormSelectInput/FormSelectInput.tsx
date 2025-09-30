@@ -5,6 +5,7 @@ import { FormSelectRight } from '../FormSelectRight';
 
 const FormSelectInput = ({
   id,
+  size,
   show,
   itemLabel,
   placeholder,
@@ -113,16 +114,14 @@ const FormSelectInput = ({
    * ******************************************************************************************************************/
 
   return (
-    <div className={classnames('FormSearchInputWrapper', show && 'FormSearchInputWrapper-show')}>
+    <div className={classnames('FormSearchInputWrapper')} data-size={size} data-show={show}>
       <input
         ref={inputRef}
-        className={classnames(
-          'FormSelectInput',
-          `FormSelectInput__${id}`,
-          !show && 'FormSelectInput-hidden',
-          error && 'FormSelectInput-error',
-          itemLabel !== undefined && 'FormSelectInput-selected'
-        )}
+        className={classnames('FormSelectInput', `FormSelectInput__${id}`)}
+        data-size={size}
+        data-show={show}
+        data-error={error}
+        data-selected={itemLabel !== undefined}
         name={id}
         autoComplete='off'
         tabIndex={0}
@@ -137,6 +136,7 @@ const FormSelectInput = ({
 
       {show && (
         <FormSelectRight
+          size={size}
           isFocused
           isOpenDropdown={isOpenDropdown}
           loading={loading}

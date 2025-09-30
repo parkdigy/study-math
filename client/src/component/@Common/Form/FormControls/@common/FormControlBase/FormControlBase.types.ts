@@ -20,6 +20,7 @@ export interface FormControlCommonProps<T> extends BoxStyleProps {
   error?: string | boolean;
   hideError?: boolean;
   subControl?: ReactNode;
+  spacing?: number;
   value?: T;
   onChange?: (value: T) => void;
   onValidate?: (value: T) => string | boolean;
@@ -31,4 +32,5 @@ export interface FormControlBaseProps
   type: FormControlType;
   commands: FormControlCommands | null;
   children: ReactNode;
+  controlHelperText?: ReactNode;
 }

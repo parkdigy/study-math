@@ -20,7 +20,9 @@ import { useResizeDetector } from 'react-resize-detector';
 export const FormRadioGroup = ToForwardRefExoticComponent(
   AutoTypeForwardRef(function <T extends string | number | boolean>(
     {
-      spacing = 15,
+      // FormRadioGroupProps
+      type = 'radio',
+      spacing: initSpacing,
       items,
       grid: initGrid,
       // FormControlCommonProps
@@ -39,6 +41,12 @@ export const FormRadioGroup = ToForwardRefExoticComponent(
     }: Props<T>,
     ref: React.ForwardedRef<FormRadioGroupCommands<T>>
   ) {
+    /********************************************************************************************************************
+     * Initialize
+     * ******************************************************************************************************************/
+
+    const spacing = ifUndefined(initSpacing, type === 'radio' ? 17 : 6);
+
     /********************************************************************************************************************
      * Use
      * ******************************************************************************************************************/
@@ -274,15 +282,18 @@ export const FormRadioGroup = ToForwardRefExoticComponent(
      * ******************************************************************************************************************/
 
     const getItem = useCallback(
-      (index: number, item: FormRadioGroupItemInfo<T>) => (
+      (index: number, item: FormRadioGroupItemInfo<T>, buttonFullWidth = false) => (
         <FormRadioGroupItem
           key={index}
+          type={type}
           itemsKey={itemsKey}
           label={item.label}
           value={item.value}
           disabled={disabled || item.disabled}
           error={error !== false}
           active={value === item.value}
+          buttonWidth={type === 'radio' ? undefined : isOverflowing && itemMaxWidth ? itemMaxWidth : undefined}
+          buttonFullWidth={buttonFullWidth}
           onClick={handleItemClick}
           onChangeWidth={handleItemChangeWidth}
           onCommands={
@@ -292,7 +303,18 @@ export const FormRadioGroup = ToForwardRefExoticComponent(
           }
         />
       ),
-      [disabled, error, handleItemChangeWidth, handleItemClick, handleItemCommands, itemsKey, value]
+      [
+        disabled,
+        error,
+        handleItemChangeWidth,
+        handleItemClick,
+        handleItemCommands,
+        isOverflowing,
+        itemMaxWidth,
+        itemsKey,
+        type,
+        value,
+      ]
     );
 
     /********************************************************************************************************************
@@ -309,31 +331,33 @@ export const FormRadioGroup = ToForwardRefExoticComponent(
 
     return (
       <FormControlBase
-        className={classnames(className, 'FormRadioGroup')}
+        className={classnames(className, 'FormRadioGroup', `FormRadioGroup-${type}`)}
         type='radio_group'
         name={name}
         commands={commands}
+        spacing={type === 'radio' ? 12 : 10}
         title={title}
         required={required}
         disabled={disabled}
         error={error}
         {...formControlBaseProps}
       >
-        <Box ref={containerRef} flex={1} overflowX='hidden'>
+        {/* mh, ph는 outline 안보이는 문제 해결을 위해 추가 */}
+        <div className='FormRadioGroupBody' ref={containerRef}>
           {grid ? (
-            <Box flex={1} mt={10}>
+            <div className='FormRadioGroupBodyGridContainer'>
               <Grid spacing={ifUndefined(grid.spacing, spacing)} {...grid}>
                 {items.map((item, idx) => (
-                  <Col key={idx}>{getItem(idx, item)}</Col>
+                  <Col key={idx}>{getItem(idx, item, grid?.cols === 1)}</Col>
                 ))}
               </Grid>
-            </Box>
+            </div>
           ) : (
             <Stack className='FormRadioGroupControl' row center spacing={spacing}>
               {items.map((item, idx) => getItem(idx, item))}
             </Stack>
           )}
-        </Box>
+        </div>
       </FormControlBase>
     );
   })

@@ -17,6 +17,9 @@ export * from './Rotate';
 export * from './Rows';
 export * from './CurrentPage';
 export * from './LastPage';
+export * from './FormCheckboxType';
+export * from './FormRadioGroupType';
+export * from './FormSelectSize';
 
 /** Text Controls */
 export * from './Url';

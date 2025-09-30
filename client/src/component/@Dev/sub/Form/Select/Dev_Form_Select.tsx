@@ -7,12 +7,14 @@ import { toast } from '@common';
 import Dev_Form_Select_Variant from './Dev_Form_Select_Variant';
 
 const _formOptions = [
+  'formSelectSize',
+  '|',
   ['title', 'placeholder'],
   '|',
   'helperText',
   '|',
-  ['loading', 'clearable', 'required', 'disabled'],
-  ['subControl', 'hideTitle', null, null],
+  ['searchable', 'clearable', 'loading', 'required'],
+  ['disabled', 'subControl', 'hideTitle', null],
 ] as const;
 type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
 const _formOptionsDefaultData: Dev_FormOptionsData = {
@@ -33,9 +35,10 @@ export const Dev_Form_Select = ({ titlePosition }: Props) => {
 
   const [_data, setData] = useState<Pick<Dev_FormOptionsData, _formOptions>>({});
 
-  const { subControl, title, placeholder, helperText, ...otherData } = _data;
+  const { subControl, formSelectSize, title, placeholder, helperText, ...otherData } = _data;
 
   const data = {
+    size: formSelectSize,
     title: ifEmpty(title, undefined),
     placeholder: ifEmpty(placeholder, undefined),
     helperText: ifEmpty(helperText, undefined),

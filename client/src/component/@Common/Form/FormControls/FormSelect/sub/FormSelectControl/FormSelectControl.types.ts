@@ -1,10 +1,11 @@
-import { FormSelectItem } from '../../FormSelect.types';
+import { FormSelectItem, FormSelectSize } from '../../FormSelect.types';
 
 export interface FormSelectControlCommands {
   focus: () => void;
 }
 
 export interface FormSelectControlProps<T extends string | number> {
+  size: FormSelectSize;
   loading: boolean | undefined;
   disabled: boolean;
   searchable: boolean | undefined;

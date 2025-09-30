@@ -1,19 +1,23 @@
 import React, { CSSProperties } from 'react';
 import { FormRadioGroupItemProps as Props } from './FormRadioGroupItem.types';
 import { useResizeDetector } from 'react-resize-detector';
+import { IconDefault, IconActive, IconError } from './icons';
 import './FormRadioGroupItem.scss';
 
-const _iconSize = 20;
-const _gap = 4;
-const _iconLabelContainerStyle: CSSProperties = { gap: _gap };
+const _radioItemIconSize = 20;
+const _radioItemGap = 8;
+const _radioItemStyle: CSSProperties = { gap: _radioItemGap };
 
 export function FormRadioGroupItem<T extends string | number | boolean>({
+  type,
   label,
   itemsKey,
   value,
   active,
   disabled,
   error,
+  buttonWidth,
+  buttonFullWidth,
   onClick,
   onChangeWidth,
   onCommands,
@@ -35,11 +39,13 @@ export function FormRadioGroupItem<T extends string | number | boolean>({
    * ******************************************************************************************************************/
 
   useEffect(() => {
-    if (labelWidth) {
-      onChangeWidth?.(labelWidth + _iconSize + _gap + 1); // 1:오차 보정
+    if (labelWidth && !buttonFullWidth) {
+      onChangeWidth?.(
+        contains(['button', 'smallButton'], type) ? labelWidth : labelWidth + _radioItemIconSize + _radioItemGap + 1
+      ); // 1:오차 보정
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [labelWidth, itemsKey]);
+  }, [type, labelWidth, itemsKey]);
 
   /********************************************************************************************************************
    * Commands
@@ -61,19 +67,38 @@ export function FormRadioGroupItem<T extends string | number | boolean>({
   return (
     <div
       ref={containerRef}
-      className={classnames('FormRadioGroupItem', disabled && 'FormRadioGroupItem-disabled')}
-      tabIndex={0}
+      className={classnames('FormRadioGroupItem')}
+      data-type={type}
+      data-disabled={!!disabled}
+      data-error={!!error}
+      data-active={active}
+      tabIndex={disabled ? -1 : 0}
       onClick={disabled ? undefined : () => onClick(value)}
       onKeyDown={disabled ? undefined : (e) => (e.key === 'Enter' || e.key === ' ') && onClick(value)}
     >
-      <div className='FormRadioGroupItem_IconLabelContainer' style={_iconLabelContainerStyle}>
-        <Icon color={error ? 'error' : active ? 'primary' : 'opacity50'} size={_iconSize}>
-          {active ? 'RadioButtonChecked' : 'RadioButtonUnchecked'}
-        </Icon>
-        <T ref={labelRef} size='lg'>
-          {label}
-        </T>
-      </div>
+      {type === 'radio' ? (
+        <div className='FormRadioGroupItemRadio' style={_radioItemStyle}>
+          {error ? (
+            <IconError width={20} height={22} />
+          ) : active ? (
+            <IconActive width={20} height={22} />
+          ) : (
+            <IconDefault
+              width={20}
+              height={22}
+              fill={disabled ? 'var(--color-opacity-03)' : 'var(--color-background)'}
+            />
+          )}
+          <T ref={labelRef}>{label}</T>
+        </div>
+      ) : (
+        <div
+          ref={labelRef}
+          style={buttonFullWidth || buttonWidth ? { width: buttonFullWidth ? '100%' : buttonWidth } : undefined}
+        >
+          <div className='FormRadioGroupItemButton'>{label}</div>
+        </div>
+      )}
     </div>
   );
 }

@@ -2,16 +2,20 @@
 @use '@sass/util';
 
 .FormInput {
-  $font-size: 15px;
-  $line-height: 1.2;
-  $padding: 12px;
+  $font-size: var(--size-body-font-size);
+  $font-weight: 500;
+  $line-height: 22px;
+  $padding-vertical: 16px;
+  $padding-horizontal: 20px;
   $text-color: var(--color-text);
   $background-color: var(--color-background);
-  $border-color: var(--color-opacity-15);
-  $border-radius: 5px;
+  $border-color: var(--color-opacity-20);
+  $border-radius: 10px;
   $outline-color: var(--color-primary);
-  $error-border-outline-color: util.apply-opacity-value(var(--color-error), 0.5);
-  $placeholder-color: util.apply-opacity-value(var(--color-text), 0.5);
+  $error-border-outline-color: var(--color-error);
+  $disabled-border-color: var(--color-opacity-10);
+  $disabled-background-color: var(--color-opacity-03);
+  $placeholder-color: var(--color-opacity-35);
 
   display: flex;
   flex-direction: row;
@@ -22,36 +26,42 @@
   background-color: $background-color;
   outline: 0 solid $outline-color;
 
-  &.FormInput-focused {
+  // 포커스 상태
+  &[data-focused='true'] {
     outline-width: thin;
   }
 
-  &.FormInput-error {
+  // 오류 상태
+  &[data-error='true'] {
     border-color: $error-border-outline-color;
 
-    &.FormInput-focused {
+    // 오류 포커스 상태
+    &[data-focused='true'] {
       outline-color: $error-border-outline-color;
     }
   }
 
-  &.FormInput-disabled {
-    opacity: 0.5;
+  // 비활성화 상태
+  &[data-disabled='true'] {
+    background-color: $disabled-background-color;
+    border-color: $disabled-border-color;
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // 우측 영역
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   .FormInput-right {
-    margin: -$padding 0;
+    padding-right: $padding-horizontal;
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Input
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   input {
-    padding: $padding;
+    padding: $padding-vertical $padding-horizontal;
     font-size: $font-size;
     line-height: $line-height;
+    font-weight: $font-weight;
     color: $text-color;
     background-color: transparent;
     border: none;
@@ -61,16 +71,28 @@
 
     // Placeholder
     &::placeholder {
+      font-size: $font-size;
+      line-height: $line-height;
+      font-weight: $font-weight;
       color: $placeholder-color;
     }
     &::-webkit-input-placeholder {
+      font-size: $font-size;
+      line-height: $line-height;
+      font-weight: $font-weight;
       color: $placeholder-color;
     }
     &:-moz-placeholder {
+      font-size: $font-size;
+      line-height: $line-height;
+      font-weight: $font-weight;
       color: $placeholder-color;
       opacity: 1;
     }
     &:-ms-input-placeholder {
+      font-size: $font-size;
+      line-height: $line-height;
+      font-weight: $font-weight;
       color: $placeholder-color;
     }
   }

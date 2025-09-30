@@ -17,6 +17,7 @@ export interface FormTextProps
   $custom?: boolean;
   $type?: FormControlType;
   $commands?: FormControlCommands | null;
+  $controlHelperText?: ReactNode;
   placeholder?: string;
   hideEmptyErrorText?: boolean;
   preventKeys?: RegExp;

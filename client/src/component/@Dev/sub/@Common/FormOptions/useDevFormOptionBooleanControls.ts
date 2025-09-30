@@ -137,6 +137,19 @@ export const useDevFormOptionBooleanControls = ({
   );
 
   /********************************************************************************************************************
+   * searchable
+   * ******************************************************************************************************************/
+  const [searchable, searchableControl] = useDevFormControl(
+    'searchable',
+    flatOptions.includes('searchable'),
+    defaultData?.searchable,
+    {
+      ...useFormControlData,
+      props: optionProps?.searchable,
+    }
+  );
+
+  /********************************************************************************************************************
    * Return
    * ******************************************************************************************************************/
 
@@ -161,5 +174,7 @@ export const useDevFormOptionBooleanControls = ({
     rulesControl,
     clearable,
     clearableControl,
+    searchable,
+    searchableControl,
   };
 };

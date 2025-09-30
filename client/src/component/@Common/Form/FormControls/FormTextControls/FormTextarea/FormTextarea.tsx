@@ -212,6 +212,7 @@ export const FormTextarea = React.forwardRef<FormTextareaCommands, Props>(
         error={error}
         required={required}
         disabled={disabled}
+        spacing={8}
         {...formControlBaseProps}
       >
         <textarea

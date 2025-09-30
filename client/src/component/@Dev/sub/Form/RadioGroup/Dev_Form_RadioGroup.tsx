@@ -7,9 +7,9 @@ import { toast } from '@common';
 import Dev_Form_RadioGroup_Variant from './Dev_Form_RadioGroup_Variant';
 
 const _formOptions = [
-  ['title', 'spacing'],
+  ['formRadioGroupType', 'spacing'],
   '|',
-  'helperText',
+  ['title', 'helperText'],
   '|',
   ['required', 'disabled', 'subControl', 'hideTitle'],
 ] as const;
@@ -31,9 +31,10 @@ export const Dev_Form_RadioGroup = ({ titlePosition }: Props) => {
 
   const [_data, setData] = useState<Pick<Dev_FormOptionsData, _formOptions>>({});
 
-  const { subControl, title, helperText, ...otherData } = _data;
+  const { subControl, formRadioGroupType, title, helperText, ...otherData } = _data;
 
   const data = {
+    type: formRadioGroupType,
     title: ifEmpty(title, undefined),
     helperText: ifEmpty(helperText, undefined),
     ...otherData,

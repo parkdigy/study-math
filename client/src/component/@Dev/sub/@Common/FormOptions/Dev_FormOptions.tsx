@@ -113,6 +113,10 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
     rowsControl,
     formCheckboxType,
     formCheckboxTypeControl,
+    formRadioGroupType,
+    formRadioGroupTypeControl,
+    formSelectSize,
+    formSelectSizeControl,
     currentPage,
     currentPageControl,
     lastPage,
@@ -169,6 +173,8 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
     rulesControl,
     clearable,
     clearableControl,
+    searchable,
+    searchableControl,
   } = useDevFormOptionBooleanControls({
     flatOptions,
     optionProps,
@@ -242,6 +248,12 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
         case 'formCheckboxType':
           newData.formCheckboxType = formCheckboxType;
           break;
+        case 'formRadioGroupType':
+          newData.formRadioGroupType = formRadioGroupType;
+          break;
+        case 'formSelectSize':
+          newData.formSelectSize = formSelectSize;
+          break;
         case 'currentPage':
           newData.currentPage = currentPage;
           break;
@@ -302,6 +314,9 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
         case 'clearable':
           newData.clearable = clearable;
           break;
+        case 'searchable':
+          newData.searchable = searchable;
+          break;
 
         /** Cols Controls */
         case 'cols':
@@ -360,6 +375,9 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
     formCheckboxType,
     currentPage,
     lastPage,
+    formRadioGroupType,
+    searchable,
+    formSelectSize,
   ]);
 
   /********************************************************************************************************************
@@ -498,6 +516,10 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
                             return rowsControl;
                           case 'formCheckboxType':
                             return formCheckboxTypeControl;
+                          case 'formRadioGroupType':
+                            return formRadioGroupTypeControl;
+                          case 'formSelectSize':
+                            return formSelectSizeControl;
                           case 'currentPage':
                             return currentPageControl;
                           case 'lastPage':
@@ -538,6 +560,8 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
                             return rulesControl;
                           case 'clearable':
                             return clearableControl;
+                          case 'searchable':
+                            return searchableControl;
 
                           /** Cols Controls */
                           case 'cols':

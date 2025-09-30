@@ -3,7 +3,7 @@ import { FormTitleProps as Props } from './FormTitle.types';
 import { useFormState } from '../../FormContext';
 import './FormTitle.scss';
 
-export const FormTitle = ({ className, labelProps, disabled, height, width, error, required, children }: Props) => {
+export const FormTitle = ({ className, labelProps, height, width, required, children }: Props) => {
   /********************************************************************************************************************
    * Use
    * ******************************************************************************************************************/
@@ -16,13 +16,7 @@ export const FormTitle = ({ className, labelProps, disabled, height, width, erro
 
   return (
     <Box
-      className={classnames(
-        className,
-        'FormTitle',
-        error && 'FormTitle-error',
-        disabled && 'FormTitle-disabled',
-        titlePosition === 'left' && 'FormTitle-left'
-      )}
+      className={classnames(className, 'FormTitle')}
       width={titlePosition === 'left' ? ifUndefined(width, titleWidth) : undefined}
       height={height}
     >

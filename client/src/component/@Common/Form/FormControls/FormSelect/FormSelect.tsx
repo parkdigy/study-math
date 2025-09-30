@@ -10,6 +10,7 @@ export const FormSelect = ToForwardRefExoticComponent(
   AutoTypeForwardRef(function <T extends string | number>(
     {
       // FormSelectProps
+      size = 'normal',
       items,
       loading,
       placeholder,
@@ -117,6 +118,7 @@ export const FormSelect = ToForwardRefExoticComponent(
     /** 유효성 검사 */
     const validate = useCallback(() => {
       let error: string | boolean = false;
+
       if (required && activeItemRef.current === undefined) {
         if (notEmpty(title)) {
           error = `${koreanAppendRul(title)} 선택하지 않았습니다.`;
@@ -186,12 +188,14 @@ export const FormSelect = ToForwardRefExoticComponent(
         error={error}
         width={width}
         minWidth={width === undefined ? minWidth : undefined}
+        spacing={8}
         {...formControlBaseProps}
       >
         <FormSelectControl
-          loading={loading}
+          size={size}
           disabled={disabled}
           error={error !== false}
+          loading={loading}
           searchable={searchable}
           clearable={clearable}
           placeholder={placeholder}

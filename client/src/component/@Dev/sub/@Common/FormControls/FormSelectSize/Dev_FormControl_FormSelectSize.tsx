@@ -1,15 +1,15 @@
 import React from 'react';
-import { Dev_FormControl_AlertTypeProps as Props } from './Dev_FormControl_AlertType.types';
-import { AlertType, FormRadioGroup, FormSelect } from '@ccomp';
+import { Dev_FormControl_FormSelectSizeProps as Props } from './Dev_FormControl_FormSelectSize.types';
+import { FormRadioGroup, FormSelect } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 
-export const Dev_FormControl_AlertType = ({ variant = 'select', ...props }: Props) => {
+export const Dev_FormControl_FormSelectSize = ({ variant = 'select', ...props }: Props) => {
   /********************************************************************************************************************
    * Memo
    * ******************************************************************************************************************/
 
   const selectItems = useMemo(() => {
-    return AlertType.map((alertType) => lv(alertType, alertType));
+    return (['normal', 'small'] as const).map((formSelectSize) => lv(formSelectSize, formSelectSize));
   }, []);
 
   const radioItems = useMemo(() => {
@@ -23,14 +23,14 @@ export const Dev_FormControl_AlertType = ({ variant = 'select', ...props }: Prop
    * ******************************************************************************************************************/
 
   return (
-    <Dev_PanelItem icon='Category' title='유형 (type)' mt={-5}>
+    <Dev_PanelItem icon='AspectRatio' title='크기 (size)' mt={-5}>
       {variant === 'select' ? (
-        <FormSelect name='alertType' items={selectItems} clearable placeholder='미지정' {...props} />
+        <FormSelect name='formSelectSize' items={selectItems} clearable placeholder='미지정' {...props} />
       ) : (
-        <FormRadioGroup name='alertType' items={radioItems} {...props} />
+        <FormRadioGroup name='formSelectSize' items={radioItems} {...props} />
       )}
     </Dev_PanelItem>
   );
 };
 
-export default React.memo(Dev_FormControl_AlertType);
+export default React.memo(Dev_FormControl_FormSelectSize);

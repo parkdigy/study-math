@@ -8,6 +8,7 @@ import { FormSelectDropdown, FormSelectDropdownCommands } from '../FormSelectDro
 import { FormSelectRight } from '../FormSelectRight';
 
 function FormSelectControl<T extends string | number>({
+  size,
   loading,
   disabled,
   error,
@@ -227,20 +228,19 @@ function FormSelectControl<T extends string | number>({
   return (
     <>
       <div
-        className={classnames(
-          'FormSelectControl',
-          !isShowInput && 'FormSelectControl-show',
-          isFocused && 'FormSelectControl-focused',
-          disabled && 'FormSelectControl-disabled',
-          loading && 'FormSelectControl-loading',
-          error && 'FormSelectControl-error'
-        )}
+        className={classnames('FormSelectControl')}
+        data-size={size}
+        data-show={!isShowInput}
+        data-focused={isFocused}
+        data-disabled={disabled}
+        data-error={error}
         tabIndex={-1}
         onMouseDown={disabled ? undefined : toggleDropdown}
       >
         {/* 입력창 */}
         <FormSelectInput
           id={id}
+          size={size}
           show={isShowInput}
           itemLabel={itemLabel}
           placeholder={placeholder}
@@ -270,6 +270,7 @@ function FormSelectControl<T extends string | number>({
 
         {!isShowInput && (
           <FormSelectRight
+            size={size}
             isFocused={isFocused}
             isOpenDropdown={isOpenDropdown}
             loading={loading}

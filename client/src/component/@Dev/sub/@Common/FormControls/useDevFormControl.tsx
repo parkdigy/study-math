@@ -39,6 +39,9 @@ import { Dev_FormControl_Label } from './Label';
 import { Dev_FormControl_FormCheckboxType } from './FormCheckboxType';
 import { Dev_FormControl_CurrentPage } from './CurrentPage';
 import { Dev_FormControl_LastPage } from './LastPage';
+import { Dev_FormControl_FormRadioGroupType } from './FormRadioGroupType';
+import { Dev_FormControl_Searchable } from './Searchable';
+import { Dev_FormControl_FormSelectSize } from './FormSelectSize';
 
 export type UseDevFormControlData<TOption extends Exclude<Dev_FormOptionsOption, 'cols'>> = {
   screenSize: ScreenSizeInfo;
@@ -120,6 +123,10 @@ function useDevFormControl<TOption extends Exclude<Dev_FormOptionsOption, 'cols'
     <Dev_FormControl_Rows {...multiOptionDefaultProps} />
   ) : option === 'formCheckboxType' ? (
     <Dev_FormControl_FormCheckboxType {...multiOptionDefaultProps} />
+  ) : option === 'formRadioGroupType' ? (
+    <Dev_FormControl_FormRadioGroupType {...multiOptionDefaultProps} />
+  ) : option === 'formSelectSize' ? (
+    <Dev_FormControl_FormSelectSize {...multiOptionDefaultProps} />
   ) : option === 'currentPage' ? (
     <Dev_FormControl_CurrentPage {...multiOptionDefaultProps} />
   ) : option === 'lastPage' ? (
@@ -156,6 +163,8 @@ function useDevFormControl<TOption extends Exclude<Dev_FormOptionsOption, 'cols'
     <Dev_FormControl_Rules {...defaultProps} />
   ) : option === 'clearable' ? (
     <Dev_FormControl_Clearable {...defaultProps} />
+  ) : option === 'searchable' ? (
+    <Dev_FormControl_Searchable {...defaultProps} />
   ) : null;
 
   /********************************************************************************************************************

@@ -1,15 +1,17 @@
 import React from 'react';
-import { Dev_FormControl_AlertTypeProps as Props } from './Dev_FormControl_AlertType.types';
-import { AlertType, FormRadioGroup, FormSelect } from '@ccomp';
+import { Dev_FormControl_FormRadioGroupTypeProps as Props } from './Dev_FormControl_FormRadioGroupType.types';
+import { FormRadioGroup, FormSelect } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 
-export const Dev_FormControl_AlertType = ({ variant = 'select', ...props }: Props) => {
+export const Dev_FormControl_FormRadioGroupType = ({ variant = 'select', ...props }: Props) => {
   /********************************************************************************************************************
    * Memo
    * ******************************************************************************************************************/
 
   const selectItems = useMemo(() => {
-    return AlertType.map((alertType) => lv(alertType, alertType));
+    return (['radio', 'button', 'smallButton'] as const).map((formRadioGroupType) =>
+      lv(formRadioGroupType, formRadioGroupType)
+    );
   }, []);
 
   const radioItems = useMemo(() => {
@@ -25,12 +27,12 @@ export const Dev_FormControl_AlertType = ({ variant = 'select', ...props }: Prop
   return (
     <Dev_PanelItem icon='Category' title='유형 (type)' mt={-5}>
       {variant === 'select' ? (
-        <FormSelect name='alertType' items={selectItems} clearable placeholder='미지정' {...props} />
+        <FormSelect name='formRadioGroupType' items={selectItems} clearable placeholder='미지정' {...props} />
       ) : (
-        <FormRadioGroup name='alertType' items={radioItems} {...props} />
+        <FormRadioGroup name='formRadioGroupType' items={radioItems} {...props} />
       )}
     </Dev_PanelItem>
   );
 };
 
-export default React.memo(Dev_FormControl_AlertType);
+export default React.memo(Dev_FormControl_FormRadioGroupType);

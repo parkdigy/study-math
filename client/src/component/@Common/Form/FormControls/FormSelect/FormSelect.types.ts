@@ -1,5 +1,7 @@
 import { FormControlCommands, FormControlCommonProps } from '../@common';
 
+export type FormSelectSize = 'normal' | 'small';
+
 export interface FormSelectCommands<T extends string | number> extends FormControlCommands {
   getValue: () => T | undefined;
   setValue: (value: T | undefined) => void;
@@ -12,6 +14,8 @@ export interface FormSelectItem<T extends string | number> {
 }
 
 export interface FormSelectProps<T extends string | number> extends FormControlCommonProps<T | undefined> {
+  // 사이즈
+  size?: FormSelectSize;
   // 아이템 목록
   items?: FormSelectItem<T>[];
   // Placeholder

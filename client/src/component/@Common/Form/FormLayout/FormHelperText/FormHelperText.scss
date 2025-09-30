@@ -1,7 +1,9 @@
 .FormHelperText {
-  color: var(--color-text);
-  font-size: var(--size-body-small-font-size);
-  line-height: var(--size-body-small-line-height);
-  padding: 2px;
-  opacity: 0.7;
+  color: var(--color-text-lighten);
+  font-size: var(--size-caption-font-size);
+  line-height: var(--size-caption-line-height);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
 }

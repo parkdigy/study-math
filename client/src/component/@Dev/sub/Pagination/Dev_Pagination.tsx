@@ -36,7 +36,6 @@ export const Dev_Pagination = () => {
           defaultData={_formOptionsDefaultData}
           code={code}
           codePropsMap={{ props: data }}
-          testBackgroundColor='background'
           onChange={setData}
           onGetTest={() => <Pagination {...data} />}
         />

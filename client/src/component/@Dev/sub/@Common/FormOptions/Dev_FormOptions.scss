@@ -23,7 +23,7 @@
   .Dev_FormOptions_TestControl {
     // 컨텐츠
     .Dev_FormOptions_TestControl_Content {
-      background-color: util.apply-opacity-value(var(--color-primary), 0.03);
+      background-color: var(--color-background);
       border: 2px solid var(--color-primary);
       align-items: center;
     }

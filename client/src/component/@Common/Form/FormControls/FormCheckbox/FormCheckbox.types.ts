@@ -6,7 +6,7 @@ export interface FormCheckboxCommands extends FormControlCommands {
   toggle: () => void;
 }
 
-export interface FormCheckboxProps extends Omit<FormControlCommonProps<boolean>, 'value' | 'required' | 'onChange'> {
+export interface FormCheckboxProps extends Omit<FormControlCommonProps<boolean>, 'value' | 'onChange'> {
   type?: 'checkbox' | 'switch';
   label?: ReactNode;
   disabled?: boolean;

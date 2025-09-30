@@ -1,4 +1,8 @@
+import { FormSelectSize } from '../../FormSelect.types';
+
 export interface FormSelectRightProps {
+  // 사이즈
+  size: FormSelectSize;
   // 포커스 여부
   isFocused: boolean;
   // 드롭다운 오픈 여부

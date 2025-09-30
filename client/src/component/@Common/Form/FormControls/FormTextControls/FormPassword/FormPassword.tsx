@@ -14,7 +14,6 @@ export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
       error: initError = false,
       rules,
       linkName,
-      helperText: initHelperText,
       onChange,
       onErrorChange,
       onValidate,
@@ -51,23 +50,18 @@ export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
      * Memo
      * ******************************************************************************************************************/
 
-    const helperText = useMemo(() => {
+    const controlHelperText = useMemo(() => {
       if (rules) {
         return (
-          <Stack spacing={3}>
-            <Stack row center spacing={5} wrap>
-              <RuleCheck title='대소문자' checked={isContainsAlphabet} error={error !== false} />
-              <RuleCheck title='숫자' checked={isContainsNumeric} error={error !== false} />
-              <RuleCheck title='특수문자' checked={isContainsSpecialChar} error={error !== false} />
-              <RuleCheck title='8자리 이상' checked={isOverLength} error={error !== false} />
-            </Stack>
-            {initHelperText}
+          <Stack row center spacing={10} wrap>
+            <RuleCheck title='대소문자' checked={isContainsAlphabet} error={error !== false} />
+            <RuleCheck title='숫자' checked={isContainsNumeric} error={error !== false} />
+            <RuleCheck title='특수문자' checked={isContainsSpecialChar} error={error !== false} />
+            <RuleCheck title='8자리 이상' checked={isOverLength} error={error !== false} />
           </Stack>
         );
-      } else {
-        return initHelperText;
       }
-    }, [error, initHelperText, isContainsAlphabet, isContainsNumeric, isContainsSpecialChar, isOverLength, rules]);
+    }, [error, isContainsAlphabet, isContainsNumeric, isContainsSpecialChar, isOverLength, rules]);
 
     /********************************************************************************************************************
      * Effect
@@ -176,6 +170,7 @@ export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
         $custom
         $type='password'
         $commands={commands}
+        $controlHelperText={controlHelperText}
         type={isShowPassword ? 'text' : 'password'}
         className={classnames(className, 'FormPassword')}
         name={name}
@@ -184,7 +179,6 @@ export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
           notEmpty(value) ? <ShowButton active={isShowPassword} onClick={handleShowButtonClick} /> : undefined
         }
         value={value}
-        helperText={helperText}
         hideEmptyErrorText={rules}
         error={error}
         onErrorChange={setError}
