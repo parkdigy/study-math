@@ -121,6 +121,10 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
     currentPageControl,
     lastPage,
     lastPageControl,
+    listType,
+    listTypeControl,
+    listVariant,
+    listVariantControl,
   } = useDevFormOptionMultiOptionControls({
     flatOptions,
     optionProps,
@@ -260,6 +264,12 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
         case 'lastPage':
           newData.lastPage = lastPage;
           break;
+        case 'listType':
+          newData.listType = listType;
+          break;
+        case 'listVariant':
+          newData.listVariant = listVariant;
+          break;
 
         /** Text Controls */
         case 'title':
@@ -378,6 +388,8 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
     formRadioGroupType,
     searchable,
     formSelectSize,
+    listType,
+    listVariant,
   ]);
 
   /********************************************************************************************************************
@@ -524,6 +536,10 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
                             return currentPageControl;
                           case 'lastPage':
                             return lastPageControl;
+                          case 'listType':
+                            return listTypeControl;
+                          case 'listVariant':
+                            return listVariantControl;
 
                           /** Text Controls */
                           case 'title':

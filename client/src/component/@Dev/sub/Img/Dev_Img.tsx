@@ -10,11 +10,9 @@ export const Dev_Img = () => {
       <Divider />
 
       <Dev_Panel>
-        <Stack row center spacing={10} wrap>
-          <Tooltip place='top-start' content='<Img src="..." />'>
-            <Img src={ImgLogo} height={50} />
-          </Tooltip>
-        </Stack>
+        <Tooltip place='top-start' content='<Img src="..." />'>
+          <Img src={ImgLogo} height={50} />
+        </Tooltip>
       </Dev_Panel>
     </Panel>
   );

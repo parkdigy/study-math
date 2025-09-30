@@ -1,0 +1,17 @@
+.List {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &[data-variant='bordered'] {
+    border: 1px solid var(--color-opacity-15);
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .ListItems {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing);
+  }
+}

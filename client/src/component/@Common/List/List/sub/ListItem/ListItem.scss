@@ -1,0 +1,17 @@
+.ListItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--size-body-font-size);
+  line-height: var(--size-body-line-height);
+  color: var(--color-text-lighten);
+
+  .ListItemBullet {
+    width: 4px;
+    height: 4px;
+    margin: 0 5px;
+    background-color: var(--color-opacity-30);
+    border-radius: 50%;
+  }
+}

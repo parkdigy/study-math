@@ -1,0 +1,10 @@
+.ListTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--size-body-font-size);
+  line-height: var(--size-body-line-height);
+  font-weight: 700;
+  color: var(--color-text);
+}

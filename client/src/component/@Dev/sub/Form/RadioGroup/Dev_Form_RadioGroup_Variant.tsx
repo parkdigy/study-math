@@ -25,7 +25,56 @@ const Dev_Form_RadioGroup_Variant = ({ titlePosition }: Props) => {
 
           <Divider />
 
-          <FormRadioGroup title='제목 숨김' name='FormRadioGroup_hideTitle' items={Items} hideTitle />
+          <FormRadioGroup type='button' title='button - 기본' name='FormRadioGroup_button_default' items={Items} />
+
+          <Divider />
+
+          <FormRadioGroup
+            type='button'
+            title='button - 필수 선택'
+            name='FormRadioGroup_button_required'
+            items={Items}
+            required
+          />
+
+          <Divider />
+
+          <FormRadioGroup
+            type='button'
+            title='button - 비활성'
+            name='FormRadioGroup_smallButton_disabled'
+            items={Items}
+            disabled
+          />
+
+          <Divider />
+
+          <FormRadioGroup
+            type='smallButton'
+            title='smallButton - 기본'
+            name='FormRadioGroup_smallButton_default'
+            items={Items}
+          />
+
+          <Divider />
+
+          <FormRadioGroup
+            type='smallButton'
+            title='smallButton - 필수 선택'
+            name='FormRadioGroup_smallButton_required'
+            items={Items}
+            required
+          />
+
+          <Divider />
+
+          <FormRadioGroup
+            type='smallButton'
+            title='smallButton - 비활성'
+            name='FormRadioGroup_smallButton_disabled'
+            items={Items}
+            disabled
+          />
 
           <Divider />
 

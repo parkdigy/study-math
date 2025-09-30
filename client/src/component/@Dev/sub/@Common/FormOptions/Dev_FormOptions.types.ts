@@ -17,6 +17,8 @@ import {
   Dev_FormControl_IconProps,
   Dev_FormControl_IconSpacingProps,
   Dev_FormControl_LastPageProps,
+  Dev_FormControl_ListTypeProps,
+  Dev_FormControl_ListVariantProps,
   Dev_FormControl_LoadingProps,
   Dev_FormControl_MessageProps,
   Dev_FormControl_OnRetryProps,
@@ -62,6 +64,8 @@ export type Dev_FormOptionsOption =
   | 'formSelectSize'
   | 'currentPage'
   | 'lastPage'
+  | 'listType'
+  | 'listVariant'
   /** Text Controls */
   | 'url'
   | 'title'
@@ -103,7 +107,9 @@ export type Dev_FormOptionsRadioGroupOption =
   | 'formRadioGroupType'
   | 'formSelectSize'
   | 'currentPage'
-  | 'lastPage';
+  | 'lastPage'
+  | 'listType'
+  | 'listVariant';
 
 export interface Dev_FormOptionsData<
   TColors extends AllColors = AllColors,
@@ -129,6 +135,8 @@ export interface Dev_FormOptionsData<
   formSelectSize?: Dev_FormControl_FormSelectSizeProps['value'];
   currentPage?: Dev_FormControl_CurrentPageProps['value'];
   lastPage?: Dev_FormControl_LastPageProps['value'];
+  listType?: Dev_FormControl_ListTypeProps['value'];
+  listVariant?: Dev_FormControl_ListVariantProps['value'];
   /** Text Controls */
   url?: Dev_FormControl_UrlProps['value'];
   title?: Dev_FormControl_TitleProps['value'];
@@ -179,6 +187,8 @@ export interface Dev_FormOptionsControlPropsMap {
   formSelectSize?: Pick<Dev_FormControl_FormSelectSizeProps, keyof Dev_FormOptionsControlCommonProps>;
   currentPage?: Pick<Dev_FormControl_CurrentPageProps, keyof Dev_FormOptionsControlCommonProps>;
   lastPage?: Pick<Dev_FormControl_LastPageProps, keyof Dev_FormOptionsControlCommonProps>;
+  listType?: Pick<Dev_FormControl_ListTypeProps, keyof Dev_FormOptionsControlCommonProps>;
+  listVariant?: Pick<Dev_FormControl_ListVariantProps, keyof Dev_FormOptionsControlCommonProps>;
   /** Text Controls */
   title?: Pick<Dev_FormControl_TitleProps, keyof Dev_FormOptionsControlCommonProps>;
   placeholder?: Pick<Dev_FormControl_PlaceholderProps, keyof Dev_FormOptionsControlCommonProps>;

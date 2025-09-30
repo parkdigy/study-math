@@ -238,6 +238,32 @@ export const useDevFormOptionMultiOptionControls = ({
   );
 
   /********************************************************************************************************************
+   * listType
+   * ******************************************************************************************************************/
+  const [listType, listTypeControl] = useDevFormControl(
+    'listType',
+    flatOptions.includes('listType'),
+    defaultData?.listType,
+    {
+      ...useFormControlData,
+      props: optionProps?.listType,
+    }
+  );
+
+  /********************************************************************************************************************
+   * listVariant
+   * ******************************************************************************************************************/
+  const [listVariant, listVariantControl] = useDevFormControl(
+    'listVariant',
+    flatOptions.includes('listVariant'),
+    defaultData?.listVariant,
+    {
+      ...useFormControlData,
+      props: optionProps?.listVariant,
+    }
+  );
+
+  /********************************************************************************************************************
    * Return
    * ******************************************************************************************************************/
 
@@ -280,5 +306,9 @@ export const useDevFormOptionMultiOptionControls = ({
     currentPageControl,
     lastPage,
     lastPageControl,
+    listType,
+    listTypeControl,
+    listVariant,
+    listVariantControl,
   };
 };

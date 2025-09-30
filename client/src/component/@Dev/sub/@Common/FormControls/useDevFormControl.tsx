@@ -42,6 +42,8 @@ import { Dev_FormControl_LastPage } from './LastPage';
 import { Dev_FormControl_FormRadioGroupType } from './FormRadioGroupType';
 import { Dev_FormControl_Searchable } from './Searchable';
 import { Dev_FormControl_FormSelectSize } from './FormSelectSize';
+import { Dev_FormControl_ListType } from './ListType';
+import { Dev_FormControl_ListVariant } from './ListVariant';
 
 export type UseDevFormControlData<TOption extends Exclude<Dev_FormOptionsOption, 'cols'>> = {
   screenSize: ScreenSizeInfo;
@@ -131,6 +133,10 @@ function useDevFormControl<TOption extends Exclude<Dev_FormOptionsOption, 'cols'
     <Dev_FormControl_CurrentPage {...multiOptionDefaultProps} />
   ) : option === 'lastPage' ? (
     <Dev_FormControl_LastPage {...multiOptionDefaultProps} />
+  ) : option === 'listType' ? (
+    <Dev_FormControl_ListType {...multiOptionDefaultProps} />
+  ) : option === 'listVariant' ? (
+    <Dev_FormControl_ListVariant {...multiOptionDefaultProps} />
   ) : /** Text Controls */ option === 'title' ? (
     <Dev_FormControl_Title {...defaultProps} />
   ) : option === 'placeholder' ? (

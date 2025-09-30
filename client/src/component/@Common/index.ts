@@ -15,3 +15,4 @@ export * from './Tabs';
 export * from './ColorPicker';
 export * from './Logo';
 export * from './Pagination';
+export * from './List';

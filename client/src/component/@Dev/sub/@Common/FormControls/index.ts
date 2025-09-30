@@ -20,6 +20,8 @@ export * from './LastPage';
 export * from './FormCheckboxType';
 export * from './FormRadioGroupType';
 export * from './FormSelectSize';
+export * from './ListType';
+export * from './ListVariant';
 
 /** Text Controls */
 export * from './Url';
