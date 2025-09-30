@@ -1,19 +1,18 @@
 .FormRadioGroup {
+  .FormRadioGroupMaxWidth {
+    position: absolute;
+    top: -99999px;
+    left: 0;
+    right: 0;
+    //background-color: red;
+    //height: 1px;
+  }
+
   .FormRadioGroupBody {
     flex: 1;
 
     .FormRadioGroupBodyGridContainer {
       flex: 1;
-    }
-
-    .FormRadioGroupControl {
-    }
-  }
-
-  &.FormRadioGroup-button,
-  &.FormRadioGroup-smallButton {
-    .FormRadioGroupBody {
-      overflow-x: hidden;
     }
   }
 }

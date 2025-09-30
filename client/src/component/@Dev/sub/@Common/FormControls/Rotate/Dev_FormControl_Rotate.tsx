@@ -27,7 +27,7 @@ export const Dev_FormControl_Rotate = ({ variant = 'select', ...props }: Props) 
       {variant === 'select' ? (
         <FormSelect name='rotate' items={selectItems} clearable placeholder='미지정' {...props} />
       ) : (
-        <FormRadioGroup name='rotate' items={radioItems} {...props} />
+        <FormRadioGroup type='smallButton' name='rotate' items={radioItems} {...props} />
       )}
     </Dev_PanelItem>
   );

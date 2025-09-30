@@ -40,7 +40,7 @@ export const Dev_FormControl_IconPosition = ({ variant = 'select', ...props }: P
       {variant === 'select' ? (
         <FormSelect name='iconPosition' items={selectItems} placeholder='미지정' clearable {...props} />
       ) : (
-        <FormRadioGroup name='iconPosition' items={radioItems} {...props} />
+        <FormRadioGroup type='smallButton' name='iconPosition' items={radioItems} {...props} />
       )}
     </Dev_PanelItem>
   );

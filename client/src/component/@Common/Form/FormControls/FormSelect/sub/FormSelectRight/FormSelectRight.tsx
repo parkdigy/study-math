@@ -6,7 +6,7 @@ import { IconArrowDown } from './icons';
 
 export const FormSelectRight = ({ size, isOpenDropdown, loading, showClear, clearable, onClear }: Props) => {
   return (
-    <div className='FormSelectRight'>
+    <div className='FormSelectRight' data-size={size}>
       {/* 로딩 인디케이터 */}
       {loading && (
         <LoadingIndicator
@@ -19,6 +19,7 @@ export const FormSelectRight = ({ size, isOpenDropdown, loading, showClear, clea
       {clearable && showClear && (
         <Box
           className='FormSelectRightClear'
+          data-size={size}
           tabIndex={-1}
           onMouseDown={(e) => {
             e.stopPropagation();
@@ -42,7 +43,7 @@ export const FormSelectRight = ({ size, isOpenDropdown, loading, showClear, clea
       {/* 화살표 */}
       <Stack row center>
         <Divider vertical height={size === 'small' ? 16 : 24} />
-        <IconArrowDown className='FormSelectRightArrow' data-open-dropdown={isOpenDropdown} />
+        <IconArrowDown className='FormSelectRightArrow' data-size={size} data-open-dropdown={isOpenDropdown} />
       </Stack>
     </div>
   );

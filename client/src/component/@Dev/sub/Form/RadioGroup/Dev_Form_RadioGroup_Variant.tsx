@@ -25,15 +25,6 @@ const Dev_Form_RadioGroup_Variant = ({ titlePosition }: Props) => {
 
           <Divider />
 
-          <FormRadioGroup
-            title='하위 컨트롤'
-            name='FormRadioGroup_subControl'
-            items={Items}
-            subControl={<Button type='button'>버튼</Button>}
-          />
-
-          <Divider />
-
           <FormRadioGroup title='제목 숨김' name='FormRadioGroup_hideTitle' items={Items} hideTitle />
 
           <Divider />

@@ -38,7 +38,7 @@ export const Dev_FormControl_Size = ({ variant = 'select', ...props }: Props) =>
       {variant === 'select' ? (
         <FormSelect name='size' items={selectItems} placeholder='미지정' clearable {...props} />
       ) : (
-        <FormRadioGroup name='size' items={radioItems} {...props} />
+        <FormRadioGroup type='smallButton' name='size' items={radioItems} {...props} />
       )}
     </Dev_PanelItem>
   );

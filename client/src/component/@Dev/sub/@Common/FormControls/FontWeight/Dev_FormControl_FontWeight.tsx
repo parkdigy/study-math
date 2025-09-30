@@ -31,7 +31,7 @@ export const Dev_FormControl_FontWeight = ({ variant = 'select', ...props }: Pro
       {variant === 'select' ? (
         <FormSelect name='fontWeight' items={selectItems} placeholder='미지정' clearable {...props} />
       ) : (
-        <FormRadioGroup name='fontWeight' items={radioItems} {...props} />
+        <FormRadioGroup type='smallButton' name='fontWeight' items={radioItems} {...props} />
       )}
     </Dev_PanelItem>
   );

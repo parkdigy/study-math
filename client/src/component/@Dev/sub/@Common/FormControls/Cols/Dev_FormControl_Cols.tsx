@@ -3,6 +3,7 @@ import { Dev_FormControl_ColsProps as Props } from './Dev_FormControl_Cols.types
 import { FormCheckbox, FormRadioGroup, FormSelect, GridCols } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 import { ScreenAlias, ScreenAliases } from '@theme';
+import { useScreenSize } from '@context';
 
 const _selectColsItems: Lv<string, GridCols>[] = new Array(12).fill(0).map((_, i) => lv(`${i + 1}개`, i + 1));
 
@@ -19,6 +20,12 @@ export const Dev_FormControl_Cols = ({
   onChangeResponsiveCols,
 }: Props) => {
   /********************************************************************************************************************
+   * Use
+   * ******************************************************************************************************************/
+
+  const screenSize = useScreenSize();
+
+  /********************************************************************************************************************
    * Render
    * ******************************************************************************************************************/
 
@@ -32,11 +39,23 @@ export const Dev_FormControl_Cols = ({
         disabled={disabled}
         checked={useResponsive}
         onChange={onChangeUseResponsive}
-        mb={3}
+        mb={10}
       />
 
       {useResponsive ? (
-        <Grid cols={{ mobileSm: 2, mobileMd: 3, mobileLg: 4, tabletSm: 5, tabletMd: 7, desktopSm: 9 }} spacing={10}>
+        <Grid
+          cols={{
+            mobileSm: 1,
+            mobileMd: 2,
+            mobileLg: 3,
+            tabletSm: 4,
+            tabletMd: 6,
+            tabletLg: 7,
+            desktopSm: 8,
+            desktopMd: 9,
+          }}
+          spacing={10}
+        >
           {(Object.keys(ScreenAliases) as ScreenAlias[]).map((screen, idx) => {
             if (responsiveCols[screen] !== undefined) {
               colsOfSize = responsiveCols[screen];
@@ -44,6 +63,7 @@ export const Dev_FormControl_Cols = ({
             return (
               <Col key={idx}>
                 <FormSelect
+                  size='small'
                   title={`${screen}`}
                   placeholder={`${colsOfSize}개`}
                   name={screen}
@@ -57,8 +77,19 @@ export const Dev_FormControl_Cols = ({
             );
           })}
         </Grid>
+      ) : screenSize.smallerThanOrEqual.tabletSm ? (
+        <FormSelect
+          name='cols'
+          placeholder='미지정(12개)'
+          disabled={disabled}
+          clearable
+          items={_selectColsItems}
+          value={cols}
+          onChange={onChangeCols}
+        />
       ) : (
         <FormRadioGroup
+          type='smallButton'
           name='cols'
           disabled={disabled}
           items={_radioGroupColsItems}

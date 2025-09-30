@@ -27,7 +27,7 @@ export const Dev_FormControl_Spacing = ({ variant, ...props }: Props) => {
       {variant === 'select' ? (
         <FormSelect name='spacing' items={selectItems} placeholder='미지정' clearable {...props} />
       ) : (
-        <FormRadioGroup name='spacing' items={radioItems} {...props} />
+        <FormRadioGroup type='smallButton' name='spacing' items={radioItems} {...props} />
       )}
     </Dev_PanelItem>
   );

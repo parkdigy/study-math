@@ -78,22 +78,28 @@ function Dev_FormControl_BackgroundColor<TColors extends AllColors = AllColors>(
             {...props}
           />
         ) : (
-          <Box flex={1}>
+          <Box position='relative'>
+            <Stack row center spacing={10} position='absolute' right={0} top={-30}>
+              <IconButton size={10} variant='rounded' onClick={() => setExpanded((prev) => !prev)}>
+                {expanded ? 'KeyboardArrowUp' : 'KeyboardArrowDown'}
+              </IconButton>
+
+              {useCustomColor && (
+                <ColorPicker
+                  defaultColor={theme.colors.text}
+                  color={ifUndefined(color, theme.colors.background)}
+                  onChange={onChange}
+                />
+              )}
+            </Stack>
+
             <FormRadioGroup
+              type='smallButton'
               name='backgroundColor'
               items={radioItems}
               disabled={disabled}
               value={value}
               onChange={onChange}
-              subControl={
-                <Stack ml={5} row center spacing={10}>
-                  <IconButton size={10} variant='rounded' onClick={() => setExpanded((prev) => !prev)}>
-                    {expanded ? 'KeyboardArrowUp' : 'KeyboardArrowDown'}
-                  </IconButton>
-
-                  {useCustomColor && <ColorPicker defaultColor={theme.colors.text} color={color} onChange={onChange} />}
-                </Stack>
-              }
               {...props}
             />
           </Box>

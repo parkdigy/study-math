@@ -35,7 +35,14 @@ export const Dev_FormControl_ButtonVariant = ({ variant = 'select', value, disab
           placeholder='미지정'
         />
       ) : (
-        <FormRadioGroup name='buttonVariant' items={radioItems} disabled={disabled} value={value} onChange={onChange} />
+        <FormRadioGroup
+          type='smallButton'
+          name='buttonVariant'
+          items={radioItems}
+          disabled={disabled}
+          value={value}
+          onChange={onChange}
+        />
       )}
     </Dev_PanelItem>
   );

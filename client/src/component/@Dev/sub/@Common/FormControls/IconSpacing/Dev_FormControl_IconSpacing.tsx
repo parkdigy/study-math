@@ -8,10 +8,7 @@ export const Dev_FormControl_IconSpacing = ({ variant = 'select', ...props }: Pr
    * Memo
    * ******************************************************************************************************************/
 
-  const selectItems = useMemo(
-    () => [0, 5, 10, 20, '1rem', '1.5rem'].map((v) => lv(`${v}${typeof v === 'number' ? 'px' : ''}`, v)),
-    []
-  );
+  const selectItems = useMemo(() => [0, 5, 10, 20, 30].map((v) => lv(`${v}`, v)), []);
 
   const radioItems = useMemo(() => {
     const _items = [...selectItems];
@@ -28,7 +25,7 @@ export const Dev_FormControl_IconSpacing = ({ variant = 'select', ...props }: Pr
       {variant === 'select' ? (
         <FormSelect name='iconSpacing' items={selectItems} placeholder='미지정' clearable {...props} />
       ) : (
-        <FormRadioGroup name='iconSpacing' items={radioItems} {...props} />
+        <FormRadioGroup type='smallButton' name='iconSpacing' items={radioItems} {...props} />
       )}
     </Dev_PanelItem>
   );

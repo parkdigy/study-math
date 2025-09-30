@@ -85,27 +85,31 @@ function Dev_FormControl_Color<TColors extends AllColors = AllColors>({
             {...props}
           />
         ) : (
-          <FormRadioGroup
-            name='color'
-            items={radioItems}
-            disabled={disabled}
-            value={value}
-            onChange={onChange}
-            subControl={
-              useExpand || useCustomColor ? (
-                <Stack ml={5} row center spacing={10}>
-                  {useExpand && (
-                    <IconButton size={10} variant='rounded' onClick={() => setExpanded((prev) => !prev)}>
-                      {expanded ? 'KeyboardArrowUp' : 'KeyboardArrowDown'}
-                    </IconButton>
-                  )}
+          <Box position='relative'>
+            <Stack row center spacing={10} position='absolute' right={0} top={-30}>
+              <IconButton size={10} variant='rounded' onClick={() => setExpanded((prev) => !prev)}>
+                {expanded ? 'KeyboardArrowUp' : 'KeyboardArrowDown'}
+              </IconButton>
 
-                  {useCustomColor && <ColorPicker defaultColor={theme.colors.text} color={color} onChange={onChange} />}
-                </Stack>
-              ) : null
-            }
-            {...props}
-          />
+              {useCustomColor && (
+                <ColorPicker
+                  defaultColor={theme.colors.text}
+                  color={ifUndefined(color, theme.colors.text)}
+                  onChange={onChange}
+                />
+              )}
+            </Stack>
+
+            <FormRadioGroup
+              type='smallButton'
+              name='color'
+              items={radioItems}
+              disabled={disabled}
+              value={value}
+              onChange={onChange}
+              {...props}
+            />
+          </Box>
         )}
       </Box>
     </Dev_PanelItem>

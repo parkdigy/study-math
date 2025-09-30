@@ -3,7 +3,6 @@ import { FormProps, FormRadioGroup } from '@ccomp';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../../@Common';
 import { FlattenArray } from '@pdg/types';
 import code from './Dev_Form_RadioGroup.code.md';
-import { toast } from '@common';
 import Dev_Form_RadioGroup_Variant from './Dev_Form_RadioGroup_Variant';
 
 const _formOptions = [
@@ -11,7 +10,7 @@ const _formOptions = [
   '|',
   ['title', 'helperText'],
   '|',
-  ['required', 'disabled', 'subControl', 'hideTitle'],
+  ['required', 'disabled', 'hideTitle'],
 ] as const;
 type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
 const _formOptionsDefaultData: Dev_FormOptionsData = {
@@ -31,7 +30,7 @@ export const Dev_Form_RadioGroup = ({ titlePosition }: Props) => {
 
   const [_data, setData] = useState<Pick<Dev_FormOptionsData, _formOptions>>({});
 
-  const { subControl, formRadioGroupType, title, helperText, ...otherData } = _data;
+  const { formRadioGroupType, title, helperText, ...otherData } = _data;
 
   const data = {
     type: formRadioGroupType,
@@ -52,23 +51,11 @@ export const Dev_Form_RadioGroup = ({ titlePosition }: Props) => {
           defaultData={_formOptionsDefaultData}
           formProps={{ titlePosition }}
           code={code}
-          codePropsMap={{ props: { ...data, subControl: subControl ? '{...}' : undefined } }}
+          codePropsMap={{ props: { ...data } }}
           onChange={setData}
           onGetTest={() => (
             <Stack spacing={20} fullWidth>
-              <FormRadioGroup
-                name='FormRadioGroup'
-                titleWidth={120}
-                items={Items}
-                subControl={
-                  subControl ? (
-                    <Button type='button' onClick={() => toast.info('하위 컨트롤 클릭')}>
-                      하위 컨트롤
-                    </Button>
-                  ) : undefined
-                }
-                {...data}
-              />
+              <FormRadioGroup name='FormRadioGroup' titleWidth={120} items={Items} {...data} />
               <Button>Submit</Button>
             </Stack>
           )}

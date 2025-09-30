@@ -29,7 +29,7 @@ export const Dev_FormControl_FormRadioGroupType = ({ variant = 'select', ...prop
       {variant === 'select' ? (
         <FormSelect name='formRadioGroupType' items={selectItems} clearable placeholder='미지정' {...props} />
       ) : (
-        <FormRadioGroup name='formRadioGroupType' items={radioItems} {...props} />
+        <FormRadioGroup type='smallButton' name='formRadioGroupType' items={radioItems} {...props} />
       )}
     </Dev_PanelItem>
   );

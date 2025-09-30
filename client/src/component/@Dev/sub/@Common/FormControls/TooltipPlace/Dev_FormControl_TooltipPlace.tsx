@@ -44,7 +44,7 @@ export const Dev_FormControl_TooltipPlace = ({ variant = 'select', ...props }: P
       {variant === 'select' ? (
         <FormSelect name='tooltipPlace' items={selectItems} placeholder='미지정' clearable {...props} />
       ) : (
-        <FormRadioGroup name='tooltipPlace' items={radioItems} {...props} />
+        <FormRadioGroup type='smallButton' name='tooltipPlace' items={radioItems} {...props} />
       )}
     </Dev_PanelItem>
   );

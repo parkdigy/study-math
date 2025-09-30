@@ -27,7 +27,7 @@ export const Dev_FormControl_LastPage = ({ variant = 'select', ...props }: Props
       {variant === 'select' ? (
         <FormSelect name='lastPage' items={selectItems} {...props} />
       ) : (
-        <FormRadioGroup name='lastPage' items={radioItems} {...props} />
+        <FormRadioGroup type='smallButton' name='lastPage' items={radioItems} {...props} />
       )}
     </Dev_PanelItem>
   );

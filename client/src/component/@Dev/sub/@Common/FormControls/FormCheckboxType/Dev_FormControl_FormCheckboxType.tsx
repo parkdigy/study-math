@@ -27,7 +27,7 @@ export const Dev_FormControl_FormCheckboxType = ({ variant = 'select', ...props 
       {variant === 'select' ? (
         <FormSelect name='formCheckboxType' items={selectItems} clearable placeholder='미지정' {...props} />
       ) : (
-        <FormRadioGroup name='formCheckboxType' items={radioItems} {...props} />
+        <FormRadioGroup type='smallButton' name='formCheckboxType' items={radioItems} {...props} />
       )}
     </Dev_PanelItem>
   );

@@ -5,6 +5,10 @@
   gap: 15px;
   margin: -2px 0;
 
+  &[data-size='small'] {
+    gap: 8px;
+  }
+
   // 삭제 버튼
   .FormSelectRightClear {
     cursor: pointer;
@@ -13,6 +17,11 @@
     justify-content: center;
     padding: 15px 0;
     margin: -15px 0;
+
+    &[data-size='small'] {
+      padding: 10px 8px;
+      margin: -10px -8px;
+    }
   }
 
   // 우측 화살표
@@ -20,6 +29,11 @@
     padding: 23px 20px;
     margin: -23px -20px -23px 0;
     cursor: pointer;
+
+    &[data-size='small'] {
+      padding: 15px 12px;
+      margin: -15px -12px -15px 0;
+    }
 
     &[data-open-dropdown='true'] {
       transform: rotate(180deg);

@@ -65,6 +65,7 @@ export const FormRadioGroup = ToForwardRefExoticComponent(
      * ******************************************************************************************************************/
 
     const { ref: containerRef, width: containerWidth } = useResizeDetector({ handleHeight: false });
+    const { ref: maxWidthRef, width: maxWidth } = useResizeDetector({ handleHeight: false });
 
     /********************************************************************************************************************
      * Ref
@@ -155,7 +156,7 @@ export const FormRadioGroup = ToForwardRefExoticComponent(
     useEffect(() => {
       checkOverflow();
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [useAutoGrid, containerWidth]);
+    }, [useAutoGrid, maxWidth]);
 
     /** 자동 넓이 그리드 cols 계산 */
     useEffect(() => {
@@ -183,6 +184,7 @@ export const FormRadioGroup = ToForwardRefExoticComponent(
      * Function
      * ******************************************************************************************************************/
 
+    /** 값 유효성 검증 */
     const validate = useCallback(() => {
       let error: string | boolean = false;
       if (required && valueRef.current === undefined) {
@@ -205,6 +207,7 @@ export const FormRadioGroup = ToForwardRefExoticComponent(
       }
     }, [onValidateRef, required, setError, title, valueRef]);
 
+    /** overflow 상태 체크 */
     const checkOverflow = useCallback(() => {
       if (useAutoGrid) {
         if (containerRef.current) {
@@ -215,7 +218,7 @@ export const FormRadioGroup = ToForwardRefExoticComponent(
             }
           } else {
             // 일반 상태일 때, scrollWidth가 offsetWidth보다 커졌을 때, overflow 상태로 변경
-            if (containerRef.current.scrollWidth > containerRef.current.offsetWidth) {
+            if (containerRef.current.scrollWidth > maxWidthRef.current.offsetWidth) {
               // overflow 진입시의 넓이 저장
               overflowCheckMinWidthRef.current = containerRef.current.scrollWidth;
 
@@ -224,7 +227,7 @@ export const FormRadioGroup = ToForwardRefExoticComponent(
           }
         }
       }
-    }, [containerRef, isOverflowingRef, setIsOverflowing, useAutoGrid]);
+    }, [containerRef, isOverflowingRef, maxWidthRef, setIsOverflowing, useAutoGrid]);
 
     /********************************************************************************************************************
      * Commands
@@ -342,8 +345,9 @@ export const FormRadioGroup = ToForwardRefExoticComponent(
         error={error}
         {...formControlBaseProps}
       >
+        <div ref={maxWidthRef} className='FormRadioGroupMaxWidth' />
         {/* mh, ph는 outline 안보이는 문제 해결을 위해 추가 */}
-        <div className='FormRadioGroupBody' ref={containerRef}>
+        <div ref={containerRef} className='FormRadioGroupBody'>
           {grid ? (
             <div className='FormRadioGroupBodyGridContainer'>
               <Grid spacing={ifUndefined(grid.spacing, spacing)} {...grid}>

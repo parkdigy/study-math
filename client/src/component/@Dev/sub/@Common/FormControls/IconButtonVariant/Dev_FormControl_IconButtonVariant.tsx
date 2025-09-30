@@ -27,7 +27,7 @@ export const Dev_FormControl_IconButtonVariant = ({ variant = 'select', ...props
       {variant === 'select' ? (
         <FormSelect name='iconButtonVariant' items={selectItems} clearable placeholder='미지정' {...props} />
       ) : (
-        <FormRadioGroup name='iconButtonVariant' items={radioItems} {...props} />
+        <FormRadioGroup type='smallButton' name='iconButtonVariant' items={radioItems} {...props} />
       )}
     </Dev_PanelItem>
   );

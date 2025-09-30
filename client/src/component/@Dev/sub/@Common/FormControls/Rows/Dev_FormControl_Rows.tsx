@@ -25,7 +25,7 @@ export const Dev_FormControl_Rows = ({ variant = 'select', ...props }: Props) =>
       {variant === 'select' ? (
         <FormSelect name='rows' items={selectItems} placeholder='미지정' clearable {...props} />
       ) : (
-        <FormRadioGroup name='rows' items={radioItems} {...props} />
+        <FormRadioGroup type='smallButton' name='rows' items={radioItems} {...props} />
       )}
     </Dev_PanelItem>
   );

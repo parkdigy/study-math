@@ -26,7 +26,7 @@ export const Dev_FormControl_CurrentPage = ({ variant = 'select', ...props }: Pr
       {variant === 'select' ? (
         <FormSelect name='currentPage' items={selectItems} {...props} />
       ) : (
-        <FormRadioGroup name='currentPage' items={radioItems} {...props} />
+        <FormRadioGroup type='smallButton' name='currentPage' items={radioItems} {...props} />
       )}
     </Dev_PanelItem>
   );
