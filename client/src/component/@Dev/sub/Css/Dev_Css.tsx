@@ -3,6 +3,7 @@ import { AllColors, getFriendlyNameOfSize, Sizes, Theme } from '@theme';
 import util from '@util';
 import app from '@app';
 import { Divider, Grid, Tabs } from '@ccomp';
+import { useLocation } from 'react-router';
 
 const TabValue = ['size', 'color'] as const;
 type TabValue = (typeof TabValue)[number];
@@ -17,6 +18,12 @@ export const Dev_Css = () => {
    * Use
    * ******************************************************************************************************************/
 
+  const location = useLocation();
+
+  /********************************************************************************************************************
+   * Use
+   * ******************************************************************************************************************/
+
   const theme = useTheme();
 
   /********************************************************************************************************************
@@ -26,6 +33,19 @@ export const Dev_Css = () => {
   const [activeTab, setActiveTab] = useState<TabValue>('size');
 
   /********************************************************************************************************************
+   * Effect
+   * ******************************************************************************************************************/
+
+  useEffect(() => {
+    const hash = app.deHash(location);
+    if (hash.sm && TabValue.includes(hash.sm as TabValue)) {
+      setActiveTab(hash.sm as TabValue);
+    } else {
+      setActiveTab('size');
+    }
+  }, [location]);
+
+  /********************************************************************************************************************
    * Render
    * ******************************************************************************************************************/
 
@@ -33,7 +53,13 @@ export const Dev_Css = () => {
     <Panel spacing={20}>
       <TTitleLarge700 color='primary'>CSS</TTitleLarge700>
 
-      <Tabs items={TabItems} value={activeTab} onChange={setActiveTab} />
+      <Tabs
+        items={TabItems}
+        value={activeTab}
+        onChange={(v) => {
+          v !== activeTab && app.navigate(`#m=css&sm=${v}`);
+        }}
+      />
 
       {activeTab === 'size' ? (
         <Grid cols={{ mobileLg: 2, tabletMd: 3, desktopSm: 4 }} spacing={10}>

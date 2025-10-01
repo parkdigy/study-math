@@ -1,27 +1,18 @@
 import React from 'react';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_FormOptionsProps, Dev_Panel } from '../../@Common';
 import { AllColors } from '@theme';
-import code from './Dev_Button_TextButton.code.md';
+import code from './Dev_Button_StackButton.code.md';
 import { toast } from '@common';
-import { TextButton } from '@ccomp';
-import Dev_Button_TextButton_Variant from './Dev_Button_TextButton_Variant';
+import { StackButton } from '@ccomp';
 import { FlattenArray } from '@pdg/types';
 
-const _formOptions = [
-  ['color', 'size'],
-  '|',
-  ['icon', 'iconSpacing', 'iconPosition'],
-  '|',
-  'url',
-  '|',
-  ['loading', 'disabled'],
-] as const;
+const _formOptions = [['color', 'backgroundColor'], '|', 'url', '|', ['disabled']] as const;
 type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
 const _formOptionProps: Dev_FormOptionsProps['optionProps'] = {
   url: { helperText: 'URL을 입력하면, 클릭 시 자동으로 URL로 이동 (내부 URL은 / 로 시작)' },
 };
 
-const Dev_Button_TextButton = () => {
+const Dev_Button_StackButton = () => {
   /********************************************************************************************************************
    * Data
    * ******************************************************************************************************************/
@@ -43,21 +34,31 @@ const Dev_Button_TextButton = () => {
           options={_formOptions}
           optionProps={_formOptionProps}
           colors={AllColors}
+          backgroundColors={AllColors}
           useCustomColor
           code={code}
           codePropsMap={{ button: data }}
           onChange={setData}
           onGetTest={() => (
-            <TextButton {...data} onClick={() => toast.info('클릭')}>
-              버튼
-            </TextButton>
+            <StackButton {...data} onClick={() => toast.info('클릭')}>
+              <Stack row center spacing={3}>
+                <Icon size='x3l' color='error'>
+                  Rocket
+                </Icon>
+                <Box center>
+                  <TCaption500 color='primary'>STACK</TCaption500>
+                  <T>BUTTON</T>
+                </Box>
+                <Icon size='x3l' color='error'>
+                  Rocket
+                </Icon>
+              </Stack>
+            </StackButton>
           )}
         />
       </Dev_Panel>
-
-      <Dev_Button_TextButton_Variant />
     </Stack>
   );
 };
 
-export default React.memo(Dev_Button_TextButton);
+export default React.memo(Dev_Button_StackButton);

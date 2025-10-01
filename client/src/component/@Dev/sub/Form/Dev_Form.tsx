@@ -9,6 +9,8 @@ import Dev_Form_RadioGroup from './RadioGroup';
 import Dev_Form_ControlGroup from './ControlGroup';
 import Dev_Form_Textarea from './Textarea';
 import { Dev_Panel } from '../@Common';
+import { useLocation } from 'react-router';
+import app from '@app';
 
 const TabValue = ['text', 'email', 'password', 'textarea', 'select', 'radioGroup', 'checkbox', 'controlGroup'] as const;
 type TabValue = (typeof TabValue)[number];
@@ -25,11 +27,30 @@ const TabItems = [
 
 export const Dev_Form = () => {
   /********************************************************************************************************************
+   * Use
+   * ******************************************************************************************************************/
+
+  const location = useLocation();
+
+  /********************************************************************************************************************
    * State
    * ******************************************************************************************************************/
 
   const [activeTab, setActiveTab] = useState<TabValue>('text');
   const [titlePosition, setTitlePosition] = useState<FormProps['titlePosition']>('top');
+
+  /********************************************************************************************************************
+   * Effect
+   * ******************************************************************************************************************/
+
+  useEffect(() => {
+    const hash = app.deHash(location);
+    if (hash.sm && TabValue.includes(hash.sm as TabValue)) {
+      setActiveTab(hash.sm as TabValue);
+    } else {
+      setActiveTab('text');
+    }
+  }, [location]);
 
   /********************************************************************************************************************
    * Render
@@ -51,7 +72,13 @@ export const Dev_Form = () => {
         </Form>
       </Dev_Panel>
 
-      <Tabs items={TabItems} value={activeTab} onChange={setActiveTab} />
+      <Tabs
+        items={TabItems}
+        value={activeTab}
+        onChange={(v) => {
+          v !== activeTab && app.navigate(`#m=form&sm=${v}`);
+        }}
+      />
 
       {activeTab === 'text' ? (
         <Dev_Form_Text titlePosition={titlePosition} />

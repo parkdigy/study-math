@@ -21,6 +21,8 @@ import {
   Dev_Tooltip,
 } from './sub';
 import './Dev.scss';
+import app from '@app';
+import { useLocation } from 'react-router';
 
 const TabValue = [
   'color',
@@ -64,10 +66,27 @@ const TabItems = [
 
 export const Dev = ({}: Props) => {
   /********************************************************************************************************************
+   * Use
+   * ******************************************************************************************************************/
+
+  const location = useLocation();
+
+  /********************************************************************************************************************
    * State
    * ******************************************************************************************************************/
 
   const [activeTab, setActiveTab] = useState<TabValue>('color');
+
+  /********************************************************************************************************************
+   * Effect
+   * ******************************************************************************************************************/
+
+  useEffect(() => {
+    const hash = app.deHash(location);
+    if (hash.m && TabValue.includes(hash.m as any)) {
+      setActiveTab(hash.m as TabValue);
+    }
+  }, [location]);
 
   /********************************************************************************************************************
    * Render
@@ -75,7 +94,13 @@ export const Dev = ({}: Props) => {
 
   return (
     <PageRootContainer className='Dev'>
-      <Tabs items={TabItems} value={activeTab} onChange={setActiveTab} />
+      <Tabs
+        items={TabItems}
+        value={activeTab}
+        onChange={(v) => {
+          v !== activeTab && app.navigate(`#m=${v}`);
+        }}
+      />
 
       {activeTab === 'color' ? (
         <Dev_Color />

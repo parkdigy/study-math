@@ -132,7 +132,7 @@ export const IconButton = React.forwardRef<HTMLDivElement, Props>(
         cssVars={{ '--color': color, '--background-color': backgroundColor, '--outline-color': outlineColor }}
         p={p}
         tabIndex={disabled ? -1 : 0}
-        onClick={handleClick}
+        onClick={url !== undefined ? handleClick : onClick}
         {...props}
       >
         <Icon size={size} {...iconProps}>

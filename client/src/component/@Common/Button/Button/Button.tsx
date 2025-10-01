@@ -171,7 +171,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
         ph={ph}
         pv={pv}
         borderRadius={borderRadius}
-        onClick={handleClick}
+        onClick={url !== undefined ? handleClick : onClick}
         {...props}
       >
         <Stack

@@ -1,10 +1,17 @@
 .StackButton {
-  &:not(.StackButton-disabled) * {
+  user-select: none;
+
+  &:not(.StackButton-disabled) {
     cursor: pointer;
+
+    * {
+      cursor: pointer;
+    }
   }
 
   &.StackButton-disabled {
     cursor: default;
+    pointer-events: none;
     opacity: 0.5;
   }
 }

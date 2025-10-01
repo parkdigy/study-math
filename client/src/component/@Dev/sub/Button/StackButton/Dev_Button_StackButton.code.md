@@ -1,0 +1,5 @@
+```react
+<StackButton $[button]>
+  ...
+</StackButton>
+```

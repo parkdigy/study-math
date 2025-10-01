@@ -30,6 +30,8 @@ import {
   TextButtonProps as _TextButtonProps,
   IconButton as _IconButton,
   IconButtonProps as _IconButtonProps,
+  StackButton as _StackButton,
+  StackButtonProps as _StackButtonProps,
   // Dialog
   Dialog as _Dialog,
   DialogProps as _DialogProps,
@@ -195,6 +197,8 @@ declare global {
   type TextButtonProps = _TextButtonProps;
   var IconButton: typeof _IconButton;
   type IconButtonProps = _IconButtonProps;
+  var StackButton: typeof _StackButton;
+  type StackButtonProps = _StackButtonProps;
   // Dialog
   var Dialog: typeof _Dialog;
   type DialogProps = _DialogProps;
@@ -345,6 +349,7 @@ globalThis.Icon = _Icon;
 globalThis.Button = _Button;
 globalThis.TextButton = _TextButton;
 globalThis.IconButton = _IconButton;
+globalThis.StackButton = _StackButton;
 // Dialog
 globalThis.Dialog = _Dialog;
 // Alert
