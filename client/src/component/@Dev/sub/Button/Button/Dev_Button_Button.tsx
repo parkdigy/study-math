@@ -1,5 +1,5 @@
 import React from 'react';
-import { AllColors } from '@theme';
+import { AllColors, ButtonColors } from '@theme';
 import Dev_Button_Button_Variant from './Dev_Button_Button_Variant';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_FormOptionsProps, Dev_Panel } from '../../@Common';
 import code from './Dev_Button_Button.code.md';
@@ -45,7 +45,7 @@ const Dev_Button_Button = () => {
         <Dev_FormOptions
           options={_formOptions}
           optionProps={_formOptionProps}
-          colors={AllColors}
+          colors={ButtonColors}
           useCustomColor
           backgroundColors={AllColors}
           useCustomBackgroundColor
