@@ -4,6 +4,7 @@ import { PageRootContainer, Tabs } from '@ccomp';
 import {
   Dev_Alert,
   Dev_Button,
+  Dev_Chip,
   Dev_Color,
   Dev_Css,
   Dev_Dialog,
@@ -38,6 +39,7 @@ const TabValue = [
   'alert',
   'pagination',
   'list',
+  'chip',
 ] as const;
 type TabValue = (typeof TabValue)[number];
 const TabItems = [
@@ -56,6 +58,7 @@ const TabItems = [
   lv('얼럿', 'alert'),
   lv('페이징', 'pagination'),
   lv('리스트', 'list'),
+  lv('칩', 'chip'),
   lv('Form', 'form'),
 ] as Lv<string, TabValue, { disabled?: boolean }>[];
 
@@ -64,7 +67,7 @@ export const Dev = ({}: Props) => {
    * State
    * ******************************************************************************************************************/
 
-  const [activeTab, setActiveTab] = useState<TabValue>('color');
+  const [activeTab, setActiveTab] = useState<TabValue>('chip');
 
   /********************************************************************************************************************
    * Render
@@ -106,6 +109,8 @@ export const Dev = ({}: Props) => {
         <Dev_Pagination />
       ) : activeTab === 'list' ? (
         <Dev_List />
+      ) : activeTab === 'chip' ? (
+        <Dev_Chip />
       ) : null}
     </PageRootContainer>
   );

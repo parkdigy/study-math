@@ -44,6 +44,9 @@ import { Dev_FormControl_Searchable } from './Searchable';
 import { Dev_FormControl_FormSelectSize } from './FormSelectSize';
 import { Dev_FormControl_ListType } from './ListType';
 import { Dev_FormControl_ListVariant } from './ListVariant';
+import { Dev_FormControl_ChipVariant } from './ChipVariant';
+import { Dev_FormControl_OnClick } from './OnClick';
+import { Dev_FormControl_OnRemoveClick } from './OnRemoveClick';
 
 export type UseDevFormControlData<TOption extends Exclude<Dev_FormOptionsOption, 'cols'>> = {
   screenSize: ScreenSizeInfo;
@@ -137,6 +140,8 @@ function useDevFormControl<TOption extends Exclude<Dev_FormOptionsOption, 'cols'
     <Dev_FormControl_ListType {...multiOptionDefaultProps} />
   ) : option === 'listVariant' ? (
     <Dev_FormControl_ListVariant {...multiOptionDefaultProps} />
+  ) : option === 'chipVariant' ? (
+    <Dev_FormControl_ChipVariant {...multiOptionDefaultProps} />
   ) : /** Text Controls */ option === 'title' ? (
     <Dev_FormControl_Title {...defaultProps} />
   ) : option === 'placeholder' ? (
@@ -171,6 +176,10 @@ function useDevFormControl<TOption extends Exclude<Dev_FormOptionsOption, 'cols'
     <Dev_FormControl_Clearable {...defaultProps} />
   ) : option === 'searchable' ? (
     <Dev_FormControl_Searchable {...defaultProps} />
+  ) : option === 'onClick' ? (
+    <Dev_FormControl_OnClick {...defaultProps} />
+  ) : option === 'onRemoveClick' ? (
+    <Dev_FormControl_OnRemoveClick {...defaultProps} />
   ) : null;
 
   /********************************************************************************************************************

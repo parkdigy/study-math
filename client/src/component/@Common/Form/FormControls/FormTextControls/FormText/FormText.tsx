@@ -29,6 +29,9 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
       type,
       clear: initClear = true,
       maxLength,
+      autoComplete,
+      autoCapitalize,
+      autoCorrect,
       endAdornment,
       onFocus,
       onBlur,
@@ -243,6 +246,9 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
           value={value}
           placeholder={placeholder}
           maxLength={maxLength}
+          autoComplete={autoComplete}
+          autoCapitalize={autoCapitalize}
+          autoCorrect={autoCorrect}
           error={error !== false}
           endAdornment={endAdornment}
           clear={initClear && notEmpty(value)}

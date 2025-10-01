@@ -4,7 +4,7 @@ import { ClearButton } from './sub';
 import './FormInput.scss';
 
 export const FormInput = React.forwardRef<HTMLInputElement, Props>(
-  ({ error, onFocus, onBlur, endAdornment, clear, disabled, onClearClick, ...props }, ref) => {
+  ({ error, onFocus, onBlur, endAdornment, clear, disabled, onClearClick, ...inputProps }, ref) => {
     /********************************************************************************************************************
      * State
      * ******************************************************************************************************************/
@@ -37,7 +37,7 @@ export const FormInput = React.forwardRef<HTMLInputElement, Props>(
 
     return (
       <div className={classnames('FormInput')} data-disabled={disabled} data-error={error} data-focused={isFocus}>
-        <input ref={ref} disabled={disabled} onFocus={handleFocus} onBlur={handleBlur} {...props} />
+        <input ref={ref} disabled={disabled} onFocus={handleFocus} onBlur={handleBlur} {...inputProps} />
         <Stack className='FormInput-right' row center>
           {clear && <ClearButton onClick={onClearClick} />}
           {endAdornment}

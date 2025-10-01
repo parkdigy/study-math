@@ -82,50 +82,7 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
   const [dataRef, data, setData] = useRefState<Dev_FormOptionsData<TColors, TBackgroundColors>>({});
 
   /** Multi Option Controls */
-  const {
-    buttonVariant,
-    buttonVariantControl,
-    iconButtonVariant,
-    iconButtonVariantControl,
-    alertType,
-    alertTypeControl,
-    color,
-    colorControl,
-    backgroundColor,
-    backgroundColorControl,
-    size,
-    sizeControl,
-    fontWeight,
-    fontWeightControl,
-    tooltipPlace,
-    tooltipPlaceControl,
-    rotate,
-    rotateControl,
-    spacing,
-    spacingControl,
-    icon,
-    iconControl,
-    iconPosition,
-    iconPositionControl,
-    iconSpacing,
-    iconSpacingControl,
-    rows,
-    rowsControl,
-    formCheckboxType,
-    formCheckboxTypeControl,
-    formRadioGroupType,
-    formRadioGroupTypeControl,
-    formSelectSize,
-    formSelectSizeControl,
-    currentPage,
-    currentPageControl,
-    lastPage,
-    lastPageControl,
-    listType,
-    listTypeControl,
-    listVariant,
-    listVariantControl,
-  } = useDevFormOptionMultiOptionControls({
+  const multiOptionControls = useDevFormOptionMultiOptionControls({
     flatOptions,
     optionProps,
     defaultData,
@@ -135,20 +92,7 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
   });
 
   /** Text Controls */
-  const {
-    title,
-    titleControl,
-    placeholder,
-    placeholderControl,
-    url,
-    urlControl,
-    message,
-    messageControl,
-    helperText,
-    helperTextControl,
-    label,
-    labelControl,
-  } = useDevFormOptionTextControls({
+  const textControls = useDevFormOptionTextControls({
     flatOptions,
     optionProps,
     defaultData,
@@ -156,30 +100,7 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
   });
 
   /** Boolean Controls */
-  const {
-    loading,
-    loadingControl,
-    disabled,
-    disabledControl,
-    reverse,
-    reverseControl,
-    required,
-    requiredControl,
-    showIcon,
-    showIconControl,
-    hideTitle,
-    hideTitleControl,
-    onRetry,
-    onRetryControl,
-    subControl,
-    subControlControl,
-    rules,
-    rulesControl,
-    clearable,
-    clearableControl,
-    searchable,
-    searchableControl,
-  } = useDevFormOptionBooleanControls({
+  const booleanControls = useDevFormOptionBooleanControls({
     flatOptions,
     optionProps,
     defaultData,
@@ -198,6 +119,21 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
   );
 
   /********************************************************************************************************************
+   * Memo
+   * ******************************************************************************************************************/
+
+  /** All Controls */
+  const allControls = useMemo(
+    () => ({ ...multiOptionControls, ...textControls, ...booleanControls }),
+    [booleanControls, multiOptionControls, textControls]
+  );
+
+  const allControlNames = useMemo(
+    () => Object.keys(allControls) as Exclude<Dev_FormOptionsOption, 'cols'>[],
+    [allControls]
+  );
+
+  /********************************************************************************************************************
    * Effect
    * ******************************************************************************************************************/
 
@@ -205,137 +141,14 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
     const newData: Dev_FormOptionsData<TColors, TBackgroundColors> = {};
 
     flatOptions.forEach((v) => {
-      switch (v) {
-        /** Multi Option Controls */
-        case 'buttonVariant':
-          newData.buttonVariant = buttonVariant;
-          break;
-        case 'iconButtonVariant':
-          newData.iconButtonVariant = iconButtonVariant;
-          break;
-        case 'alertType':
-          newData.alertType = alertType;
-          break;
-        case 'color':
-          newData.color = color as TColors;
-          break;
-        case 'backgroundColor':
-          newData.backgroundColor = backgroundColor as TBackgroundColors;
-          break;
-        case 'size':
-          newData.size = size;
-          break;
-        case 'fontWeight':
-          newData.fontWeight = fontWeight;
-          break;
-        case 'tooltipPlace':
-          newData.tooltipPlace = tooltipPlace;
-          break;
-        case 'rotate':
-          newData.rotate = rotate;
-          break;
-        case 'spacing':
-          newData.spacing = spacing;
-          break;
-        case 'icon':
-          newData.icon = icon;
-          break;
-        case 'iconPosition':
-          if (icon) newData.iconPosition = iconPosition;
-          break;
-        case 'iconSpacing':
-          if (icon) newData.iconSpacing = iconSpacing;
-          break;
-        case 'rows':
-          newData.rows = rows;
-          break;
-        case 'formCheckboxType':
-          newData.formCheckboxType = formCheckboxType;
-          break;
-        case 'formRadioGroupType':
-          newData.formRadioGroupType = formRadioGroupType;
-          break;
-        case 'formSelectSize':
-          newData.formSelectSize = formSelectSize;
-          break;
-        case 'currentPage':
-          newData.currentPage = currentPage;
-          break;
-        case 'lastPage':
-          newData.lastPage = lastPage;
-          break;
-        case 'listType':
-          newData.listType = listType;
-          break;
-        case 'listVariant':
-          newData.listVariant = listVariant;
-          break;
-
-        /** Text Controls */
-        case 'title':
-          newData.title = title;
-          break;
-        case 'placeholder':
-          newData.placeholder = placeholder;
-          break;
-        case 'message':
-          newData.message = message;
-          break;
-        case 'url':
-          newData.url = url;
-          break;
-        case 'helperText':
-          newData.helperText = helperText;
-          break;
-        case 'label':
-          newData.label = label;
-          break;
-
-        /** Boolean Controls */
-        case 'loading':
-          newData.loading = loading;
-          break;
-        case 'disabled':
-          newData.disabled = disabled;
-          break;
-        case 'showIcon':
-          newData.showIcon = showIcon;
-          break;
-        case 'reverse':
-          if (ifUndefined(buttonVariant, 'contained') === 'contained') {
-            newData.reverse = reverse;
-          }
-          break;
-        case 'required':
-          newData.required = required;
-          break;
-        case 'hideTitle':
-          newData.hideTitle = hideTitle;
-          break;
-        case 'onRetry':
-          newData.onRetry = onRetry;
-          break;
-        case 'subControl':
-          newData.subControl = subControl;
-          break;
-        case 'rules':
-          newData.rules = rules;
-          break;
-        case 'clearable':
-          newData.clearable = clearable;
-          break;
-        case 'searchable':
-          newData.searchable = searchable;
-          break;
-
-        /** Cols Controls */
-        case 'cols':
-          if (colsUseResponsive) {
-            newData.cols = colsResponsiveCols;
-          } else {
-            newData.cols = cols;
-          }
-          break;
+      if (v === 'cols') {
+        if (colsUseResponsive) {
+          newData.cols = colsResponsiveCols;
+        } else {
+          newData.cols = cols;
+        }
+      } else if (allControlNames.includes(v)) {
+        newData[v] = allControls[v] as any;
       }
     });
 
@@ -344,52 +157,16 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
       onChangeRef.current(newData);
     }
   }, [
-    buttonVariant,
-    iconButtonVariant,
-    color,
-    size,
-    fontWeight,
-    icon,
-    iconPosition,
-    iconSpacing,
-    loading,
-    disabled,
-    reverse,
     options,
     dataRef,
     setData,
     onChangeRef,
-    url,
-    rotate,
-    alertType,
-    title,
     colsUseResponsive,
     colsResponsiveCols,
     cols,
-    spacing,
-    showIcon,
-    backgroundColor,
     flatOptions,
-    tooltipPlace,
-    message,
-    onRetry,
-    placeholder,
-    required,
-    hideTitle,
-    subControl,
-    rules,
-    rows,
-    clearable,
-    helperText,
-    label,
-    formCheckboxType,
-    currentPage,
-    lastPage,
-    formRadioGroupType,
-    searchable,
-    formSelectSize,
-    listType,
-    listVariant,
+    allControls,
+    allControlNames,
   ]);
 
   /********************************************************************************************************************
@@ -496,94 +273,20 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
                   return (
                     <Col key={idx2} cols={optionCols}>
                       {(() => {
-                        switch (v2 && typeof v2 === 'object' ? v2.option : v2) {
-                          /** Multi Option Controls */
-                          case 'buttonVariant':
-                            return buttonVariantControl;
-                          case 'iconButtonVariant':
-                            return iconButtonVariantControl;
-                          case 'alertType':
-                            return alertTypeControl;
-                          case 'color':
-                            return colors ? colorControl : null;
-                          case 'backgroundColor':
-                            return colors ? backgroundColorControl : null;
-                          case 'size':
-                            return sizeControl;
-                          case 'fontWeight':
-                            return fontWeightControl;
-                          case 'tooltipPlace':
-                            return tooltipPlaceControl;
-                          case 'rotate':
-                            return rotateControl;
-                          case 'spacing':
-                            return spacingControl;
-                          case 'icon':
-                            return iconControl;
-                          case 'iconPosition':
-                            return iconPositionControl;
-                          case 'iconSpacing':
-                            return iconSpacingControl;
-                          case 'rows':
-                            return rowsControl;
-                          case 'formCheckboxType':
-                            return formCheckboxTypeControl;
-                          case 'formRadioGroupType':
-                            return formRadioGroupTypeControl;
-                          case 'formSelectSize':
-                            return formSelectSizeControl;
-                          case 'currentPage':
-                            return currentPageControl;
-                          case 'lastPage':
-                            return lastPageControl;
-                          case 'listType':
-                            return listTypeControl;
-                          case 'listVariant':
-                            return listVariantControl;
+                        const controlName = v2 && typeof v2 === 'object' ? v2.option : v2;
+                        if (controlName === 'cols') {
+                          return colsControl;
+                        } else if (allControlNames.includes(controlName)) {
+                          let isReturnControl = true;
+                          if (controlName === 'color' && !colors) {
+                            isReturnControl = false;
+                          } else if (controlName === 'backgroundColor' && !backgroundColors) {
+                            isReturnControl = false;
+                          }
 
-                          /** Text Controls */
-                          case 'title':
-                            return titleControl;
-                          case 'placeholder':
-                            return placeholderControl;
-                          case 'url':
-                            return urlControl;
-                          case 'message':
-                            return messageControl;
-                          case 'helperText':
-                            return helperTextControl;
-                          case 'label':
-                            return labelControl;
-
-                          /** Boolean Controls */
-                          case 'loading':
-                            return loadingControl;
-                          case 'disabled':
-                            return disabledControl;
-                          case 'reverse':
-                            return reverseControl;
-                          case 'showIcon':
-                            return showIconControl;
-                          case 'required':
-                            return requiredControl;
-                          case 'hideTitle':
-                            return hideTitleControl;
-                          case 'onRetry':
-                            return onRetryControl;
-                          case 'subControl':
-                            return subControlControl;
-                          case 'rules':
-                            return rulesControl;
-                          case 'clearable':
-                            return clearableControl;
-                          case 'searchable':
-                            return searchableControl;
-
-                          /** Cols Controls */
-                          case 'cols':
-                            return colsControl;
-                          default:
-                            return null;
+                          if (isReturnControl) {
+                            return allControls[`${controlName}Control`];
+                          }
                         }
                       })()}
                     </Col>

@@ -1,0 +1,47 @@
+.Chip {
+  $font-size: var(--font-size);
+  $line-height: var(--line-height);
+  $color: var(--color);
+  $background-color: var(--background-color);
+  $outline-color: var(--outline-color);
+  $remove-btn-color: var(--color-text-blurry);
+  $padding-horizontal: calc($font-size * 1.075);
+
+  &[data-variant='outlined'] {
+    $padding-horizontal: calc($font-size * 1.075 - 2px);
+  }
+
+  color: $color;
+  background-color: $background-color;
+  padding: 0 $padding-horizontal;
+  border-radius: 100px;
+  outline: 0 solid $outline-color;
+
+  &:focus-visible {
+    outline-width: 3px;
+  }
+
+  // 클릭 가능 상태
+  &[data-clickable='true'] {
+    cursor: pointer;
+  }
+
+  .ChipLabel {
+    font-size: $font-size;
+    line-height: $line-height;
+  }
+
+  .ChipCloseIcon {
+    cursor: pointer;
+    padding: 10px $padding-horizontal 10px calc($font-size * 0.16);
+    margin: -10px calc($padding-horizontal * -1) -10px 0;
+    font-size: calc($font-size * 1.2);
+    color: $remove-btn-color;
+    opacity: 0.6;
+    user-select: none;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

@@ -22,6 +22,7 @@ export * from './FormRadioGroupType';
 export * from './FormSelectSize';
 export * from './ListType';
 export * from './ListVariant';
+export * from './ChipVariant';
 
 /** Text Controls */
 export * from './Url';
@@ -41,6 +42,8 @@ export * from './OnRetry';
 export * from './SubControl';
 export * from './Rules';
 export * from './Clearable';
+export * from './OnClick';
+export * from './OnRemoveClick';
 
 /** Cols Controls */
 export * from './Cols';

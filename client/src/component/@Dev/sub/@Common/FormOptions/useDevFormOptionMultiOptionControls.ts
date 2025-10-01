@@ -264,6 +264,19 @@ export const useDevFormOptionMultiOptionControls = ({
   );
 
   /********************************************************************************************************************
+   * chipVariant
+   * ******************************************************************************************************************/
+  const [chipVariant, chipVariantControl] = useDevFormControl(
+    'chipVariant',
+    flatOptions.includes('chipVariant'),
+    defaultData?.chipVariant,
+    {
+      ...useFormControlData,
+      props: optionProps?.chipVariant,
+    }
+  );
+
+  /********************************************************************************************************************
    * Return
    * ******************************************************************************************************************/
 
@@ -310,5 +323,7 @@ export const useDevFormOptionMultiOptionControls = ({
     listTypeControl,
     listVariant,
     listVariantControl,
+    chipVariant,
+    chipVariantControl,
   };
 };

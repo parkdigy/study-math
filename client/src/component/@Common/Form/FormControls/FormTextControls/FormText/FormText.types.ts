@@ -12,7 +12,17 @@ export interface FormTextProps
   extends FormControlCommonProps<string>,
     Pick<
       FormInputProps,
-      'type' | 'clear' | 'endAdornment' | 'maxLength' | 'onFocus' | 'onBlur' | 'onKeyUp' | 'onKeyDown'
+      | 'type'
+      | 'clear'
+      | 'endAdornment'
+      | 'maxLength'
+      | 'autoComplete'
+      | 'autoCapitalize'
+      | 'autoCorrect'
+      | 'onFocus'
+      | 'onBlur'
+      | 'onKeyUp'
+      | 'onKeyDown'
     > {
   $custom?: boolean;
   $type?: FormControlType;

@@ -2,6 +2,7 @@ import {
   Dev_FormControl_AlertTypeProps,
   Dev_FormControl_BackgroundColorProps,
   Dev_FormControl_ButtonVariantProps,
+  Dev_FormControl_ChipVariantProps,
   Dev_FormControl_ClearableProps,
   Dev_FormControl_ColorProps,
   Dev_FormControl_CurrentPageProps,
@@ -21,6 +22,8 @@ import {
   Dev_FormControl_ListVariantProps,
   Dev_FormControl_LoadingProps,
   Dev_FormControl_MessageProps,
+  Dev_FormControl_OnClickProps,
+  Dev_FormControl_OnRemoveClickProps,
   Dev_FormControl_OnRetryProps,
   Dev_FormControl_PlaceholderProps,
   Dev_FormControl_RequiredProps,
@@ -66,6 +69,7 @@ export type Dev_FormOptionsOption =
   | 'lastPage'
   | 'listType'
   | 'listVariant'
+  | 'chipVariant'
   /** Text Controls */
   | 'url'
   | 'title'
@@ -85,6 +89,8 @@ export type Dev_FormOptionsOption =
   | 'rules'
   | 'clearable'
   | 'searchable'
+  | 'onClick'
+  | 'onRemoveClick'
   /** Cols Controls */
   | 'cols';
 
@@ -109,7 +115,8 @@ export type Dev_FormOptionsRadioGroupOption =
   | 'currentPage'
   | 'lastPage'
   | 'listType'
-  | 'listVariant';
+  | 'listVariant'
+  | 'chipVariant';
 
 export interface Dev_FormOptionsData<
   TColors extends AllColors = AllColors,
@@ -137,6 +144,7 @@ export interface Dev_FormOptionsData<
   lastPage?: Dev_FormControl_LastPageProps['value'];
   listType?: Dev_FormControl_ListTypeProps['value'];
   listVariant?: Dev_FormControl_ListVariantProps['value'];
+  chipVariant?: Dev_FormControl_ChipVariantProps['value'];
   /** Text Controls */
   url?: Dev_FormControl_UrlProps['value'];
   title?: Dev_FormControl_TitleProps['value'];
@@ -156,6 +164,8 @@ export interface Dev_FormOptionsData<
   rules?: Dev_FormControl_RulesProps['value'];
   clearable?: Dev_FormControl_ClearableProps['value'];
   searchable?: Dev_FormControl_SearchableProps['value'];
+  onClick?: Dev_FormControl_OnClickProps['value'];
+  onRemoveClick?: Dev_FormControl_OnRemoveClickProps['value'];
   /** Cols Controls */
   cols?: GridProps['cols'];
 }
@@ -189,6 +199,7 @@ export interface Dev_FormOptionsControlPropsMap {
   lastPage?: Pick<Dev_FormControl_LastPageProps, keyof Dev_FormOptionsControlCommonProps>;
   listType?: Pick<Dev_FormControl_ListTypeProps, keyof Dev_FormOptionsControlCommonProps>;
   listVariant?: Pick<Dev_FormControl_ListVariantProps, keyof Dev_FormOptionsControlCommonProps>;
+  chipVariant?: Pick<Dev_FormControl_ChipVariantProps, keyof Dev_FormOptionsControlCommonProps>;
   /** Text Controls */
   title?: Pick<Dev_FormControl_TitleProps, keyof Dev_FormOptionsControlCommonProps>;
   placeholder?: Pick<Dev_FormControl_PlaceholderProps, keyof Dev_FormOptionsControlCommonProps>;
@@ -208,6 +219,8 @@ export interface Dev_FormOptionsControlPropsMap {
   rules?: Pick<Dev_FormControl_RulesProps, keyof Dev_FormOptionsControlCommonProps>;
   clearable?: Pick<Dev_FormControl_ClearableProps, keyof Dev_FormOptionsControlCommonProps>;
   searchable?: Pick<Dev_FormControl_SearchableProps, keyof Dev_FormOptionsControlCommonProps>;
+  onClick?: Pick<Dev_FormControl_OnClickProps, keyof Dev_FormOptionsControlCommonProps>;
+  onRemoveClick?: Pick<Dev_FormControl_OnRemoveClickProps, keyof Dev_FormOptionsControlCommonProps>;
 }
 
 export interface Dev_FormOptionsProps<

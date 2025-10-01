@@ -5,7 +5,7 @@ import './DevButton.scss';
 export const DevButton = ({ icon, onClick }: Props) => {
   return (
     <div className='DevButton' onClick={onClick}>
-      <Icon size='30' color='text'>
+      <Icon size={20} color='text'>
         {icon}
       </Icon>
     </div>

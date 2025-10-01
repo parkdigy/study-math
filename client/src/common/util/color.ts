@@ -2,6 +2,9 @@ import Color from 'color';
 import app from '@app';
 
 export const color = {
+  /********************************************************************************************************************
+   * 지정된 색상의 On 컬러 반환
+   * ******************************************************************************************************************/
   getOnColor(color: string, whiteColor = 'white', blackColor = 'black') {
     const alpha = Color(color).alpha();
     const isDark = Color(color).isDark();

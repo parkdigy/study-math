@@ -150,6 +150,32 @@ export const useDevFormOptionBooleanControls = ({
   );
 
   /********************************************************************************************************************
+   * onClick
+   * ******************************************************************************************************************/
+  const [onClick, onClickControl] = useDevFormControl(
+    'onClick',
+    flatOptions.includes('onClick'),
+    defaultData?.onClick,
+    {
+      ...useFormControlData,
+      props: optionProps?.onClick,
+    }
+  );
+
+  /********************************************************************************************************************
+   * onRemoveClick
+   * ******************************************************************************************************************/
+  const [onRemoveClick, onRemoveClickControl] = useDevFormControl(
+    'onRemoveClick',
+    flatOptions.includes('onRemoveClick'),
+    defaultData?.onRemoveClick,
+    {
+      ...useFormControlData,
+      props: optionProps?.onRemoveClick,
+    }
+  );
+
+  /********************************************************************************************************************
    * Return
    * ******************************************************************************************************************/
 
@@ -176,5 +202,9 @@ export const useDevFormOptionBooleanControls = ({
     clearableControl,
     searchable,
     searchableControl,
+    onClick,
+    onClickControl,
+    onRemoveClick,
+    onRemoveClickControl,
   };
 };
