@@ -1,10 +1,12 @@
 @use '@sass/util';
+@use '@sass/color';
+@use '@sass/size';
 
 .Tabs {
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-bottom: 1px solid var(--color-divider);
+  border-bottom: 1px solid color.$divider;
   flex-wrap: wrap;
 
   > .TabsItem {
@@ -14,19 +16,19 @@
     transition: border-color 0.3s;
     margin-bottom: -1px;
     text-align: center;
-    font-size: var(--size-body-font-size);
+    font-size: size.$body-font-size;
     line-height: 1.2;
 
     &:hover {
-      border-color: util.apply-opacity-value(var(--color-primary), 0.5);
+      border-color: util.apply-opacity-value(color.$primary, 0.5);
     }
 
     &.TabsItem-active {
-      border-color: var(--color-primary);
+      border-color: color.$primary;
       font-weight: bold;
 
       &:hover {
-        border-color: var(--color-primary);
+        border-color: color.$primary;
       }
     }
   }

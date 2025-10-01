@@ -1,4 +1,4 @@
-@use '@sass/variables' as v;
+@use '@sass/color';
 
 .ErrorRetry {
   flex: 1;
@@ -29,7 +29,7 @@
     line-height: 1.4;
     gap: 10px;
     font-size: 14px;
-    background-color: var(--color-opacity-04);
+    background-color: color.$opacity-04;
     padding: 20px 40px;
     border-radius: 20px;
 

@@ -1,5 +1,7 @@
+@use '@sass/color';
+
 .Alert {
-  color: var(--color-text-accent);
+  color: color.$text-accent;
   padding: 8px 13px;
   border-width: 1px;
   border-style: solid;

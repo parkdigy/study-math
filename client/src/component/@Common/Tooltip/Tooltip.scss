@@ -1,4 +1,5 @@
 @use '@sass/variables' as v;
+@use '@sass/color';
 
 .Tooltip {
   z-index: 9999;
@@ -13,6 +14,6 @@ body.theme-dark {
 
 // 기본 색상
 .Tooltip.Tooltip-color-default {
-  background-color: var(--color-text);
-  color: var(--color-background);
+  background-color: color.$text;
+  color: color.$background;
 }

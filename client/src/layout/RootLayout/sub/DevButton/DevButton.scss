@@ -1,5 +1,7 @@
+@use '@sass/color';
+
 .DevButton {
-  background-color: var(--color-opacity-10);
+  background-color: color.$opacity-10;
   padding: 10px;
   border-radius: 20px;
   user-select: none;

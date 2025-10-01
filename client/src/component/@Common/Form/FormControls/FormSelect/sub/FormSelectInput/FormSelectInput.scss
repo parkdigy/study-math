@@ -1,21 +1,23 @@
 @use '@sass/util';
+@use '@sass/color';
+@use '@sass/size';
 @use '@sass/mixin-placeholder';
 
 .FormSearchInputWrapper {
-  $font-size: var(--size-body-font-size);
+  $font-size: size.$body-font-size;
   $font-weight: 500;
   $line-height: 22px;
   $padding-vertical: 16px;
   $padding-horizontal: 20px;
   $small-size-padding-vertical: 7px;
   $small-size-padding-horizontal: 13px;
-  $text-color: var(--color-text);
-  $background-color: var(--color-background);
-  $border-color: var(--color-opacity-20);
+  $text-color: color.$text;
+  $background-color: color.$background;
+  $border-color: color.$opacity-20;
   $border-radius: 10px;
-  $outline-color: var(--color-primary);
-  $error-border-outline-color: var(--color-error);
-  $placeholder-color: var(--color-opacity-35);
+  $outline-color: color.$primary;
+  $error-border-outline-color: color.$error;
+  $placeholder-color: color.$opacity-35;
 
   // 숨김 상태
   &:not([data-show='true']) {

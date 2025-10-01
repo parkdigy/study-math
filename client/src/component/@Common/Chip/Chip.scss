@@ -1,10 +1,12 @@
+@use '@sass/color';
+
 .Chip {
   $font-size: var(--font-size);
   $line-height: var(--line-height);
   $color: var(--color);
   $background-color: var(--background-color);
   $outline-color: var(--outline-color);
-  $remove-btn-color: var(--color-text-blurry);
+  $remove-btn-color: color.$text-blurry;
   $padding-horizontal: calc($font-size * 1.075);
 
   &[data-variant='outlined'] {

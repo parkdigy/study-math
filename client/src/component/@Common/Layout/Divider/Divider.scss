@@ -1,10 +1,12 @@
+@use '@sass/color';
+
 .Divider {
   &.Divider-v {
     height: 1em;
-    border-left: 1px solid var(--color-divider);
+    border-left: 1px solid color.$divider;
   }
   &.Divider-h {
     width: 100%;
-    border-top: 1px solid var(--color-divider);
+    border-top: 1px solid color.$divider;
   }
 }

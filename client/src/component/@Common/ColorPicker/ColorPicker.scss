@@ -1,3 +1,5 @@
+@use '@sass/color';
+
 .ColorPicker {
   position: relative;
 
@@ -24,8 +26,8 @@
       left: 16px;
       right: 16px;
       bottom: 14px;
-      background-color: var(--color-background);
-      color: var(--color-text);
+      background-color: color.$background;
+      color: color.$text;
       text-align: center;
       padding: 8px 0 7px;
       font-size: 12px;

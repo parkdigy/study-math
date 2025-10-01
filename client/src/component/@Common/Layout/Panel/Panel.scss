@@ -1,6 +1,8 @@
+@use '@sass/color';
+
 .Panel {
-  background-color: var(--color-panel-background);
-  color: var(--color-text);
+  background-color: color.$panel-background;
+  color: color.$text;
   border-radius: 10px;
   padding: 15px;
 }

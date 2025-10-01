@@ -1,8 +1,10 @@
 @use '@sass/util';
+@use '@sass/color';
+@use '@sass/size';
 
 .FormSelectDropdownItem {
-  font-size: var(--size-body-font-size);
-  line-height: var(--size-body-line-height);
+  font-size: size.$body-font-size;
+  line-height: size.$body-line-height;
   padding: 10px 20px;
   border-radius: 4px;
   user-select: none;
@@ -12,13 +14,13 @@
 
   // 활성 아이템
   &[data-temp-active='true'] {
-    background-color: util.apply-opacity-value(var(--color-primary), 0.1);
+    background-color: util.apply-opacity-value(color.$primary, 0.1);
   }
 
   // 선택 아이템
   &[data-active='true'] {
-    background-color: var(--color-primary);
-    color: var(--color-on-primary);
+    background-color: color.$primary;
+    color: color.$on-primary;
   }
 
   // 비활성화 아이템

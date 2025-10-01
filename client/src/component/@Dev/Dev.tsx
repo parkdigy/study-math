@@ -67,7 +67,7 @@ export const Dev = ({}: Props) => {
    * State
    * ******************************************************************************************************************/
 
-  const [activeTab, setActiveTab] = useState<TabValue>('chip');
+  const [activeTab, setActiveTab] = useState<TabValue>('color');
 
   /********************************************************************************************************************
    * Render

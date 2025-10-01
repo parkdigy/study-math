@@ -1,22 +1,23 @@
-@use 'sass:color';
 @use '@sass/util';
 @use '@sass/mixin-placeholder';
+@use '@sass/color';
+@use '@sass/size';
 
 .FormInput {
-  $font-size: var(--size-body-font-size);
+  $font-size: size.$body-font-size;
   $font-weight: 500;
   $line-height: 22px;
   $padding-vertical: 16px;
   $padding-horizontal: 20px;
-  $text-color: var(--color-text);
-  $background-color: var(--color-background);
-  $border-color: var(--color-opacity-20);
+  $text-color: color.$text;
+  $background-color: color.$background;
+  $border-color: color.$opacity-20;
   $border-radius: 10px;
-  $outline-color: var(--color-primary);
-  $error-border-outline-color: var(--color-error);
-  $disabled-border-color: var(--color-opacity-10);
-  $disabled-background-color: var(--color-opacity-03);
-  $placeholder-color: var(--color-opacity-35);
+  $outline-color: color.$primary;
+  $error-border-outline-color: color.$error;
+  $disabled-border-color: color.$opacity-10;
+  $disabled-background-color: color.$opacity-03;
+  $placeholder-color: color.$opacity-35;
 
   display: flex;
   flex-direction: row;

@@ -1,7 +1,10 @@
+@use '@sass/color';
+@use '@sass/size';
+
 .FormHelperText {
-  color: var(--color-text-lighten);
-  font-size: var(--size-caption-font-size);
-  line-height: var(--size-caption-line-height);
+  color: color.$text-lighten;
+  font-size: size.$caption-font-size;
+  line-height: size.$caption-line-height;
   display: flex;
   flex-direction: row;
   align-items: center;

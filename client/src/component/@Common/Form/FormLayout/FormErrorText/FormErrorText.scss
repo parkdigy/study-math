@@ -1,8 +1,11 @@
+@use '@sass/color';
+@use '@sass/size';
+
 .FormErrorText {
   .FormErrorText__Content {
-    color: var(--color-error);
-    font-size: var(--size-caption-font-size);
-    line-height: var(--size-caption-line-height);
+    color: color.$error;
+    font-size: size.$caption-font-size;
+    line-height: size.$caption-line-height;
     display: flex;
     flex-direction: row;
     align-items: center;

@@ -1,4 +1,6 @@
 @use '@sass/util';
+@use '@sass/color';
+@use '@sass/size';
 
 .FormTitle {
   display: flex;
@@ -6,12 +8,12 @@
   justify-content: center;
   position: relative;
   user-select: none;
-  color: var(--color-text-accent);
-  font-size: var(--size-body-font-size);
-  line-height: var(--size-body-line-height);
+  color: color.$text-accent;
+  font-size: size.$body-font-size;
+  line-height: size.$body-line-height;
 
   &[data-error='true'] {
-    color: util.apply-opacity-value(var(--color-error), 0.7);
+    color: util.apply-opacity-value(color.$error, 0.7);
   }
 
   // 텍스트
@@ -22,9 +24,9 @@
 
     // 필수 입력 별표
     > span {
-      color: var(--color-error);
-      font-size: var(--size-body-large-font-size);
-      line-height: var(--size-body-font-size);
+      color: color.$error;
+      font-size: size.$body-large-font-size;
+      line-height: size.$body-font-size;
       padding-left: 3px;
     }
   }

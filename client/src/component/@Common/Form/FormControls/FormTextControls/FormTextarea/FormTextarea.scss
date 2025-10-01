@@ -1,5 +1,6 @@
 @use '@sass/util';
 @use '@sass/mixin-placeholder';
+@use '@sass/color';
 
 .FormTextarea {
   .FormTextarea_textarea {
@@ -7,13 +8,13 @@
     $line-height: 1.2;
     $font-weight: 500;
     $padding: 17px 20px;
-    $text-color: var(--color-text);
-    $background-color: var(--color-background);
-    $border-color: var(--color-opacity-15);
+    $text-color: color.$text;
+    $background-color: color.$background;
+    $border-color: color.$opacity-15;
     $border-radius: 5px;
-    $outline-color: var(--color-primary);
-    $error-border-outline-color: var(--color-error);
-    $placeholder-color: var(--color-opacity-35);
+    $outline-color: color.$primary;
+    $error-border-outline-color: color.$error;
+    $placeholder-color: color.$opacity-35;
 
     width: 100%;
     padding: $padding;

@@ -1,3 +1,6 @@
+@use '@sass/color';
+@use '@sass/size';
+
 .FormSelectDropdown__Container {
   position: absolute;
   left: 0;
@@ -8,8 +11,8 @@
 
   .FormSelectDropdown {
     padding: 5px;
-    background-color: var(--color-background);
-    border: 1px solid var(--color-opacity-05);
+    background-color: color.$background;
+    border: 1px solid color.$opacity-05;
     border-radius: 6px;
     cursor: default;
     box-shadow:
@@ -32,7 +35,7 @@
     // 아이템이 없을 때, 표시 텍스트
     .FormSelectDropdown-empty-items {
       padding: 7px 10px;
-      font-size: var(--size-lg-font-size);
+      font-size: size.$body-large-font-size;
       opacity: 0.5;
     }
   }

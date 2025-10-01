@@ -1,7 +1,9 @@
+@use '@sass/size';
+
 .Dev {
   .FormRadioGroupItem .T,
   .FormCheckboxLabel {
-    font-size: var(--size-body-font-size) !important;
+    font-size: size.$body-font-size !important;
   }
 
   .FormRadioGroup .FormControlBase-ControlContainer {
