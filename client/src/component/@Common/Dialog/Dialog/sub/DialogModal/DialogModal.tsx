@@ -98,11 +98,11 @@ export const DialogModal = ({ onCancelClick, onConfirmClick, onRequestClose, ...
           {content}
         </Stack>
       ) : (
-        <Stack spacing={ifUndefined(spacing, 14)} alignItems='center' minWidth={minWidth} maxWidth={maxWidth}>
+        <Stack center spacing={ifUndefined(spacing, 14)} minWidth={minWidth} maxWidth={maxWidth}>
           <Stack fullWidth>
             {title}
             {content}
-            <Flex flexDirection={reverseButtons ? 'row-reverse' : 'row'} alignItems='center'>
+            <Flex center row reverse={reverseButtons}>
               {type === 'confirm' && (
                 <Box flex={1}>
                   <Button

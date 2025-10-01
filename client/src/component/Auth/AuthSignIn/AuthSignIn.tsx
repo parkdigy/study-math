@@ -47,10 +47,7 @@ export const AuthSignIn = ({}: Props) => {
             <Stack spacing={10}>
               <FormEmail name='email' title='이메일' placeholder='이메일을 입력해 주세요' required />
               <FormPassword name='password' title='비밀번호' placeholder='비밀번호를 입력해 주세요' required />
-
-              <Stack row center justifyContent='space-between'>
-                <FormCheckbox name='stay' label='로그인 상태 유지' />
-              </Stack>
+              <FormCheckbox name='stay' label='로그인 상태 유지' />
             </Stack>
 
             <Stack fullWidth spacing={10}>

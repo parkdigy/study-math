@@ -3,16 +3,12 @@ import { ContentContainerProps as Props } from './ContentContainer.types';
 import './ContentContainer.scss';
 
 export const ContentContainer = React.forwardRef<HTMLDivElement, Props>(
-  ({ className, backgroundColor, flex, ...props }, ref) => {
+  ({ className, children, containerProps, ...props }, ref) => {
     return (
-      <Flex
-        className={classnames(className, 'ContentContainer')}
-        ref={ref}
-        center
-        flex={flex}
-        backgroundColor={backgroundColor}
-      >
-        <Flex className='ContentContainer-content' flex={flex} {...props} />
+      <Flex className='ContentContainerContainer' ref={ref} center {...containerProps}>
+        <Stack className={classnames(className, 'ContentContainer')} {...props}>
+          {children}
+        </Stack>
       </Flex>
     );
   }

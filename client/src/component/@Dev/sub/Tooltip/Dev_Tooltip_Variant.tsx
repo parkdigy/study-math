@@ -24,7 +24,7 @@ const Dev_Tooltip_Variant = () => {
               </Stack>
             </Col>
             <Col>
-              <Stack alignItems='flex-end' spacing={8}>
+              <Stack flexEndAlign spacing={8}>
                 {['left-start', 'left', 'left-end'].map((place, idx) => (
                   <React.Fragment key={idx}>
                     {idx > 0 && <Divider width={55} />}

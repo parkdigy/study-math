@@ -17,8 +17,8 @@ export const Header = ({ layout }: Props) => {
    * ******************************************************************************************************************/
 
   return (
-    <ContentContainer className='Header' backgroundColor='opacity05' pv={20}>
-      <Stack row center justifyContent='space-between' height={30}>
+    <ContentContainer className='Header' pv={20} containerProps={{ backgroundColor: 'opacity05' }}>
+      <Stack row center spaceBetweenJustify height={30}>
         <Logo onClick={location.pathname === '/' ? undefined : () => app.navigate('/')} />
         {layout !== 'auth' && (
           <Stack row center spacing={5}>

@@ -3,17 +3,74 @@ import { FlexProps as Props } from './Flex.types';
 import Box from '../Box';
 import './Flex.scss';
 
-export const Flex = ({ className, row, center, centerJustify, wrap, inline, ...props }: Props) => {
+export const Flex = ({
+  className,
+  // display
+  inline,
+  // flexDirection
+  row,
+  reverse,
+  // flexWrap
+  wrap,
+  // alignItems
+  center,
+  stretchAlign,
+  startAlign,
+  endAlign,
+  flexStartAlign,
+  flexEndAlign,
+  selfStartAlign,
+  selfEndAlign,
+  baselineAlign,
+  // justifyContent
+  centerJustify,
+  startJustify,
+  endJustify,
+  flexStartJustify,
+  flexEndJustify,
+  leftJustify,
+  rightJustify,
+  spaceBetweenJustify,
+  spaceAroundJustify,
+  spaceEvenlyJustify,
+  // others
+  ...props
+}: Props) => {
   return (
     <Box
       className={classnames(
         className,
         'Flex',
-        row && 'Flex-row',
-        center && 'Flex-center-a',
-        centerJustify && 'Flex-center-j',
+        // display
+        inline && 'Flex-inline',
+        // flexDirection
+        row && !reverse && 'Flex-row',
+        row && reverse && 'Flex-row-reverse',
+        !row && !reverse && 'Flex-column',
+        !row && reverse && 'Flex-column-reverse',
+        // flexWrap
         wrap && 'Flex-wrap',
-        inline && 'Flex-inline'
+        // alignItems
+        center && 'Flex-center-a',
+        stretchAlign && 'Flex-stretch-a',
+        startAlign && 'Flex-start-a',
+        endAlign && 'Flex-end-a',
+        flexStartAlign && 'Flex-flex-start-a',
+        flexEndAlign && 'Flex-flex-end-a',
+        selfStartAlign && 'Flex-self-start-a',
+        selfEndAlign && 'Flex-self-end-a',
+        baselineAlign && 'Flex-baseline-a',
+        // justifyContent
+        centerJustify && 'Flex-center-j',
+        startJustify && 'Flex-start-j',
+        endJustify && 'Flex-end-j',
+        flexStartJustify && 'Flex-flex-start-j',
+        flexEndJustify && 'Flex-flex-end-j',
+        leftJustify && 'Flex-left-j',
+        rightJustify && 'Flex-right-j',
+        spaceBetweenJustify && 'Flex-space-between-j',
+        spaceAroundJustify && 'Flex-space-around-j',
+        spaceEvenlyJustify && 'Flex-space-evenly-j'
       )}
       {...props}
     />

@@ -4,8 +4,8 @@ import { ContentContainer } from '@ccomp';
 
 export const Footer = ({}: Props) => {
   return (
-    <ContentContainer backgroundColor='opacity05' pv={20}>
-      <Stack row center justifyContent='space-between'>
+    <ContentContainer pv={20} containerProps={{ backgroundColor: 'opacity05' }}>
+      <Stack row center spaceBetweenJustify>
         <T>Footer</T>
         <T>Copyright @ All Rights Reserved.</T>
       </Stack>

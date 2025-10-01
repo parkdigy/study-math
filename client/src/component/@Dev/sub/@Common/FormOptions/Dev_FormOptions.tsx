@@ -13,6 +13,8 @@ import { useDevFormOptionMultiOptionControls } from './useDevFormOptionMultiOpti
 import { useDevFormOptionTextControls } from './useDevFormOptionTextControls';
 import { useDevFormOptionBooleanControls } from './useDevFormOptionBooleanControls';
 
+let _showCode = false;
+
 function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColors extends AllColors = AllColors>({
   options,
   optionProps,
@@ -78,7 +80,7 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
    * State
    * ******************************************************************************************************************/
 
-  const [showCode, setShowCode] = useState(false);
+  const [showCode, setShowCode] = useState(_showCode);
   const [dataRef, data, setData] = useRefState<Dev_FormOptionsData<TColors, TBackgroundColors>>({});
 
   /** Multi Option Controls */
@@ -216,7 +218,10 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
           )}
           <div
             className={classnames('Dev_FormOptions_TestControl_CodeExpandButton', showCode && 'show-code')}
-            onClick={() => setShowCode(!showCode)}
+            onClick={() => {
+              _showCode = !showCode;
+              setShowCode(!showCode);
+            }}
           >
             <T icon={showCode ? 'KeyboardArrowUp' : 'KeyboardArrowDown'} iconProps={{ size: 'xl' }}>
               코드 {showCode ? '닫기' : '보기'}
