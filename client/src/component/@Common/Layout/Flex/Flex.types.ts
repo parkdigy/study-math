@@ -28,4 +28,6 @@ export interface FlexProps extends Omit<BoxProps, 'display'> {
   spaceBetweenJustify?: boolean;
   spaceAroundJustify?: boolean;
   spaceEvenlyJustify?: boolean;
+  // alignItems and justifyContent
+  centerCenter?: boolean;
 }

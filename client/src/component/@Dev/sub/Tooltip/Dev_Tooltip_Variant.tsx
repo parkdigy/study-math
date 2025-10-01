@@ -12,7 +12,7 @@ const Dev_Tooltip_Variant = () => {
 
           <Grid cols={3} spacing={10} mt={5}>
             <Col cols={3}>
-              <Stack row center centerJustify spacing={10}>
+              <Stack row centerCenter spacing={10}>
                 {['top-start', 'top', 'top-end'].map((place, idx) => (
                   <React.Fragment key={idx}>
                     {idx > 0 && <Divider vertical />}
@@ -36,7 +36,7 @@ const Dev_Tooltip_Variant = () => {
               </Stack>
             </Col>
             <Col>
-              <Flex center centerJustify fullHeight>
+              <Flex centerCenter fullHeight>
                 <Tooltip content='<Tooltip>...</Tooltip>'>
                   <T cursor='default'>기본</T>
                 </Tooltip>
@@ -55,7 +55,7 @@ const Dev_Tooltip_Variant = () => {
               </Stack>
             </Col>
             <Col cols={3}>
-              <Stack row center centerJustify spacing={10}>
+              <Stack row centerCenter spacing={10}>
                 {['bottom-start', 'bottom', 'bottom-end'].map((place, idx) => (
                   <React.Fragment key={idx}>
                     {idx > 0 && <Divider vertical />}
@@ -74,7 +74,7 @@ const Dev_Tooltip_Variant = () => {
         <Dev_PanelItem title='색상별' spacing={10}>
           <Divider />
 
-          <Stack row center centerJustify spacing={10} wrap mt={5}>
+          <Stack row centerCenter spacing={10} wrap mt={5}>
             {DefaultColors.map((color, idx) => (
               <React.Fragment key={idx}>
                 {idx > 0 && <Divider vertical />}

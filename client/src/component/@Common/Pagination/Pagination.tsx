@@ -5,7 +5,7 @@ import './Pagination.scss';
 const PAGE_LIMIT = 5;
 const SIDE_PAGES = Math.floor(PAGE_LIMIT / 2);
 
-export const Pagination = ({ paging, onChangePage }: Props) => {
+export const Pagination = React.forwardRef<HTMLDivElement, Props>(({ paging, onChangePage }, ref) => {
   /********************************************************************************************************************
    * Variable
    * ******************************************************************************************************************/
@@ -38,7 +38,7 @@ export const Pagination = ({ paging, onChangePage }: Props) => {
    * ******************************************************************************************************************/
 
   return (
-    <div className='Pagination'>
+    <div ref={ref} className='Pagination'>
       <div className='Pagination__NavigationBtn' data-disabled={currentPage === 1} onClick={() => onChangePage?.(1)}>
         <Icon size={20}>KeyboardDoubleArrowLeft</Icon>
       </div>
@@ -77,6 +77,6 @@ export const Pagination = ({ paging, onChangePage }: Props) => {
       </div>
     </div>
   );
-};
+});
 
 export default React.memo(Pagination) as typeof Pagination;
