@@ -10,12 +10,12 @@ import {
   useRefState,
   useTimeoutRef,
 } from '@pdg/react-hook';
-import { FormRadioGroupItem, FormRadioGroupItemCommands } from './sub';
+import { FormRadioGroupItem, FormRadioGroupItemCommands } from './FormRadioGroupItem';
 import { koreanAppendRul } from '@pdg/korean';
 import { useFormControlGroupState, useFormState } from '../../FormContext';
-import './FormRadioGroup.scss';
 import { GridCols } from '../../../Layout';
 import { useResizeDetector } from 'react-resize-detector';
+import './FormRadioGroup.scss';
 
 export const FormRadioGroup = ToForwardRefExoticComponent(
   AutoTypeForwardRef(function <T extends string | number | boolean>(

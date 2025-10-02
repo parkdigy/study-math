@@ -10,7 +10,7 @@ import {
 } from '@pdg/react-hook';
 import { koreanAppendRul } from '@pdg/korean';
 import { useFormControlGroupState, useFormState } from '../../../FormContext';
-import { FormInput } from './sub';
+import { FormInput } from './FormInput';
 
 export const FormText = React.forwardRef<FormTextCommands, Props>(
   (

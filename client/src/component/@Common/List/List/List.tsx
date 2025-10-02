@@ -1,6 +1,7 @@
 import React from 'react';
 import { ListProps as Props } from './List.types';
-import { ListItem, ListTitle } from './sub';
+import ListTitle from './ListTitle';
+import ListItem from './ListItem';
 import './List.scss';
 
 export const List = React.forwardRef<HTMLDivElement, Props>(

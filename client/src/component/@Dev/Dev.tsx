@@ -1,29 +1,27 @@
 import React from 'react';
 import { DevProps as Props } from './Dev.types';
 import { PageRootContainer, Tabs } from '@ccomp';
-import {
-  Dev_Alert,
-  Dev_Button,
-  Dev_Chip,
-  Dev_Color,
-  Dev_Css,
-  Dev_Dialog,
-  Dev_ErrorRetry,
-  Dev_Form,
-  Dev_Grid,
-  Dev_Icon,
-  Dev_Img,
-  Dev_List,
-  Dev_LoadingIndicator,
-  Dev_Pagination,
-  Dev_Screen,
-  Dev_T,
-  Dev_Toast,
-  Dev_Tooltip,
-} from './sub';
-import './Dev.scss';
 import app from '@app';
 import { useLocation } from 'react-router';
+import { Dev_Color } from './Color';
+import { Dev_Css } from './Css';
+import { Dev_T } from './T';
+import { Dev_Button } from './Button';
+import { Dev_Icon } from './Icon';
+import { Dev_Img } from './Img';
+import { Dev_Grid } from './Grid';
+import { Dev_Dialog } from './Dialog';
+import { Dev_LoadingIndicator } from './LoadingIndicator';
+import { Dev_Tooltip } from './Tooltip';
+import { Dev_ErrorRetry } from './ErrorRetry';
+import { Dev_Toast } from './Toast';
+import { Dev_Form } from './Form';
+import { Dev_Alert } from './Alert';
+import { Dev_Pagination } from './Pagination';
+import { Dev_List } from './List';
+import { Dev_Chip } from './Chip';
+import { Dev_Screen } from './Screen';
+import './Dev.scss';
 
 const TabValue = [
   'color',

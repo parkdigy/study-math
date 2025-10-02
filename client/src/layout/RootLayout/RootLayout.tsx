@@ -12,8 +12,8 @@ import AuthLayout from '../AuthLayout';
 import DefaultLayout from '../DefaultLayout';
 import { AuthInfo } from '@const';
 import { ThemeProvider } from '@theme';
-import { DevButtons } from './sub';
 import app from '@app';
+import DevButtons from './DevButtons';
 
 const RootLayout = () => {
   /********************************************************************************************************************

@@ -3,7 +3,8 @@ import { FormPasswordCommands, FormPasswordProps as Props } from './FormPassword
 import { useAutoUpdateState, useForwardRef, useTimeoutRef } from '@pdg/react-hook';
 import { useFormState } from '../../../FormContext';
 import { FormText, FormTextCommands } from '../FormText';
-import { RuleCheck, ShowButton } from './sub';
+import { RuleCheck } from './RuleCheck';
+import { ShowButton } from './ShowButton';
 
 export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
   (

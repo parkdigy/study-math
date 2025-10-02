@@ -9,9 +9,9 @@ import {
   useForwardRef,
 } from '@pdg/react-hook';
 import { useFormControlGroupState, useFormState } from '../../FormContext';
-import './FormCheckbox.scss';
 import { IconActive, IconDefault, IconError, IconSwitchActive, IconSwitchDefault } from './icons';
 import { koreanAppendRul } from '@pdg/korean';
+import './FormCheckbox.scss';
 
 export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
   (
