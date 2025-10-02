@@ -3,7 +3,6 @@ import { Dev_FormOptions, Dev_FormOptionsData, Dev_FormOptionsProps, Dev_Panel }
 import { AllColors } from '@theme';
 import code from './Dev_Button_BoxButton.code.md';
 import { toast } from '@common';
-import { BoxButton } from '@ccomp';
 import { FlattenArray } from '@pdg/types';
 
 const _formOptions = [['color', 'backgroundColor'], '|', 'url', '|', ['disabled']] as const;
