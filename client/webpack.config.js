@@ -60,7 +60,7 @@ class MyHtmlPlugin {
 
 const alias = {
   '@types': path.resolve(__dirname, 'src/@types'),
-  '@asset_images': path.resolve(__dirname, 'src/@assets/images'),
+  '@assets': path.resolve(__dirname, 'src/@assets'),
   '@sass': path.resolve(__dirname, 'src/sass'),
   '@theme': path.resolve(__dirname, 'src/theme'),
   '@common': path.resolve(__dirname, 'src/common'),

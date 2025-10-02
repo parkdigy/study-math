@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 import { LogoProps as Props } from './Logo.types';
-import { ImgLogo } from '@asset_images';
+import { ImgLogo } from '@assets';
 import './Logo.scss';
 
 const _baseSize = {

@@ -13,7 +13,7 @@
     "baseUrl": "./",
     "paths": {
       "@types": ["src/@types"],
-      "@asset_images": ["src/@assets/images"],
+      "@assets": ["src/@assets"],
       "@sass": ["src/sass"],
       "@theme": ["src/theme"],
       "@common": ["src/common"],

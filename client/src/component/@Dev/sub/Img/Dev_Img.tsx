@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImgLogo } from '@asset_images';
+import { ImgLogo } from '@assets';
 import { Dev_Panel } from '../@Common';
 
 export const Dev_Img = () => {
