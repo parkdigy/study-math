@@ -50,7 +50,7 @@ const Item = ({ type }: { type: 'mobile' | 'tablet' | 'desktop' }) => {
 
   return (
     <Stack spacing={5}>
-      <TTitleSmall700 color='textLighten'>
+      <TTitleSmall700 color='lighten'>
         {type.substring(0, 1).toUpperCase()}
         {type.slice(1)}
       </TTitleSmall700>

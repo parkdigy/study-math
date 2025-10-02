@@ -85,7 +85,15 @@ export const Form = React.forwardRef<FormCommands, Props>(
 
     useForwardRef(
       ref,
-      useMemo<FormCommands>(() => ({ getControlCommands }), [getControlCommands])
+      useMemo<FormCommands>(
+        () => ({
+          submit() {
+            innerRef.current?.submit();
+          },
+          getControlCommands,
+        }),
+        [getControlCommands]
+      )
     );
     /********************************************************************************************************************
      * Context

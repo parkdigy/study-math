@@ -2,6 +2,7 @@ import { HTMLProps } from 'react';
 import { FormControlCommands } from '../FormControls/@common';
 
 export interface FormCommands {
+  submit: () => void;
   getControlCommands: <T extends FormControlCommands>(name: string) => T | undefined;
 }
 
