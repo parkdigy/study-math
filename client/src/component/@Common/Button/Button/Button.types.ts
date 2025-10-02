@@ -23,6 +23,8 @@ export interface ButtonProps
   wrapLabel?: boolean;
   // 텍스트 사이즈
   fontSize?: number;
+  // 밑줄
+  underline?: boolean;
   // 아이콘 이름 (Material Icons 이름 사용)
   icon?: string;
   // 아이콘과 텍스트 사이 간격

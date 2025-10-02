@@ -5,7 +5,7 @@ import { FormText, FormTextCommands } from '../FormText';
 import { isEmail } from '@pdg/compare';
 
 export const FormEmail = React.forwardRef<FormEmailCommands, Props>(
-  ({ className, name, onValidate, ...props }, ref) => {
+  ({ className, name, onValidate, invalidEmailErrorText = '올바른 이메일 형식이 아닙니다.', ...props }, ref) => {
     /********************************************************************************************************************
      * State
      * ******************************************************************************************************************/
@@ -27,7 +27,7 @@ export const FormEmail = React.forwardRef<FormEmailCommands, Props>(
     const handleValidate = useCallback(
       (value: string) => {
         if (notEmpty(value) && !isEmail(value)) {
-          return '올바른 이메일 형식이 아닙니다.';
+          return invalidEmailErrorText;
         }
 
         if (onValidate) {
@@ -36,7 +36,7 @@ export const FormEmail = React.forwardRef<FormEmailCommands, Props>(
           return false;
         }
       },
-      [onValidate]
+      [invalidEmailErrorText, onValidate]
     );
 
     /********************************************************************************************************************

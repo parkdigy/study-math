@@ -29,4 +29,5 @@ export interface BoxProps
   absolute?: boolean;
   relative?: boolean;
   fixed?: boolean;
+  underline?: boolean;
 }

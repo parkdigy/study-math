@@ -44,6 +44,8 @@ export const Box = React.forwardRef<HTMLDivElement, Props>(
       fixed,
       size,
       fontSize,
+      underline,
+      textDecoration,
       ...props
     },
     ref
@@ -184,6 +186,7 @@ export const Box = React.forwardRef<HTMLDivElement, Props>(
         }
         outlineColor={outlineColor}
         fontSize={fontSize === undefined ? (isNamedSize ? undefined : size) : fontSize}
+        textDecoration={textDecoration !== undefined ? textDecoration : underline ? 'underline' : undefined}
         {...props}
       />
     );

@@ -28,6 +28,8 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
       iconPosition,
       iconProps,
       fontSize: initFontSize,
+      underline,
+      textDecoration,
       ph,
       pv,
       borderRadius,
@@ -171,6 +173,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
         ph={ph}
         pv={pv}
         borderRadius={borderRadius}
+        textDecoration={textDecoration !== underline ? textDecoration : underline ? 'underline' : undefined}
         onClick={url !== undefined ? handleClick : onClick}
         {...props}
       >
