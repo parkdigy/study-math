@@ -11,12 +11,14 @@ export const Box = React.forwardRef<HTMLDivElement, Props>(
       component = 'div',
       className,
       color: initColor,
+      background: initBackground,
       backgroundColor: initBackgroundColor,
       borderColor: initBorderColor,
       borderTopColor: initBorderTopColor,
       borderBottomColor: initBorderBottomColor,
       borderLeftColor: initBorderLeftColor,
       borderRightColor: initBorderRightColor,
+      outlineColor: initOutlineColor,
       center,
       size,
       fontSize,
@@ -35,6 +37,11 @@ export const Box = React.forwardRef<HTMLDivElement, Props>(
      * ******************************************************************************************************************/
 
     const color = initColor && contains(AllColors, initColor) ? util.css.toCssVarName(initColor, 'color') : initColor;
+    const background = initBackground
+      ? contains(AllColors, initBackground)
+        ? theme.css.vars.colors[initBackground as AllColors]
+        : initBackground
+      : undefined;
     const backgroundColor = initBackgroundColor
       ? contains(AllColors, initBackgroundColor)
         ? theme.css.vars.colors[initBackgroundColor as AllColors]
@@ -65,6 +72,11 @@ export const Box = React.forwardRef<HTMLDivElement, Props>(
         ? theme.css.vars.colors[initBorderRightColor as AllColors]
         : initBorderRightColor
       : undefined;
+    const outlineColor = initOutlineColor
+      ? contains(AllColors, initOutlineColor)
+        ? theme.css.vars.colors[initOutlineColor as AllColors]
+        : initOutlineColor
+      : undefined;
 
     const isNamedSize = fontSize === undefined && size && contains(AllSizes, size);
 
@@ -82,12 +94,14 @@ export const Box = React.forwardRef<HTMLDivElement, Props>(
           size && isNamedSize && `font-${theme.css.names.sizes[size]}`
         )}
         color={color}
+        background={background}
         backgroundColor={backgroundColor}
         borderColor={borderColor}
         borderTopColor={borderTopColor}
         borderBottomColor={borderBottomColor}
         borderLeftColor={borderLeftColor}
         borderRightColor={borderRightColor}
+        outlineColor={outlineColor}
         fontSize={fontSize === undefined ? (isNamedSize ? undefined : size) : fontSize}
         {...props}
       />

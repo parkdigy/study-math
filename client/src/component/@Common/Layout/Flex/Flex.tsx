@@ -53,7 +53,6 @@ export const Flex = React.forwardRef<HTMLDivElement, Props>(
           // flexDirection
           row && !reverse && 'Flex-row',
           row && reverse && 'Flex-row-reverse',
-          !row && !reverse && 'Flex-column',
           !row && reverse && 'Flex-column-reverse',
           // flexWrap
           wrap && 'Flex-wrap',
