@@ -5,6 +5,8 @@ export interface AppContextValue {
   colorScheme: 'light' | 'dark';
   setColorScheme: (colorScheme: 'light' | 'dark') => void;
   toggleColorScheme: () => void;
+  // 창 활성화 여부
+  isWindowActive: boolean;
   // 인증
   auth: AuthInfo | null;
   setAuth: (auth: AuthInfo) => void;

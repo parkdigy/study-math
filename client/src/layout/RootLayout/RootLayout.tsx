@@ -40,6 +40,7 @@ const RootLayout = () => {
   const [auth, setAuth] = useState<AuthInfo | null>();
   const [authError, setAuthError] = useState(false);
   const [isLock, setIsLock] = useState(false);
+  const [isWindowActive, setIsWindowActive] = useState(true);
 
   /********************************************************************************************************************
    * Effect
@@ -62,6 +63,17 @@ const RootLayout = () => {
     window.scrollTo({ top: app.getNavigateScrollTopPos() });
     app.setNavigateScrollTopPos(0);
   }, [location.pathname, location.search, location.hash]);
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      setIsWindowActive(document.visibilityState === 'visible');
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
 
   /********************************************************************************************************************
    * Function
@@ -151,23 +163,28 @@ const RootLayout = () => {
    * Context Value
    * ******************************************************************************************************************/
 
-  const contextValue: AppContextValue = {
-    // 테마
-    colorScheme,
-    setColorScheme,
-    toggleColorScheme: () => setColorScheme((prev) => (prev === 'light' ? 'dark' : 'light')),
-    // 인증
-    auth: ifUndefined(auth, null),
-    setAuth,
-    clearAuth: () => setAuth(null),
-    // 화면 잠금
-    isLock,
-    setIsLock,
-    // HTML 로딩
-    showHtmlLoading,
-    hideHtmlLoading,
-    removeHtmlLoading,
-  };
+  const contextValue = useMemo<AppContextValue>(
+    () => ({
+      // 테마
+      colorScheme,
+      setColorScheme,
+      toggleColorScheme: () => setColorScheme((prev) => (prev === 'light' ? 'dark' : 'light')),
+      // 창 활성화 여부
+      isWindowActive,
+      // 인증
+      auth: ifUndefined(auth, null),
+      setAuth,
+      clearAuth: () => setAuth(null),
+      // 화면 잠금
+      isLock,
+      setIsLock,
+      // HTML 로딩
+      showHtmlLoading,
+      hideHtmlLoading,
+      removeHtmlLoading,
+    }),
+    [auth, colorScheme, hideHtmlLoading, isLock, isWindowActive, removeHtmlLoading, showHtmlLoading]
+  );
 
   /********************************************************************************************************************
    * Render
