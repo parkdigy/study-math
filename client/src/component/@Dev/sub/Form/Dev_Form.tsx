@@ -62,7 +62,7 @@ export const Dev_Form = () => {
         <TTitleLarge700 color='primary'>Form</TTitleLarge700>
       </Stack>
 
-      <Dev_Panel row spacing={20} borderWidth={1} borderStyle='solid' borderColor='opacity15' borderRadius={10}>
+      <Dev_Panel row spacing={20} borderWidth={1} borderColor='opacity15' borderRadius={10}>
         <Form>
           <FormCheckbox
             name='titlePosition'

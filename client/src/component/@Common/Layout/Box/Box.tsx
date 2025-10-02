@@ -13,11 +13,29 @@ export const Box = React.forwardRef<HTMLDivElement, Props>(
       color: initColor,
       background: initBackground,
       backgroundColor: initBackgroundColor,
+      border,
+      borderWidth,
+      borderStyle,
       borderColor: initBorderColor,
+      borderTop,
+      borderTopWidth,
+      borderTopStyle,
       borderTopColor: initBorderTopColor,
+      borderBottom,
+      borderBottomWidth,
+      borderBottomStyle,
       borderBottomColor: initBorderBottomColor,
+      borderLeft,
+      borderLeftWidth,
+      borderLeftStyle,
       borderLeftColor: initBorderLeftColor,
+      borderRight,
+      borderRightWidth,
+      borderRightStyle,
       borderRightColor: initBorderRightColor,
+      outline,
+      outlineWidth,
+      outlineStyle,
       outlineColor: initOutlineColor,
       center,
       nowrap,
@@ -105,11 +123,65 @@ export const Box = React.forwardRef<HTMLDivElement, Props>(
         color={color}
         background={background}
         backgroundColor={backgroundColor}
+        border={border}
+        borderWidth={borderWidth}
+        borderStyle={
+          borderStyle !== undefined
+            ? borderStyle
+            : border === undefined && borderWidth !== undefined
+              ? 'solid'
+              : undefined
+        }
         borderColor={borderColor}
+        borderTop={borderTop}
+        borderTopWidth={borderTopWidth}
+        borderTopStyle={
+          borderTopStyle !== undefined
+            ? borderTopStyle
+            : borderTop === undefined && borderTopWidth !== undefined
+              ? 'solid'
+              : undefined
+        }
         borderTopColor={borderTopColor}
+        borderBottom={borderBottom}
+        borderBottomWidth={borderBottomWidth}
+        borderBottomStyle={
+          borderBottomStyle !== undefined
+            ? borderBottomStyle
+            : borderBottom === undefined && borderBottomWidth !== undefined
+              ? 'solid'
+              : undefined
+        }
         borderBottomColor={borderBottomColor}
+        borderLeft={borderLeft}
+        borderLeftWidth={borderLeftWidth}
+        borderLeftStyle={
+          borderLeftStyle !== undefined
+            ? borderLeftStyle
+            : borderLeft === undefined && borderLeftWidth !== undefined
+              ? 'solid'
+              : undefined
+        }
         borderLeftColor={borderLeftColor}
         borderRightColor={borderRightColor}
+        borderRight={borderRight}
+        borderRightWidth={borderRightWidth}
+        borderRightStyle={
+          borderRightStyle !== undefined
+            ? borderRightStyle
+            : borderRight === undefined && borderRightWidth !== undefined
+              ? 'solid'
+              : undefined
+        }
+        outline={outline}
+        outlineWidth={outlineWidth}
+        outlineStyle={
+          outlineStyle !== undefined
+            ? outlineStyle
+            : outline === undefined && outlineWidth !== undefined
+              ? 'solid'
+              : undefined
+        }
         outlineColor={outlineColor}
         fontSize={fontSize === undefined ? (isNamedSize ? undefined : size) : fontSize}
         {...props}
