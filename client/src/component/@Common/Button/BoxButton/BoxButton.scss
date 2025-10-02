@@ -1,0 +1,17 @@
+.BoxButton {
+  user-select: none;
+
+  &:not(.BoxButton-disabled) {
+    cursor: pointer;
+
+    * {
+      cursor: pointer;
+    }
+  }
+
+  &.BoxButton-disabled {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}

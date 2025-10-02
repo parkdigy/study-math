@@ -6,14 +6,16 @@ import { Dev_Button_TextButton } from './TextButton';
 import { Dev_Button_StackButton } from './StackButton';
 import { useLocation } from 'react-router';
 import app from '@app';
+import { Dev_Button_BoxButton } from './BoxButton';
 
-const TabValue = ['button', 'iconButton', 'textButton', 'stackButton'] as const;
+const TabValue = ['button', 'iconButton', 'textButton', 'stackButton', 'boxButton'] as const;
 type TabValue = (typeof TabValue)[number];
 const TabItems = [
   lv('Button', 'button'),
   lv('IconButton', 'iconButton'),
   lv('TextButton', 'textButton'),
   lv('StackButton', 'stackButton'),
+  lv('BoxButton', 'boxButton'),
 ] as Lv<string, TabValue, { disabled?: boolean }>[];
 
 export const Dev_Button = () => {
@@ -66,6 +68,8 @@ export const Dev_Button = () => {
         <Dev_Button_TextButton />
       ) : activeTab === 'stackButton' ? (
         <Dev_Button_StackButton />
+      ) : activeTab === 'boxButton' ? (
+        <Dev_Button_BoxButton />
       ) : null}
     </Panel>
   );

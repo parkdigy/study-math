@@ -1,0 +1,5 @@
+```react
+<BoxButton $[button]>
+  ...
+</BoxButton>
+```
