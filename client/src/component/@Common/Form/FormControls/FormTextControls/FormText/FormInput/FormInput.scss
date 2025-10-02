@@ -9,15 +9,16 @@
   $line-height: 22px;
   $padding-vertical: 16px;
   $padding-horizontal: 20px;
-  $text-color: color.$text;
-  $background-color: color.$background;
-  $border-color: color.$opacity-20;
+  $text-color: color.$form-text;
+  $background-color: color.$form-background;
+  $border-color: color.$form-border;
   $border-radius: 10px;
-  $outline-color: color.$primary;
-  $error-border-outline-color: color.$error;
-  $disabled-border-color: color.$opacity-10;
-  $disabled-background-color: color.$opacity-03;
-  $placeholder-color: color.$opacity-35;
+  $outline-color: color.$form-primary;
+  $error-border-outline-color: color.$form-error;
+  $disabled-text-color: color.$form-disabled-text;
+  $disabled-border-color: color.$form-disabled-border;
+  $disabled-background-color: color.$form-disabled-background;
+  $placeholder-color: color.$form-placeholder;
 
   display: flex;
   flex-direction: row;
@@ -47,6 +48,10 @@
   &[data-disabled='true'] {
     background-color: $disabled-background-color;
     border-color: $disabled-border-color;
+
+    input {
+      color: $disabled-text-color;
+    }
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

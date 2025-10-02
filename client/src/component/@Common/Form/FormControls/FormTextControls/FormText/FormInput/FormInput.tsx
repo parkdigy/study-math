@@ -39,7 +39,7 @@ export const FormInput = React.forwardRef<HTMLInputElement, Props>(
       <div className={classnames('FormInput')} data-disabled={disabled} data-error={error} data-focused={isFocus}>
         <input ref={ref} disabled={disabled} onFocus={handleFocus} onBlur={handleBlur} {...inputProps} />
         <Stack className='FormInput-right' row center>
-          {clear && <ClearButton onClick={onClearClick} />}
+          {clear && !disabled && <ClearButton onClick={onClearClick} />}
           {endAdornment}
         </Stack>
       </div>

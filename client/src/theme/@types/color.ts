@@ -25,6 +25,30 @@ export const TextColors = ['text', 'textAccent', 'textLighten', 'textBlurry'] as
 export type TextColors = (typeof TextColors)[number];
 
 /********************************************************************************************************************
+ * 폼 컬러
+ * ******************************************************************************************************************/
+export const FormColors = [
+  'formPrimary',
+  'formOnPrimary',
+  'formError',
+  'formOnError',
+  'formText',
+  'formBorder',
+  'formBackground',
+  'formDisabledText',
+  'formDisabledBorder',
+  'formDisabledBackground',
+  'formPlaceholder',
+] as const;
+export type FormColors = (typeof FormColors)[number];
+
+/********************************************************************************************************************
+ * 기타 컬러
+ * ******************************************************************************************************************/
+export const EtcColors = ['background', 'panelBackground', 'dialogBackdrop', 'divider'] as const;
+export type EtcColors = (typeof EtcColors)[number];
+
+/********************************************************************************************************************
  * 투명도 컬러
  * ******************************************************************************************************************/
 export const OpacityColors = [
@@ -92,12 +116,6 @@ export const OpacityReverseColors = [
 export type OpacityReverseColors = (typeof OpacityReverseColors)[number];
 
 /********************************************************************************************************************
- * 기타 컬러
- * ******************************************************************************************************************/
-export const EtcColors = ['background', 'panelBackground', 'dialogBackdrop', 'divider'] as const;
-export type EtcColors = (typeof EtcColors)[number];
-
-/********************************************************************************************************************
  * 버튼에서 사용할 컬러
  * ******************************************************************************************************************/
 export const ButtonColors = [...DefaultColors, ...TextColors, ...OpacityColors] as const;
@@ -112,6 +130,7 @@ export const AllColors = [
   ...TextColors,
   ...OpacityColors,
   ...OpacityReverseColors,
+  ...FormColors,
   ...EtcColors,
 ] as const;
 export type AllColors = (typeof AllColors)[number];

@@ -11,13 +11,13 @@
   $padding-horizontal: 20px;
   $small-size-padding-vertical: 7px;
   $small-size-padding-horizontal: 13px;
-  $text-color: color.$text;
-  $background-color: color.$background;
-  $border-color: color.$opacity-20;
+  $text-color: color.$form-text;
+  $background-color: color.$form-background;
+  $border-color: color.$form-border;
   $border-radius: 10px;
-  $outline-color: color.$primary;
-  $error-border-outline-color: color.$error;
-  $placeholder-color: color.$opacity-35;
+  $outline-color: color.$form-primary;
+  $error-border-outline-color: color.$form-error;
+  $placeholder-color: color.$form-placeholder;
 
   // 숨김 상태
   &:not([data-show='true']) {

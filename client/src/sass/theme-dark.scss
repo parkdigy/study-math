@@ -34,16 +34,23 @@
   --color-text-lighten: #999999;
   --color-text-blurry: #777777;
 
-  // background
+  // form
+  --color-form-primary: #8ebef9;
+  --color-form-on-primary: #1b2430;
+  --color-form-error: #f29d9d;
+  --color-form-on-error: #1b2430;
+  --color-form-text: #dddddd;
+  --color-form-border: rgba(255, 255, 255, 0.2);
+  --color-form-background: #121212;
+  --color-form-disabled-text: rgba(255, 255, 255, 0.35);
+  --color-form-disabled-border: rgba(255, 255, 255, 0.1);
+  --color-form-disabled-background: rgba(255, 255, 255, 0.03);
+  --color-form-placeholder: rgba(255, 255, 255, 0.35);
+
+  // etc
   --color-background: #121212;
-
-  // panel
   --color-panel-background: #191919;
-
-  // dialog
   --color-dialog-backdrop: rgba(0, 0, 0, 0.7);
-
-  // divider
   --color-divider: rgba(255, 255, 255, 0.1);
 
   // opacity

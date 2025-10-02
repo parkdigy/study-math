@@ -14,7 +14,7 @@
   // Radio 유형
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   &[data-type='radio'] {
-    outline: 0 solid color.$primary;
+    outline: 0 solid color.$form-primary;
     outline-offset: 3px;
 
     // 포커스 시 아웃라인 표시
@@ -28,21 +28,27 @@
       align-items: center;
       cursor: pointer;
 
-      // 비활성화 상태
-      &[data-disabled='true'] {
-        cursor: default;
-
-        > .T {
-          color: color.$opacity-35;
-        }
-      }
-
       // 라벨
       > .T {
         white-space: nowrap;
         color: color.$text-lighten;
         font-size: size.$body-font-size;
         line-height: size.$body-line-height;
+      }
+
+      // 선택 상태
+      &[data-active='true'] {
+        > .T {
+          color: color.$text-accent;
+        }
+      }
+      // 비활성화 상태
+      &[data-disabled='true'] {
+        cursor: default;
+
+        > .T {
+          color: color.$form-disabled-text;
+        }
       }
     }
   }
@@ -55,11 +61,11 @@
     border-radius: 100px;
 
     .FormRadioGroupItemButton {
-      border: 1px solid color.$opacity-20;
+      border: 1px solid color.$form-border;
       border-radius: 100px;
       padding: 10px 18px;
       width: 100%;
-      background-color: color.$background;
+      background-color: color.$form-background;
       font-size: size.$body-font-size;
       line-height: size.$body-line-height;
       color: color.$text-lighten;
@@ -72,9 +78,9 @@
 
       // 비활성화 상태
       &[data-disabled='true'] {
-        background-color: color.$opacity-03;
-        border-color: color.$opacity-10;
-        color: color.$opacity-25;
+        background-color: color.$form-disabled-background;
+        border-color: color.$form-disabled-border;
+        color: color.$form-disabled-text;
         cursor: default;
       }
     }
@@ -86,21 +92,21 @@
     // Button 유형 - Focus Visible 상태
     &:focus-visible {
       .FormRadioGroupItemButton {
-        border-color: color.$primary;
+        border-color: color.$form-primary;
       }
     }
 
     &[data-error='true'] {
       .FormRadioGroupItemButton {
-        border-color: color.$error;
+        border-color: color.$form-error;
       }
     }
 
     &[data-active='true'] {
       .FormRadioGroupItemButton {
-        background-color: color.$primary;
-        border-color: color.$primary;
-        color: color.$on-primary;
+        background-color: color.$form-primary;
+        border-color: color.$form-primary;
+        color: color.$form-on-primary;
       }
     }
   }

@@ -8,13 +8,16 @@
     $line-height: 1.2;
     $font-weight: 500;
     $padding: 17px 20px;
-    $text-color: color.$text;
-    $background-color: color.$background;
-    $border-color: color.$opacity-15;
+    $text-color: color.$form-text;
+    $background-color: color.$form-background;
+    $border-color: color.$form-border;
     $border-radius: 5px;
-    $outline-color: color.$primary;
-    $error-border-outline-color: color.$error;
-    $placeholder-color: color.$opacity-35;
+    $outline-color: color.$form-primary;
+    $error-border-outline-color: color.$form-error;
+    $disabled-text-color: color.$form-disabled-text;
+    $disabled-border-color: color.$form-disabled-border;
+    $disabled-background-color: color.$form-disabled-background;
+    $placeholder-color: color.$form-placeholder;
 
     width: 100%;
     padding: $padding;
@@ -41,7 +44,9 @@
     }
 
     &.FormTextarea_textarea-disabled {
-      opacity: 0.5;
+      color: $disabled-text-color;
+      border-color: $disabled-border-color;
+      background-color: $disabled-background-color;
     }
 
     // Placeholder

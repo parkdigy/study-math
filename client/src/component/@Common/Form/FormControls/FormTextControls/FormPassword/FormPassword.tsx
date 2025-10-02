@@ -13,6 +13,7 @@ export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
       name,
       value: initValue,
       error: initError = false,
+      disabled,
       rules,
       linkName,
       onChange,
@@ -172,16 +173,19 @@ export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
         $type='password'
         $commands={commands}
         $controlHelperText={controlHelperText}
-        type={isShowPassword ? 'text' : 'password'}
+        type={isShowPassword && !disabled ? 'text' : 'password'}
         className={classnames(className, 'FormPassword')}
         name={name}
         clear={false}
         endAdornment={
-          notEmpty(value) ? <ShowButton active={isShowPassword} onClick={handleShowButtonClick} /> : undefined
+          notEmpty(value) && !disabled ? (
+            <ShowButton active={isShowPassword} onClick={handleShowButtonClick} />
+          ) : undefined
         }
         value={value}
         hideEmptyErrorText={rules}
         error={error}
+        disabled={disabled}
         onErrorChange={setError}
         onChange={handleChange}
         onCommands={setTextCommands}

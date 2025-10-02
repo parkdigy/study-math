@@ -75,8 +75,9 @@ export function FormRadioGroupItem<T extends string | number | boolean>({
       {type === 'radio' ? (
         <div
           className='FormRadioGroupItemRadio'
-          style={_radioItemStyle}
           data-disabled={!!disabled}
+          data-active={active}
+          style={_radioItemStyle}
           tabIndex={disabled ? -1 : 0}
           onClick={disabled ? undefined : () => onClick(value)}
           onKeyDown={disabled ? undefined : (e) => (e.key === 'Enter' || e.key === ' ') && onClick(value)}
@@ -89,7 +90,7 @@ export function FormRadioGroupItem<T extends string | number | boolean>({
             <IconDefault
               width={20}
               height={22}
-              fill={disabled ? 'var(--color-opacity-03)' : 'var(--color-background)'}
+              fill={disabled ? 'var(--color-form-disabled-background)' : 'var(--color-form-background)'}
             />
           )}
           <T ref={labelRef}>{label}</T>

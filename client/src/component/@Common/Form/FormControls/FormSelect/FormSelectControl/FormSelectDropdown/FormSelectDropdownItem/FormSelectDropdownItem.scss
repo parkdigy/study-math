@@ -14,17 +14,17 @@
 
   // 활성 아이템
   &[data-temp-active='true'] {
-    background-color: util.apply-opacity-value(color.$primary, 0.1);
+    background-color: util.apply-opacity-value(color.$form-primary, 0.1);
   }
 
   // 선택 아이템
   &[data-active='true'] {
-    background-color: color.$primary;
-    color: color.$on-primary;
+    background-color: color.$form-primary;
+    color: color.$form-on-primary;
   }
 
   // 비활성화 아이템
   &[data-disabled='true'] {
-    opacity: 0.5;
+    color: color.$form-disabled-text;
   }
 }

@@ -8,7 +8,7 @@
     align-items: center;
     gap: 8px;
     cursor: pointer;
-    outline: 0 solid color.$primary;
+    outline: 0 solid color.$form-primary;
     outline-offset: 3px;
     user-select: none;
 
@@ -19,24 +19,29 @@
 
     // 라벨
     .FormCheckboxLabel {
+      color: color.$text-lighten;
       font-size: size.$body-font-size;
       line-height: size.$body-line-height;
-    }
-  }
 
-  .FormCheckboxControl {
+      &[data-checked='true'] {
+        color: color.$text-accent;
+      }
+    }
+
     // disabled 상태
     &[data-disabled='true'] {
       cursor: default;
-      color: color.$opacity-35;
       > img {
         opacity: 0.5;
+      }
+      .FormCheckboxLabel {
+        color: color.$form-disabled-text;
       }
     }
 
     // 오류 상태 - 테두리 색상 변경
     &[data-error='true'] {
-      outline-color: color.$error;
+      outline-color: color.$form-error;
     }
   }
 }

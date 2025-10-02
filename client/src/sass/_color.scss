@@ -24,16 +24,23 @@ $text-accent: var(--color-text-accent);
 $text-lighten: var(--color-text-lighten);
 $text-blurry: var(--color-text-blurry);
 
-// background
+// form
+$form-primary: var(--color-form-primary);
+$form-on-primary: var(--color-form-on-primary);
+$form-error: var(--color-form-error);
+$form-on-error: var(--color-form-on-error);
+$form-text: var(--color-form-text);
+$form-border: var(--color-form-border);
+$form-background: var(--color-form-background);
+$form-disabled-text: var(--color-form-disabled-text);
+$form-disabled-border: var(--color-form-disabled-border);
+$form-disabled-background: var(--color-form-disabled-background);
+$form-placeholder: var(--color-form-placeholder);
+
+// etc
 $background: var(--color-background);
-
-// panel
 $panel-background: var(--color-panel-background);
-
-// dialog
 $dialog-backdrop: var(--color-dialog-backdrop);
-
-// divider
 $divider: var(--color-divider);
 
 // opacity

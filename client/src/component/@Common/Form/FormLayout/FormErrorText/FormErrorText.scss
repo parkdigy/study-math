@@ -3,7 +3,7 @@
 
 .FormErrorText {
   .FormErrorText__Content {
-    color: color.$error;
+    color: color.$form-error;
     font-size: size.$caption-font-size;
     line-height: size.$caption-line-height;
     display: flex;

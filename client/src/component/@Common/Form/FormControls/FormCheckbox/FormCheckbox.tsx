@@ -153,7 +153,7 @@ export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
       >
         <div
           ref={innerRef}
-          className='FormCheckboxControl'
+          className={classnames('FormCheckboxControl')}
           data-disabled={disabled}
           data-error={error !== false}
           tabIndex={0}
@@ -169,7 +169,7 @@ export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
           )}
 
           {/* 라벨 */}
-          <T className='FormCheckboxLabel' color={labelColor}>
+          <T className='FormCheckboxLabel' data-checked={checked} color={labelColor}>
             {label}
           </T>
         </div>
