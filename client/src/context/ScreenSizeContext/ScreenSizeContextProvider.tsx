@@ -43,7 +43,10 @@ const ScreenSizeContextProvider: React.FC<Props> = ({ children }) => {
       if (lastScreenAliasesValueRef.current !== screenAliasesValue) {
         lastScreenAliasesValueRef.current = screenAliasesValue;
 
-        const is: Record<ScreenAlias, boolean> = {} as Record<ScreenAlias, boolean>;
+        const is: Record<ScreenAlias | 'mobile' | 'tablet' | 'desktop', boolean> = {} as Record<
+          ScreenAlias | 'mobile' | 'tablet' | 'desktop',
+          boolean
+        >;
         const smallerThan: Record<ScreenAlias, boolean> = {} as Record<ScreenAlias, boolean>;
         const smallerThanOrEqual: Record<ScreenAlias, boolean> = {} as Record<ScreenAlias, boolean>;
         const largerThan: Record<ScreenAlias, boolean> = {} as Record<ScreenAlias, boolean>;
@@ -56,6 +59,10 @@ const ScreenSizeContextProvider: React.FC<Props> = ({ children }) => {
           largerThan[screen] = screenAliases.includes(screen) && !is[screen];
           largerThanOrEqual[screen] = screenAliases.includes(screen);
         });
+
+        is.mobile = is.mobileSm || is.mobileMd || is.mobileLg;
+        is.tablet = is.tabletSm || is.tabletMd || is.tabletLg;
+        is.desktop = is.desktopSm || is.desktopMd || is.desktopLg;
 
         lastInfoRef.current = {
           sizes: screenAliases,

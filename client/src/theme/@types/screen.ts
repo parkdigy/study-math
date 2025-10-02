@@ -66,7 +66,7 @@ export interface ScreenSizeInfo {
   // 현재 화면보다 작거나 같은 크기 별칭 배열
   sizes: ScreenAlias[];
   // 현재 화면 크기 별칭 맵
-  is: Record<ScreenAlias, boolean>;
+  is: Record<ScreenAlias | 'mobile' | 'tablet' | 'desktop', boolean>;
   // 현재 화면보다 작은 크기 별칭 맵
   smallerThan: Record<ScreenAlias, boolean>;
   // 현재 화면보다 작거나 같은 크기 별칭 맵
