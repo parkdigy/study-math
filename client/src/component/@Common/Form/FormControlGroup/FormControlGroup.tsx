@@ -106,7 +106,7 @@ export const FormControlGroup = ({
             fullWidth
             spacing={10}
             wrap
-            position='relative'
+            relative
           >
             {children}
           </Stack>

@@ -22,7 +22,7 @@ export const DevButtons = ({}: Props) => {
 
   return (
     <Stack className='DevButtons' row center spacing={10}>
-      <T color='success' size='caption' position='absolute' whiteSpace='nowrap' right={0} top={-20}>
+      <T color='success' size='caption' absolute nowrap right={0} top={-20}>
         {util.css.toCssName(screenSize.sizes[screenSize.sizes.length - 1])}
       </T>
       {location.pathname !== '/dev/controls' && (

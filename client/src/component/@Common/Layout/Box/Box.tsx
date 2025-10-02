@@ -20,6 +20,10 @@ export const Box = React.forwardRef<HTMLDivElement, Props>(
       borderRightColor: initBorderRightColor,
       outlineColor: initOutlineColor,
       center,
+      nowrap,
+      absolute,
+      relative,
+      fixed,
       size,
       fontSize,
       ...props
@@ -90,7 +94,12 @@ export const Box = React.forwardRef<HTMLDivElement, Props>(
         ref={ref}
         className={classnames(
           className,
+          'Box',
           center && 'Box-center',
+          nowrap && 'Box-nowrap',
+          absolute && 'Box-absolute',
+          relative && 'Box-relative',
+          fixed && 'Box-fixed',
           size && isNamedSize && `font-${theme.css.names.sizes[size]}`
         )}
         color={color}

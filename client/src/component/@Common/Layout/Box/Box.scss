@@ -1,3 +1,17 @@
-.Box-center {
-  text-align: center;
+.Box {
+  &.Box-center {
+    text-align: center;
+  }
+  &.Box-nowrap {
+    white-space: nowrap;
+  }
+  &.Box-absolute {
+    position: absolute;
+  }
+  &.Box-relative {
+    position: relative;
+  }
+  &.Box-fixed {
+    position: fixed;
+  }
 }

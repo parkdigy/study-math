@@ -60,7 +60,7 @@ function Dev_FormControl_BackgroundColor<TColors extends AllColors = AllColors>(
 
   return (
     <Dev_PanelItem icon='ColorLens' title='배경 색상 (backgroundColor)' mt={-5}>
-      <Flex position='relative'>
+      <Flex relative>
         {variant === 'select' ? (
           <FormSelect
             name='backgroundColor'
@@ -78,8 +78,8 @@ function Dev_FormControl_BackgroundColor<TColors extends AllColors = AllColors>(
             {...props}
           />
         ) : (
-          <Box position='relative'>
-            <Stack row center spacing={10} position='absolute' right={0} top={-30}>
+          <Box relative>
+            <Stack row center spacing={10} absolute right={0} top={-30}>
               <IconButton size={10} variant='rounded' onClick={() => setExpanded((prev) => !prev)}>
                 {expanded ? 'KeyboardArrowUp' : 'KeyboardArrowDown'}
               </IconButton>

@@ -25,4 +25,8 @@ export interface BoxProps
     BoxStyleProps {
   component?: 'div' | 'span' | 'section' | 'article' | 'main' | 'aside' | 'header' | 'footer' | 'nav';
   center?: boolean;
+  nowrap?: boolean;
+  absolute?: boolean;
+  relative?: boolean;
+  fixed?: boolean;
 }

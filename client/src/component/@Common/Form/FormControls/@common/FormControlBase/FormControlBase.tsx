@@ -99,7 +99,7 @@ export const FormControlBase = ({
           center
           fullWidth
           spacing={10}
-          position='relative'
+          relative
         >
           {children}
           {subControl}

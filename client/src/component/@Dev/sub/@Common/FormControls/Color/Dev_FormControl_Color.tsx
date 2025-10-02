@@ -85,8 +85,8 @@ function Dev_FormControl_Color<TColors extends AllColors = AllColors>({
             {...props}
           />
         ) : (
-          <Box position='relative'>
-            <Stack row center spacing={10} position='absolute' right={0} top={-30}>
+          <Box relative>
+            <Stack row center spacing={10} absolute right={0} top={-30}>
               <IconButton size={10} variant='rounded' onClick={() => setExpanded((prev) => !prev)}>
                 {expanded ? 'KeyboardArrowUp' : 'KeyboardArrowDown'}
               </IconButton>

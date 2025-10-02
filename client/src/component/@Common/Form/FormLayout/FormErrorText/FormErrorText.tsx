@@ -4,16 +4,12 @@ import './FormErrorText.scss';
 
 export const FormErrorText = ({ children, className, absolute }: Props) => {
   return (
-    <Box className={classnames(className, 'FormErrorText')} position='relative'>
+    <Box className={classnames(className, 'FormErrorText')} relative>
       {absolute && <>&nbsp;</>}
-      <Box
-        className='FormErrorText__Content'
-        position={absolute ? 'absolute' : undefined}
-        top={absolute ? 0 : undefined}
-      >
+      <Box className='FormErrorText__Content' absolute={absolute} top={absolute ? 0 : undefined}>
         <Icon>Error</Icon>
         {notEmpty(children) && (typeof children === 'string' || typeof children === 'number') ? (
-          <T whiteSpace={absolute ? 'nowrap' : undefined}>{children}</T>
+          <T nowrap={absolute}>{children}</T>
         ) : (
           children
         )}
