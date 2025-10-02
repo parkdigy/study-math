@@ -33,4 +33,5 @@ export interface FormControlBaseProps
   commands: FormControlCommands | null;
   children: ReactNode;
   controlHelperText?: ReactNode;
+  focused?: boolean;
 }

@@ -71,6 +71,7 @@ export const FormSelect = ToForwardRefExoticComponent(
 
     const [activeItemRef, activeItem, _setActiveItem] = useRefState(() => getItemOfValue(initValue));
     const [error, setError] = useAutoUpdateState(initError);
+    const [isFocus, setIsFocus] = useState(false);
 
     /********************************************************************************************************************
      * Variable
@@ -172,6 +173,18 @@ export const FormSelect = ToForwardRefExoticComponent(
       controlCommandsRef.current = commands;
     }, []);
 
+    const handleFocus = useCallback(() => {
+      setIsFocus(true);
+      ll('focus');
+      onFocus?.();
+    }, [onFocus]);
+
+    const handleBlur = useCallback(() => {
+      setIsFocus(false);
+      ll('blur');
+      onBlur?.();
+    }, [onBlur]);
+
     /********************************************************************************************************************
      * Render
      * ******************************************************************************************************************/
@@ -189,6 +202,7 @@ export const FormSelect = ToForwardRefExoticComponent(
         width={width}
         minWidth={width === undefined ? minWidth : undefined}
         spacing={8}
+        focused={isFocus}
         {...formControlBaseProps}
       >
         <FormSelectControl
@@ -205,8 +219,8 @@ export const FormSelect = ToForwardRefExoticComponent(
           itemLabel={activeItem?.label}
           activeItem={activeItem}
           onActiveItem={setActiveItem}
-          onFocus={onFocus}
-          onBlur={onBlur}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           onCommands={handleControlCommands}
         />
       </FormControlBase>

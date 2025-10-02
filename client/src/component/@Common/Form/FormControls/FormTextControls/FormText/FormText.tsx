@@ -78,6 +78,7 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
 
     const [error, setError] = useAutoUpdateState(initError);
     const [isRequiredError, setIsRequiredError] = useState(false);
+    const [isFocus, setIsFocus] = useState(false);
     const [valueRef, value, _setValue] = useAutoUpdateRefState(initValue);
 
     /********************************************************************************************************************
@@ -199,8 +200,17 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
       focus();
     }, [focus, setValue]);
 
+    const handleFocus = useCallback(
+      (e: React.FocusEvent<HTMLInputElement>) => {
+        setIsFocus(true);
+        onFocus?.(e);
+      },
+      [onFocus]
+    );
+
     const handleBlur = useCallback(
       (e: React.FocusEvent<HTMLInputElement>) => {
+        setIsFocus(false);
         onBlur?.(e);
         if (error) {
           validate();
@@ -234,6 +244,7 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
         required={required}
         disabled={disabled}
         spacing={8}
+        focused={isFocus}
         controlHelperText={$controlHelperText}
         {...formControlBaseProps}
       >
@@ -253,7 +264,7 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
           endAdornment={endAdornment}
           clear={initClear && notEmpty(value)}
           onClearClick={handleClearClick}
-          onFocus={onFocus}
+          onFocus={handleFocus}
           onBlur={handleBlur}
           onKeyUp={onKeyUp}
           onKeyDown={handleKeyDown}

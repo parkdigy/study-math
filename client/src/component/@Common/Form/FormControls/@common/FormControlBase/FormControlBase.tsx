@@ -29,6 +29,7 @@ export const FormControlBase = ({
   type,
   commands,
   spacing = 10,
+  focused,
   children,
   // BoxStyleProps
   ...boxStyleProps
@@ -105,7 +106,7 @@ export const FormControlBase = ({
           {subControl}
         </Stack>
         {controlHelperText}
-        {notEmpty(helperText) && <FormHelperText>{helperText}</FormHelperText>}
+        {notEmpty(helperText) && <FormHelperText focused={focused}>{helperText}</FormHelperText>}
         {!hideError && typeof error === 'string' && notEmpty(error) && <FormErrorText>{error}</FormErrorText>}
       </FormControlContentContainer>
     </FormControlContainer>
