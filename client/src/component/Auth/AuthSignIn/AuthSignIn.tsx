@@ -38,8 +38,8 @@ export const AuthSignIn = ({}: Props) => {
    * ******************************************************************************************************************/
 
   return (
-    <PageRootContainer flex={1} center={!isSmallScreen} centerJustify ph={20} height='100%'>
-      <Stack center width={isSmallScreen ? undefined : 400} spacing={20}>
+    <PageRootContainer fullScreen centerCenter ph={20}>
+      <Stack center width={isSmallScreen ? '100%' : 400} spacing={20}>
         <TTitle bold>로그인</TTitle>
 
         <Form hideTitle onSubmit={handleSubmit}>
