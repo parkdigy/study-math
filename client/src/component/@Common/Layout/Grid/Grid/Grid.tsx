@@ -2,7 +2,7 @@ import React from 'react';
 import { GridProps as Props } from './Grid.types';
 import './Grid.scss';
 import { GridContextProvider, GridContextValue } from '../Context';
-import { ScreenAlias, ScreenAliases } from '@theme';
+import { AllScreenAliases, GeneralScreens } from '@theme';
 import { useScreenSize } from '@context';
 
 export const Grid = React.forwardRef<HTMLDivElement, Props>(
@@ -11,7 +11,7 @@ export const Grid = React.forwardRef<HTMLDivElement, Props>(
      * Use
      * ******************************************************************************************************************/
 
-    const screenSize = useScreenSize();
+    const screen = useScreenSize();
 
     /********************************************************************************************************************
      * Ref
@@ -30,16 +30,16 @@ export const Grid = React.forwardRef<HTMLDivElement, Props>(
       } else {
         let currentCols = 1;
         let newFinalCols = currentCols;
-        (Object.keys(ScreenAliases) as ScreenAlias[]).find((alias) => {
+        keys(AllScreenAliases).find((alias) => {
           if (cols[alias]) currentCols = cols[alias];
-          if (screenSize.is[alias]) {
+          if (!contains(GeneralScreens, alias) && screen.is[alias]) {
             newFinalCols = currentCols;
             return true;
           }
         });
         return newFinalCols;
       }
-    }, [cols, screenSize.is]);
+    }, [cols, screen.is]);
 
     /********************************************************************************************************************
      * Context Value

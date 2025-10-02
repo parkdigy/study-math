@@ -5,6 +5,7 @@ import { FlattenArray } from '@pdg/types';
 
 const _formOptions = ['cols', '|', 'spacing'] as const;
 type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
+const _formOptionsDefaultData: Dev_FormOptionsData = { spacing: 5 };
 
 export const Dev_Grid = () => {
   /********************************************************************************************************************
@@ -24,6 +25,7 @@ export const Dev_Grid = () => {
       <Dev_Panel>
         <Dev_FormOptions
           options={_formOptions}
+          defaultData={_formOptionsDefaultData}
           testPosition='bottom'
           code={code}
           codePropsMap={{ grid: data }}

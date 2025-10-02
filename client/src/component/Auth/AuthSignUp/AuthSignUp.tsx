@@ -11,7 +11,7 @@ export const AuthSignUp = ({}: Props) => {
    * ******************************************************************************************************************/
 
   const { setAuth } = useAppState();
-  const screenSize = useScreenSize();
+  const screen = useScreenSize();
 
   /********************************************************************************************************************
    * Event Handler
@@ -29,7 +29,7 @@ export const AuthSignUp = ({}: Props) => {
     [setAuth]
   );
 
-  const isSmallScreen = screenSize.smallerThanOrEqual.mobileSm;
+  const isSmallScreen = screen.smallerThanOrEqual.mobileSm;
 
   /********************************************************************************************************************
    * Render

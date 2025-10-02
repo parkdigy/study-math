@@ -14,7 +14,7 @@ export const DevButtons = ({}: Props) => {
 
   const { colorScheme, toggleColorScheme } = useAppState();
   const location = useLocation();
-  const screenSize = useScreenSize();
+  const screen = useScreenSize();
 
   /********************************************************************************************************************
    * Render
@@ -23,7 +23,7 @@ export const DevButtons = ({}: Props) => {
   return (
     <Stack className='DevButtons' row center spacing={10}>
       <T color='success' size='caption' absolute nowrap right={0} top={-20}>
-        {util.css.toCssName(screenSize.sizes[screenSize.sizes.length - 1])}
+        {util.css.toCssName(screen.sizes[screen.sizes.length - 1])}
       </T>
       {location.pathname !== '/dev/controls' && (
         <DevButton icon='Extension' onClick={() => app.navigate('/dev/controls')} />

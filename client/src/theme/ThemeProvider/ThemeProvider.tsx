@@ -23,7 +23,7 @@ export const ThemeProvider = ({ children, colorScheme }: Props) => {
     const newTheme = { ...lastThemeRef.current, dark: colorScheme === 'dark' };
 
     // 컬러 설정
-    for (const key of Object.keys(Theme.colors)) {
+    for (const key of keys(Theme.colors)) {
       const colorName = key as keyof Theme['colors'];
       const cssName = util.css.toCssName(colorName);
       const varName = `--color-${cssName}`;
@@ -40,7 +40,7 @@ export const ThemeProvider = ({ children, colorScheme }: Props) => {
       isFirstSet.current = false;
 
       // 사이즈 설정
-      for (const key of Object.keys(Theme.sizes)) {
+      for (const key of keys(Theme.sizes)) {
         const sizeName = key as keyof Theme['sizes'];
         const cssName = util.css.toCssName(sizeName);
         const baseVarName = `--size-${cssName}`;
@@ -65,7 +65,7 @@ export const ThemeProvider = ({ children, colorScheme }: Props) => {
       }
 
       // 화면 크기 설정
-      for (const key of Object.keys(Theme.screens)) {
+      for (const key of keys(Theme.screens)) {
         const screenName = key as keyof Theme['screens'];
         const cssName = util.css.toCssName(screenName);
         const varName = `--screen-${cssName}`;

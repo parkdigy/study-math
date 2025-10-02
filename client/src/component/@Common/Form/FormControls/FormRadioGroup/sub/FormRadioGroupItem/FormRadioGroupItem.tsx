@@ -69,15 +69,18 @@ export function FormRadioGroupItem<T extends string | number | boolean>({
       ref={containerRef}
       className={classnames('FormRadioGroupItem')}
       data-type={type}
-      data-disabled={!!disabled}
       data-error={!!error}
       data-active={active}
-      tabIndex={disabled ? -1 : 0}
-      onClick={disabled ? undefined : () => onClick(value)}
-      onKeyDown={disabled ? undefined : (e) => (e.key === 'Enter' || e.key === ' ') && onClick(value)}
     >
       {type === 'radio' ? (
-        <div className='FormRadioGroupItemRadio' style={_radioItemStyle}>
+        <div
+          className='FormRadioGroupItemRadio'
+          style={_radioItemStyle}
+          data-disabled={!!disabled}
+          tabIndex={disabled ? -1 : 0}
+          onClick={disabled ? undefined : () => onClick(value)}
+          onKeyDown={disabled ? undefined : (e) => (e.key === 'Enter' || e.key === ' ') && onClick(value)}
+        >
           {error ? (
             <IconError width={20} height={22} />
           ) : active ? (
@@ -96,7 +99,15 @@ export function FormRadioGroupItem<T extends string | number | boolean>({
           ref={labelRef}
           style={buttonFullWidth || buttonWidth ? { width: buttonFullWidth ? '100%' : buttonWidth } : undefined}
         >
-          <div className='FormRadioGroupItemButton'>{label}</div>
+          <div
+            className='FormRadioGroupItemButton'
+            data-disabled={!!disabled}
+            tabIndex={disabled ? -1 : 0}
+            onClick={disabled ? undefined : () => onClick(value)}
+            onKeyDown={disabled ? undefined : (e) => (e.key === 'Enter' || e.key === ' ') && onClick(value)}
+          >
+            {label}
+          </div>
         </div>
       )}
     </div>

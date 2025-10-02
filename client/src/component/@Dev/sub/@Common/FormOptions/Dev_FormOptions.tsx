@@ -38,7 +38,7 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
    * Use
    * ******************************************************************************************************************/
 
-  const screenSize = useScreenSize();
+  const screen = useScreenSize();
 
   /********************************************************************************************************************
    * Ref
@@ -51,7 +51,7 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
    * ******************************************************************************************************************/
 
   const useFormControlData = {
-    screenSize,
+    screen,
     colors,
     backgroundColors,
     disabledOptions,
@@ -130,10 +130,7 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
     [booleanControls, multiOptionControls, textControls]
   );
 
-  const allControlNames = useMemo(
-    () => Object.keys(allControls) as Exclude<Dev_FormOptionsOption, 'cols'>[],
-    [allControls]
-  );
+  const allControlNames = useMemo(() => keys(allControls), [allControls]);
 
   /********************************************************************************************************************
    * Effect
@@ -262,9 +259,9 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
               }
             });
 
-            if (screenSize.smallerThanOrEqual.mobileSm) {
+            if (screen.smallerThanOrEqual.mobileSm) {
               cols = 1;
-            } else if (screenSize.smallerThanOrEqual.mobileLg) {
+            } else if (screen.smallerThanOrEqual.mobileLg) {
               if (op.length >= 3) {
                 cols = 2;
               }

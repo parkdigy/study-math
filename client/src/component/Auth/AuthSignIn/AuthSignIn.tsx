@@ -13,7 +13,7 @@ export const AuthSignIn = ({}: Props) => {
 
   const [searchParams] = useSearchParams();
   const { setAuth } = useAppState();
-  const screenSize = useScreenSize();
+  const screen = useScreenSize();
 
   /********************************************************************************************************************
    * Event Handler
@@ -31,7 +31,7 @@ export const AuthSignIn = ({}: Props) => {
     [searchParams, setAuth]
   );
 
-  const isSmallScreen = screenSize.smallerThanOrEqual.mobileSm;
+  const isSmallScreen = screen.smallerThanOrEqual.mobileSm;
 
   /********************************************************************************************************************
    * Render

@@ -5,3 +5,4 @@ import './pdg';
 import './log';
 import './classnames';
 import './common-component';
+import './object';

@@ -49,7 +49,7 @@ import { Dev_FormControl_OnClick } from './OnClick';
 import { Dev_FormControl_OnRemoveClick } from './OnRemoveClick';
 
 export type UseDevFormControlData<TOption extends Exclude<Dev_FormOptionsOption, 'cols'>> = {
-  screenSize: ScreenSizeInfo;
+  screen: ScreenSizeInfo;
   props?: Dev_FormOptionsControlPropsMap[TOption];
 } & Required<
   Pick<
@@ -85,7 +85,7 @@ function useDevFormControl<TOption extends Exclude<Dev_FormOptionsOption, 'cols'
 
   const multiOptionDefaultProps = isUse
     ? {
-        variant: data.screenSize.smallerThanOrEqual.tabletSm
+        variant: data.screen.smallerThanOrEqual.tabletSm
           ? 'select'
           : data.selectControlOptions.includes(option as any)
             ? 'select'

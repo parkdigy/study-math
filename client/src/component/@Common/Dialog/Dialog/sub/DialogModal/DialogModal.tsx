@@ -1,7 +1,6 @@
 import React from 'react';
 import { DialogModalProps as Props } from './DialogModal.types';
 import Modal from 'react-modal';
-import { ToastContainer } from '../../../../Toast';
 
 export const DialogModal = ({ onCancelClick, onConfirmClick, onRequestClose, ...props }: Props) => {
   /********************************************************************************************************************
@@ -137,7 +136,6 @@ export const DialogModal = ({ onCancelClick, onConfirmClick, onRequestClose, ...
       )}
 
       <Dialog />
-      <ToastContainer />
     </Modal>
   );
 };

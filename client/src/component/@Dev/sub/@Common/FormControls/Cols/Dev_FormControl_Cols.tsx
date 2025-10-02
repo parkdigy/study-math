@@ -2,7 +2,7 @@ import React from 'react';
 import { Dev_FormControl_ColsProps as Props } from './Dev_FormControl_Cols.types';
 import { FormCheckbox, FormRadioGroup, FormSelect, GridCols } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
-import { ScreenAlias, ScreenAliases } from '@theme';
+import { AllScreenAliases } from '@theme';
 import { useScreenSize } from '@context';
 
 const _selectColsItems: Lv<string, GridCols>[] = new Array(12).fill(0).map((_, i) => lv(`${i + 1}개`, i + 1));
@@ -23,7 +23,7 @@ export const Dev_FormControl_Cols = ({
    * Use
    * ******************************************************************************************************************/
 
-  const screenSize = useScreenSize();
+  const screen = useScreenSize();
 
   /********************************************************************************************************************
    * Render
@@ -56,7 +56,7 @@ export const Dev_FormControl_Cols = ({
           }}
           spacing={10}
         >
-          {(Object.keys(ScreenAliases) as ScreenAlias[]).map((screen, idx) => {
+          {keys(AllScreenAliases).map((screen, idx) => {
             if (responsiveCols[screen] !== undefined) {
               colsOfSize = responsiveCols[screen];
             }
@@ -77,7 +77,7 @@ export const Dev_FormControl_Cols = ({
             );
           })}
         </Grid>
-      ) : screenSize.smallerThanOrEqual.tabletSm ? (
+      ) : screen.smallerThanOrEqual.tabletSm ? (
         <FormSelect
           name='cols'
           placeholder='미지정(12개)'

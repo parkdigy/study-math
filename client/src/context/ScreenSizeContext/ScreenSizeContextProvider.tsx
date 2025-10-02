@@ -6,7 +6,15 @@ import React from 'react';
 import { ScreenSizeContextProviderProps as Props } from './ScreenSizeContextProvider.types';
 import ScreenSizeContext from './ScreenSizeContext';
 import { useWindowSize } from 'usehooks-ts';
-import { ScreenAlias, ScreenAliases, ScreenSizeInfo } from '@theme';
+import {
+  AllScreenAliases,
+  ScreenSizeInfo,
+  ScreenSizeInfoIsKey,
+  ScreenSizeInfoLargerThanKey,
+  ScreenSizeInfoLargerThanOrEqualKey,
+  ScreenSizeInfoSmallerThanKey,
+  ScreenSizeInfoSmallerThanOrEqualKey,
+} from '@theme';
 
 const ScreenSizeContextProvider: React.FC<Props> = ({ children }) => {
   /********************************************************************************************************************
@@ -32,8 +40,8 @@ const ScreenSizeContextProvider: React.FC<Props> = ({ children }) => {
     if (lastWindowWidthRef.current !== windowWidth) {
       lastWindowWidthRef.current = windowWidth;
 
-      const screenAliases = (Object.keys(ScreenAliases) as ScreenAlias[]).filter((screen) => {
-        const [min] = ScreenAliases[screen];
+      const screenAliases = keys(AllScreenAliases).filter((screen) => {
+        const [min] = AllScreenAliases[screen];
         if (theme.screens[min] <= windowWidth) {
           return true;
         }
@@ -43,16 +51,25 @@ const ScreenSizeContextProvider: React.FC<Props> = ({ children }) => {
       if (lastScreenAliasesValueRef.current !== screenAliasesValue) {
         lastScreenAliasesValueRef.current = screenAliasesValue;
 
-        const is: Record<ScreenAlias | 'mobile' | 'tablet' | 'desktop', boolean> = {} as Record<
-          ScreenAlias | 'mobile' | 'tablet' | 'desktop',
+        const is: Record<ScreenSizeInfoIsKey, boolean> = {} as Record<ScreenSizeInfoIsKey, boolean>;
+        const smallerThan: Record<ScreenSizeInfoSmallerThanKey, boolean> = {} as Record<
+          ScreenSizeInfoSmallerThanKey,
           boolean
         >;
-        const smallerThan: Record<ScreenAlias, boolean> = {} as Record<ScreenAlias, boolean>;
-        const smallerThanOrEqual: Record<ScreenAlias, boolean> = {} as Record<ScreenAlias, boolean>;
-        const largerThan: Record<ScreenAlias, boolean> = {} as Record<ScreenAlias, boolean>;
-        const largerThanOrEqual: Record<ScreenAlias, boolean> = {} as Record<ScreenAlias, boolean>;
+        const smallerThanOrEqual: Record<ScreenSizeInfoSmallerThanOrEqualKey, boolean> = {} as Record<
+          ScreenSizeInfoSmallerThanOrEqualKey,
+          boolean
+        >;
+        const largerThan: Record<ScreenSizeInfoLargerThanKey, boolean> = {} as Record<
+          ScreenSizeInfoLargerThanKey,
+          boolean
+        >;
+        const largerThanOrEqual: Record<ScreenSizeInfoLargerThanOrEqualKey, boolean> = {} as Record<
+          ScreenSizeInfoLargerThanOrEqualKey,
+          boolean
+        >;
 
-        (Object.keys(ScreenAliases) as ScreenAlias[]).forEach((screen) => {
+        keys(AllScreenAliases).forEach((screen) => {
           is[screen] = screenAliases[screenAliases.length - 1] === screen;
           smallerThan[screen] = !screenAliases.includes(screen);
           smallerThanOrEqual[screen] = !screenAliases.includes(screen) || is[screen];
@@ -63,6 +80,17 @@ const ScreenSizeContextProvider: React.FC<Props> = ({ children }) => {
         is.mobile = is.mobileSm || is.mobileMd || is.mobileLg;
         is.tablet = is.tabletSm || is.tabletMd || is.tabletLg;
         is.desktop = is.desktopSm || is.desktopMd || is.desktopLg;
+
+        smallerThan.tablet = is.mobile;
+        smallerThan.desktop = is.mobile || is.tablet;
+        smallerThanOrEqual.mobile = is.mobile;
+        smallerThanOrEqual.tablet = is.mobile || is.tablet;
+        smallerThanOrEqual.desktop = is.mobile || is.tablet || is.desktop;
+        largerThan.mobile = is.tablet || is.desktop;
+        largerThan.tablet = is.desktop;
+        largerThanOrEqual.mobile = is.mobile || is.tablet || is.desktop;
+        largerThanOrEqual.tablet = is.tablet || is.desktop;
+        largerThanOrEqual.desktop = is.desktop;
 
         lastInfoRef.current = {
           sizes: screenAliases,

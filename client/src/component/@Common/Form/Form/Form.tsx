@@ -30,7 +30,7 @@ export const Form = React.forwardRef<FormCommands, Props>(
         const finalValues: Dict<string | number | undefined | boolean> = {};
         let isAllValid = true;
 
-        for (const name of Object.keys(formControls.current)) {
+        for (const name of keys(formControls.current)) {
           const { active, type, commands } = formControls.current[name];
 
           if (active && commands) {

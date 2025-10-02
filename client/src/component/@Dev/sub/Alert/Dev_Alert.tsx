@@ -26,7 +26,7 @@ export const Dev_Alert = () => {
 
   return (
     <Panel spacing={20}>
-      <TTitleLarge700 color='primary'>얼럿 (Alert)</TTitleLarge700>
+      <TTitleLarge700 color='primary'>Alert</TTitleLarge700>
 
       <Dev_Panel>
         <Dev_FormOptions

@@ -16,6 +16,7 @@ import {
   Dev_List,
   Dev_LoadingIndicator,
   Dev_Pagination,
+  Dev_Screen,
   Dev_T,
   Dev_Toast,
   Dev_Tooltip,
@@ -42,11 +43,13 @@ const TabValue = [
   'pagination',
   'list',
   'chip',
+  'screen',
 ] as const;
 type TabValue = (typeof TabValue)[number];
 const TabItems = [
   lv('컬러', 'color'),
   lv('CSS', 'css'),
+  lv('화면', 'screen'),
   lv('텍스트', 't'),
   lv('버튼', 'button'),
   lv('아이콘', 'icon'),
@@ -57,10 +60,10 @@ const TabItems = [
   lv('로딩', 'loadingIndicator'),
   lv('툴팁', 'tooltip'),
   lv('오류', 'errorRetry'),
-  lv('얼럿', 'alert'),
   lv('페이징', 'pagination'),
   lv('리스트', 'list'),
-  lv('칩', 'chip'),
+  lv('Alert', 'alert'),
+  lv('Chip', 'chip'),
   lv('Form', 'form'),
 ] as Lv<string, TabValue, { disabled?: boolean }>[];
 
@@ -138,6 +141,8 @@ export const Dev = ({}: Props) => {
         <Dev_List />
       ) : activeTab === 'chip' ? (
         <Dev_Chip />
+      ) : activeTab === 'screen' ? (
+        <Dev_Screen />
       ) : null}
     </PageRootContainer>
   );

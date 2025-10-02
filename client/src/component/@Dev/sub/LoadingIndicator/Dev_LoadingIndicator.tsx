@@ -6,14 +6,7 @@ import { AllColors, ButtonColors } from '@theme';
 import code from '../Icon/Dev_Icon.code.md';
 import { LoadingIndicator } from '@ccomp';
 
-const _formOptions = [
-  'size',
-  '|',
-  [
-    { option: 'color', cols: 5 },
-    { option: 'rotate', cols: 3 },
-  ],
-] as const;
+const _formOptions = [['color', 'size']] as const;
 type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
 const _formDefaultData: Dev_FormOptionsData<ButtonColors> = { size: 'headline' };
 

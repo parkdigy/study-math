@@ -35,16 +35,7 @@ export const Dev_Chip = () => {
 
   return (
     <Panel spacing={20}>
-      <Stack row center spacing={30}>
-        <TTitleLarge700 color='primary'>아이콘 (Icon)</TTitleLarge700>
-        <Button
-          size='sm'
-          color='success'
-          onClick={() => window.open('https://mui.com/material-ui/material-icons/', '_blank')}
-        >
-          아이콘 검색
-        </Button>
-      </Stack>
+      <TTitleLarge700 color='primary'>Chip</TTitleLarge700>
 
       <Dev_Panel>
         <Dev_FormOptions
