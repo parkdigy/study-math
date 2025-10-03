@@ -1,6 +1,10 @@
 import React, { CSSProperties } from 'react';
-import { CustomComponentBackgroundStyles, CustomComponentProps } from '../../CustomComponent';
-import { ButtonColors } from '@theme';
+import {
+  CustomComponentBackgroundStyles,
+  CustomComponentBorderStyles,
+  CustomComponentProps,
+} from '../../CustomComponent';
+import { AllColors, ButtonColors } from '@theme';
 
 export const ButtonSizes = {
   xs: {
@@ -49,7 +53,12 @@ export type ButtonSizes = keyof typeof ButtonSizes;
 export interface ButtonProps
   extends Omit<
     CustomComponentProps<React.ButtonHTMLAttributes<HTMLButtonElement>>,
-    'component' | 'style' | 'color' | 'fontSize' | keyof CustomComponentBackgroundStyles
+    | 'component'
+    | 'style'
+    | 'color'
+    | 'fontSize'
+    | keyof CustomComponentBackgroundStyles
+    | keyof CustomComponentBorderStyles
   > {
   // 스타일 (contained: 채워진 버튼, outlined: 테두리만 있는 버튼, text: 텍스트 버튼)
   variant?: 'contained' | 'outlined' | 'text';
@@ -81,4 +90,10 @@ export interface ButtonProps
   url?: string;
   // 외부 URL 일 경우, 현재 탭에서 이동할지 여부
   externalUrlOpenInThisTab?: boolean;
+  // 테두리
+  border?: CSSProperties['border'];
+  borderWidth?: CSSProperties['borderWidth'];
+  borderStyle?: CSSProperties['borderStyle'];
+  borderColor?: AllColors | CSSProperties['borderColor'];
+  borderRadius?: CSSProperties['borderRadius'];
 }

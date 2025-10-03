@@ -31,6 +31,9 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
       underline,
       textDecoration,
       url,
+      borderWidth: initBorderWidth,
+      borderStyle: initBorderStyle,
+      borderColor: initBorderColor,
       externalUrlOpenInThisTab,
       cssVars,
       onClick,
@@ -63,7 +66,9 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
     let color: CSSProperties['color'] | undefined;
     let backgroundColor: CSSProperties['backgroundColor'] | undefined;
     let outlineBaseColor: CSSProperties['outlineColor'] | undefined;
-    let border: CSSProperties['border'] | undefined;
+    let borderWidth: Props['borderWidth'];
+    let borderStyle: Props['borderStyle'];
+    let borderColor: Props['borderColor'];
 
     if (isCustomColor) {
       color = baseColor;
@@ -92,7 +97,13 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
         outlineBaseColor = baseColor;
       } else if (variant === 'outlined') {
         color = baseColor;
-        border = `1px solid ${color}`;
+        borderWidth = ifUndefined(initBorderWidth, 1);
+        borderStyle = ifUndefined(initBorderStyle, 'solid');
+        if (initBorderColor) {
+          borderColor = contains(AllColors, initBorderColor) ? theme.colors[initBorderColor] : initBorderColor;
+        } else {
+          borderColor = color;
+        }
         backgroundColor = 'transparent';
       } else if (variant === 'text') {
         color = baseColor;
@@ -148,7 +159,9 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
         outlineColor={outlineColor}
         backgroundColor={backgroundColor}
         color={color}
-        border={border}
+        borderWidth={borderWidth}
+        borderStyle={borderStyle}
+        borderColor={borderColor}
         whiteSpace={wrapLabel ? 'wrap' : 'nowrap'}
         textDecoration={textDecoration !== underline ? textDecoration : underline ? 'underline' : undefined}
         cssVars={{
