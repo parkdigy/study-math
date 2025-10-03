@@ -9,7 +9,7 @@ export const List = React.forwardRef<HTMLDivElement, Props>(
     return (
       <Box ref={ref} className='List' data-variant={variant} {...boxProps}>
         {title && <ListTitle type={type} content={title} />}
-        <div className='ListItems' style={{ '--spacing': `${spacing}px` } as React.CSSProperties}>
+        <div className='List__Items' style={{ '--spacing': `${spacing}px` } as React.CSSProperties}>
           {items.map((item, idx) => (
             <ListItem key={idx} content={item} />
           ))}
