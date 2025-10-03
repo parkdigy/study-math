@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 import { IconButtonProps as Props } from './IconButton.types';
-import { AllColors, AllSizes, DefaultColors, getDefaultOnColor, OpacityColors, TextColors } from '@theme';
+import { AllColors, AllSizes, ButtonColors, DefaultColors, getDefaultOnColor } from '@theme';
 import Color from 'color';
 import './IconButton.scss';
 import { isUrl } from '@pdg/compare';
@@ -36,11 +36,8 @@ export const IconButton = React.forwardRef<HTMLDivElement, Props>(
      * ******************************************************************************************************************/
 
     const isCustomColor = variant === 'rounded' && initBackgroundColor !== undefined;
-
-    const isDefaultColor = contains(DefaultColors, initColor);
-    const isTextColor = !isDefaultColor && contains(TextColors, initColor);
-    const isOpacityColor = !isDefaultColor && !isTextColor && contains(OpacityColors, initColor);
-    const isNamedColor = isDefaultColor || isTextColor || isOpacityColor;
+    const isNamedColor = contains(ButtonColors, initColor);
+    const isDefaultColor = isNamedColor && contains(DefaultColors, initColor);
 
     const baseColor = initColor
       ? isNamedColor

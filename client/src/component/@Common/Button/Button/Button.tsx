@@ -3,7 +3,7 @@
  * ******************************************************************************************************************/
 
 import React, { CSSProperties } from 'react';
-import { AllColors, DefaultColors, getDefaultOnColor, OpacityColors, TextColors } from '@theme';
+import { AllColors, ButtonColors, DefaultColors, getDefaultOnColor } from '@theme';
 import { ButtonProps as Props } from './Button.types';
 import { LoadingIndicator } from '../../Loadings';
 import { CustomComponent, CustomComponentProps } from '../../CustomComponent';
@@ -51,11 +51,8 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
      * ******************************************************************************************************************/
 
     const isCustomColor = variant === 'contained' && initBackgroundColor !== undefined;
-
-    const isDefaultColor = contains(DefaultColors, initColor);
-    const isTextColor = !isDefaultColor && contains(TextColors, initColor);
-    const isOpacityColor = !isDefaultColor && !isTextColor && contains(OpacityColors, initColor);
-    const isNamedColor = isDefaultColor || isTextColor || isOpacityColor;
+    const isNamedColor = contains(ButtonColors, initColor);
+    const isDefaultColor = isNamedColor && contains(DefaultColors, initColor);
 
     const baseColor = initColor
       ? isNamedColor
