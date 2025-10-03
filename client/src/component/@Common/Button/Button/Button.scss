@@ -55,21 +55,9 @@
 
     // 버튼 Hover 시 효과
     &:hover {
-      &.Button-variant-contained {
-        &.Button-dark-color {
-          filter: brightness(1.07); // contained 버튼 어두운 색상인 경우
-        }
-        &.Button-light-color {
-          filter: brightness(0.93); // contained 버튼 밝은 색상인 경우
-        }
-      }
+      &.Button-variant-contained,
       &.Button-variant-outlined {
-        &.Button-dark-color {
-          filter: brightness(1.2); // outlined, text 버튼 어두운 색상인 경우
-        }
-        &.Button-light-color {
-          filter: brightness(0.8); // outlined, text 버튼 밝은 색상인 경우
-        }
+        opacity: 0.9;
       }
       &.Button-variant-text {
         > .Button__Label {
