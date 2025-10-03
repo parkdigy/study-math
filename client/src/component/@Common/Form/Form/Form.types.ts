@@ -10,5 +10,9 @@ export interface FormProps extends Omit<HTMLProps<HTMLFormElement>, 'ref' | 'noV
   titlePosition?: 'top' | 'left';
   titleWidth?: number;
   hideTitle?: boolean;
-  onSubmit?: (values: Dict<string | number | boolean | undefined>) => void;
+  // 구현부에서 관대한 타입을 허용하기 위해서
+  // onSubmit?: (values) => void 를 사용하지 않고,
+  // onSubmit?(values): void 로 사용
+  // 예) const handleSubmit = (values: { name: string; age: number }) => { ... }
+  onSubmit?(values: Dict<string | number | boolean | undefined>): void;
 }
