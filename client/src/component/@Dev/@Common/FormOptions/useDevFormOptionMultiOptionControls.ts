@@ -27,6 +27,19 @@ export const useDevFormOptionMultiOptionControls = ({
   );
 
   /********************************************************************************************************************
+   * buttonSize
+   * ******************************************************************************************************************/
+  const [buttonSize, buttonSizeControl] = useDevFormControl(
+    'buttonSize',
+    flatOptions.includes('buttonSize'),
+    defaultData?.buttonSize,
+    {
+      ...useFormControlData,
+      props: optionProps?.buttonSize,
+    }
+  );
+
+  /********************************************************************************************************************
    * iconButtonVariant
    * ******************************************************************************************************************/
   const [iconButtonVariant, iconButtonVariantControl] = useDevFormControl(
@@ -283,6 +296,8 @@ export const useDevFormOptionMultiOptionControls = ({
   return {
     buttonVariant,
     buttonVariantControl,
+    buttonSize,
+    buttonSizeControl,
     iconButtonVariant,
     iconButtonVariantControl,
     alertType,

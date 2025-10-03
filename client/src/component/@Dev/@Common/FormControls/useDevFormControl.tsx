@@ -47,6 +47,7 @@ import { Dev_FormControl_ListVariant } from './ListVariant';
 import { Dev_FormControl_ChipVariant } from './ChipVariant';
 import { Dev_FormControl_OnClick } from './OnClick';
 import { Dev_FormControl_OnRemoveClick } from './OnRemoveClick';
+import { Dev_FormControl_ButtonSize } from './ButtonSize';
 
 export type UseDevFormControlData<TOption extends Exclude<Dev_FormOptionsOption, 'cols'>> = {
   screen: ScreenSizeInfo;
@@ -100,6 +101,8 @@ function useDevFormControl<TOption extends Exclude<Dev_FormOptionsOption, 'cols'
 
   const control = !isUse ? null : /** Multi Option Controls */ option === 'buttonVariant' ? (
     <Dev_FormControl_ButtonVariant {...multiOptionDefaultProps} />
+  ) : option === 'buttonSize' ? (
+    <Dev_FormControl_ButtonSize {...multiOptionDefaultProps} />
   ) : option === 'iconButtonVariant' ? (
     <Dev_FormControl_IconButtonVariant {...multiOptionDefaultProps} />
   ) : option === 'alertType' ? (

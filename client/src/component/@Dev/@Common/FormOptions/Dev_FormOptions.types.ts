@@ -1,6 +1,7 @@
 import {
   Dev_FormControl_AlertTypeProps,
   Dev_FormControl_BackgroundColorProps,
+  Dev_FormControl_ButtonSizeProps,
   Dev_FormControl_ButtonVariantProps,
   Dev_FormControl_ChipVariantProps,
   Dev_FormControl_ClearableProps,
@@ -49,6 +50,7 @@ import { Dev_FormControl_SearchableProps } from '../FormControls/Searchable';
 export type Dev_FormOptionsOption =
   /** Multi Option Controls */
   | 'buttonVariant'
+  | 'buttonSize'
   | 'iconButtonVariant'
   | 'alertType'
   | 'color'
@@ -96,6 +98,7 @@ export type Dev_FormOptionsOption =
 
 export type Dev_FormOptionsRadioGroupOption =
   | 'buttonVariant'
+  | 'buttonSize'
   | 'iconButtonVariant'
   | 'alertType'
   | 'color'
@@ -124,6 +127,7 @@ export interface Dev_FormOptionsData<
 > {
   /** Multi Option Controls */
   buttonVariant?: Dev_FormControl_ButtonVariantProps['value'];
+  buttonSize?: Dev_FormControl_ButtonSizeProps['value'];
   iconButtonVariant?: Dev_FormControl_IconButtonVariantProps['value'];
   alertType?: Dev_FormControl_AlertTypeProps['value'];
   color?: TColors;
@@ -181,6 +185,7 @@ export interface Dev_FormOptionsControlPropsMap {
     keyof Dev_FormOptionsControlCommonProps | 'useCustomColor'
   >;
   buttonVariant?: Pick<Dev_FormControl_ButtonVariantProps, keyof Dev_FormOptionsControlCommonProps>;
+  buttonSize?: Pick<Dev_FormControl_ButtonSizeProps, keyof Dev_FormOptionsControlCommonProps>;
   color?: Pick<Dev_FormControl_ColorProps, keyof Dev_FormOptionsControlCommonProps | 'useCustomColor'>;
   fontWeight?: Pick<Dev_FormControl_FontWeightProps, keyof Dev_FormOptionsControlCommonProps>;
   tooltipPlace?: Pick<Dev_FormControl_TooltipPlaceProps, keyof Dev_FormOptionsControlCommonProps>;

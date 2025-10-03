@@ -4,7 +4,7 @@
 
 import React, { CSSProperties } from 'react';
 import { AllColors, ButtonColors, DefaultColors, getDefaultOnColor } from '@theme';
-import { ButtonProps as Props } from './Button.types';
+import { ButtonProps as Props, ButtonSizes } from './Button.types';
 import { LoadingIndicator } from '../../Loadings';
 import { CustomComponent, CustomComponentProps } from '../../CustomComponent';
 import Color from 'color';
@@ -30,11 +30,9 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
       fontSize: initFontSize,
       underline,
       textDecoration,
-      ph,
-      pv,
-      borderRadius,
       url,
       externalUrlOpenInThisTab,
+      cssVars,
       onClick,
       ...props
     },
@@ -107,16 +105,8 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
       .alpha(outlineBaseColorColor.alpha() < 1 ? Math.max(Math.min(1 - outlineBaseColorColor.alpha(), 0.5), 0.2) : 0.5)
       .hexa();
 
-    const sizeCssName = theme.css.names.sizes[size];
-    const sizeInfo = theme.sizes[size];
-    const fontSize = ifUndefined(initFontSize, sizeInfo.fontSize);
-
-    // variant 가 text 아닐 때, padding, borderRadius 설정
-    if (variant !== 'text') {
-      ph = ifUndefined(ph, fontSize);
-      pv = ifUndefined(pv, Math.round(fontSize * 0.6));
-      borderRadius = ifUndefined(borderRadius, Math.round(fontSize * 0.3));
-    }
+    const sizeInfo = ButtonSizes[size];
+    const fontSize = ifUndefined(initFontSize, sizeInfo.fontSize[variant]);
 
     iconSpacing = ifUndefined(iconSpacing, Math.round(fontSize / 2.5));
 
@@ -154,28 +144,43 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
       <CustomComponent<CustomComponentProps<React.ButtonHTMLAttributes<HTMLButtonElement>>>
         component='button'
         ref={ref}
-        className={classnames(
-          className,
-          'Button',
-          `Button-size-${sizeCssName}`,
-          `Button-variant-${variant}`,
-          variant === 'text' ? `font-${sizeCssName}` : `font-size-${sizeCssName}`,
-          loading && 'Button-loading'
-        )}
+        className={classnames(className, 'Button', `Button-variant-${variant}`, loading && 'Button-loading')}
         outlineColor={outlineColor}
         backgroundColor={backgroundColor}
         color={color}
         border={border}
         whiteSpace={wrapLabel ? 'wrap' : 'nowrap'}
-        ph={ph}
-        pv={pv}
-        borderRadius={borderRadius}
         textDecoration={textDecoration !== underline ? textDecoration : underline ? 'underline' : undefined}
+        cssVars={{
+          '--button__font-size':
+            typeof sizeInfo.fontSize[variant] === 'string'
+              ? sizeInfo.fontSize[variant]
+              : `${sizeInfo.fontSize[variant]}px`,
+          '--button__line-height':
+            typeof sizeInfo.lineHeight[variant] === 'string'
+              ? sizeInfo.lineHeight[variant]
+              : `${sizeInfo.lineHeight[variant]}`,
+          '--button__font-weight':
+            typeof sizeInfo.fontWeight[variant] === 'string'
+              ? sizeInfo.fontWeight[variant]
+              : `${sizeInfo.fontWeight[variant]}`,
+          '--button__height':
+            typeof sizeInfo.height[variant] === 'string' ? sizeInfo.height[variant] : `${sizeInfo.height[variant]}px`,
+          '--button__border-radius':
+            typeof sizeInfo.borderRadius[variant] === 'string'
+              ? sizeInfo.borderRadius[variant]
+              : `${sizeInfo.borderRadius[variant]}px`,
+          '--button__padding-horizontal':
+            typeof sizeInfo.paddingHorizontal[variant] === 'string'
+              ? sizeInfo.paddingHorizontal[variant]
+              : `${sizeInfo.paddingHorizontal[variant]}px`,
+          ...cssVars,
+        }}
         onClick={url !== undefined ? handleClick : onClick}
         {...props}
       >
         <Stack
-          className='Button-label'
+          className='Button__Label'
           flexDirection={iconPosition === 'end' ? 'row-reverse' : 'row'}
           center
           justifyContent={variant === 'text' ? 'flex-start' : 'center'}
@@ -188,7 +193,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
               {icon}
             </Icon>
           ) : null}
-          <div className='Button-label-text'>{children}</div>
+          <div className='Button__Label__Text'>{children}</div>
         </Stack>
       </CustomComponent>
     );

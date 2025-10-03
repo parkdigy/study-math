@@ -1,6 +1,50 @@
 import React, { CSSProperties } from 'react';
 import { CustomComponentBackgroundStyles, CustomComponentProps } from '../../CustomComponent';
-import { AllSizes, ButtonColors } from '@theme';
+import { ButtonColors } from '@theme';
+
+export const ButtonSizes = {
+  xs: {
+    fontSize: { contained: 12, outlined: 12, text: 12 },
+    fontWeight: { contained: 700, outlined: 600, text: 400 },
+    lineHeight: { contained: 1.2, outlined: 1.2, text: 1.2 },
+    height: { contained: 28, outlined: 28, text: 'auto' },
+    borderRadius: { contained: 5, outlined: 5, text: 0 },
+    paddingHorizontal: { contained: 10, outlined: 10, text: 0 },
+  },
+  sm: {
+    fontSize: { contained: 14, outlined: 14, text: 14 },
+    fontWeight: { contained: 700, outlined: 600, text: 400 },
+    lineHeight: { contained: 1.6, outlined: 1.6, text: 1.6 },
+    height: { contained: 32, outlined: 32, text: 'auto' },
+    borderRadius: { contained: 5, outlined: 5, text: 0 },
+    paddingHorizontal: { contained: 15, outlined: 15, text: 0 },
+  },
+  md: {
+    fontSize: { contained: 16, outlined: 16, text: 16 },
+    fontWeight: { contained: 700, outlined: 600, text: 400 },
+    lineHeight: { contained: 1.6, outlined: 1.6, text: 1.6 },
+    height: { contained: 42, outlined: 42, text: 'auto' },
+    borderRadius: { contained: 7, outlined: 7, text: 0 },
+    paddingHorizontal: { contained: 20, outlined: 20, text: 0 },
+  },
+  lg: {
+    fontSize: { contained: 16, outlined: 16, text: 16 },
+    fontWeight: { contained: 700, outlined: 600, text: 400 },
+    lineHeight: { contained: 1.6, outlined: 1.6, text: 1.6 },
+    height: { contained: 56, outlined: 56, text: 'auto' },
+    borderRadius: { contained: 10, outlined: 10, text: 0 },
+    paddingHorizontal: { contained: 25, outlined: 25, text: 0 },
+  },
+  xl: {
+    fontSize: { contained: 20, outlined: 20, text: 20 },
+    fontWeight: { contained: 700, outlined: 600, text: 400 },
+    lineHeight: { contained: 1.4, outlined: 1.4, text: 1.4 },
+    height: { contained: 70, outlined: 70, text: 'auto' },
+    borderRadius: { contained: 10, outlined: 10, text: 0 },
+    paddingHorizontal: { contained: 30, outlined: 30, text: 0 },
+  },
+} as const;
+export type ButtonSizes = keyof typeof ButtonSizes;
 
 export interface ButtonProps
   extends Omit<
@@ -16,7 +60,7 @@ export interface ButtonProps
   // 색상 반전 (variant 가 contained 일 때만 적용됨)
   reverse?: boolean;
   // 크기
-  size?: AllSizes;
+  size?: ButtonSizes;
   // 로딩 여부
   loading?: boolean;
   // 버튼 크기가 라벨보다 작을 경우, 줄바꿈 할지 여부

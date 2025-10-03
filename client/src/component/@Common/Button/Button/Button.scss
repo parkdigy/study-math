@@ -5,8 +5,14 @@
 @use '@sass/util';
 
 .Button {
+  font-size: var(--button__font-size);
+  font-weight: var(--button__font-weight);
+  line-height: var(--button__line-height);
+  padding-left: var(--button__padding-horizontal);
+  padding-right: var(--button__padding-horizontal);
+  height: var(--button__height);
   border: 0;
-  border-radius: 4px;
+  border-radius: var(--button__border-radius);
   outline-width: 0;
   outline-style: solid;
   max-width: 100%;
@@ -66,7 +72,7 @@
         }
       }
       &.Button-variant-text {
-        > .Button-label {
+        > .Button__Label {
           text-decoration: underline;
         }
       }
@@ -77,8 +83,8 @@
   // 라벨
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  > .Button-label {
-    > .Button-label-text {
+  > .Button__Label {
+    > .Button__Label__text {
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;

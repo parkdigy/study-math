@@ -10,6 +10,7 @@ export * from './IconSpacing';
 export * from './FontWeight';
 export * from './Spacing';
 export * from './ButtonVariant';
+export * from './ButtonSize';
 export * from './TooltipPlace';
 export * from './IconButtonVariant';
 export * from './AlertType';

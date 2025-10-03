@@ -7,9 +7,7 @@ import { toast } from '@toast';
 import { FlattenArray } from '@pdg/types';
 
 const _formOptions = [
-  'buttonVariant',
-  '|',
-  'size',
+  ['buttonVariant', 'buttonSize'],
   '|',
   ['color', 'backgroundColor'],
   '|',
@@ -31,9 +29,9 @@ const Dev_Button_Button = () => {
 
   const [_data, setData] = useState<Pick<Dev_FormOptionsData, _formOptions>>({});
 
-  const { buttonVariant: variant, url, ...otherData } = _data;
+  const { buttonVariant: variant, buttonSize: size, url, ...otherData } = _data;
 
-  const data = { variant, url: ifEmpty(url, undefined), ...otherData };
+  const data = { variant, size, url: ifEmpty(url, undefined), ...otherData };
 
   /********************************************************************************************************************
    * Render
