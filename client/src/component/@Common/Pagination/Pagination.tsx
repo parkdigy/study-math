@@ -54,7 +54,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, Props>(({ paging, onC
         return (
           <div
             key={idx}
-            className={classnames('Pagination__Page', page >= 1000 && 'Pagination__Page_over_1000')}
+            className={classnames('Pagination__Page', page >= 1000 && 'Pagination__Page-over-1000')}
             data-active={page === currentPage}
           >
             {page}

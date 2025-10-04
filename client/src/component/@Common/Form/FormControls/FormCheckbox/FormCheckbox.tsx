@@ -153,9 +153,11 @@ export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
       >
         <div
           ref={innerRef}
-          className={classnames('FormCheckboxControl')}
-          data-disabled={disabled}
-          data-error={error !== false}
+          className={classnames(
+            'FormCheckbox__Control',
+            disabled && 'FormCheckbox__Control-disabled',
+            error !== false && 'FormCheckbox__Control-error'
+          )}
           tabIndex={0}
           onClick={disabled ? undefined : commands.toggle}
           onKeyDown={disabled ? undefined : (e) => (e.key === 'Enter' || e.key === ' ') && commands.toggle()}
@@ -169,7 +171,7 @@ export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
           )}
 
           {/* 라벨 */}
-          <T className='FormCheckboxLabel' data-checked={checked} color={labelColor}>
+          <T className={classnames('FormCheckbox__Label', checked && 'FormCheckbox__Label-checked')} color={labelColor}>
             {label}
           </T>
         </div>

@@ -3,7 +3,10 @@
 @use '@sass/size';
 @use '@sass/mixin-placeholder';
 
-.FormSearchInputWrapper {
+.FormSelectInput__Container {
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 변수
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   $font-size: size.$body-font-size;
   $font-weight: 500;
   $line-height: 22px;
@@ -19,38 +22,59 @@
   $error-border-outline-color: color.$form-error;
   $placeholder-color: color.$form-placeholder;
 
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 기본 스타일
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  padding-right: $padding-horizontal;
+  background-color: $background-color;
+  color: $text-color;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  outline: thin solid $outline-color;
+  width: 100%;
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Small 사이즈
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  &.FormSelectInput__Container-size-small {
+    padding-right: $small-size-padding-horizontal;
+  }
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // 숨김 상태
-  &:not([data-show='true']) {
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  &:not(.FormSelectInput__Container-show) {
     position: absolute;
+    top: -99999;
     width: 0;
     height: 0;
+    border: none;
+    outline: none;
+    overflow: hidden;
   }
 
-  // 노출 상태
-  &[data-show='true'] {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    position: relative;
-    padding-right: $padding-horizontal;
-    background-color: $background-color;
-    color: $text-color;
-    border: 1px solid $border-color;
-    border-radius: $border-radius;
-    outline: thin solid $outline-color;
-    width: 100%;
-
-    &[data-size='small'] {
-      padding-right: $small-size-padding-horizontal;
-    }
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 오류 상태
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  &.FormSelectInput__Container-error {
+    border-color: $error-border-outline-color;
+    outline-color: $error-border-outline-color;
   }
 
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Input
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   .FormSelectInput {
     flex: 1;
     width: 0;
     padding: $padding-vertical 0 $padding-vertical $padding-horizontal;
     border: none;
+    border-radius: $border-radius;
     outline: none;
     font-size: $font-size;
     line-height: $line-height;
@@ -58,42 +82,21 @@
     background-color: $background-color;
     color: $text-color;
 
-    &[data-size='small'] {
-      padding: $small-size-padding-vertical 0 $small-size-padding-vertical $small-size-padding-horizontal;
-    }
-
     // 포커스 아닌 상태에서 커서 기본값
     &:not(:focus) {
       cursor: default;
     }
 
-    // 숨김 상태
-    &:not([data-show='true']) {
-      position: absolute;
-      border: none;
-      width: 0;
-      height: 0;
-      outline: none;
-      padding: 0;
-      z-index: -1;
-    }
-
-    // 노출 상태
-    &[data-show='true'] {
-      // 오류 시 테두리, 아웃라인 색상 변경
-      &[data-error='true'] {
-        border-color: $error-border-outline-color;
-        outline-color: $error-border-outline-color;
-      }
-    }
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Placeholder
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     @include mixin-placeholder.all($font-size, $line-height, $font-weight, $placeholder-color);
 
-    &[data-selected='true'] {
+    // Small 사이즈
+    &.FormSelectInput-size-small {
+      padding: $small-size-padding-vertical 0 $small-size-padding-vertical $small-size-padding-horizontal;
+    }
+
+    // 선택 상태
+    &.FormSelectInput-selected {
       @include mixin-placeholder.color($text-color);
     }
   }

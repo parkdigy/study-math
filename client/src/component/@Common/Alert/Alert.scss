@@ -10,7 +10,7 @@
   flex-direction: row;
   gap: 8px;
 
-  .Alert-icon {
+  .Alert__Icon {
     font-size: 1.2rem !important;
     margin-top: 2px;
   }
@@ -18,23 +18,23 @@
   &.Alert-has-title {
     gap: 10px;
 
-    .Alert-icon {
+    .Alert__Icon {
       font-size: 1.6rem !important;
       margin-top: 5ox;
     }
   }
 
-  .Alert-body {
+  .Alert__Body {
     display: flex;
     flex-direction: column;
     gap: 3px;
 
-    .Alert-body-title {
+    .Alert__Body__Title {
       font-size: 15px;
       font-weight: 500;
       margin-top: 3px;
     }
-    .Alert-body-content {
+    .Alert__Body__Content {
       font-size: 14px;
       line-height: 1.4;
       margin-top: 2px;

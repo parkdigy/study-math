@@ -233,14 +233,14 @@ function FormSelectDropdown<T extends string | number>({
               }
             },
           }}
-          className='FormSelect-SimpleBar'
+          className='FormSelect__SimpleBar'
           tabIndex={-1}
           autoHide={false}
         >
           {isSetSimpleBarRef && (
             <>
               {empty(items) ? (
-                <div className='FormSelectDropdown-empty-items'>{loading ? loadingEmptyItemText : emptyItemText}</div>
+                <div className='FormSelectDropdown__EmptyItems'>{loading ? loadingEmptyItemText : emptyItemText}</div>
               ) : (
                 items.map((item, idx) => (
                   <div

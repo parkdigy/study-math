@@ -57,13 +57,13 @@ export const Alert = React.forwardRef<HTMLDivElement, Props>(
         {...boxProps}
       >
         {showIcon && (
-          <Icon className='Alert-icon' color={baseColor}>
+          <Icon className='Alert__Icon' color={baseColor}>
             {icon}
           </Icon>
         )}
-        <div className={classnames(className, 'Alert-body')}>
-          {title && <div className='Alert-body-title'>{title}</div>}
-          <div className='Alert-body-content'>{typeof message === 'string' ? <pre>{message}</pre> : message}</div>
+        <div className={classnames(className, 'Alert__Body')}>
+          {title && <div className='Alert__Body__Title'>{title}</div>}
+          <div className='Alert__Body__Content'>{typeof message === 'string' ? <pre>{message}</pre> : message}</div>
         </div>
       </Box>
     );

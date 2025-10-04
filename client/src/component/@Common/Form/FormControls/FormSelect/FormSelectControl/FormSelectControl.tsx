@@ -175,8 +175,8 @@ function FormSelectControl<T extends string | number>({
     nextTick(() => {
       if (document.hasFocus()) {
         if (
-          document.activeElement?.className.includes(`FormSelectInput__${id}`) ||
-          document.activeElement?.className.includes(`FormSelectDropdownItem__${id}`)
+          document.activeElement?.className.includes(`FormSelectInput-${id}`) ||
+          document.activeElement?.className.includes(`FormSelectDropdownItem-${id}`)
         ) {
           inputCommandsRef.current?.focus();
           return;
@@ -228,12 +228,14 @@ function FormSelectControl<T extends string | number>({
   return (
     <>
       <div
-        className={classnames('FormSelectControl')}
-        data-size={size}
-        data-show={!isShowInput}
-        data-focused={isFocused}
-        data-disabled={disabled}
-        data-error={error}
+        className={classnames(
+          'FormSelectControl',
+          `FormSelectControl-size-${size}`,
+          !isShowInput && 'FormSelectControl-show',
+          isFocused && 'FormSelectControl-focused',
+          disabled && 'FormSelectControl-disabled',
+          error && 'FormSelectControl-error'
+        )}
         tabIndex={-1}
         onMouseDown={disabled ? undefined : toggleDropdown}
       >
@@ -262,7 +264,7 @@ function FormSelectControl<T extends string | number>({
 
         {/* 라벨 */}
         {!isShowInput && (
-          <div className={classnames('FormSelectControlLabel', !itemLabel && 'FormSelectControlPlaceholder')}>
+          <div className={classnames('FormSelectControl__Label', !itemLabel && 'FormSelectControl__Placeholder')}>
             &nbsp;
             <div>{ifUndefined(itemLabel, ifEmpty(placeholder, <>&nbsp;</>))}</div>
           </div>

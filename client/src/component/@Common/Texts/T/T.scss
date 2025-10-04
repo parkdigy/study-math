@@ -1,6 +1,6 @@
 .T {
   &.T-ellipsis,
-  &.T-ellipsis > .T-text {
+  &.T-ellipsis > .T__Text {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;

@@ -1,15 +1,15 @@
 .FormRadioGroup {
-  .FormRadioGroupMaxWidth {
+  .FormRadioGroup__MaxWidth {
     position: absolute;
     top: -99999px;
     left: 0;
     right: 0;
   }
 
-  .FormRadioGroupBody {
+  .FormRadioGroup__Body {
     flex: 1;
 
-    .FormRadioGroupBodyGridContainer {
+    .FormRadioGroup__Body__GridContainer {
       flex: 1;
     }
   }

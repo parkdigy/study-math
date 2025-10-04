@@ -46,7 +46,7 @@ export const ColorPicker = React.forwardRef<HTMLDivElement, Props>(
 
       const clickHandler = (event: PointerEvent) => {
         if (!isOpenRef.current) return;
-        if (event.target && (event.target as HTMLElement).className.includes(`ColorPicker_Swatch-${id}`)) return;
+        if (event.target && (event.target as HTMLElement).className.includes(`ColorPicker__Swatch-${id}`)) return;
         if (startedInside || !startedWhenMounted) return;
         if (!popoverRef.current || popoverRef.current.contains(event.target as any)) return;
 
@@ -117,23 +117,23 @@ export const ColorPicker = React.forwardRef<HTMLDivElement, Props>(
       <div ref={ref} className={classnames(className, 'ColorPicker')}>
         <div
           ref={swatchRef}
-          className={classnames('ColorPicker_Swatch', `ColorPicker_Swatch-${id}`)}
+          className={classnames('ColorPicker__Swatch', `ColorPicker__Swatch-${id}`)}
           style={{ backgroundColor: color }}
           onClick={(e) => {
-            if ((e.target as HTMLElement).className.includes(`ColorPicker_Swatch-${id}`)) {
+            if ((e.target as HTMLElement).className.includes(`ColorPicker__Swatch-${id}`)) {
               toggle();
             }
           }}
         >
           <div
-            className={classnames('ColorPicker_Popover', isOpen && 'ColorPicker_Popover-open')}
+            className={classnames('ColorPicker__Popover', isOpen && 'ColorPicker__Popover-open')}
             style={popoverStyle}
             ref={popoverRef}
           >
             {isOpen && (
               <>
                 <HexAlphaColorPicker color={color} onChange={setColor} />
-                <div className='ColorPicker_CloseButton' onClick={toggle}>
+                <div className='ColorPicker__CloseButton' onClick={toggle}>
                   닫기
                 </div>
               </>

@@ -13,7 +13,7 @@
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Radio 유형
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  &[data-type='radio'] {
+  &.FormRadioGroupItem-type-radio {
     outline: 0 solid color.$form-primary;
     outline-offset: 3px;
 
@@ -22,7 +22,7 @@
       outline-width: thin;
     }
 
-    .FormRadioGroupItemRadio {
+    .FormRadioGroupItem__Radio {
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -35,32 +35,17 @@
         font-size: size.$body-font-size;
         line-height: size.$body-line-height;
       }
-
-      // 선택 상태
-      &[data-active='true'] {
-        > .T {
-          color: color.$text-accent;
-        }
-      }
-      // 비활성화 상태
-      &[data-disabled='true'] {
-        cursor: default;
-
-        > .T {
-          color: color.$form-disabled-text;
-        }
-      }
     }
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Button, Small Button 유형
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  &[data-type='button'],
-  &[data-type='smallButton'] {
+  &.FormRadioGroupItem-type-button,
+  &.FormRadioGroupItem-type-smallButton {
     border-radius: 100px;
 
-    .FormRadioGroupItemButton {
+    .FormRadioGroupItem__Button {
       border: 1px solid color.$form-border;
       border-radius: 100px;
       padding: 10px 18px;
@@ -75,38 +60,81 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-
-      // 비활성화 상태
-      &[data-disabled='true'] {
-        background-color: color.$form-disabled-background;
-        border-color: color.$form-disabled-border;
-        color: color.$form-disabled-text;
-        cursor: default;
-      }
     }
 
-    &[data-type='smallButton'] .FormRadioGroupItemButton {
+    &.FormRadioGroupItem-type-smallButton .FormRadioGroupItem__Button {
       padding: 4px 13px;
     }
 
     // Button 유형 - Focus Visible 상태
     &:focus-visible {
-      .FormRadioGroupItemButton {
+      .FormRadioGroupItem__Button {
         border-color: color.$form-primary;
       }
     }
 
-    &[data-error='true'] {
-      .FormRadioGroupItemButton {
+    &.FormRadioGroupItem-error {
+      .FormRadioGroupItem__Button {
         border-color: color.$form-error;
       }
     }
 
-    &[data-active='true'] {
-      .FormRadioGroupItemButton {
+    &.FormRadioGroupItem-active {
+      .FormRadioGroupItem__Button {
         background-color: color.$form-primary;
         border-color: color.$form-primary;
         color: color.$form-on-primary;
+      }
+    }
+  }
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 선택 상태
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  &.FormRadioGroupItem-active {
+    // Radio 유형
+    &.FormRadioGroupItem-type-radio {
+      .FormRadioGroupItem__Radio {
+        > .T {
+          color: color.$text-accent;
+        }
+      }
+    }
+  }
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 비활성 상태
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  &.FormRadioGroupItem-disabled {
+    // Radio 유형
+    &.FormRadioGroupItem-type-radio {
+      .FormRadioGroupItem__Radio {
+        cursor: default;
+
+        > .T {
+          color: color.$form-disabled-text;
+        }
+      }
+    }
+
+    // Button, Small Button 유형
+    &.FormRadioGroupItem-type-button,
+    &.FormRadioGroupItem-type-smallButton {
+      .FormRadioGroupItem__Button {
+        cursor: default;
+      }
+    }
+
+    // 미선택 아이템의 비활성 상태
+    &:not(.FormRadioGroupItem-active) {
+      // Button, Small Button 유형
+      &.FormRadioGroupItem-type-button,
+      &.FormRadioGroupItem-type-smallButton {
+        .FormRadioGroupItem__Button {
+          background-color: color.$form-disabled-background;
+          border-color: color.$form-disabled-border;
+          color: color.$form-disabled-text;
+        }
       }
     }
   }

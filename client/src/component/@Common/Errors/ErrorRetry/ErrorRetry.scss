@@ -21,7 +21,7 @@
     height: 100%;
   }
 
-  .ErrorRetry-content {
+  .ErrorRetry__Content {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -33,7 +33,7 @@
     padding: 20px 40px;
     border-radius: 20px;
 
-    .ErrorRetry-content-title {
+    .ErrorRetry__Content__Title {
       margin-bottom: 7px;
       font-weight: 600;
     }

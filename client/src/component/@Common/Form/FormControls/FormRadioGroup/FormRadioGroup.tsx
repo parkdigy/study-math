@@ -345,11 +345,11 @@ export const FormRadioGroup = ToForwardRefExoticComponent(
         error={error}
         {...formControlBaseProps}
       >
-        <div ref={maxWidthRef} className='FormRadioGroupMaxWidth' />
+        <div ref={maxWidthRef} className='FormRadioGroup__MaxWidth' />
         {/* mh, ph는 outline 안보이는 문제 해결을 위해 추가 */}
-        <div ref={containerRef} className='FormRadioGroupBody'>
+        <div ref={containerRef} className='FormRadioGroup__Body'>
           {grid ? (
-            <div className='FormRadioGroupBodyGridContainer'>
+            <div className='FormRadioGroup__Body__GridContainer'>
               <Grid spacing={ifUndefined(grid.spacing, spacing)} {...grid}>
                 {items.map((item, idx) => (
                   <Col key={idx}>{getItem(idx, item, grid?.cols === 1)}</Col>
@@ -357,7 +357,7 @@ export const FormRadioGroup = ToForwardRefExoticComponent(
               </Grid>
             </div>
           ) : (
-            <Stack className='FormRadioGroupControl' row center spacing={spacing}>
+            <Stack row center spacing={spacing}>
               {items.map((item, idx) => getItem(idx, item))}
             </Stack>
           )}

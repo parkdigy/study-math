@@ -47,7 +47,7 @@
     animation: fadeout 0.3s linear forwards;
   }
 
-  .LoadingContent {
+  .Loading__Content {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -56,7 +56,7 @@
     border-radius: 50%;
     padding: 5px;
 
-    .LoadingText {
+    .Loading__Content__Text {
       width: 30px;
       height: 30px;
       border: 4px solid #fff;

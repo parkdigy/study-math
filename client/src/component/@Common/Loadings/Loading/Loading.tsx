@@ -101,8 +101,8 @@ const Loading = React.forwardRef<LoadingCommands, LoadingProps>((props, ref) => 
         e.preventDefault();
       }}
     >
-      <div className='LoadingContent'>
-        <div className='LoadingText' />
+      <div className='Loading__Content'>
+        <div className='Loading__Content__Text' />
       </div>
     </div>
   ) : null;

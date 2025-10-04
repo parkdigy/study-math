@@ -12,10 +12,6 @@
   font-size: size.$body-font-size;
   line-height: size.$body-line-height;
 
-  &[data-error='true'] {
-    color: util.apply-opacity-value(color.$form-error, 0.7);
-  }
-
   // 텍스트
   > div {
     display: flex;

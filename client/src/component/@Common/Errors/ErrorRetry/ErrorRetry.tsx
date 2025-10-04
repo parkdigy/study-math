@@ -46,7 +46,7 @@ const ErrorRetry = React.forwardRef<HTMLDivElement, Props>(
         )}
       >
         <Box
-          className='ErrorRetry-content'
+          className='ErrorRetry__Content'
           color={color ? theme.css.vars.colors[getDefaultOnColor(color)] : undefined}
           backgroundColor={color ? theme.css.vars.colors[color] : undefined}
           {...props}
@@ -55,7 +55,7 @@ const ErrorRetry = React.forwardRef<HTMLDivElement, Props>(
             error
           </Icon>
           <div>
-            {title && <div className='ErrorRetry-content-title'>{title}</div>}
+            {title && <div className='ErrorRetry__Content__Title'>{title}</div>}
             {message ? (
               <>{typeof message === 'string' ? <pre>{message}</pre> : message}</>
             ) : (

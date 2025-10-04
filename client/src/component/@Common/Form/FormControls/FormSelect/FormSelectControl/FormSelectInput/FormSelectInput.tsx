@@ -114,14 +114,22 @@ const FormSelectInput = ({
    * ******************************************************************************************************************/
 
   return (
-    <div className={classnames('FormSearchInputWrapper')} data-size={size} data-show={show}>
+    <div
+      className={classnames(
+        'FormSelectInput__Container',
+        `FormSelectInput__Container-size-${size}`,
+        show && 'FormSelectInput__Container-show',
+        error && 'FormSelectInput__Container-error'
+      )}
+    >
       <input
         ref={inputRef}
-        className={classnames('FormSelectInput', `FormSelectInput__${id}`)}
-        data-size={size}
-        data-show={show}
-        data-error={error}
-        data-selected={itemLabel !== undefined}
+        className={classnames(
+          'FormSelectInput',
+          `FormSelectInput-${id}`,
+          `FormSelectInput-size-${size}`,
+          itemLabel !== undefined && 'FormSelectInput-selected'
+        )}
         name={id}
         autoComplete='off'
         tabIndex={0}

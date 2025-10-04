@@ -2,7 +2,7 @@
 @use '@sass/size';
 
 .FormCheckbox {
-  .FormCheckboxControl {
+  .FormCheckbox__Control {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -18,29 +18,29 @@
     }
 
     // 라벨
-    .FormCheckboxLabel {
+    .FormCheckbox__Label {
       color: color.$text-lighten;
       font-size: size.$body-font-size;
       line-height: size.$body-line-height;
 
-      &[data-checked='true'] {
+      &.FormCheckbox__Label-checked {
         color: color.$text-accent;
       }
     }
 
     // disabled 상태
-    &[data-disabled='true'] {
+    &.FormCheckbox__Control-disabled {
       cursor: default;
       > img {
         opacity: 0.5;
       }
-      .FormCheckboxLabel {
+      .FormCheckbox__Label {
         color: color.$form-disabled-text;
       }
     }
 
     // 오류 상태 - 테두리 색상 변경
-    &[data-error='true'] {
+    &.FormCheckbox__Control-error {
       outline-color: color.$form-error;
     }
   }

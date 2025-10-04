@@ -28,10 +28,13 @@ export function FormSelectDropdownItem<T extends string | number>({
 
   return (
     <Box
-      className={classnames('FormSelectDropdownItem', `FormSelectDropdownItem__${id}`)}
-      data-disabled={info.disabled}
-      data-active={active}
-      data-temp-active={tempActive}
+      className={classnames(
+        'FormSelectDropdownItem',
+        `FormSelectDropdownItem-${id}`,
+        info.disabled && 'FormSelectDropdownItem-disabled',
+        active && 'FormSelectDropdownItem-active',
+        tempActive && 'FormSelectDropdownItem-temp-active'
+      )}
       tabIndex={-1}
       onMouseEnter={info.disabled ? undefined : handleMouseEnter}
       onClick={info.disabled ? undefined : handleClick}

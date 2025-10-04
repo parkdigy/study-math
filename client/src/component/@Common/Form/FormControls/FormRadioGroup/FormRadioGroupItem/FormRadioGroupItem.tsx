@@ -67,16 +67,17 @@ export function FormRadioGroupItem<T extends string | number | boolean>({
   return (
     <div
       ref={containerRef}
-      className={classnames('FormRadioGroupItem')}
-      data-type={type}
-      data-error={!!error}
-      data-active={active}
+      className={classnames(
+        'FormRadioGroupItem',
+        `FormRadioGroupItem-type-${type}`,
+        error && 'FormRadioGroupItem-error',
+        active && 'FormRadioGroupItem-active',
+        disabled && 'FormRadioGroupItem-disabled'
+      )}
     >
       {type === 'radio' ? (
         <div
-          className='FormRadioGroupItemRadio'
-          data-disabled={!!disabled}
-          data-active={active}
+          className={classnames('FormRadioGroupItem__Radio')}
           style={_radioItemStyle}
           tabIndex={disabled ? -1 : 0}
           onClick={disabled ? undefined : () => onClick(value)}
@@ -101,8 +102,7 @@ export function FormRadioGroupItem<T extends string | number | boolean>({
           style={buttonFullWidth || buttonWidth ? { width: buttonFullWidth ? '100%' : buttonWidth } : undefined}
         >
           <div
-            className='FormRadioGroupItemButton'
-            data-disabled={!!disabled}
+            className='FormRadioGroupItem__Button'
             tabIndex={disabled ? -1 : 0}
             onClick={disabled ? undefined : () => onClick(value)}
             onKeyDown={disabled ? undefined : (e) => (e.key === 'Enter' || e.key === ' ') && onClick(value)}

@@ -9,7 +9,7 @@
   $remove-btn-color: color.$text-blurry;
   $padding-horizontal: calc($font-size * 1.075);
 
-  &[data-variant='outlined'] {
+  &.Chip-variant-outlined {
     $padding-horizontal: calc($font-size * 1.075 - 2px);
   }
 
@@ -24,16 +24,16 @@
   }
 
   // 클릭 가능 상태
-  &[data-clickable='true'] {
+  &.Chip-clickable {
     cursor: pointer;
   }
 
-  .ChipLabel {
+  .Chip__Label {
     font-size: $font-size;
     line-height: $line-height;
   }
 
-  .ChipCloseIcon {
+  .Chip__CloseIcon {
     cursor: pointer;
     padding: 10px $padding-horizontal 10px calc($font-size * 0.16);
     margin: -10px calc($padding-horizontal * -1) -10px 0;

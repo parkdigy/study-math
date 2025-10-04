@@ -3,6 +3,12 @@
 
 .Tooltip {
   z-index: 9999;
+
+  // 기본 색상
+  .Tooltip-color-default {
+    background-color: color.$text;
+    color: color.$background;
+  }
 }
 
 // 다크 테마일 때, 폰트 굵기 조정
@@ -10,10 +16,4 @@ body.theme-dark {
   .Tooltip {
     font-weight: 500;
   }
-}
-
-// 기본 색상
-.Tooltip.Tooltip-color-default {
-  background-color: color.$text;
-  color: color.$background;
 }

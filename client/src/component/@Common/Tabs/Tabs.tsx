@@ -12,9 +12,9 @@ export const Tabs = ToForwardRefExoticComponent(
         {items.map((item, idx) => (
           <div
             className={classnames(
-              'TabsItem',
-              value === item.value && 'TabsItem-active',
-              item.disabled && 'TabsItem-disabled'
+              'Tabs__Item',
+              value === item.value && 'Tabs__Item-active',
+              item.disabled && 'Tabs__Item-disabled'
             )}
             key={idx}
             onClick={item.disabled || item.value === value ? undefined : () => onChange(item.value)}

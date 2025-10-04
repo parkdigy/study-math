@@ -155,7 +155,13 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
       <CustomComponent<CustomComponentProps<React.ButtonHTMLAttributes<HTMLButtonElement>>>
         component='button'
         ref={ref}
-        className={classnames(className, 'Button', `Button-variant-${variant}`, loading && 'Button-loading')}
+        className={classnames(
+          className,
+          'Button',
+          `Button-variant-${variant}`,
+          loading && 'Button-loading',
+          props.disabled && 'Button-disabled'
+        )}
         outlineColor={outlineColor}
         backgroundColor={backgroundColor}
         color={color}

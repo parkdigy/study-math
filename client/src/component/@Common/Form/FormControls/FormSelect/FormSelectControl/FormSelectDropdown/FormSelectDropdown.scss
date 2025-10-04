@@ -23,7 +23,7 @@
       0 16px 16px rgba(0, 0, 0, 0.12);
 
     // 스크롤바 (SimpleBar)
-    .FormSelect-SimpleBar {
+    .FormSelect__SimpleBar {
       max-height: 300px;
 
       // 스크롤바 노출 상태일 때, 아이템이 스크롤바를 침범하지 않게 우측 여백 확보
@@ -33,7 +33,7 @@
     }
 
     // 아이템이 없을 때, 표시 텍스트
-    .FormSelectDropdown-empty-items {
+    .FormSelectDropdown__EmptyItems {
       padding: 7px 10px;
       font-size: size.$body-large-font-size;
       opacity: 0.5;

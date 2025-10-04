@@ -6,20 +6,19 @@ import './FormSelectRight.scss';
 
 export const FormSelectRight = ({ size, isOpenDropdown, loading, showClear, clearable, onClear }: Props) => {
   return (
-    <div className='FormSelectRight' data-size={size}>
-      {/* 로딩 인디케이터 */}
-      {loading && (
-        <LoadingIndicator
-          className='FormSelectControlLoadingIndicator'
-          color='opacity40'
-          size={size === 'small' ? 16 : 20}
-        />
+    <div
+      className={classnames(
+        'FormSelectRight',
+        `FormSelectRight-size-${size}`,
+        isOpenDropdown && 'FormSelectRight-open-dropdown'
       )}
+    >
+      {/* 로딩 인디케이터 */}
+      {loading && <LoadingIndicator color='opacity40' size={size === 'small' ? 16 : 20} />}
 
       {clearable && showClear && (
         <Box
-          className='FormSelectRightClear'
-          data-size={size}
+          className='FormSelectRight__Clear'
           tabIndex={-1}
           onMouseDown={(e) => {
             e.stopPropagation();
@@ -43,7 +42,7 @@ export const FormSelectRight = ({ size, isOpenDropdown, loading, showClear, clea
       {/* 화살표 */}
       <Stack row center>
         <Divider vertical height={size === 'small' ? 16 : 24} />
-        <IconArrowDown className='FormSelectRightArrow' data-size={size} data-open-dropdown={isOpenDropdown} />
+        <IconArrowDown className='FormSelectRight__Arrow' />
       </Stack>
     </div>
   );

@@ -9,7 +9,7 @@
   border-bottom: 1px solid color.$divider;
   flex-wrap: wrap;
 
-  > .TabsItem {
+  > .Tabs__Item {
     cursor: pointer;
     padding: 10px 15px;
     border-bottom: 2px solid transparent;
@@ -23,9 +23,10 @@
       border-color: util.apply-opacity-value(color.$primary, 0.5);
     }
 
-    &.TabsItem-active {
+    &.Tabs__Item-active {
       border-color: color.$primary;
       font-weight: bold;
+      color: color.$primary;
 
       &:hover {
         border-color: color.$primary;

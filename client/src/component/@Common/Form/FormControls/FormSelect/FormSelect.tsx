@@ -175,13 +175,11 @@ export const FormSelect = ToForwardRefExoticComponent(
 
     const handleFocus = useCallback(() => {
       setIsFocus(true);
-      ll('focus');
       onFocus?.();
     }, [onFocus]);
 
     const handleBlur = useCallback(() => {
       setIsFocus(false);
-      ll('blur');
       onBlur?.();
     }, [onBlur]);
 

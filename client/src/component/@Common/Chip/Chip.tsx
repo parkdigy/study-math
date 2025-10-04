@@ -14,6 +14,9 @@ export const Chip = React.forwardRef<HTMLDivElement, Props>(
       color: initColor,
       backgroundColor: initBackgroundColor,
       fontSize: initFontSize,
+      borderWidth: initBorderWidth,
+      borderStyle: initBorderStyle,
+      borderColor: initBorderColor,
       cssVars,
       onClick,
       onRemoveClick,
@@ -45,7 +48,9 @@ export const Chip = React.forwardRef<HTMLDivElement, Props>(
     let backgroundColor: CSSProperties['backgroundColor'];
     let outlineBaseColor: CSSProperties['outlineColor'];
     let removeIconColor: CSSProperties['color'];
-    let border: CSSProperties['border'] | undefined;
+    let borderWidth: Props['borderWidth'];
+    let borderStyle: Props['borderStyle'];
+    let borderColor: Props['borderColor'];
 
     const baseColor = initColor
       ? isNamedColor
@@ -80,7 +85,13 @@ export const Chip = React.forwardRef<HTMLDivElement, Props>(
         outlineBaseColor = baseColor;
       } else if (variant === 'outlined') {
         color = baseColor;
-        border = `1px solid ${Color(color).alpha(0.2).hexa()}`;
+        borderWidth = ifUndefined(initBorderWidth, 1);
+        borderStyle = ifUndefined(initBorderStyle, 'solid');
+        if (initBorderColor) {
+          borderColor = contains(AllColors, initBorderColor) ? theme.colors[initBorderColor] : initBorderColor;
+        } else {
+          borderColor = initColor === undefined ? Color(color).alpha(0.2).hexa() : color;
+        }
         backgroundColor = 'transparent';
         removeIconColor = color;
       }
@@ -102,10 +113,7 @@ export const Chip = React.forwardRef<HTMLDivElement, Props>(
     return (
       <Stack
         ref={ref}
-        className={classnames(className, 'Chip')}
-        data-variant={variant}
-        data-clickable={clickable}
-        data-removable={removable}
+        className={classnames(className, 'Chip', `Chip-variant-${variant}`, clickable && 'Chip-clickable')}
         cssVars={{
           '--color': color,
           '--background-color': backgroundColor,
@@ -116,16 +124,18 @@ export const Chip = React.forwardRef<HTMLDivElement, Props>(
         }}
         row
         center
-        border={border}
+        borderWidth={borderWidth}
+        borderStyle={borderStyle}
+        borderColor={borderColor}
         spacing={4}
         tabIndex={clickable ? 0 : undefined}
         onClick={onClick}
         {...boxProps}
       >
-        <div className='ChipLabel'>{label}</div>
+        <div className='Chip__Label'>{label}</div>
         {removable && (
           <Icon
-            className='ChipCloseIcon'
+            className='Chip__CloseIcon'
             color={removeIconColor}
             onClick={(e) => {
               e.stopPropagation();

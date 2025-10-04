@@ -3,7 +3,7 @@
 .ColorPicker {
   position: relative;
 
-  .ColorPicker_Swatch {
+  .ColorPicker__Swatch {
     width: 28px;
     height: 28px;
     border-radius: 8px;
@@ -15,13 +15,13 @@
     position: relative;
   }
 
-  .ColorPicker_Popover {
+  .ColorPicker__Popover {
     position: absolute;
     top: calc(100% + 5px);
     border-radius: 9px;
     z-index: 1;
 
-    .ColorPicker_CloseButton {
+    .ColorPicker__CloseButton {
       position: absolute;
       left: 16px;
       right: 16px;

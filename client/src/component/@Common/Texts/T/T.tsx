@@ -49,7 +49,7 @@ export const T = React.forwardRef<HTMLDivElement, Props>(
         <Icon size={size} {...iconProps}>
           {icon}
         </Icon>
-        <span className='T-text'>{children}</span>
+        <span className='T__Text'>{children}</span>
       </Stack>
     ) : (
       <Box
