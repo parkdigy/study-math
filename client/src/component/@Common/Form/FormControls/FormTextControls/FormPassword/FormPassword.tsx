@@ -3,8 +3,8 @@ import { FormPasswordCommands, FormPasswordProps as Props } from './FormPassword
 import { useAutoUpdateState, useForwardRef, useTimeoutRef } from '@pdg/react-hook';
 import { useFormState } from '../../../FormContext';
 import { FormText, FormTextCommands } from '../FormText';
-import { RuleCheck } from './RuleCheck';
 import { ShowButton } from './ShowButton';
+import { FormRuleCheck } from '../../../FormLayout';
 
 export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
   (
@@ -56,10 +56,14 @@ export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
       if (rules) {
         return (
           <Stack row center spacing={10} wrap>
-            <RuleCheck title='영문' checked={isContainsAlphabet} error={error !== false && notEmpty(value)} />
-            <RuleCheck title='숫자' checked={isContainsNumeric} error={error !== false && notEmpty(value)} />
-            <RuleCheck title='특수문자' checked={isContainsSpecialChar} error={error !== false && notEmpty(value)} />
-            <RuleCheck title='8자리 이상' checked={isOverLength} error={error !== false && notEmpty(value)} />
+            <FormRuleCheck title='영문' checked={isContainsAlphabet} error={error !== false && notEmpty(value)} />
+            <FormRuleCheck title='숫자' checked={isContainsNumeric} error={error !== false && notEmpty(value)} />
+            <FormRuleCheck
+              title='특수문자'
+              checked={isContainsSpecialChar}
+              error={error !== false && notEmpty(value)}
+            />
+            <FormRuleCheck title='8자리 이상' checked={isOverLength} error={error !== false && notEmpty(value)} />
           </Stack>
         );
       }

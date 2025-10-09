@@ -1,4 +1,4 @@
-export interface RuleCheckProps {
+export interface FormRuleCheckProps {
   title: string;
   checked: boolean;
   error?: boolean;

@@ -1,8 +1,8 @@
 import React from 'react';
-import { RuleCheckProps as Props } from './RuleCheck.types';
+import { FormRuleCheckProps as Props } from './FormRuleCheck.types';
 import { IconCheck } from './icons';
 
-export const RuleCheck = ({ title, checked, error }: Props) => {
+export const FormRuleCheck = ({ title, checked, error }: Props) => {
   return (
     <Stack row center spacing={4}>
       <IconCheck
@@ -15,4 +15,4 @@ export const RuleCheck = ({ title, checked, error }: Props) => {
   );
 };
 
-export default RuleCheck;
+export default FormRuleCheck;
