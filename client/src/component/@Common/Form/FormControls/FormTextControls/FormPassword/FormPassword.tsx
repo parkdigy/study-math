@@ -56,14 +56,14 @@ export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
       if (rules) {
         return (
           <Stack row center spacing={10} wrap>
-            <RuleCheck title='대소문자' checked={isContainsAlphabet} error={error !== false} />
-            <RuleCheck title='숫자' checked={isContainsNumeric} error={error !== false} />
-            <RuleCheck title='특수문자' checked={isContainsSpecialChar} error={error !== false} />
-            <RuleCheck title='8자리 이상' checked={isOverLength} error={error !== false} />
+            <RuleCheck title='영문' checked={isContainsAlphabet} error={error !== false && notEmpty(value)} />
+            <RuleCheck title='숫자' checked={isContainsNumeric} error={error !== false && notEmpty(value)} />
+            <RuleCheck title='특수문자' checked={isContainsSpecialChar} error={error !== false && notEmpty(value)} />
+            <RuleCheck title='8자리 이상' checked={isOverLength} error={error !== false && notEmpty(value)} />
           </Stack>
         );
       }
-    }, [error, isContainsAlphabet, isContainsNumeric, isContainsSpecialChar, isOverLength, rules]);
+    }, [error, isContainsAlphabet, isContainsNumeric, isContainsSpecialChar, isOverLength, rules, value]);
 
     /********************************************************************************************************************
      * Effect
@@ -71,7 +71,7 @@ export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
 
     useEffect(() => {
       setUpdateValueRulesTimeout(() => {
-        setIsContainsAlphabet(notEmpty(value) && new RegExp(/[A-Z]/).test(value) && new RegExp(/[a-z]/).test(value));
+        setIsContainsAlphabet(notEmpty(value) && new RegExp(/[a-z]/i).test(value));
         setIsContainsNumeric(notEmpty(value) && new RegExp(/[\d]/i).test(value));
         setIsContainsSpecialChar(notEmpty(value) && new RegExp(/[`~!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/i).test(value));
         setIsOverLength(notEmpty(value) && value.length >= 8);
@@ -183,7 +183,6 @@ export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
           ) : undefined
         }
         value={value}
-        hideRequiredErrorText={rules}
         error={error}
         disabled={disabled}
         onErrorChange={setError}
