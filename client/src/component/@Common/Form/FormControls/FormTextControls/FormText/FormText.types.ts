@@ -29,7 +29,8 @@ export interface FormTextProps
   $commands?: FormControlCommands | null;
   $controlHelperText?: ReactNode;
   placeholder?: string;
-  hideEmptyErrorText?: boolean;
+  hideRequiredErrorText?: boolean;
+  requiredErrorText?: string;
   preventKeys?: RegExp;
   onCommands?: (commands: FormTextCommands) => void;
   onFinalValue?: (value: string) => string;

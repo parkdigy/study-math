@@ -38,7 +38,8 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
       $commands,
       $controlHelperText,
       placeholder,
-      hideEmptyErrorText,
+      hideRequiredErrorText,
+      requiredErrorText,
       preventKeys: initPreventKeys,
       onCommands,
       onFinalValue,
@@ -140,13 +141,17 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
 
       if (required && empty(currentValue)) {
         isRequiredError = true;
-        if (hideEmptyErrorText) {
+        if (hideRequiredErrorText) {
           error = true;
         } else {
-          if (notEmpty(title)) {
-            error = `${koreanAppendRul(title)} 입력하지 않았습니다.`;
+          if (requiredErrorText !== undefined) {
+            error = requiredErrorText;
           } else {
-            error = '필수 입력 항목입니다.';
+            if (notEmpty(title)) {
+              error = `${koreanAppendRul(title)} 입력해 주세요.`;
+            } else {
+              error = '필수 입력 항목입니다.';
+            }
           }
         }
       }
@@ -163,7 +168,7 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
         setIsRequiredError(isRequiredError);
         return false;
       }
-    }, [hideEmptyErrorText, onValidate, required, setError, title, valueRef]);
+    }, [hideRequiredErrorText, onValidate, required, requiredErrorText, setError, title, valueRef]);
 
     const getValue = useCallback(() => {
       return ifNullOrUndefined(valueRef.current, '');

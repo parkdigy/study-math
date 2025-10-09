@@ -15,4 +15,5 @@ export interface FormRadioGroupProps<T extends string | number | boolean>
   items: FormRadioGroupItemInfo<T>[];
   spacing?: number;
   grid?: GridProps;
+  requiredText?: string;
 }

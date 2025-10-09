@@ -85,7 +85,7 @@ export const FormSelect = ToForwardRefExoticComponent(
 
     useFirstSkipEffect(() => {
       setActiveItem(getItemOfValue(initValue));
-    }, [initValue]);
+    }, [initValue, items]);
 
     useFirstSkipEffect(() => {
       if (error) {
@@ -122,7 +122,7 @@ export const FormSelect = ToForwardRefExoticComponent(
 
       if (required && activeItemRef.current === undefined) {
         if (notEmpty(title)) {
-          error = `${koreanAppendRul(title)} 선택하지 않았습니다.`;
+          error = `${koreanAppendRul(title)} 선택해 주세요.`;
         } else {
           error = '필수 선택 항목입니다.';
         }

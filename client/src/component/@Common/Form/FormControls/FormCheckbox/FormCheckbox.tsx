@@ -21,6 +21,7 @@ export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
       label,
       labelColor,
       disabled: initDisabled,
+      requiredErrorText,
       checked: initChecked = false,
       onChange,
       // FormControlCommonProps
@@ -87,10 +88,14 @@ export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
       let error: string | boolean = false;
 
       if (required && !checkedRef.current) {
-        if (notEmpty(title)) {
-          error = `${koreanAppendRul(title)} 확인하지 않았습니다.`;
+        if (requiredErrorText !== undefined) {
+          error = requiredErrorText;
         } else {
-          error = '필수 확인 항목입니다.';
+          if (notEmpty(title)) {
+            error = `${koreanAppendRul(title)} 확인하지 않았습니다.`;
+          } else {
+            error = '필수 확인 항목입니다.';
+          }
         }
       }
 
@@ -105,7 +110,7 @@ export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
         setError(error);
         return false;
       }
-    }, [checkedRef, onValidateRef, required, setError, title]);
+    }, [checkedRef, onValidateRef, required, requiredErrorText, setError, title]);
 
     /********************************************************************************************************************
      * Commands

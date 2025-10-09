@@ -183,7 +183,7 @@ export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
           ) : undefined
         }
         value={value}
-        hideEmptyErrorText={rules}
+        hideRequiredErrorText={rules}
         error={error}
         disabled={disabled}
         onErrorChange={setError}

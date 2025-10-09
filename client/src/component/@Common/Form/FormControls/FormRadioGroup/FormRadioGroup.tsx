@@ -25,6 +25,7 @@ export const FormRadioGroup = ToForwardRefExoticComponent(
       spacing: initSpacing,
       items,
       grid: initGrid,
+      requiredText,
       // FormControlCommonProps
       className,
       title,
@@ -188,10 +189,14 @@ export const FormRadioGroup = ToForwardRefExoticComponent(
     const validate = useCallback(() => {
       let error: string | boolean = false;
       if (required && valueRef.current === undefined) {
-        if (notEmpty(title)) {
-          error = `${koreanAppendRul(title)} 선택하지 않았습니다.`;
+        if (requiredText !== undefined) {
+          error = requiredText;
         } else {
-          error = '필수 선택 항목입니다.';
+          if (notEmpty(title)) {
+            error = `${koreanAppendRul(title)} 선택해 주세요.`;
+          } else {
+            error = '필수 선택 항목입니다.';
+          }
         }
       }
       if (error === false && onValidateRef.current) {
@@ -205,7 +210,7 @@ export const FormRadioGroup = ToForwardRefExoticComponent(
         setError(error);
         return false;
       }
-    }, [onValidateRef, required, setError, title, valueRef]);
+    }, [onValidateRef, required, requiredText, setError, title, valueRef]);
 
     /** overflow 상태 체크 */
     const checkOverflow = useCallback(() => {

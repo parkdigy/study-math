@@ -12,5 +12,6 @@ export interface FormCheckboxProps extends Omit<FormControlCommonProps<boolean>,
   labelColor?: TProps['color'];
   disabled?: boolean;
   checked?: boolean;
+  requiredErrorText?: string;
   onChange?: (checked: boolean) => void;
 }
