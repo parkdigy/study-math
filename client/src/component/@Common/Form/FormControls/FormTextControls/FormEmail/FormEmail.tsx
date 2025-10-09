@@ -51,7 +51,7 @@ export const FormEmail = React.forwardRef<FormEmailCommands, Props>(
         type='email'
         className={classnames(className, 'FormEmail')}
         name={name}
-        preventKeys={/[\s]/}
+        preventKeys={/[\s]/g}
         onCommands={setTextCommands}
         onValidate={handleValidate}
         {...props}

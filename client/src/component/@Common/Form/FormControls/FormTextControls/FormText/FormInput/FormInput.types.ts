@@ -18,6 +18,7 @@ export interface FormInputProps
     | 'onBlur'
     | 'onKeyUp'
     | 'onKeyDown'
+    | 'onPaste'
   > {
   error: boolean;
   clear?: boolean;

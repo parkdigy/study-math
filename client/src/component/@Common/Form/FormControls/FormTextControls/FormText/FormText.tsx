@@ -12,6 +12,23 @@ import { koreanAppendRul } from '@pdg/korean';
 import { useFormControlGroupState, useFormState } from '../../../FormContext';
 import { FormInput } from './FormInput';
 
+const FunctionKeys = [
+  'Backspace',
+  'Enter',
+  'Escape',
+  'Tab',
+  'Shift',
+  'Control',
+  'Alt',
+  'Meta',
+  'ArrowUp',
+  'ArrowDown',
+  'ArrowLeft',
+  'ArrowRight',
+  'Home',
+  'End',
+];
+
 export const FormText = React.forwardRef<FormTextCommands, Props>(
   (
     {
@@ -22,7 +39,7 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
       $controlHelperText,
       placeholder,
       hideEmptyErrorText,
-      preventKeys,
+      preventKeys: initPreventKeys,
       onCommands,
       onFinalValue,
       // FormInputProps
@@ -86,6 +103,18 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
      * ******************************************************************************************************************/
 
     const disabled = initDisabled || formDisabled;
+
+    /********************************************************************************************************************
+     * Memo
+     * ******************************************************************************************************************/
+
+    const preventKeys = useMemo(() => {
+      return initPreventKeys === undefined
+        ? undefined
+        : initPreventKeys.global
+          ? initPreventKeys
+          : new RegExp(initPreventKeys.source, `${initPreventKeys.flags}g`);
+    }, [initPreventKeys]);
 
     /********************************************************************************************************************
      * Effect
@@ -175,7 +204,13 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
 
     const handleChange = useCallback(
       (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = onFinalValue ? onFinalValue(e.currentTarget.value) : e.currentTarget.value;
+        let newValue = e.currentTarget.value;
+        if (preventKeys) {
+          newValue = newValue.replace(preventKeys, '');
+        }
+        if (onFinalValue) {
+          newValue = onFinalValue(newValue);
+        }
 
         setValue(newValue);
 
@@ -192,7 +227,7 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
 
         onChange?.(newValue);
       },
-      [error, isRequiredError, onChange, onFinalValue, setError, setValidateTimeout, setValue, validate]
+      [error, isRequiredError, onChange, onFinalValue, preventKeys, setError, setValidateTimeout, setValue, validate]
     );
 
     const handleClearClick = useCallback(() => {
@@ -221,12 +256,37 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
 
     const handleKeyDown = useCallback(
       (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (preventKeys && preventKeys.test(e.key)) {
+        if (
+          preventKeys &&
+          !e.ctrlKey &&
+          !e.metaKey &&
+          !FunctionKeys.includes(e.key) &&
+          new RegExp(preventKeys).test(e.key)
+        ) {
+          ll('prevent key', e.key);
           e.preventDefault();
         }
         onKeyDown?.(e);
       },
       [onKeyDown, preventKeys]
+    );
+
+    const handlePaste = useCallback(
+      (e: React.ClipboardEvent<HTMLInputElement>) => {
+        e.preventDefault();
+
+        const pastedText = e.clipboardData.getData('text');
+        const cleanText = preventKeys ? pastedText.replace(preventKeys, '') : pastedText;
+        const target = e.currentTarget;
+        const start = ifNull(target.selectionStart, 0);
+        const end = ifNull(target.selectionEnd, 0);
+        const newValue = value.substring(0, start) + cleanText + value.substring(end);
+
+        setValue(newValue);
+
+        target.selectionStart = target.selectionEnd = start + cleanText.length;
+      },
+      [preventKeys, setValue, value]
     );
 
     /********************************************************************************************************************
@@ -269,6 +329,7 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
           onKeyUp={onKeyUp}
           onKeyDown={handleKeyDown}
           onChange={handleChange}
+          onPaste={handlePaste}
         />
       </FormControlBase>
     );

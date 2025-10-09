@@ -50,7 +50,7 @@ export const FormUrl = React.forwardRef<FormUrlCommands, Props>(({ className, na
       type='url'
       className={classnames(className, 'FormUrl')}
       name={name}
-      preventKeys={/[\s]/}
+      preventKeys={/[\s]/g}
       onCommands={setTextCommands}
       onValidate={handleValidate}
       {...props}
