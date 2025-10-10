@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormPasswordCommands, FormPasswordProps as Props } from './FormPassword.types';
-import { useAutoUpdateState, useForwardRef, useTimeoutRef } from '@pdg/react-hook';
+import { useAutoUpdateState, useForwardRef, useRefState, useTimeoutRef } from '@pdg/react-hook';
 import { useFormState } from '../../../FormContext';
 import { FormText, FormTextCommands } from '../FormText';
 import { ShowButton } from './ShowButton';
@@ -43,10 +43,10 @@ export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
     const [textCommands, setTextCommands] = useState<FormTextCommands>();
     const [error, _setError] = useAutoUpdateState(initError);
     const [isShowPassword, setIsShowPassword] = useState(false);
-    const [isContainsAlphabet, setIsContainsAlphabet] = useState(false);
-    const [isContainsNumeric, setIsContainsNumeric] = useState(false);
-    const [isContainsSpecialChar, setIsContainsSpecialChar] = useState(false);
-    const [isOverLength, setIsOverLength] = useState(false);
+    const [isContainsAlphabetRef, isContainsAlphabet, setIsContainsAlphabet] = useRefState(false);
+    const [isContainsNumericRef, isContainsNumeric, setIsContainsNumeric] = useRefState(false);
+    const [isContainsSpecialCharRef, isContainsSpecialChar, setIsContainsSpecialChar] = useRefState(false);
+    const [isOverLengthRef, isOverLength, setIsOverLength] = useRefState(false);
 
     /********************************************************************************************************************
      * Memo
@@ -74,12 +74,14 @@ export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
      * ******************************************************************************************************************/
 
     useEffect(() => {
-      setUpdateValueRulesTimeout(() => {
-        setIsContainsAlphabet(notEmpty(value) && new RegExp(/[a-z]/i).test(value));
-        setIsContainsNumeric(notEmpty(value) && new RegExp(/[\d]/i).test(value));
-        setIsContainsSpecialChar(notEmpty(value) && new RegExp(/[`~!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/i).test(value));
-        setIsOverLength(notEmpty(value) && value.length >= 8);
-      }, 100);
+      if (rules) {
+        setUpdateValueRulesTimeout(() => {
+          setIsContainsAlphabet(notEmpty(value) && new RegExp(/[a-z]/i).test(value));
+          setIsContainsNumeric(notEmpty(value) && new RegExp(/[\d]/i).test(value));
+          setIsContainsSpecialChar(notEmpty(value) && new RegExp(/[`~!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/i).test(value));
+          setIsOverLength(notEmpty(value) && value.length >= 8);
+        }, 100);
+      }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [value]);
 
@@ -136,7 +138,13 @@ export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
 
     const handleValidate = useCallback(
       (value: string) => {
-        if (rules && (!isContainsAlphabet || !isContainsNumeric || !isContainsSpecialChar || !isOverLength)) {
+        if (
+          rules &&
+          (!isContainsAlphabetRef.current ||
+            !isContainsNumericRef.current ||
+            !isContainsSpecialCharRef.current ||
+            !isOverLengthRef.current)
+        ) {
           return true;
         }
 
@@ -157,10 +165,10 @@ export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
       },
       [
         getControlCommands,
-        isContainsAlphabet,
-        isContainsNumeric,
-        isContainsSpecialChar,
-        isOverLength,
+        isContainsAlphabetRef,
+        isContainsNumericRef,
+        isContainsSpecialCharRef,
+        isOverLengthRef,
         linkName,
         onValidate,
         rules,

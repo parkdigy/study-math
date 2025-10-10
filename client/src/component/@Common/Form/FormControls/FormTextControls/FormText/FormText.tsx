@@ -268,7 +268,6 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
           !FunctionKeys.includes(e.key) &&
           new RegExp(preventKeys).test(e.key)
         ) {
-          ll('prevent key', e.key);
           e.preventDefault();
         }
         onKeyDown?.(e);
@@ -281,7 +280,10 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
         e.preventDefault();
 
         const pastedText = e.clipboardData.getData('text');
-        const cleanText = preventKeys ? pastedText.replace(preventKeys, '') : pastedText;
+        let cleanText = preventKeys ? pastedText.replace(new RegExp(preventKeys), '') : pastedText;
+        if (maxLength) {
+          cleanText = cleanText.substring(0, maxLength);
+        }
         const target = e.currentTarget;
         const start = ifNull(target.selectionStart, 0);
         const end = ifNull(target.selectionEnd, 0);
@@ -291,7 +293,7 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
 
         target.selectionStart = target.selectionEnd = start + cleanText.length;
       },
-      [preventKeys, setValue, value]
+      [maxLength, preventKeys, setValue, value]
     );
 
     /********************************************************************************************************************
