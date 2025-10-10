@@ -217,8 +217,11 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
         newValue = getFinalValue(newValue);
         _setValue(newValue);
         onChange?.(newValue);
+        if (error) {
+          validate();
+        }
       },
-      [_setValue, getFinalValue, onChange]
+      [_setValue, error, getFinalValue, onChange, validate]
     );
 
     const clear = useCallback(() => {
