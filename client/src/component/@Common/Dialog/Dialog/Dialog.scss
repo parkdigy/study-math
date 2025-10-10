@@ -2,6 +2,7 @@
 
 .Dialog {
   .ReactModal__Overlay {
+    z-index: 99999;
     background-color: color.$dialog-backdrop !important;
 
     .ReactModal__Content {
