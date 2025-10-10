@@ -5,7 +5,9 @@ import './ListItem.scss';
 const ListItem = ({ content }: Props) => {
   return (
     <div className='ListItem'>
-      <div className='ListItem__Bullet' />
+      <div className='ListItem__Bullet_Container'>
+        <div className='ListItem__Bullet' />
+      </div>
       <div className='ListItem__Content'>{content}</div>
     </div>
   );
