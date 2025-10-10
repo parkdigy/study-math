@@ -42,6 +42,18 @@ const Dialog = () => {
    * ******************************************************************************************************************/
 
   useEffect(() => {
+    const outer = document.createElement('div');
+    outer.style.visibility = 'hidden';
+    outer.style.overflow = 'scroll';
+    outer.style.width = '100px';
+    outer.style.height = '100px';
+    document.body.appendChild(outer);
+    const width = outer.offsetWidth - outer.clientWidth;
+    document.body.removeChild(outer);
+    document.documentElement.style.setProperty('--sb-width', `${width}px`);
+  }, []);
+
+  useEffect(() => {
     setDialogs([]);
   }, [location]);
 

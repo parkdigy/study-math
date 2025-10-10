@@ -15,6 +15,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
   (
     {
       children,
+      type = 'button',
       variant = 'contained',
       color: initColor = 'primary',
       backgroundColor: initBackgroundColor,
@@ -162,6 +163,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
           loading && 'Button-loading',
           props.disabled && 'Button-disabled'
         )}
+        type={type}
         outlineColor={outlineColor}
         backgroundColor={backgroundColor}
         color={color}

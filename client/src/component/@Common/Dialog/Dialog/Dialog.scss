@@ -1,5 +1,10 @@
 @use '@sass/color';
 
+body.ReactModal__Body--open {
+  overflow: hidden;
+  padding-right: var(--sb-width);
+}
+
 .Dialog {
   .ReactModal__Overlay {
     z-index: 99999;
