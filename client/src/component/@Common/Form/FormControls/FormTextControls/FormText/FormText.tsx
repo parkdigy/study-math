@@ -2,6 +2,7 @@ import React from 'react';
 import { FormTextCommands, FormTextProps as Props } from './FormText.types';
 import { FormControlBase } from '../../@common';
 import {
+  useAutoUpdateRef,
   useAutoUpdateRefState,
   useAutoUpdateState,
   useFirstSkipEffect,
@@ -89,6 +90,55 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
      * ******************************************************************************************************************/
 
     const innerRef = useRef<HTMLInputElement>(null);
+    const lastPreventKeysRef = useRef<RegExp>(undefined);
+    const onFinalValueRef = useAutoUpdateRef(onFinalValue);
+
+    /********************************************************************************************************************
+     * Memo
+     * ******************************************************************************************************************/
+
+    const preventKeys = useMemo(() => {
+      if (initPreventKeys) {
+        const finalPreventKeys = initPreventKeys.global
+          ? initPreventKeys
+          : new RegExp(initPreventKeys.source, `${initPreventKeys.flags}g`);
+
+        if (
+          lastPreventKeysRef.current &&
+          finalPreventKeys.source === lastPreventKeysRef.current.source &&
+          finalPreventKeys.flags === lastPreventKeysRef.current.flags
+        ) {
+          return lastPreventKeysRef.current;
+        } else {
+          lastPreventKeysRef.current = finalPreventKeys;
+          return finalPreventKeys;
+        }
+      } else {
+        lastPreventKeysRef.current = undefined;
+        return undefined;
+      }
+    }, [initPreventKeys]);
+
+    /********************************************************************************************************************
+     * Function
+     * ******************************************************************************************************************/
+
+    const getFinalValue = useCallback(
+      (newValue: string | undefined) => {
+        if (newValue) {
+          if (preventKeys) {
+            newValue = newValue.replace(preventKeys, '');
+          }
+          if (onFinalValueRef.current) {
+            newValue = onFinalValueRef.current(newValue);
+          }
+        } else {
+          newValue = '';
+        }
+        return newValue ?? '';
+      },
+      [onFinalValueRef, preventKeys]
+    );
 
     /********************************************************************************************************************
      * State
@@ -97,25 +147,13 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
     const [error, setError] = useAutoUpdateState(initError);
     const [isRequiredError, setIsRequiredError] = useState(false);
     const [isFocus, setIsFocus] = useState(false);
-    const [valueRef, value, _setValue] = useAutoUpdateRefState(initValue);
+    const [valueRef, value, _setValue] = useAutoUpdateRefState(initValue, getFinalValue);
 
     /********************************************************************************************************************
      * Variable
      * ******************************************************************************************************************/
 
     const disabled = initDisabled || formDisabled;
-
-    /********************************************************************************************************************
-     * Memo
-     * ******************************************************************************************************************/
-
-    const preventKeys = useMemo(() => {
-      return initPreventKeys === undefined
-        ? undefined
-        : initPreventKeys.global
-          ? initPreventKeys
-          : new RegExp(initPreventKeys.source, `${initPreventKeys.flags}g`);
-    }, [initPreventKeys]);
 
     /********************************************************************************************************************
      * Effect
@@ -176,10 +214,11 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
 
     const setValue = useCallback(
       (newValue: string) => {
+        newValue = getFinalValue(newValue);
         _setValue(newValue);
         onChange?.(newValue);
       },
-      [_setValue, onChange]
+      [_setValue, getFinalValue, onChange]
     );
 
     const clear = useCallback(() => {
@@ -209,14 +248,7 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
 
     const handleChange = useCallback(
       (e: React.ChangeEvent<HTMLInputElement>) => {
-        let newValue = e.currentTarget.value;
-        if (preventKeys) {
-          newValue = newValue.replace(preventKeys, '');
-        }
-        if (onFinalValue) {
-          newValue = onFinalValue(newValue);
-        }
-
+        const newValue = getFinalValue(e.currentTarget.value);
         setValue(newValue);
 
         if (error !== false) {
@@ -232,7 +264,7 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
 
         onChange?.(newValue);
       },
-      [error, isRequiredError, onChange, onFinalValue, preventKeys, setError, setValidateTimeout, setValue, validate]
+      [error, getFinalValue, isRequiredError, onChange, setError, setValidateTimeout, setValue, validate]
     );
 
     const handleClearClick = useCallback(() => {
