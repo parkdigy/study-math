@@ -4,12 +4,12 @@ import {
   CustomComponentBorderStyles,
   CustomComponentProps,
 } from '../../CustomComponent';
-import { AllColors, ButtonColors } from '@theme';
+import { AllColors, AllSizes, ButtonColors } from '@theme';
 
 export const ButtonSizes = {
   xs: {
     fontSize: { contained: 12, outlined: 12, text: 12 },
-    fontWeight: { contained: 700, outlined: 600, text: 400 },
+    fontWeight: { contained: 500, outlined: 500, text: 400 },
     lineHeight: { contained: 1.2, outlined: 1.2, text: 1.2 },
     height: { contained: 28, outlined: 28, text: 'auto' },
     borderRadius: { contained: 5, outlined: 5, text: 0 },
@@ -17,7 +17,7 @@ export const ButtonSizes = {
   },
   sm: {
     fontSize: { contained: 14, outlined: 14, text: 14 },
-    fontWeight: { contained: 700, outlined: 600, text: 400 },
+    fontWeight: { contained: 500, outlined: 500, text: 400 },
     lineHeight: { contained: 1.6, outlined: 1.6, text: 1.6 },
     height: { contained: 32, outlined: 32, text: 'auto' },
     borderRadius: { contained: 5, outlined: 5, text: 0 },
@@ -25,7 +25,7 @@ export const ButtonSizes = {
   },
   md: {
     fontSize: { contained: 16, outlined: 16, text: 16 },
-    fontWeight: { contained: 700, outlined: 600, text: 400 },
+    fontWeight: { contained: 500, outlined: 500, text: 400 },
     lineHeight: { contained: 1.6, outlined: 1.6, text: 1.6 },
     height: { contained: 42, outlined: 42, text: 'auto' },
     borderRadius: { contained: 7, outlined: 7, text: 0 },
@@ -33,7 +33,7 @@ export const ButtonSizes = {
   },
   lg: {
     fontSize: { contained: 16, outlined: 16, text: 16 },
-    fontWeight: { contained: 700, outlined: 600, text: 400 },
+    fontWeight: { contained: 500, outlined: 500, text: 400 },
     lineHeight: { contained: 1.6, outlined: 1.6, text: 1.6 },
     height: { contained: 56, outlined: 56, text: 'auto' },
     borderRadius: { contained: 10, outlined: 10, text: 0 },
@@ -41,7 +41,7 @@ export const ButtonSizes = {
   },
   xl: {
     fontSize: { contained: 20, outlined: 20, text: 20 },
-    fontWeight: { contained: 700, outlined: 600, text: 400 },
+    fontWeight: { contained: 500, outlined: 500, text: 400 },
     lineHeight: { contained: 1.4, outlined: 1.4, text: 1.4 },
     height: { contained: 70, outlined: 70, text: 'auto' },
     borderRadius: { contained: 10, outlined: 10, text: 0 },
@@ -57,7 +57,11 @@ export interface ButtonProps
     CustomComponentProps<ButtonHtmlProps>,
     | 'component'
     | 'style'
+    | 'c'
     | 'color'
+    | 's'
+    | 'size'
+    | 'fs'
     | 'fontSize'
     | keyof CustomComponentBackgroundStyles
     | keyof CustomComponentBorderStyles
@@ -65,19 +69,23 @@ export interface ButtonProps
   // 스타일 (contained: 채워진 버튼, outlined: 테두리만 있는 버튼, text: 텍스트 버튼)
   variant?: 'contained' | 'outlined' | 'text';
   // 색상
+  c?: ButtonColors | CSSProperties['color'];
   color?: ButtonColors | CSSProperties['color'];
   // 배경 색상 (커스텀 색상 사용 시에만 사용)
-  backgroundColor?: CSSProperties['backgroundColor'];
+  bgColor?: AllColors | CSSProperties['backgroundColor'];
+  backgroundColor?: AllColors | CSSProperties['backgroundColor'];
   // 색상 반전 (variant 가 contained 일 때만 적용됨)
   reverse?: boolean;
   // 크기
+  s?: ButtonSizes;
   size?: ButtonSizes;
   // 로딩 여부
   loading?: boolean;
   // 버튼 크기가 라벨보다 작을 경우, 줄바꿈 할지 여부
   wrapLabel?: boolean;
   // 텍스트 사이즈
-  fontSize?: number;
+  fs?: AllSizes | number;
+  fontSize?: AllSizes | number;
   // 밑줄
   underline?: boolean;
   // 아이콘 이름 (Material Icons 이름 사용)

@@ -17,17 +17,21 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
       children,
       type = 'button',
       variant = 'contained',
-      color: initColor = 'primary',
+      c: initC,
+      color: initColor,
+      bgColor: initBgColor,
       backgroundColor: initBackgroundColor,
       reverse,
       className,
-      size = 'md',
+      s: initS,
+      size: initSize,
       loading,
       wrapLabel,
       icon,
       iconSpacing,
       iconPosition,
       iconProps,
+      fs: initFs,
       fontSize: initFontSize,
       underline,
       textDecoration,
@@ -52,14 +56,18 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
      * Variable
      * ******************************************************************************************************************/
 
-    const isCustomColor = variant === 'contained' && initBackgroundColor !== undefined;
-    const isNamedColor = contains(ButtonColors, initColor);
-    const isDefaultColor = isNamedColor && contains(DefaultColors, initColor);
+    const finalInitColor = ifUndefined(ifUndefined(initColor, initC), 'primary');
+    const finalInitBackgroundColor = ifUndefined(initBackgroundColor, initBgColor);
+    const size = ifUndefined(ifUndefined(initSize, initS), 'md');
 
-    const baseColor = initColor
+    const isCustomColor = variant === 'contained' && finalInitBackgroundColor !== undefined;
+    const isNamedColor = contains(ButtonColors, finalInitColor);
+    const isDefaultColor = isNamedColor && contains(DefaultColors, finalInitColor);
+
+    const baseColor = finalInitColor
       ? isNamedColor
-        ? theme.colors[initColor]
-        : initColor
+        ? theme.colors[finalInitColor]
+        : finalInitColor
       : variant !== 'contained'
         ? theme.colors.text
         : theme.colors.opacity10;
@@ -73,16 +81,16 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
 
     if (isCustomColor) {
       color = baseColor;
-      backgroundColor = contains(AllColors, initBackgroundColor)
-        ? theme.colors[initBackgroundColor]
-        : initBackgroundColor;
+      backgroundColor = contains(AllColors, finalInitBackgroundColor)
+        ? theme.colors[finalInitBackgroundColor]
+        : finalInitBackgroundColor;
       outlineBaseColor = backgroundColor;
     } else {
       if (variant === 'contained') {
         backgroundColor = baseColor;
 
         if (isDefaultColor) {
-          color = theme.colors[getDefaultOnColor(initColor)];
+          color = theme.colors[getDefaultOnColor(finalInitColor)];
         } else {
           if (Color(backgroundColor).alpha() > 0.4) {
             color = theme.colors.background;
@@ -118,7 +126,18 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
       .hexa();
 
     const sizeInfo = ButtonSizes[size];
-    const fontSize = ifUndefined(initFontSize, sizeInfo.fontSize[variant]);
+
+    const finalInitFontSize = ifUndefined(initFontSize, initFs);
+    let fontSize: number;
+    if (finalInitFontSize !== undefined) {
+      if (typeof finalInitFontSize === 'string') {
+        fontSize = theme.sizes[finalInitFontSize].fontSize;
+      } else {
+        fontSize = finalInitFontSize;
+      }
+    } else {
+      fontSize = sizeInfo.fontSize[variant];
+    }
 
     iconSpacing = ifUndefined(iconSpacing, Math.round(fontSize / 2.5));
 

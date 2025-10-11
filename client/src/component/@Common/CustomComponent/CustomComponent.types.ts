@@ -1,6 +1,6 @@
 import React from 'react';
 import { CSSProperties } from 'react';
-import { AllColors, FriendlyNameSizes, Sizes } from '@theme';
+import { AllColors, AllSizes } from '@theme';
 
 /********************************************************************************************************************
  * Padding
@@ -147,8 +147,8 @@ type CustomComponentFontBaseStyles = Omit<
   Pick<CSSProperties, (typeof CustomComponentFontBaseStyles)[number]>,
   'fontSize' | 'lineHeight' | 'fontWeight' | 'color'
 > & {
-  fontSize?: Sizes | FriendlyNameSizes | CSSProperties['fontSize'];
-  lineHeight?: Sizes | FriendlyNameSizes | CSSProperties['lineHeight'];
+  fontSize?: AllSizes | CSSProperties['fontSize'];
+  lineHeight?: AllSizes | CSSProperties['lineHeight'];
   fontWeight?: 'normal' | 'bold' | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
   color?: AllColors | CSSProperties['color'];
 };
@@ -159,8 +159,8 @@ type CustomComponentFontCustomStyles = {
   lh?: CustomComponentFontBaseStyles['lineHeight'];
   fw?: CustomComponentFontBaseStyles['fontWeight'];
   c?: CustomComponentFontBaseStyles['color'];
-  s?: Sizes | FriendlyNameSizes;
-  size?: Sizes | FriendlyNameSizes;
+  s?: AllSizes;
+  size?: AllSizes;
   bold?: boolean;
 };
 
