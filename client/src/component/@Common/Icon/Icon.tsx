@@ -6,7 +6,21 @@ import util from '@util';
 import './Icon.scss';
 
 export const Icon = React.forwardRef<HTMLElement, Props>(
-  ({ className, type: initType, size = 'md', color, children: initChildren, rotate, transform, ...props }, ref) => {
+  (
+    {
+      className,
+      type: initType,
+      s: initS,
+      size: initSize,
+      c: initC,
+      color: initColor,
+      children: initChildren,
+      rotate,
+      transform,
+      ...props
+    },
+    ref
+  ) => {
     /********************************************************************************************************************
      * Use
      * ******************************************************************************************************************/
@@ -17,9 +31,12 @@ export const Icon = React.forwardRef<HTMLElement, Props>(
      * Variable
      * ******************************************************************************************************************/
 
+    const size = ifUndefined(ifUndefined(initSize, initS), 'md');
+    const color = ifUndefined(initColor, initC);
+
     const children = util.text.camelToSnakeCase(initChildren);
     const type = MaterialIconTypes.includes(initType as any) ? initType : LiveMaterialIconTypes[0];
-    const isNamedColor = contains(AllColors, color);
+    const isNamedColor = color !== undefined && contains(AllColors, color);
     const isNamedSize = contains(AllSizes, size);
     const iconClassName = `material-icons-${type}`.replace('-filled', '');
     const fontSize = isNamedSize ? theme.sizes[size].fontSize : size;

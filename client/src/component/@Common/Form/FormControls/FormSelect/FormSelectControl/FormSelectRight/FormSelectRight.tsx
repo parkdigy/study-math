@@ -14,7 +14,7 @@ export const FormSelectRight = ({ size, isOpenDropdown, loading, showClear, clea
       )}
     >
       {/* 로딩 인디케이터 */}
-      {loading && <LoadingIndicator color='opacity40' size={size === 'small' ? 16 : 20} />}
+      {loading && <LoadingIndicator c='opacity40' s={size === 'small' ? 16 : 20} />}
 
       {clearable && showClear && (
         <Box
@@ -41,7 +41,7 @@ export const FormSelectRight = ({ size, isOpenDropdown, loading, showClear, clea
 
       {/* 화살표 */}
       <Stack row center>
-        <Divider vertical height={size === 'small' ? 16 : 24} />
+        <Divider vertical h={size === 'small' ? 16 : 24} />
         <IconArrowDown className='FormSelectRight__Arrow' />
       </Stack>
     </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 
-interface SizeProps extends Omit<TProps, 'size'> {}
-interface SizeFontWeightProps extends Omit<TProps, 'size' | 'fontWeight'> {}
+interface SizeProps extends Omit<TProps, 's' | 'size'> {}
+interface SizeFontWeightProps extends Omit<TProps, 's' | 'size' | 'fw' | 'fontWeight'> {}
 
 /********************************************************************************************************************
  * TCaption

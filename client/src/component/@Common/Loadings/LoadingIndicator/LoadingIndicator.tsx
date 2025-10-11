@@ -5,7 +5,7 @@ import './LoadingIndicator.scss';
 import { CustomComponent } from '../../CustomComponent';
 
 export const LoadingIndicator = React.forwardRef<HTMLDivElement, Props>(
-  ({ className, size: initSize = 'md', color: initColor = 'primary', ...customComponentProps }, ref) => {
+  ({ className, s: initS, size: initSize, c: initC, color: initColor, ...customComponentProps }, ref) => {
     /********************************************************************************************************************
      * Use
      * ******************************************************************************************************************/
@@ -16,11 +16,13 @@ export const LoadingIndicator = React.forwardRef<HTMLDivElement, Props>(
      * Variable
      * ******************************************************************************************************************/
 
-    const isNamedColor = contains(AllColors, initColor);
-    const color = isNamedColor ? theme.colors[initColor as keyof Theme['colors']] : initColor;
+    const finalInitColor = ifUndefined(ifUndefined(initColor, initC), 'primary');
+    const isNamedColor = contains(AllColors, finalInitColor);
+    const color = isNamedColor ? theme.colors[finalInitColor as keyof Theme['colors']] : finalInitColor;
 
-    const isNamedSize = contains(AllSizes, initSize);
-    const size = isNamedSize ? theme.sizes[initSize as keyof Theme['sizes']].fontSize : initSize;
+    const finalInitSize = ifUndefined(ifUndefined(initSize, initS), 'md');
+    const isNamedSize = contains(AllSizes, finalInitSize);
+    const size = isNamedSize ? theme.sizes[finalInitSize as keyof Theme['sizes']].fontSize : finalInitSize;
 
     /********************************************************************************************************************
      * Render

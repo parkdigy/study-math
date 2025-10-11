@@ -6,7 +6,7 @@ const ListTitle = ({ type, content }: Props) => {
   return (
     <div className='ListTitle'>
       {type === 'info' && (
-        <Icon size={17} color='textLighten'>
+        <Icon s={17} c='textLighten'>
           Info
         </Icon>
       )}

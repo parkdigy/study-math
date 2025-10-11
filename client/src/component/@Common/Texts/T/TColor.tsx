@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface Props extends Omit<TProps, 'color'> {}
+interface Props extends Omit<TProps, 'c' | 'color'> {}
 
 export const TPrimary = (props: Props) => {
   return <T color='primary' {...props} />;
