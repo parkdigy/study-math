@@ -1,10 +1,3 @@
-import { CSSProperties } from 'react';
-import { AllColors } from '@theme';
-
-export interface DividerProps {
-  className?: string;
+export interface DividerProps extends Pick<BoxProps, 'className' | 'c' | 'color' | 'w' | 'width' | 'h' | 'height'> {
   vertical?: boolean;
-  color?: AllColors | CSSProperties['color'];
-  width?: CSSProperties['width'];
-  height?: CSSProperties['height'];
 }

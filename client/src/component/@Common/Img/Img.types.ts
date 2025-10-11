@@ -27,4 +27,4 @@ export type ImgHtmlProps = React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLI
 
 export interface ImgProps
   extends Omit<ImgHtmlProps, 'children' | 'style'>,
-    Pick<CustomComponentProps<ImgHtmlProps>, ImgStyles> {}
+    Pick<CustomComponentProps<ImgHtmlProps>, ImgStyles | 'w' | 'h'> {}
