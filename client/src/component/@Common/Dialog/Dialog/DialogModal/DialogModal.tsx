@@ -76,7 +76,7 @@ export const DialogModal = ({ onCancelClick, onConfirmClick, onRequestClose, ...
   const content = (
     <Box ph={ifUndefined(ph, 35)} pv={ifUndefined(pv, 30)}>
       {['string', 'number'].includes(typeof initContent) ? (
-        <T center size={15} color={contentColor || textColor}>
+        <T center fs={15} color={contentColor || textColor}>
           <pre>{initContent}</pre>
         </T>
       ) : (

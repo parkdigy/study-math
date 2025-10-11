@@ -1,5 +1,6 @@
 import React from 'react';
 import { CSSProperties } from 'react';
+import { AllColors, FriendlyNameSizes, Sizes } from '@theme';
 
 /********************************************************************************************************************
  * Padding
@@ -86,7 +87,16 @@ export const CustomComponentBorderStyles = [
   'borderBottomLeftRadius',
   'borderBottomRightRadius',
 ] as const;
-export type CustomComponentBorderStyles = Pick<CSSProperties, (typeof CustomComponentBorderStyles)[number]>;
+export type CustomComponentBorderStyles = Omit<
+  Pick<CSSProperties, (typeof CustomComponentBorderStyles)[number]>,
+  'borderColor' | 'borderLeftColor' | 'borderRightColor' | 'borderTopColor' | 'borderBottomColor'
+> & {
+  borderColor?: AllColors | CSSProperties['borderColor'];
+  borderLeftColor?: AllColors | CSSProperties['borderLeftColor'];
+  borderRightColor?: AllColors | CSSProperties['borderRightColor'];
+  borderTopColor?: AllColors | CSSProperties['borderTopColor'];
+  borderBottomColor?: AllColors | CSSProperties['borderBottomColor'];
+};
 
 /********************************************************************************************************************
  * Flex
@@ -120,9 +130,10 @@ const CustomComponentFontBaseStyles = [
   'font',
   'fontFamily',
   'fontSize',
+  'lineHeight',
+  'fontWeight',
   'fontStyle',
   'letterSpacing',
-  'lineHeight',
   'textAlign',
   'textDecoration',
   'textTransform',
@@ -132,12 +143,24 @@ const CustomComponentFontBaseStyles = [
   'wordSpacing',
   'color',
 ] as const;
-type CustomComponentFontBaseStyles = Pick<CSSProperties, (typeof CustomComponentFontBaseStyles)[number]> & {
+type CustomComponentFontBaseStyles = Omit<
+  Pick<CSSProperties, (typeof CustomComponentFontBaseStyles)[number]>,
+  'fontSize' | 'lineHeight' | 'fontWeight' | 'color'
+> & {
+  fontSize?: Sizes | FriendlyNameSizes | CSSProperties['fontSize'];
+  lineHeight?: Sizes | FriendlyNameSizes | CSSProperties['lineHeight'];
   fontWeight?: 'normal' | 'bold' | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
+  color?: AllColors | CSSProperties['color'];
 };
 
 const CustomComponentFontCustomStyles = ['bold'] as const;
 type CustomComponentFontCustomStyles = {
+  fs?: CustomComponentFontBaseStyles['fontSize'];
+  lh?: CustomComponentFontBaseStyles['lineHeight'];
+  fw?: CustomComponentFontBaseStyles['fontWeight'];
+  c?: CustomComponentFontBaseStyles['color'];
+  s?: Sizes | FriendlyNameSizes;
+  size?: Sizes | FriendlyNameSizes;
   bold?: boolean;
 };
 
@@ -151,7 +174,7 @@ export type CustomComponentFontStyles = CustomComponentFontBaseStyles & CustomCo
  * Background
  * ******************************************************************************************************************/
 
-export const CustomComponentBackgroundStyles = [
+const CustomComponentBackgroundBaseStyles = [
   'background',
   'backgroundColor',
   'backgroundImage',
@@ -159,7 +182,26 @@ export const CustomComponentBackgroundStyles = [
   'backgroundSize',
   'backgroundRepeat',
 ] as const;
-export type CustomComponentBackgroundStyles = Pick<CSSProperties, (typeof CustomComponentBackgroundStyles)[number]>;
+type CustomComponentBackgroundBaseStyles = Omit<
+  Pick<CSSProperties, (typeof CustomComponentBackgroundBaseStyles)[number]>,
+  'background' | 'backgroundColor'
+> & {
+  background?: AllColors | CSSProperties['background'];
+  backgroundColor?: AllColors | CSSProperties['backgroundColor'];
+};
+
+const CustomComponentBackgroundCustomStyles = ['bg', 'bgColor'] as const;
+type CustomComponentBackgroundCustomStyles = {
+  bg?: CustomComponentBackgroundBaseStyles['background'];
+  bgColor?: CustomComponentBackgroundBaseStyles['backgroundColor'];
+};
+
+export const CustomComponentBackgroundStyles = [
+  ...CustomComponentBackgroundBaseStyles,
+  ...CustomComponentBackgroundCustomStyles,
+] as const;
+export type CustomComponentBackgroundStyles = CustomComponentBackgroundBaseStyles &
+  CustomComponentBackgroundCustomStyles;
 
 /********************************************************************************************************************
  * Position
@@ -175,8 +217,10 @@ export type CustomComponentPositionStyles = Pick<CSSProperties, (typeof CustomCo
 const CustomComponentSizeBaseStyles = ['width', 'maxWidth', 'minWidth', 'height', 'maxHeight', 'minHeight'] as const;
 type CustomComponentSizeBaseStyles = Pick<CSSProperties, (typeof CustomComponentSizeBaseStyles)[number]>;
 
-const CustomComponentSizeCustomStyles = ['fullWidth', 'fullHeight'] as const;
+const CustomComponentSizeCustomStyles = ['w', 'h', 'fullWidth', 'fullHeight'] as const;
 type CustomComponentSizeCustomStyles = {
+  w?: CustomComponentSizeBaseStyles['width'];
+  h?: CustomComponentSizeBaseStyles['height'];
   fullWidth?: boolean;
   fullHeight?: boolean;
 };
@@ -231,7 +275,12 @@ export const CustomComponentOutlineStyles = [
   'outlineColor',
   'outlineOffset',
 ] as const;
-export type CustomComponentOutlineStyles = Pick<CSSProperties, (typeof CustomComponentOutlineStyles)[number]>;
+export type CustomComponentOutlineStyles = Omit<
+  Pick<CSSProperties, (typeof CustomComponentOutlineStyles)[number]>,
+  'outlineColor'
+> & {
+  outlineColor?: AllColors | CSSProperties['outlineColor'];
+};
 
 /********************************************************************************************************************
  * Etc
@@ -294,7 +343,7 @@ export type CustomComponentAllStyles = CustomComponentPaddingStyles &
   CustomComponentEtcStyles &
   CustomComponentCustomStyles;
 
-export type CustomComponentProps<T> = T &
+export type CustomComponentProps<T> = Omit<T, keyof CustomComponentAllStyles> &
   CustomComponentAllStyles & {
     component: React.ElementType;
     style?: never;

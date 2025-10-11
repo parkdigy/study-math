@@ -1,65 +1,25 @@
 import { AllColors, AllSizes } from '@theme';
-import { CSSProperties, HTMLProps } from 'react';
-import { CustomComponentProps } from '../../CustomComponent';
+import React, { CSSProperties } from 'react';
+import {
+  CustomComponentBorderStyles,
+  CustomComponentFontStyles,
+  CustomComponentPaddingStyles,
+  CustomComponentProps,
+  CustomComponentSizeStyles,
+} from '../../CustomComponent';
+
+export type LoadingIndicatorHtmlProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
 export interface LoadingIndicatorProps
   extends Omit<
-    CustomComponentProps<HTMLProps<HTMLElement>>,
+    CustomComponentProps<LoadingIndicatorHtmlProps>,
     | 'component'
     | 'style'
-    // padding
-    | 'padding'
-    | 'paddingLeft'
-    | 'paddingRight'
-    | 'paddingTop'
-    | 'paddingBottom'
-    // font
-    | 'font'
-    | 'fontFamily'
-    | 'fontSize'
-    | 'fontWeight'
-    | 'fontStyle'
-    | 'letterSpacing'
-    | 'lineHeight'
-    | 'textAlign'
-    | 'textDecoration'
-    | 'textTransform'
-    | 'color'
-    // size
-    | 'size'
-    | 'width'
-    | 'height'
-    | 'maxWidth'
-    | 'minWidth'
-    | 'maxHeight'
-    | 'minHeight'
-    // border
-    | 'border'
-    | 'borderWidth'
-    | 'borderStyle'
-    | 'borderColor'
-    | 'borderLeft'
-    | 'borderLeftWidth'
-    | 'borderLeftStyle'
-    | 'borderLeftColor'
-    | 'borderRight'
-    | 'borderRightWidth'
-    | 'borderRightStyle'
-    | 'borderRightColor'
-    | 'borderTop'
-    | 'borderTopWidth'
-    | 'borderTopStyle'
-    | 'borderTopColor'
-    | 'borderBottom'
-    | 'borderBottomWidth'
-    | 'borderBottomStyle'
-    | 'borderBottomColor'
-    | 'borderRadius'
-    | 'borderTopLeftRadius'
-    | 'borderTopRightRadius'
-    | 'borderBottomLeftRadius'
-    | 'borderBottomRightRadius'
     | 'children'
+    | keyof CustomComponentPaddingStyles
+    | keyof CustomComponentFontStyles
+    | keyof CustomComponentSizeStyles
+    | keyof CustomComponentBorderStyles
   > {
   size?: AllSizes | number;
   color?: AllColors | CSSProperties['color'];

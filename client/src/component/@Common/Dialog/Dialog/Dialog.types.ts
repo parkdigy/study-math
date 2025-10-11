@@ -6,7 +6,7 @@ type DialogButtonProps = Omit<ButtonProps, 'children' | 'onPress'>;
 
 interface DialogCommonProps {
   color?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | string;
-  icon?: IconProps['name'];
+  icon?: IconProps['children'];
   iconColor?: IconProps['color'];
   minWidth?: number;
   maxWidth?: number;

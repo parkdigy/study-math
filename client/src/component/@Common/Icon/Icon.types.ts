@@ -1,10 +1,12 @@
-import { CSSProperties, HTMLProps } from 'react';
+import React, { CSSProperties } from 'react';
 import { AllColors, AllSizes } from '@theme';
 import { CustomComponentProps } from '../CustomComponent';
 
+export type IconHtmlProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+
 export interface IconProps
   extends Omit<
-    CustomComponentProps<HTMLProps<HTMLElement>>,
+    CustomComponentProps<IconHtmlProps>,
     'component' | 'style' | 'fontSize' | 'color' | 'size' | 'width' | 'height' | 'children'
   > {
   children: string;

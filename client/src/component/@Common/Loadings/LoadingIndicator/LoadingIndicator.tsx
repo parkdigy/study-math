@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoadingIndicatorProps as Props } from './LoadingIndicator.types';
+import { LoadingIndicatorHtmlProps, LoadingIndicatorProps as Props } from './LoadingIndicator.types';
 import { AllColors, AllSizes, Theme } from '@theme';
 import './LoadingIndicator.scss';
 import { CustomComponent } from '../../CustomComponent';
@@ -27,7 +27,7 @@ export const LoadingIndicator = React.forwardRef<HTMLDivElement, Props>(
      * ******************************************************************************************************************/
 
     return (
-      <CustomComponent
+      <CustomComponent<LoadingIndicatorHtmlProps>
         ref={ref}
         component='div'
         className={classnames(className, 'LoadingIndicator')}

@@ -13,10 +13,10 @@ export const toast = {
 
     let backgroundColor: string;
     let color: string;
-    let iconName: IconProps['name'] | undefined;
+    let iconName: IconProps['children'] | undefined;
     switch (type) {
       case 'default':
-        backgroundColor = theme.dark ? '#222222' : theme.colors.background;
+        backgroundColor = theme.dark ? '#222222' : '#ffffff';
         color = theme.colors.text;
         break;
       case 'info':

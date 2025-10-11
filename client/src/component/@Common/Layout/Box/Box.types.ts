@@ -1,27 +1,12 @@
-import { HTMLProps } from 'react';
-import { CSSProperties } from 'react';
+import React from 'react';
 import { CustomComponentProps, CustomComponentAllStyles } from '../../CustomComponent';
-import { AllColors, FriendlyNameSizes } from '@theme';
-import { Sizes } from '@theme';
 
-export interface BoxStyleProps extends Omit<CustomComponentAllStyles, 'color'> {
-  color?: AllColors | CSSProperties['color'];
-  background?: AllColors | CSSProperties['background'];
-  backgroundColor?: AllColors | CSSProperties['backgroundColor'];
-  borderColor?: AllColors | CSSProperties['borderColor'];
-  borderLeftColor?: AllColors | CSSProperties['borderLeftColor'];
-  borderRightColor?: AllColors | CSSProperties['borderRightColor'];
-  borderTopColor?: AllColors | CSSProperties['borderTopColor'];
-  borderBottomColor?: AllColors | CSSProperties['borderBottomColor'];
-  outlineColor?: AllColors | CSSProperties['outlineColor'];
-  size?: Sizes | FriendlyNameSizes | CSSProperties['fontSize'];
-}
+export interface BoxStyleProps extends CustomComponentAllStyles {}
+
+export type BoxHtmlProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
 export interface BoxProps
-  extends Omit<
-      CustomComponentProps<HTMLProps<HTMLDivElement>>,
-      'component' | 'style' | 'wrap' | 'size' | keyof BoxStyleProps
-    >,
+  extends Omit<CustomComponentProps<BoxHtmlProps>, 'component' | 'style' | 'wrap' | keyof BoxStyleProps>,
     BoxStyleProps {
   component?: 'div' | 'span' | 'section' | 'article' | 'main' | 'aside' | 'header' | 'footer' | 'nav';
   center?: boolean;

@@ -4,9 +4,9 @@
 
 import React, { CSSProperties } from 'react';
 import { AllColors, ButtonColors, DefaultColors, getDefaultOnColor } from '@theme';
-import { ButtonProps as Props, ButtonSizes } from './Button.types';
+import { ButtonHtmlProps, ButtonProps as Props, ButtonSizes } from './Button.types';
 import { LoadingIndicator } from '../../Loadings';
-import { CustomComponent, CustomComponentProps } from '../../CustomComponent';
+import { CustomComponent } from '../../CustomComponent';
 import Color from 'color';
 import app from '@app';
 import './Button.scss';
@@ -153,7 +153,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
      * ******************************************************************************************************************/
 
     return (
-      <CustomComponent<CustomComponentProps<React.ButtonHTMLAttributes<HTMLButtonElement>>>
+      <CustomComponent<ButtonHtmlProps>
         component='button'
         ref={ref}
         className={classnames(

@@ -50,9 +50,11 @@ export const ButtonSizes = {
 } as const;
 export type ButtonSizes = keyof typeof ButtonSizes;
 
+export type ButtonHtmlProps = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
+
 export interface ButtonProps
   extends Omit<
-    CustomComponentProps<React.ButtonHTMLAttributes<HTMLButtonElement>>,
+    CustomComponentProps<ButtonHtmlProps>,
     | 'component'
     | 'style'
     | 'color'

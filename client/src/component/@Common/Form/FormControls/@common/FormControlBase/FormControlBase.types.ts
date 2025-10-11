@@ -7,7 +7,7 @@ export interface FormControlCommands {
   setError: (error: string | boolean) => void;
 }
 
-export interface FormControlCommonProps<T> extends BoxStyleProps {
+export interface FormControlCommonProps<T> extends Omit<BoxStyleProps, 's' | 'size'> {
   className?: string;
   name: string;
   title?: string;

@@ -33,4 +33,6 @@ export interface IconButtonProps
   url?: string;
   // 외부 URL 일 경우, 현재 탭에서 이동할지 여부
   externalUrlOpenInThisTab?: boolean;
+  // 비활성 여부
+  disabled?: boolean;
 }

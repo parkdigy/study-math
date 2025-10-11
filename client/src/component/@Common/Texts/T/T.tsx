@@ -5,7 +5,20 @@ import './T.scss';
 
 export const T = React.forwardRef<HTMLDivElement, Props>(
   (
-    { className, children, inline, size, color, icon, iconSpacing, iconPosition, iconProps, ellipsis, ...props },
+    {
+      className,
+      children,
+      inline,
+      size,
+      c: initC,
+      color: initColor,
+      icon,
+      iconSpacing,
+      iconPosition,
+      iconProps,
+      ellipsis,
+      ...props
+    },
     ref
   ) => {
     /********************************************************************************************************************
@@ -20,16 +33,18 @@ export const T = React.forwardRef<HTMLDivElement, Props>(
 
     const isNamedSize = contains(Sizes, size);
     const fontSize = isNamedSize ? theme.sizes[size as keyof Theme['sizes']]?.fontSize : undefined;
+
+    const finalInitColor = initC || initColor;
     const finalColor: BoxProps['color'] =
-      color === undefined
+      finalInitColor === undefined
         ? undefined
-        : color === 'accent'
+        : finalInitColor === 'accent'
           ? 'textAccent'
-          : color === 'blurry'
+          : finalInitColor === 'blurry'
             ? 'textBlurry'
-            : color === 'lighten'
+            : finalInitColor === 'lighten'
               ? 'textLighten'
-              : color;
+              : finalInitColor;
 
     /********************************************************************************************************************
      * Render

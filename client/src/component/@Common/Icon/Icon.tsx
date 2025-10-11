@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconProps as Props } from './Icon.types';
+import { IconHtmlProps, IconProps as Props } from './Icon.types';
 import { CustomComponent } from '../CustomComponent';
 import { AllColors, AllSizes } from '@theme';
 import util from '@util';
@@ -29,7 +29,7 @@ export const Icon = React.forwardRef<HTMLElement, Props>(
      * ******************************************************************************************************************/
 
     return (
-      <CustomComponent
+      <CustomComponent<IconHtmlProps>
         ref={ref}
         component='i'
         className={classnames(
