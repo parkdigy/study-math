@@ -1,6 +1,7 @@
 import React from 'react';
 import { Dev_Panel, Dev_PanelItem } from '../@Common';
-import { DefaultColors, TextColors } from '@theme';
+import { DefaultColors, OpacityColors, OpacityReverseColors, TextColors } from '@theme';
+import util from '@util';
 
 const Dev_T_Variant_Color = () => {
   return (
@@ -8,7 +9,7 @@ const Dev_T_Variant_Color = () => {
       <Dev_PanelItem title='색상별 컴포넌트' row center spacing={10} wrap>
         <Divider />
 
-        {[...TextColors, ...DefaultColors].map((color, idx) => (
+        {[...TextColors, ...DefaultColors, ...OpacityColors, ...OpacityReverseColors].map((color, idx) => (
           <React.Fragment key={idx}>
             {idx > 0 && <Divider vertical />}
             <Item color={color} />
@@ -25,31 +26,16 @@ export default React.memo(Dev_T_Variant_Color);
  * Item
  * ******************************************************************************************************************/
 
-const Item = ({ color }: { color: DefaultColors | TextColors }) => {
-  const Component =
-    color === 'primary'
-      ? TPrimary
-      : color === 'secondary'
-        ? TSecondary
-        : color === 'success'
-          ? TSuccess
-          : color === 'warning'
-            ? TWarning
-            : color === 'error'
-              ? TError
-              : color === 'text'
-                ? T
-                : color === 'textAccent'
-                  ? TAccent
-                  : color === 'textBlurry'
-                    ? TBlurry
-                    : color === 'textLighten'
-                      ? TLighten
-                      : null;
+const Item = ({ color }: { color: string }) => {
+  let componentName = util.text.snakeToCamelCase(color);
+  componentName = `T${componentName.substring(0, 1).toUpperCase()}${componentName.substring(1)}`;
+  if (componentName.startsWith('TText')) {
+    componentName = componentName.replace('TText', 'T');
+  }
 
-  return Component ? (
-    <Tooltip place='top-start' content={`<${Component.name}>...</${Component.name}>`}>
-      <Component>{`<${Component.name}>`}</Component>
+  return (
+    <Tooltip place='top-start' content={`<${componentName}>...</${componentName}>`}>
+      <T color={color}>{`<${componentName}>`}</T>
     </Tooltip>
-  ) : null;
+  );
 };

@@ -4,5 +4,6 @@ import './react';
 import './pdg';
 import './log';
 import './classnames';
+import './common-component-text';
 import './common-component';
 import './object';

@@ -7,9 +7,11 @@ const Dev_T_Variant_FontWeight = () => {
       <Dev_PanelItem title='두께별 컴포넌트' row center spacing={10} wrap>
         <Divider />
 
+        <Item fontWeight={'bold'} />
+
         {new Array(9).fill(0).map((_, idx) => (
           <React.Fragment key={idx}>
-            {idx > 0 && <Divider vertical />}
+            <Divider vertical />
             <Item fontWeight={((idx + 1) * 100) as any} />
           </React.Fragment>
         ))}
@@ -24,29 +26,12 @@ export default React.memo(Dev_T_Variant_FontWeight);
  * Item
  * ******************************************************************************************************************/
 
-const Item = ({ fontWeight }: { fontWeight: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 }) => {
-  const Component =
-    fontWeight === 100
-      ? T100
-      : fontWeight === 200
-        ? T200
-        : fontWeight === 300
-          ? T300
-          : fontWeight === 400
-            ? T400
-            : fontWeight === 500
-              ? T500
-              : fontWeight === 600
-                ? T600
-                : fontWeight === 700
-                  ? T700
-                  : fontWeight === 800
-                    ? T800
-                    : T900;
+const Item = ({ fontWeight }: { fontWeight: 'bold' | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 }) => {
+  const componentName = `T${fontWeight === 'bold' ? 'Bold' : fontWeight}`;
 
   return (
-    <Tooltip place='top-start' content={`<${Component.name}>...</${Component.name}>`}>
-      <Component>{`<${Component.name}>`}</Component>
+    <Tooltip place='top-start' content={`<${componentName}>...</${componentName}>`}>
+      <T fw={fontWeight}>{`<${componentName}>`}</T>
     </Tooltip>
   );
 };

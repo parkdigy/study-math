@@ -14,13 +14,9 @@ const Dev_Icon_MaterialIcons = () => {
             <Stack key={idx} row center wrap spacing={10}>
               <T width={80}>{type}</T>
               {!contains(LiveMaterialIconTypes, type) ? (
-                <T color='error' width={140}>
-                  라이브에서 사용 불가
-                </T>
+                <TError width={140}>라이브에서 사용 불가</TError>
               ) : (
-                <T color='primary' width={140}>
-                  라이브에서 사용 가능
-                </T>
+                <TPrimary width={140}>라이브에서 사용 가능</TPrimary>
               )}
               {contains(MaterialIconTypes, type) ? (
                 <>
@@ -51,7 +47,7 @@ const Dev_Icon_MaterialIcons = () => {
                   ))}
                 </>
               ) : (
-                <T color='opacity50'>사용 안함 (src/init/material-icons.ts 선택 가능)</T>
+                <TOpacity50>사용 안함 (src/init/material-icons.ts 선택 가능)</TOpacity50>
               )}
             </Stack>
           ))}
