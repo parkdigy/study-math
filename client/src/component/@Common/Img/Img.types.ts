@@ -27,4 +27,7 @@ export type ImgHtmlProps = React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLI
 
 export interface ImgProps
   extends Omit<ImgHtmlProps, 'children' | 'style'>,
-    Pick<CustomComponentProps<ImgHtmlProps>, ImgStyles | 'w' | 'h'> {}
+    Pick<CustomComponentProps<ImgHtmlProps>, ImgStyles | 'w' | 'h'> {
+  // 회전 각도
+  rotate?: number;
+}
