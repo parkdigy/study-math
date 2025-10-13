@@ -93,6 +93,9 @@ export const Form = React.forwardRef<FormCommands, Props>(
           submit() {
             innerRef.current?.submit();
           },
+          focus(name: string) {
+            getControlCommands(name)?.focus();
+          },
           getControlCommands,
         }),
         [getControlCommands]

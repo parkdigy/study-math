@@ -3,6 +3,7 @@ import { FormControlCommands } from '../FormControls/@common';
 
 export interface FormCommands {
   submit: () => void;
+  focus: (name: string) => void;
   getControlCommands: <T extends FormControlCommands>(name: string) => T | undefined;
 }
 
