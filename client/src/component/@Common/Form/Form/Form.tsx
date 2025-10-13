@@ -9,7 +9,10 @@ import { FormSelectCommands } from '../FormControls/FormSelect';
 import './Form.scss';
 
 export const Form = React.forwardRef<FormCommands, Props>(
-  ({ titlePosition = 'top', titleWidth = 100, hideTitle = false, disabled = false, onSubmit, ...props }, ref) => {
+  (
+    { titlePosition = 'top', titleWidth = 100, hideTitle = false, disabled = false, focusName, onSubmit, ...props },
+    ref
+  ) => {
     /********************************************************************************************************************
      * Ref
      * ******************************************************************************************************************/
@@ -69,7 +72,7 @@ export const Form = React.forwardRef<FormCommands, Props>(
         }
 
         if (isAllValid) {
-          onSubmit?.(finalValues);
+          onSubmit?.(finalValues, e);
         }
       },
       [onSubmit]
@@ -106,6 +109,13 @@ export const Form = React.forwardRef<FormCommands, Props>(
         hideTitle,
         disabled,
         addControl(type: FormControlType, name: string, commands: FormControlCommands | null) {
+          if (commands && !formControls.current[name]?.commands) {
+            if (name === focusName) {
+              nextTick(() => {
+                commands.focus();
+              });
+            }
+          }
           formControls.current[name] = { type, commands, active: true };
         },
         removeControl(name: string) {
@@ -115,7 +125,7 @@ export const Form = React.forwardRef<FormCommands, Props>(
         },
         getControlCommands,
       }),
-      [disabled, getControlCommands, hideTitle, titlePosition, titleWidth]
+      [disabled, focusName, getControlCommands, hideTitle, titlePosition, titleWidth]
     );
 
     /********************************************************************************************************************
@@ -124,7 +134,7 @@ export const Form = React.forwardRef<FormCommands, Props>(
 
     return (
       <FormContextProvider value={contextValue}>
-        <form className='Form' ref={innerRef} noValidate onSubmit={handleSubmit} {...props} />
+        <form className='Form' ref={innerRef} method='post' noValidate onSubmit={handleSubmit} {...props} />
       </FormContextProvider>
     );
   }
