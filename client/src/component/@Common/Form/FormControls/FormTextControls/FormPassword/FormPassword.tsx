@@ -14,6 +14,7 @@ export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
       value: initValue,
       error: initError = false,
       disabled,
+      required,
       rules,
       linkName,
       onChange,
@@ -138,14 +139,16 @@ export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
 
     const handleValidate = useCallback(
       (value: string) => {
-        if (
-          rules &&
-          (!isContainsAlphabetRef.current ||
-            !isContainsNumericRef.current ||
-            !isContainsSpecialCharRef.current ||
-            !isOverLengthRef.current)
-        ) {
-          return true;
+        if (required || notEmpty(value)) {
+          if (
+            rules &&
+            (!isContainsAlphabetRef.current ||
+              !isContainsNumericRef.current ||
+              !isContainsSpecialCharRef.current ||
+              !isOverLengthRef.current)
+          ) {
+            return true;
+          }
         }
 
         let error: string | boolean = false;
@@ -171,6 +174,7 @@ export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
         isOverLengthRef,
         linkName,
         onValidate,
+        required,
         rules,
       ]
     );
@@ -196,6 +200,7 @@ export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
         }
         value={value}
         error={error}
+        required={required}
         disabled={disabled}
         autoComplete='off'
         onErrorChange={setError}
