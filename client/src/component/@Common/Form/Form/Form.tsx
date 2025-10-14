@@ -46,6 +46,7 @@ export const Form = React.forwardRef<FormCommands, Props>(
                 case 'url':
                 case 'password':
                 case 'textarea':
+                case 'hidden':
                   value = (commands as FormTextCommands).getValue();
                   break;
                 case 'checkbox':

@@ -1,6 +1,6 @@
 import React from 'react';
-import { FormCheckboxCommands, FormCheckboxProps as Props } from './FormCheckbox.types';
-import { FormControlBase } from '../@common';
+import { FormHiddenCommands, FormHiddenProps as Props } from './FormHidden.types';
+import { useFormControlGroupState, useFormState } from '../../FormContext';
 import {
   useAutoUpdateRef,
   useAutoUpdateRefState,
@@ -8,32 +8,27 @@ import {
   useFirstSkipEffect,
   useForwardRef,
 } from '@pdg/react-hook';
-import { useFormControlGroupState, useFormState } from '../../FormContext';
-import { IconActive, IconDefault, IconError, IconSwitchActive, IconSwitchDefault } from './icons';
 import { koreanAppendRul } from '@pdg/korean';
-import './FormCheckbox.scss';
+import { FormControlBase } from '../@common';
 
-export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
+export const FormHidden = React.forwardRef<FormHiddenCommands, Props>(
   (
     {
-      // FormCheckboxProps
-      type = 'checkbox',
-      label,
-      labelColor,
-      disabled: initDisabled,
+      // FormHiddenProps
       requiredErrorText,
-      checked: initChecked = false,
-      onChange,
       // FormControlCommonProps
       className,
-      name,
-      error: initError = false,
-      onErrorChange,
-      onValidate,
-      // FormControlBaseProps
       title,
+      name,
+      onValidate,
+      onChange,
+      value: initValue,
+      error: initError = false,
       required,
-      ...formControlBaseProps
+      disabled: initDisabled,
+      onErrorChange,
+      // FormControlBaseProps
+      ...props
     },
     ref
   ) => {
@@ -48,7 +43,7 @@ export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
      * Ref
      * ******************************************************************************************************************/
 
-    const innerRef = useRef<HTMLDivElement>(null);
+    const innerRef = useRef<HTMLInputElement>(null);
     const onValidateRef = useAutoUpdateRef(onValidate);
     const onChangeRef = useAutoUpdateRef(onChange);
 
@@ -56,7 +51,7 @@ export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
      * State
      * ******************************************************************************************************************/
 
-    const [checkedRef, checked, setChecked] = useAutoUpdateRefState(initChecked);
+    const [valueRef, value, setValue] = useAutoUpdateRefState(ifUndefined(initValue, ''));
     const [error, setError] = useAutoUpdateState(initError);
 
     /********************************************************************************************************************
@@ -78,7 +73,7 @@ export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
       if (error) {
         validate();
       }
-    }, [checked]);
+    }, [value]);
 
     /********************************************************************************************************************
      * Function
@@ -87,7 +82,7 @@ export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
     const validate = useCallback(() => {
       let error: string | boolean = false;
 
-      if (required && !checkedRef.current) {
+      if (required && !valueRef.current) {
         if (requiredErrorText !== undefined) {
           error = requiredErrorText;
         } else {
@@ -100,7 +95,7 @@ export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
       }
 
       if (onValidateRef.current) {
-        error = onValidateRef.current(checkedRef.current);
+        error = onValidateRef.current(valueRef.current);
       }
 
       if (error === false) {
@@ -110,34 +105,44 @@ export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
         setError(error);
         return false;
       }
-    }, [checkedRef, onValidateRef, required, requiredErrorText, setError, title]);
+    }, [valueRef, onValidateRef, required, requiredErrorText, setError, title]);
 
     /********************************************************************************************************************
      * Commands
      * ******************************************************************************************************************/
 
-    const commands: FormCheckboxCommands = useMemo(
+    const commands: FormHiddenCommands = useMemo(
       () => ({
         focus() {
           innerRef.current?.focus();
         },
         validate,
         setError,
-        getChecked() {
-          return checkedRef.current;
+        getValue() {
+          return valueRef.current;
         },
-        setChecked(newChecked) {
-          setChecked(newChecked);
-          onChangeRef.current?.(newChecked);
-        },
-        toggle() {
-          commands.setChecked(!checkedRef.current);
+        setValue(newValue) {
+          setValue(ifUndefined(newValue, ''));
+          onChangeRef.current?.(ifUndefined(newValue, ''));
         },
       }),
-      [setChecked, checkedRef, onChangeRef, setError, validate]
+      [setValue, valueRef, onChangeRef, setError, validate]
     );
 
     useForwardRef(ref, commands);
+
+    /********************************************************************************************************************
+     * Event Handler
+     * ******************************************************************************************************************/
+
+    const handleChange = useCallback(
+      (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newValue = e.currentTarget.value;
+        setValue(newValue);
+        onChangeRef.current?.(ifUndefined(newValue, ''));
+      },
+      [onChangeRef, setValue]
+    );
 
     /********************************************************************************************************************
      * Render
@@ -145,8 +150,8 @@ export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
 
     return (
       <FormControlBase
-        className={classnames(className, 'FormCheckbox')}
-        type='checkbox'
+        className={classnames(className, 'FormHidden')}
+        type='hidden'
         title={title}
         spacing={12}
         name={name}
@@ -154,35 +159,12 @@ export const FormCheckbox = React.forwardRef<FormCheckboxCommands, Props>(
         required={required}
         error={error}
         disabled={disabled}
-        {...formControlBaseProps}
+        {...props}
       >
-        <div
-          ref={innerRef}
-          className={classnames(
-            'FormCheckbox__Control',
-            disabled && 'FormCheckbox__Control-disabled',
-            error !== false && 'FormCheckbox__Control-error'
-          )}
-          tabIndex={0}
-          onClick={disabled ? undefined : commands.toggle}
-          onKeyDown={disabled ? undefined : (e) => (e.key === 'Enter' || e.key === ' ') && commands.toggle()}
-        >
-          {type === 'checkbox' ? (
-            // 체크박스 아이콘
-            <Img src={error ? IconError : checked ? IconActive : IconDefault} width={20} height={22} />
-          ) : (
-            // 스위치 아이콘
-            <Img src={checked ? IconSwitchActive : IconSwitchDefault} width={50} height={30} />
-          )}
-
-          {/* 라벨 */}
-          <T className={classnames('FormCheckbox__Label', checked && 'FormCheckbox__Label-checked')} color={labelColor}>
-            {label}
-          </T>
-        </div>
+        <input type='hidden' value={value} onChange={handleChange} />
       </FormControlBase>
     );
   }
 );
 
-export default FormCheckbox;
+export default FormHidden;

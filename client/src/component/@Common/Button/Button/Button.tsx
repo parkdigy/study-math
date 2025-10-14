@@ -92,7 +92,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
         if (isDefaultColor) {
           color = theme.colors[getDefaultOnColor(finalInitColor)];
         } else {
-          if (Color(backgroundColor).alpha() > 0.4) {
+          if (Color(backgroundColor).alpha() >= 0.4) {
             color = theme.colors.background;
           } else {
             color = theme.colors.text;

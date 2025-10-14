@@ -8,7 +8,8 @@ export type FormControlType =
   | 'textarea'
   | 'checkbox'
   | 'radio_group'
-  | 'select';
+  | 'select'
+  | 'hidden';
 
 export interface FormContextValue {
   titlePosition: 'top' | 'left';
