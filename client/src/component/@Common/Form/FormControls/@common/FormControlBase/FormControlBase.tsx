@@ -31,6 +31,7 @@ export const FormControlBase = ({
   spacing = 10,
   focused,
   children,
+  hiddenControl,
   // BoxStyleProps
   ...boxStyleProps
 }: Props) => {
@@ -77,7 +78,9 @@ export const FormControlBase = ({
   const hideTitle = initHideTitle || formHideTitle || !!controlGroupState;
   const hideError = initHideError || !!controlGroupState;
 
-  return (
+  return hiddenControl ? (
+    children
+  ) : (
     <FormControlContainer className={classnames(className, 'FormControlBase')} gap={spacing} {...boxStyleProps}>
       {!hideTitle && notEmpty(title) && (
         <FormTitle

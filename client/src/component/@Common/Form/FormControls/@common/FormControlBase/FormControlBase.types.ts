@@ -34,4 +34,5 @@ export interface FormControlBaseProps
   children: ReactNode;
   controlHelperText?: ReactNode;
   focused?: boolean;
+  hiddenControl?: boolean;
 }

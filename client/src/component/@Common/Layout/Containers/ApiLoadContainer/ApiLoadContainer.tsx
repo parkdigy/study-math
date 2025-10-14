@@ -65,7 +65,7 @@ export const ApiLoadContainer = ToForwardRefExoticComponent(
         showLoading();
         isShowLoadingRef.current = true;
 
-        setLoadStatus('loading');
+        setLoadStatus((prev) => (prev === 'error' ? 'loading' : prev));
 
         setLoadTimeout(
           () => {
