@@ -10,7 +10,18 @@ import './Form.scss';
 
 export const Form = React.forwardRef<FormCommands, Props>(
   (
-    { titlePosition = 'top', titleWidth = 100, hideTitle = false, disabled = false, focusName, onSubmit, ...props },
+    {
+      titlePosition = 'top',
+      titleWidth = 100,
+      hideTitle = false,
+      disabled = false,
+      focusName,
+      onSubmit,
+      // StackProps
+      className,
+      children,
+      ...stackProps
+    },
     ref
   ) => {
     /********************************************************************************************************************
@@ -138,7 +149,9 @@ export const Form = React.forwardRef<FormCommands, Props>(
 
     return (
       <FormContextProvider value={contextValue}>
-        <form className='Form' ref={innerRef} method='post' noValidate onSubmit={handleSubmit} {...props} />
+        <form className={classnames(className, 'Form')} ref={innerRef} method='post' noValidate onSubmit={handleSubmit}>
+          <Stack {...stackProps}>{children}</Stack>
+        </form>
       </FormContextProvider>
     );
   }

@@ -9,66 +9,64 @@ interface Props {
 const Dev_Form_Checkbox_Variant = ({ titlePosition }: Props) => {
   return (
     <Dev_Panel>
-      <Form titlePosition={titlePosition} titleWidth={140} onSubmit={() => ll('submit')}>
-        <Stack spacing={15}>
-          <FormCheckbox title='체크박스' name='FormCheckbox_default' label='기본' />
+      <Form titlePosition={titlePosition} titleWidth={140} spacing={15} onSubmit={() => ll('submit')}>
+        <FormCheckbox title='체크박스' name='FormCheckbox_default' label='기본' />
 
-          <Divider />
+        <Divider />
 
-          <FormCheckbox title='체크박스' name='FormCheckbox_disabled' label='비활성' disabled />
+        <FormCheckbox title='체크박스' name='FormCheckbox_disabled' label='비활성' disabled />
 
-          <Divider />
+        <Divider />
 
-          <FormCheckbox
-            title='체크박스'
-            name='FormCheckbox_subControl'
-            label='하위 컨트롤'
-            subControl={
-              <Button type='button' size='sm'>
-                버튼
-              </Button>
-            }
-          />
+        <FormCheckbox
+          title='체크박스'
+          name='FormCheckbox_subControl'
+          label='하위 컨트롤'
+          subControl={
+            <Button type='button' size='sm'>
+              버튼
+            </Button>
+          }
+        />
 
-          <Divider />
+        <Divider />
 
-          <FormCheckbox title='체크박스' name='FormCheckbox_hideTitle' label='제목 숨김' hideTitle />
+        <FormCheckbox title='체크박스' name='FormCheckbox_hideTitle' label='제목 숨김' hideTitle />
 
-          <Divider />
+        <Divider />
 
-          <FormCheckbox type='switch' title='스위치 - 기본' name='FormCheckbox_switch_default' />
+        <FormCheckbox type='switch' title='스위치 - 기본' name='FormCheckbox_switch_default' />
 
-          <Divider />
+        <Divider />
 
-          <FormCheckbox type='switch' title='스위치 - 비활성' name='FormCheckbox_switch_disabled' disabled />
+        <FormCheckbox type='switch' title='스위치 - 비활성' name='FormCheckbox_switch_disabled' disabled />
 
-          <Divider />
+        <Divider />
 
-          <FormCheckbox
-            type='switch'
-            title='스위치 - 하위 컨트롤'
-            name='FormCheckbox_switch_subControl'
-            subControl={
-              <Button type='button' size='sm'>
-                버튼
-              </Button>
-            }
-          />
+        <FormCheckbox
+          type='switch'
+          title='스위치 - 하위 컨트롤'
+          name='FormCheckbox_switch_subControl'
+          subControl={
+            <Button type='button' size='sm'>
+              버튼
+            </Button>
+          }
+        />
 
-          <Divider />
+        <Divider />
 
-          <FormCheckbox
-            type='switch'
-            title='스위치 - 제목 숨김'
-            name='FormCheckbox_switch_hideTitle'
-            hideTitle
-            label='제목 숨김'
-          />
+        <FormCheckbox
+          type='switch'
+          title='스위치 - 제목 숨김'
+          name='FormCheckbox_switch_hideTitle'
+          hideTitle
+          label='제목 숨김'
+        />
 
-          <Divider />
+        <Divider />
 
-          <Button type='submit'>Submit</Button>
-        </Stack>
+        <Button type='submit'>Submit</Button>
       </Form>
     </Dev_Panel>
   );

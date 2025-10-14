@@ -235,72 +235,70 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
    * ******************************************************************************************************************/
 
   return (
-    <Form className='Dev_FormOptions' {...formProps}>
-      <Stack spacing={20}>
-        {testPosition === 'top' && testControl}
+    <Form className='Dev_FormOptions' spacing={20} {...formProps}>
+      {testPosition === 'top' && testControl}
 
-        {options.map((v, idx) => {
-          if (v === '|') {
-            return <Divider key={idx} />;
-          } else {
-            const op: (Dev_FormOptionsOption | { option: Dev_FormOptionsOption; cols: number })[] = [];
-            let cols = 0;
+      {options.map((v, idx) => {
+        if (v === '|') {
+          return <Divider key={idx} />;
+        } else {
+          const op: (Dev_FormOptionsOption | { option: Dev_FormOptionsOption; cols: number })[] = [];
+          let cols = 0;
 
-            (Array.isArray(v) ? v : [v]).forEach((v2) => {
-              if (v2 == null) {
-                op.push(v2);
-                cols += 1;
-              } else if (typeof v2 === 'object') {
-                op.push(v2);
-                cols += v2.cols;
-              } else {
-                op.push(v2);
-                cols += 1;
-              }
-            });
-
-            if (screen.smallerThanOrEqual.mobileSm) {
-              cols = 1;
-            } else if (screen.smallerThanOrEqual.mobileLg) {
-              if (op.length >= 3) {
-                cols = 2;
-              }
+          (Array.isArray(v) ? v : [v]).forEach((v2) => {
+            if (v2 == null) {
+              op.push(v2);
+              cols += 1;
+            } else if (typeof v2 === 'object') {
+              op.push(v2);
+              cols += v2.cols;
+            } else {
+              op.push(v2);
+              cols += 1;
             }
+          });
 
-            return (
-              <Grid key={idx} className='Dev_FormOptions_Controls' cols={cols as any} spacing={20}>
-                {op.map((v2, idx2) => {
-                  const optionCols = Math.min(cols, v2 && typeof v2 === 'object' ? v2.cols : 1);
-
-                  return (
-                    <Col key={idx2} cols={optionCols}>
-                      {(() => {
-                        const controlName = v2 && typeof v2 === 'object' ? v2.option : v2;
-                        if (controlName === 'cols') {
-                          return colsControl;
-                        } else if (allControlNames.includes(controlName)) {
-                          let isReturnControl = true;
-                          if (controlName === 'color' && !colors) {
-                            isReturnControl = false;
-                          } else if (controlName === 'backgroundColor' && !backgroundColors) {
-                            isReturnControl = false;
-                          }
-
-                          if (isReturnControl) {
-                            return allControls[`${controlName}Control`];
-                          }
-                        }
-                      })()}
-                    </Col>
-                  );
-                })}
-              </Grid>
-            );
+          if (screen.smallerThanOrEqual.mobileSm) {
+            cols = 1;
+          } else if (screen.smallerThanOrEqual.mobileLg) {
+            if (op.length >= 3) {
+              cols = 2;
+            }
           }
-        })}
 
-        {testPosition === 'bottom' && testControl}
-      </Stack>
+          return (
+            <Grid key={idx} className='Dev_FormOptions_Controls' cols={cols as any} spacing={20}>
+              {op.map((v2, idx2) => {
+                const optionCols = Math.min(cols, v2 && typeof v2 === 'object' ? v2.cols : 1);
+
+                return (
+                  <Col key={idx2} cols={optionCols}>
+                    {(() => {
+                      const controlName = v2 && typeof v2 === 'object' ? v2.option : v2;
+                      if (controlName === 'cols') {
+                        return colsControl;
+                      } else if (allControlNames.includes(controlName)) {
+                        let isReturnControl = true;
+                        if (controlName === 'color' && !colors) {
+                          isReturnControl = false;
+                        } else if (controlName === 'backgroundColor' && !backgroundColors) {
+                          isReturnControl = false;
+                        }
+
+                        if (isReturnControl) {
+                          return allControls[`${controlName}Control`];
+                        }
+                      }
+                    })()}
+                  </Col>
+                );
+              })}
+            </Grid>
+          );
+        }
+      })}
+
+      {testPosition === 'bottom' && testControl}
     </Form>
   );
 }

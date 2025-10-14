@@ -1,4 +1,4 @@
-import { FormEvent, HTMLProps } from 'react';
+import { FormEvent } from 'react';
 import { FormControlCommands } from '../FormControls/@common';
 
 export interface FormCommands {
@@ -7,11 +7,12 @@ export interface FormCommands {
   getControlCommands: <T extends FormControlCommands>(name: string) => T | undefined;
 }
 
-export interface FormProps extends Omit<HTMLProps<HTMLFormElement>, 'ref' | 'noValidate' | 'onSubmit'> {
+export interface FormProps extends Omit<StackProps, 'ref' | 'onSubmit'> {
   titlePosition?: 'top' | 'left';
   titleWidth?: number;
   hideTitle?: boolean;
   focusName?: string;
+  disabled?: boolean;
   // 구현부에서 관대한 타입을 허용하기 위해서
   // onSubmit?: (values) => void 를 사용하지 않고,
   // onSubmit?(values): void 로 사용
