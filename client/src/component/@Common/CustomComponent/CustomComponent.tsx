@@ -57,11 +57,13 @@ export const CustomComponent = ToForwardRefExoticComponent(
       borderBottomWidth,
       borderBottomStyle,
       borderBottomColor: initBorderBottomColor,
-      borderRadius,
+      borderRadius: initBorderRadius,
       borderTopLeftRadius,
       borderTopRightRadius,
       borderBottomLeftRadius,
       borderBottomRightRadius,
+      // border - custom
+      radius: initRadius,
       // flex
       flex,
       gap,
@@ -288,7 +290,10 @@ export const CustomComponent = ToForwardRefExoticComponent(
     if (borderTopWidth !== undefined) style.borderTopWidth = borderTopWidth;
     if (borderBottom !== undefined) style.borderBottom = borderBottom;
     if (borderBottomWidth !== undefined) style.borderBottomWidth = borderBottomWidth;
-    if (borderRadius !== undefined) style.borderRadius = borderRadius;
+
+    if (initBorderRadius !== undefined) style.borderRadius = initBorderRadius;
+    else if (initRadius !== undefined) style.borderRadius = initRadius;
+
     if (borderTopLeftRadius !== undefined) style.borderTopLeftRadius = borderTopLeftRadius;
     if (borderTopRightRadius !== undefined) style.borderTopRightRadius = borderTopRightRadius;
     if (borderBottomLeftRadius !== undefined) style.borderBottomLeftRadius = borderBottomLeftRadius;

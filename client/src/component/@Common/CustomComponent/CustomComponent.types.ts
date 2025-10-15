@@ -96,6 +96,7 @@ export type CustomComponentBorderStyles = Omit<
   borderRightColor?: AllColors | CSSProperties['borderRightColor'];
   borderTopColor?: AllColors | CSSProperties['borderTopColor'];
   borderBottomColor?: AllColors | CSSProperties['borderBottomColor'];
+  radius?: CustomComponentBorderStyles['borderRadius'];
 };
 
 /********************************************************************************************************************
