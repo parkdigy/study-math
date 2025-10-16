@@ -7,7 +7,14 @@ import app from '@app';
 const defaultOption: ApiOption = {
   baseUrl: '/api',
   timeParamName: '__t__',
+  async onRequest(config) {
+    app.showLoading();
+
+    return config;
+  },
   async onResponse(res, config, baseUrl, path, requestData, requestOption) {
+    app.hideLoading();
+
     const responseData = res.data;
     if (!requestOption?.raw) {
       if (!responseData || !responseData?.result)
@@ -29,6 +36,8 @@ const defaultOption: ApiOption = {
     return responseData;
   },
   onError(err: ApiError<ApiResult>) {
+    app.hideLoading();
+
     const { silent } = err.requestOption || {};
     const data = err.response?.data;
     if (data && typeof data === 'object' && data.result) {

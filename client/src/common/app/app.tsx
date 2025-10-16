@@ -10,6 +10,8 @@ let _theme: Theme = Theme;
 let _location: Location<any> | undefined;
 let _navigate: NavigateFunction | undefined;
 let _navigateScrollTopPos = 0;
+let _showLoading: (() => void) | undefined;
+let _hideLoading: (() => void) | undefined;
 
 const app = {
   /********************************************************************************************************************
@@ -73,6 +75,18 @@ const app = {
   },
 
   /********************************************************************************************************************
+   * Browser ID
+   * ******************************************************************************************************************/
+  getBrowserId() {
+    let id = localStorage.getItem('browserId');
+    if (!id) {
+      id = crypto.randomUUID().replace(/-/g, '');
+      localStorage.setItem('browserId', id);
+    }
+    return id;
+  },
+
+  /********************************************************************************************************************
    * Color Scheme
    * ******************************************************************************************************************/
 
@@ -94,6 +108,27 @@ const app = {
 
   getTheme() {
     return _theme;
+  },
+
+  /********************************************************************************************************************
+   * Loading
+   * ******************************************************************************************************************/
+
+  _setLoading(showLoading: () => void, hideLoading: () => void) {
+    _showLoading = showLoading;
+    _hideLoading = hideLoading;
+  },
+
+  showLoading() {
+    if (_showLoading) {
+      _showLoading();
+    }
+  },
+
+  hideLoading() {
+    if (_hideLoading) {
+      _hideLoading();
+    }
   },
 
   /********************************************************************************************************************
