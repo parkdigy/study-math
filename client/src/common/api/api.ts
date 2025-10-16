@@ -7,14 +7,18 @@ import app from '@app';
 const defaultOption: ApiOption = {
   baseUrl: '/api',
   timeParamName: '__t__',
-  async onRequest(config) {
-    app.showLoading();
-
+  async onRequest(config, baseUrl, path, requestData, requestOption) {
+    if (!requestOption?.silent) {
+      // 로딩 표시
+      app.showLoading();
+    }
     return config;
   },
   async onResponse(res, config, baseUrl, path, requestData, requestOption) {
-    app.hideLoading();
-
+    if (!requestOption?.silent) {
+      // 로딩 숨김
+      app.hideLoading();
+    }
     const responseData = res.data;
     if (!requestOption?.raw) {
       if (!responseData || !responseData?.result)
@@ -36,9 +40,12 @@ const defaultOption: ApiOption = {
     return responseData;
   },
   onError(err: ApiError<ApiResult>) {
-    app.hideLoading();
-
     const { silent } = err.requestOption || {};
+    if (!silent) {
+      // 로딩 숨김
+      app.hideLoading();
+    }
+
     const data = err.response?.data;
     if (data && typeof data === 'object' && data.result) {
       if (data.result.c === 99997) {
