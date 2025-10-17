@@ -10,6 +10,7 @@ export interface FormInputProps
     | 'placeholder'
     | 'formNoValidate'
     | 'maxLength'
+    | 'inputMode'
     | 'autoComplete'
     | 'autoCapitalize'
     | 'autoCorrect'

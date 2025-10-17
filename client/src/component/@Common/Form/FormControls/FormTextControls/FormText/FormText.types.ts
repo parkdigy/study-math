@@ -16,6 +16,7 @@ export interface FormTextProps
       | 'clear'
       | 'endAdornment'
       | 'maxLength'
+      | 'inputMode'
       | 'autoComplete'
       | 'autoCapitalize'
       | 'autoCorrect'

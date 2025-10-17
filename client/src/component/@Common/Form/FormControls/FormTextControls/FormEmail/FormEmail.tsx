@@ -48,7 +48,8 @@ export const FormEmail = React.forwardRef<FormEmailCommands, Props>(
         $custom
         $type='email'
         $commands={commands}
-        type='email'
+        type='text'
+        inputMode='email'
         className={classnames(className, 'FormEmail')}
         name={name}
         preventKeys={/[\s]/g}

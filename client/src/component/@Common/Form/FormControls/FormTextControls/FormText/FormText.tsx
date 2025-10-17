@@ -45,9 +45,10 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
       onCommands,
       onFinalValue,
       // FormInputProps
-      type,
+      type = 'text',
       clear: initClear = true,
       maxLength,
+      inputMode,
       autoComplete,
       autoCapitalize,
       autoCorrect,
@@ -359,6 +360,7 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
           value={value}
           placeholder={placeholder}
           maxLength={maxLength}
+          inputMode={inputMode}
           autoComplete={autoComplete}
           autoCapitalize={autoCapitalize}
           autoCorrect={autoCorrect}
