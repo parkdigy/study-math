@@ -34,6 +34,58 @@ export const Form = React.forwardRef<FormCommands, Props>(
     );
 
     /********************************************************************************************************************
+     * Function
+     * ******************************************************************************************************************/
+
+    const submit = useCallback(() => {
+      const finalValues: Dict<string | number | undefined | boolean> = {};
+      let isAllValid = true;
+
+      for (const name of keys(formControls.current)) {
+        const { active, type, commands } = formControls.current[name];
+
+        if (active && commands) {
+          if (commands.validate()) {
+            let value: string | number | boolean | undefined;
+
+            switch (type) {
+              case 'text':
+              case 'email':
+              case 'url':
+              case 'password':
+              case 'textarea':
+              case 'hidden':
+                value = (commands as FormTextCommands).getValue();
+                break;
+              case 'checkbox':
+                value = (commands as FormCheckboxCommands).getChecked();
+                break;
+              case 'radio_group':
+                value = (commands as FormRadioGroupCommands<any>).getValue();
+                break;
+              case 'select':
+                value = (commands as FormSelectCommands<any>).getValue();
+                break;
+              default:
+                throw new Error('Unknown form control type');
+            }
+
+            finalValues[name] = value;
+          } else {
+            if (isAllValid) {
+              commands.focus();
+              isAllValid = false;
+            }
+          }
+        }
+      }
+
+      if (isAllValid) {
+        onSubmit?.(finalValues, innerRef.current!);
+      }
+    }, [onSubmit]);
+
+    /********************************************************************************************************************
      * Event Handler
      * ******************************************************************************************************************/
 
@@ -41,53 +93,9 @@ export const Form = React.forwardRef<FormCommands, Props>(
       (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const finalValues: Dict<string | number | undefined | boolean> = {};
-        let isAllValid = true;
-
-        for (const name of keys(formControls.current)) {
-          const { active, type, commands } = formControls.current[name];
-
-          if (active && commands) {
-            if (commands.validate()) {
-              let value: string | number | boolean | undefined;
-
-              switch (type) {
-                case 'text':
-                case 'email':
-                case 'url':
-                case 'password':
-                case 'textarea':
-                case 'hidden':
-                  value = (commands as FormTextCommands).getValue();
-                  break;
-                case 'checkbox':
-                  value = (commands as FormCheckboxCommands).getChecked();
-                  break;
-                case 'radio_group':
-                  value = (commands as FormRadioGroupCommands<any>).getValue();
-                  break;
-                case 'select':
-                  value = (commands as FormSelectCommands<any>).getValue();
-                  break;
-                default:
-                  throw new Error('Unknown form control type');
-              }
-
-              finalValues[name] = value;
-            } else {
-              if (isAllValid) {
-                commands.focus();
-                isAllValid = false;
-              }
-            }
-          }
-        }
-
-        if (isAllValid) {
-          onSubmit?.(finalValues, e);
-        }
+        submit();
       },
-      [onSubmit]
+      [submit]
     );
 
     const getControlCommands = useCallback(function <T extends FormControlCommands>(name: string) {
@@ -102,15 +110,13 @@ export const Form = React.forwardRef<FormCommands, Props>(
       ref,
       useMemo<FormCommands>(
         () => ({
-          submit() {
-            innerRef.current?.submit();
-          },
+          submit,
           focus(name: string) {
             getControlCommands(name)?.focus();
           },
           getControlCommands,
         }),
-        [getControlCommands]
+        [getControlCommands, submit]
       )
     );
     /********************************************************************************************************************

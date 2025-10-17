@@ -23,6 +23,7 @@ function FormSelectControl<T extends string | number>({
   onActiveItem,
   onFocus,
   onBlur,
+  onOpenDropdown,
   onCommands,
 }: Props<T>) {
   /********************************************************************************************************************
@@ -107,12 +108,14 @@ function FormSelectControl<T extends string | number>({
 
   /** 드롭다운 열기 */
   const openDropdown = useCallback(() => {
-    setIsOpenDropdown(true);
-    commands.focus();
-    if (searchable) {
-      setIsShowInput(true);
+    if (onOpenDropdown ? !onOpenDropdown() : true) {
+      setIsOpenDropdown(true);
+      commands.focus();
+      if (searchable) {
+        setIsShowInput(true);
+      }
     }
-  }, [commands, searchable, setIsOpenDropdown]);
+  }, [commands, onOpenDropdown, searchable, setIsOpenDropdown]);
 
   /** 드롭다운 닫기 */
   const closeDropdown = useCallback(() => {

@@ -7,7 +7,7 @@ const ListTitle = ({ type, content }: Props) => {
     <div className='ListTitle'>
       {type === 'info' && (
         <Icon s={17} c='textLighten'>
-          Info
+          Error
         </Icon>
       )}
       {content}

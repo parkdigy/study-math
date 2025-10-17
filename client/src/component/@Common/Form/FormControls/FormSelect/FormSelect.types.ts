@@ -34,4 +34,6 @@ export interface FormSelectProps<T extends string | number> extends FormControlC
   onFocus?: () => void;
   // 블러 이벤트
   onBlur?: () => void;
+  // 드롭다운 열기 전 이벤트 (true 반환 시 드롭다운 열리지 않음)
+  onOpenDropdown?: () => boolean;
 }

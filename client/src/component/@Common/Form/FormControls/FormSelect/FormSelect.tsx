@@ -20,6 +20,7 @@ export const FormSelect = ToForwardRefExoticComponent(
       loadingEmptyItemText,
       onFocus,
       onBlur,
+      onOpenDropdown,
       // FormControlCommonProps
       className,
       title,
@@ -219,6 +220,7 @@ export const FormSelect = ToForwardRefExoticComponent(
           onActiveItem={setActiveItem}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          onOpenDropdown={onOpenDropdown}
           onCommands={handleControlCommands}
         />
       </FormControlBase>
