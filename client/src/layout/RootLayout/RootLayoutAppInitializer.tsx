@@ -1,6 +1,4 @@
 import { useNavigate } from 'react-router';
-import React from 'react';
-import { RootLoading } from './RootLoading';
 
 export const RootLayoutAppInitializer = () => {
   /********************************************************************************************************************
@@ -21,7 +19,7 @@ export const RootLayoutAppInitializer = () => {
    * Render
    * ******************************************************************************************************************/
 
-  return <RootLoading />;
+  return null;
 };
 
 export default RootLayoutAppInitializer;
