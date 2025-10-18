@@ -1,4 +1,3 @@
-import { NavigateFunction } from 'react-router';
 import { ApiResult } from '@api';
 import { Location } from 'react-router';
 import { toast } from '@toast';
@@ -7,73 +6,8 @@ import { Theme } from '@theme';
 
 let _colorScheme: 'light' | 'dark' = 'light';
 let _theme: Theme = Theme;
-let _location: Location<any> | undefined;
-let _navigate: NavigateFunction | undefined;
-let _navigateScrollTopPos = 0;
-let _showLoading: (() => void) | undefined;
-let _hideLoading: (() => void) | undefined;
 
 const app = {
-  /********************************************************************************************************************
-   * Location
-   * ******************************************************************************************************************/
-
-  setLocation(location: Location<any>) {
-    _location = location;
-  },
-
-  getLocation() {
-    return _location;
-  },
-
-  /********************************************************************************************************************
-   * Navigate
-   * ******************************************************************************************************************/
-
-  /**
-   * 페이지 이동 함수 설정
-   * @param navigate 페이지 이동 함수
-   */
-  setNavigate(navigate: NavigateFunction) {
-    _navigate = navigate;
-  },
-
-  /**
-   * 페이지 이동
-   * @param path 이동할 경로
-   * @param replace 히스토리 교체 여부
-   * @param scrollTopPos 이동 후 스크롤 위치
-   */
-  navigate(path: string, replace = false, scrollTopPos = 0) {
-    if (_navigate) {
-      _navigateScrollTopPos = scrollTopPos;
-      const currentPath = `${_location?.pathname}${_location?.search}${_location?.hash}`;
-      if (path === currentPath) {
-        window.scrollTo({ left: 0, top: 0 });
-      } else {
-        _navigate(path, { replace });
-      }
-    } else {
-      console.log('!Not set navigate.');
-    }
-  },
-
-  /**
-   * 페이지 이동 후 스크롤 위치 설정
-   * @param topPos 이동 후 스크롤 위치
-   */
-  setNavigateScrollTopPos(topPos: number) {
-    _navigateScrollTopPos = topPos;
-  },
-
-  /**
-   * 페이지 이동 후 스크롤 위치 반환
-   * @returns 이동 후 스크롤 위치
-   */
-  getNavigateScrollTopPos() {
-    return _navigateScrollTopPos;
-  },
-
   /********************************************************************************************************************
    * Browser ID
    * ******************************************************************************************************************/
@@ -108,27 +42,6 @@ const app = {
 
   getTheme() {
     return _theme;
-  },
-
-  /********************************************************************************************************************
-   * Loading
-   * ******************************************************************************************************************/
-
-  _setLoading(showLoading: () => void, hideLoading: () => void) {
-    _showLoading = showLoading;
-    _hideLoading = hideLoading;
-  },
-
-  showLoading() {
-    if (_showLoading) {
-      _showLoading();
-    }
-  },
-
-  hideLoading() {
-    if (_hideLoading) {
-      _hideLoading();
-    }
   },
 
   /********************************************************************************************************************

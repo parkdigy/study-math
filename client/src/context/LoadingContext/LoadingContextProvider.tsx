@@ -6,7 +6,6 @@ import React from 'react';
 import { LoadingContextProviderProps as Props } from './LoadingContextProvider.types';
 import LoadingContext from './LoadingContext';
 import { useLocation } from 'react-router';
-import app from '@app';
 import './LoadingContextProvider.scss';
 
 const LoadingContextProvider: React.FC<Props> = ({ children }) => {
@@ -89,7 +88,7 @@ const LoadingContextProvider: React.FC<Props> = ({ children }) => {
   }, [decreaseShowCount]);
 
   useEffect(() => {
-    app._setLoading(showLoading, hideLoading);
+    __setLoading(showLoading, hideLoading);
   }, [showLoading, hideLoading]);
 
   /********************************************************************************************************************
