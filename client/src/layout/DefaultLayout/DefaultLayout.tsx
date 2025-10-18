@@ -5,7 +5,6 @@
 import React from 'react';
 import MainRouter from '../../router';
 import { useAppState } from '@context';
-import app from '@app';
 import { useLocation } from 'react-router';
 
 const DefaultLayout = () => {
@@ -22,8 +21,8 @@ const DefaultLayout = () => {
   }, []);
 
   useEffect(() => {
-    window.scrollTo({ top: app.getNavigateScrollTopPos() });
-    app.setNavigateScrollTopPos(0);
+    window.scrollTo({ top: __getNavigateScrollTopPos() });
+    __setNavigateScrollTopPos(0);
   }, [location.pathname, location.hash]);
 
   /********************************************************************************************************************

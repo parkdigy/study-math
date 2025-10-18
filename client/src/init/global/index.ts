@@ -1,6 +1,7 @@
 import './styled-components';
 import './react';
 import './mediaQuery';
+import './navigate';
 import './pdg';
 import './log';
 import './classnames';
