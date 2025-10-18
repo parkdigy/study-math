@@ -1,14 +1,11 @@
-/********************************************************************************************************************
- * Loading Context Provider
- * ******************************************************************************************************************/
-
 import React from 'react';
-import { LoadingContextProviderProps as Props } from './LoadingContextProvider.types';
-import LoadingContext from '../LoadingContext';
+import { RootLoadingProps as Props } from './RootLoading.types';
 import { useLocation } from 'react-router';
-import './LoadingContextProvider.scss';
+import './RootLoading.scss';
+import axios from 'axios';
+import { ApiError, ApiRequestConfig } from '@pdg/api';
 
-const LoadingContextProvider: React.FC<Props> = ({ children }) => {
+export const RootLoading = ({}: Props) => {
   /********************************************************************************************************************
    * Use
    * ******************************************************************************************************************/
@@ -76,51 +73,83 @@ const LoadingContextProvider: React.FC<Props> = ({ children }) => {
   }, []);
 
   /********************************************************************************************************************
-   * Context Value
+   * Effect
    * ******************************************************************************************************************/
 
-  const showLoading = useCallback(() => {
-    increaseShowCount();
-  }, [increaseShowCount]);
+  useLayoutEffect(() => {
+    __setLoading(increaseShowCount, decreaseShowCount);
+  }, [increaseShowCount, decreaseShowCount]);
 
-  const hideLoading = useCallback(() => {
-    decreaseShowCount();
-  }, [decreaseShowCount]);
+  /********************************************************************************************************************
+   * Axios
+   * ******************************************************************************************************************/
 
-  useEffect(() => {
-    __setLoading(showLoading, hideLoading);
-  }, [showLoading, hideLoading]);
+  useLayoutEffect(() => {
+    const requestInterceptor = axios.interceptors.request.use(
+      (config) => {
+        const requestConfig = config as ApiRequestConfig;
+        if (!requestConfig.silent) {
+          increaseShowCount();
+        }
+        return config;
+      },
+      (error: ApiError) => {
+        const config: ApiRequestConfig | undefined = error.config;
+        if (config) {
+          if (!config.silent) {
+            decreaseShowCount();
+          }
+        }
+        return Promise.reject(error);
+      }
+    );
+
+    const responseInterceptor = axios.interceptors.response.use(
+      (response) => {
+        const config: ApiRequestConfig = response.config;
+        if (config) {
+          if (!config.silent) {
+            decreaseShowCount();
+          }
+        }
+        return response;
+      },
+      (error: ApiError) => {
+        const config: ApiRequestConfig | undefined = error.config;
+        if (config) {
+          if (!config.silent) {
+            decreaseShowCount();
+          }
+        }
+        return Promise.reject(error);
+      }
+    );
+
+    return () => {
+      axios.interceptors.request.eject(requestInterceptor);
+      axios.interceptors.response.eject(responseInterceptor);
+    };
+  }, [increaseShowCount, decreaseShowCount]);
 
   /********************************************************************************************************************
    * Render
    * ******************************************************************************************************************/
 
-  return (
-    <LoadingContext.Provider
-      value={{
-        showLoading,
-        hideLoading,
+  return isUse ? (
+    <div
+      className={classnames('RootLoading', isShow ? 'RootLoading-show' : 'RootLoading-hide')}
+      onClick={(e) => {
+        e.stopPropagation();
+        e.preventDefault();
       }}
     >
-      {isUse && (
-        <div
-          className={classnames(
-            'LoadingContextProvider-Loading',
-            isShow ? 'LoadingContextProvider-show' : 'LoadingContextProvider-hide'
-          )}
-          onClick={(e) => {
-            e.stopPropagation();
-            e.preventDefault();
-          }}
-        >
-          <div className='LoadingContextProvider-LoadingContent'>
-            <div className='LoadingContextProvider-LoadingText' />
-          </div>
-        </div>
-      )}
-      {children}
-    </LoadingContext.Provider>
-  );
+      <div className='RootLoading__Content'>
+        <div className='RootLoading__Text' />
+      </div>
+    </div>
+  ) : null;
+
+  return null;
 };
 
-export default LoadingContextProvider;
+export default RootLoading;

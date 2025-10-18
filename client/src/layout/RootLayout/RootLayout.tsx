@@ -6,8 +6,8 @@ import '../../init';
 
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router';
-import { AppContextProvider, LoadingContextProvider } from '@context';
-import { AxiosLoading, ErrorRetry, Loading, LoadingCommands } from '@ccomp';
+import { AppContextProvider } from '@context';
+import { ErrorRetry, Loading, LoadingCommands } from '@ccomp';
 import RootLayoutAppInitializer from './RootLayoutAppInitializer';
 import { useErrorBoundary, withErrorBoundary } from 'react-use-error-boundary';
 import { loadable } from '@common';
@@ -149,13 +149,9 @@ const RootLayout = withErrorBoundary(() => {
         <AppContextProvider value={{ showHtmlLoading, hideHtmlLoading, removeHtmlLoading }}>
           <RootLayoutAppInitializer />
 
-          <LoadingContextProvider>
-            <AxiosLoading />
-
-            <Routes>
-              <Route path='/*' element={<DefaultLayout />} />
-            </Routes>
-          </LoadingContextProvider>
+          <Routes>
+            <Route path='/*' element={<DefaultLayout />} />
+          </Routes>
         </AppContextProvider>
       </BrowserRouter>
     );
