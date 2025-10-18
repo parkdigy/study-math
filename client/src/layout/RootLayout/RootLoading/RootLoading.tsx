@@ -1,6 +1,7 @@
 import React from 'react';
 import { RootLoadingProps as Props } from './RootLoading.types';
 import { useLocation } from 'react-router';
+import './RootLoading.scss';
 
 export const RootLoading = ({}: Props) => {
   /********************************************************************************************************************
