@@ -2,6 +2,7 @@ import './forwardRef';
 import './theme';
 import './react';
 import './navigate';
+import './loading';
 import './pdg';
 import './log';
 import './classnames';
