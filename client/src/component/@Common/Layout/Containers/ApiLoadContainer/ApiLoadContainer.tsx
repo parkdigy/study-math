@@ -1,6 +1,5 @@
 import React from 'react';
 import { ApiLoadContainerCommands, ApiLoadContainerProps as Props } from './ApiLoadContainer.types';
-import { useLoadingState } from '@context';
 import { ErrorRetry } from '../../../Errors';
 import { useAutoUpdateRef, useTimeoutRef } from '@pdg/react-hook';
 
@@ -9,12 +8,6 @@ export const ApiLoadContainer = ToForwardRefExoticComponent(
     { children, load, data, retryDelay = 1000, onLoad, ...props }: Props<T, TApiData>,
     ref: React.ForwardedRef<ApiLoadContainerCommands>
   ) {
-    /********************************************************************************************************************
-     * Use
-     * ******************************************************************************************************************/
-
-    const { showLoading, hideLoading } = useLoadingState();
-
     /********************************************************************************************************************
      * Ref
      * ******************************************************************************************************************/
@@ -42,11 +35,10 @@ export const ApiLoadContainer = ToForwardRefExoticComponent(
     useEffect(() => {
       return () => {
         if (isShowLoadingRef.current) {
-          hideLoading();
+          __hideLoading();
           isShowLoadingRef.current = false;
         }
       };
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -62,7 +54,7 @@ export const ApiLoadContainer = ToForwardRefExoticComponent(
 
     const doLoad = useCallback(
       (retry: boolean) => {
-        showLoading();
+        __showLoading();
         isShowLoadingRef.current = true;
 
         setLoadStatus((prev) => (prev === 'error' ? 'loading' : prev));
@@ -79,7 +71,7 @@ export const ApiLoadContainer = ToForwardRefExoticComponent(
               })
               .finally(() => {
                 if (isShowLoadingRef.current) {
-                  hideLoading();
+                  __hideLoading();
                   isShowLoadingRef.current = false;
                 }
               });
@@ -87,7 +79,7 @@ export const ApiLoadContainer = ToForwardRefExoticComponent(
           retry ? retryDelay : 0
         );
       },
-      [dataRef, hideLoading, onLoad, retryDelay, setLoadTimeout, showLoading]
+      [dataRef, onLoad, retryDelay, setLoadTimeout]
     );
 
     /********************************************************************************************************************

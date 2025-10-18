@@ -5,7 +5,7 @@
 import React, { useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router';
 import { AppContextProvider, AppContextValue, ScreenSizeContextProvider } from '@context';
-import { AxiosLoading, ErrorRetry, ToastContainer } from '@ccomp';
+import { ErrorRetry, ToastContainer } from '@ccomp';
 import RootLayoutAppInitializer from './RootLayoutAppInitializer';
 import { config } from '@common';
 import AuthLayout from '../AuthLayout';
@@ -218,7 +218,7 @@ const RootLayout = () => {
             ) : (
               <>
                 <RootLayoutAppInitializer />
-                <AxiosLoading />
+
                 <Routes>
                   <Route path='/auth/*' element={<AuthLayout />} />
                   <Route path='/*' element={<DefaultLayout />} />

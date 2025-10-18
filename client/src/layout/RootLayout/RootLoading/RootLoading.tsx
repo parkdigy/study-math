@@ -2,6 +2,8 @@ import React from 'react';
 import { RootLoadingProps as Props } from './RootLoading.types';
 import { useLocation } from 'react-router';
 import './RootLoading.scss';
+import axios from 'axios';
+import { ApiError, ApiRequestConfig } from '@pdg/api';
 
 export const RootLoading = ({}: Props) => {
   /********************************************************************************************************************
@@ -71,24 +73,63 @@ export const RootLoading = ({}: Props) => {
   }, []);
 
   /********************************************************************************************************************
-   * Context Value
-   * ******************************************************************************************************************/
-
-  const showLoading = useCallback(() => {
-    increaseShowCount();
-  }, [increaseShowCount]);
-
-  const hideLoading = useCallback(() => {
-    decreaseShowCount();
-  }, [decreaseShowCount]);
-
-  /********************************************************************************************************************
    * Effect
    * ******************************************************************************************************************/
 
-  useEffect(() => {
-    __setLoading(showLoading, hideLoading);
-  }, [showLoading, hideLoading]);
+  useLayoutEffect(() => {
+    __setLoading(increaseShowCount, decreaseShowCount);
+  }, [increaseShowCount, decreaseShowCount]);
+
+  /********************************************************************************************************************
+   * Axios
+   * ******************************************************************************************************************/
+
+  useLayoutEffect(() => {
+    const requestInterceptor = axios.interceptors.request.use(
+      (config) => {
+        const requestConfig = config as ApiRequestConfig;
+        if (!requestConfig.silent) {
+          increaseShowCount();
+        }
+        return config;
+      },
+      (error: ApiError) => {
+        const config: ApiRequestConfig | undefined = error.config;
+        if (config) {
+          if (!config.silent) {
+            decreaseShowCount();
+          }
+        }
+        return Promise.reject(error);
+      }
+    );
+
+    const responseInterceptor = axios.interceptors.response.use(
+      (response) => {
+        const config: ApiRequestConfig = response.config;
+        if (config) {
+          if (!config.silent) {
+            decreaseShowCount();
+          }
+        }
+        return response;
+      },
+      (error: ApiError) => {
+        const config: ApiRequestConfig | undefined = error.config;
+        if (config) {
+          if (!config.silent) {
+            decreaseShowCount();
+          }
+        }
+        return Promise.reject(error);
+      }
+    );
+
+    return () => {
+      axios.interceptors.request.eject(requestInterceptor);
+      axios.interceptors.response.eject(responseInterceptor);
+    };
+  }, [increaseShowCount, decreaseShowCount]);
 
   /********************************************************************************************************************
    * Render

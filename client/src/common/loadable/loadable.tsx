@@ -1,7 +1,6 @@
 import React from 'react';
 import api, { ApiResult } from '@api';
 import config from '../config';
-import { useLoadingState } from '@context';
 import { useTimeoutRef } from '@pdg/react-hook';
 
 interface VersionApp extends ApiResult {
@@ -13,7 +12,6 @@ const LoadableLoading = () => {
    * Use
    * ******************************************************************************************************************/
 
-  const { showLoading, hideLoading } = useLoadingState();
   const [, setShowLoadingTimeout] = useTimeoutRef();
 
   /********************************************************************************************************************
@@ -25,12 +23,12 @@ const LoadableLoading = () => {
 
     setShowLoadingTimeout(() => {
       isShow = true;
-      showLoading();
-    }, 10);
+      __showLoading();
+    }, 100);
 
     return () => {
       if (isShow) {
-        hideLoading();
+        __hideLoading();
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
