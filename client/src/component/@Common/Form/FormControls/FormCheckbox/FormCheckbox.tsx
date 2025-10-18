@@ -9,7 +9,11 @@ import {
   useForwardRef,
 } from '@pdg/react-hook';
 import { useFormControlGroupState, useFormState } from '../../FormContext';
-import { IconActive, IconDefault, IconError, IconSwitchActive, IconSwitchDefault } from './icons';
+import IconActive from './icon_active.svg';
+import IconDefault from './icon_default.svg';
+import IconError from './icon_error.svg';
+import IconSwitchActive from './icon_switch_default.svg';
+import IconSwitchDefault from './icon_switch_active.svg';
 import { koreanAppendRul } from '@pdg/korean';
 import './FormCheckbox.scss';
 

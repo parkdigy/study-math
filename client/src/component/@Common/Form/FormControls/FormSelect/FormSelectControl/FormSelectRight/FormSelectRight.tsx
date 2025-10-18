@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormSelectRightProps as Props } from './FormSelectRight.types';
 import { LoadingIndicator } from '../../../../../Loadings';
-import { IconArrowDown } from './icons';
+import { ReactComponent as IconArrowDown } from './icon_arrow_down.svg';
 import './FormSelectRight.scss';
 
 export const FormSelectRight = ({ size, isOpenDropdown, loading, showClear, clearable, onClear }: Props) => {

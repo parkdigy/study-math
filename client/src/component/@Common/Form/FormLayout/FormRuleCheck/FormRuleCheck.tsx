@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormRuleCheckProps as Props } from './FormRuleCheck.types';
-import { IconCheck } from './icons';
+import { ReactComponent as IconCheck } from './icon_check.svg';
 
 export const FormRuleCheck = ({ title, checked, error }: Props) => {
   return (

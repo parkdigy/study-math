@@ -1,7 +1,9 @@
 import React, { CSSProperties } from 'react';
 import { FormRadioGroupItemProps as Props } from './FormRadioGroupItem.types';
 import { useResizeDetector } from 'react-resize-detector';
-import { IconDefault, IconActive, IconError } from './icons';
+import { ReactComponent as IconDefault } from './icon_default.svg';
+import { ReactComponent as IconActive } from './icon_active.svg';
+import { ReactComponent as IconError } from './icon_error.svg';
 import './FormRadioGroupItem.scss';
 
 const _radioItemIconSize = 20;

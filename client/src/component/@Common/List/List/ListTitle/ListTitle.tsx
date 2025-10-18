@@ -1,7 +1,7 @@
 import React from 'react';
 import { ListTitleProps as Props } from './ListTitle.types';
 import './ListTitle.scss';
-import { IconInfo } from './icons';
+import IconInfo from './icon_info.svg';
 
 const ListTitle = ({ type, content }: Props) => {
   return (
