@@ -3,7 +3,7 @@
  * ******************************************************************************************************************/
 
 import React, { useState } from 'react';
-import { Route, Routes, useLocation } from 'react-router';
+import { Route, Routes } from 'react-router';
 import { AppContextProvider, AppContextValue, ScreenSizeContextProvider } from '@context';
 import { ErrorRetry, ToastContainer } from '@ccomp';
 import RootLayoutAppInitializer from './RootLayoutAppInitializer';
@@ -17,12 +17,6 @@ import DevButtons from './DevButtons';
 import { RootLoading } from './RootLoading';
 
 const RootLayout = () => {
-  /********************************************************************************************************************
-   * Use
-   * ******************************************************************************************************************/
-
-  const location = useLocation();
-
   /********************************************************************************************************************
    * Ref
    * ******************************************************************************************************************/
@@ -55,15 +49,6 @@ const RootLayout = () => {
   useEffect(() => {
     app.setColorScheme(colorScheme);
   }, [colorScheme]);
-
-  useEffect(() => {
-    __setLocation(location);
-  }, [location]);
-
-  useEffect(() => {
-    window.scrollTo({ top: __getNavigateScrollTopPos() });
-    __setNavigateScrollTopPos(0);
-  }, [location.pathname, location.search, location.hash]);
 
   useEffect(() => {
     const handleVisibilityChange = () => {
