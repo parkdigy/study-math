@@ -2,8 +2,10 @@ import React, { CSSProperties } from 'react';
 import { SvgProps as Props } from './Svg.types';
 import { ReactSVG } from 'react-svg';
 import { AllColors } from '@theme';
+import './Svg.scss';
 
 export const Svg = ({
+  className,
   w: initW,
   width: initWidth,
   h: initH,
@@ -36,6 +38,8 @@ export const Svg = ({
   const style: CSSProperties = {
     ...initStyle,
   };
+  if (width !== undefined) style.width = typeof width === 'number' ? `${width}px` : width;
+  if (height !== undefined) style.height = typeof height === 'number' ? `${height}px` : height;
   if (color !== undefined) style.color = color;
 
   /********************************************************************************************************************
@@ -44,6 +48,7 @@ export const Svg = ({
 
   return (
     <ReactSVG
+      className={classnames(className, 'Svg')}
       style={style}
       afterInjection={(svg) => {
         if (width !== undefined) {

@@ -3,51 +3,69 @@ $xs-font-size: var(--size-xs-font-size);
 $caption-font-size: var(--size-caption-font-size);
 $xs-line-height: var(--size-xs-line-height);
 $caption-line-height: var(--size-caption-line-height);
+$xs-height: var(--size-xs-height);
+$caption-height: var(--size-caption-height);
 
 // sm - body small
 $sm-font-size: var(--size-sm-font-size);
 $body-small-font-size: var(--size-body-small-font-size);
 $sm-line-height: var(--size-sm-line-height);
 $body-small-line-height: var(--size-body-small-line-height);
+$sm-height: var(--size-sm-height);
+$body-small-height: var(--size-body-small-height);
 
 // md - body
 $md-font-size: var(--size-md-font-size);
 $body-font-size: var(--size-body-font-size);
 $md-line-height: var(--size-md-line-height);
 $body-line-height: var(--size-body-line-height);
+$md-height: var(--size-md-height);
+$body-height: var(--size-body-height);
 
 // lg - body large
 $lg-font-size: var(--size-lg-font-size);
 $body-large-font-size: var(--size-body-large-font-size);
 $lg-line-height: var(--size-lg-line-height);
 $body-large-line-height: var(--size-body-large-line-height);
+$lg-height: var(--size-lg-height);
+$body-large-height: var(--size-body-large-height);
 
 // xl - title small
 $xl-font-size: var(--size-xl-font-size);
 $title-small-font-size: var(--size-title-small-font-size);
 $xl-line-height: var(--size-xl-line-height);
 $title-small-line-height: var(--size-title-small-line-height);
+$xl-height: var(--size-xl-height);
+$title-small-height: var(--size-title-small-height);
 
 // x2l - title
 $x2l-font-size: var(--size-x2l-font-size);
 $title-font-size: var(--size-title-font-size);
 $x2l-line-height: var(--size-x2l-line-height);
 $title-line-height: var(--size-title-line-height);
+$x2l-height: var(--size-x2l-height);
+$title-height: var(--size-title-height);
 
 // x3l - title large
 $x3l-font-size: var(--size-x3l-font-size);
 $title-large-font-size: var(--size-title-large-font-size);
 $x3l-line-height: var(--size-x3l-line-height);
 $title-large-line-height: var(--size-title-large-line-height);
+$x3l-height: var(--size-x3l-height);
+$title-large-height: var(--size-title-large-height);
 
 // x4l - headline
 $x4l-font-size: var(--size-x4l-font-size);
 $headline-font-size: var(--size-headline-font-size);
 $x4l-line-height: var(--size-x4l-line-height);
 $headline-line-height: var(--size-headline-line-height);
+$x4l-height: var(--size-x4l-height);
+$headheight: var(--size-headheight);
 
 // x5l - headline large
 $x5l-font-size: var(--size-x5l-font-size);
 $headline-large-font-size: var(--size-headline-large-font-size);
 $x5l-line-height: var(--size-x5l-line-height);
 $headline-large-line-height: var(--size-headline-large-line-height);
+$x5l-height: var(--size-x5l-height);
+$headlarge-height: var(--size-headlarge-height);

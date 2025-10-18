@@ -10,4 +10,12 @@
   line-height: size.$body-line-height;
   font-weight: 700;
   color: color.$text;
+
+  .ListTitle__IconWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: size.$body-height;
+  }
 }

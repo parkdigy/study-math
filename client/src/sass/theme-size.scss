@@ -13,44 +13,62 @@
   --size-caption-font-size: 12px;
   --size-xs-line-height: 1.2;
   --size-caption-line-height: 1.2;
+  --size-xs-height: calc(12px * 1.2);
+  --size-caption-height: calc(12px * 1.2);
   // sm - body small
   --size-sm-font-size: 13px;
   --size-body-small-font-size: 13px;
   --size-sm-line-height: 1.6;
   --size-body-small-line-height: 1.6;
+  --size-sm-height: calc(13px * 1.6);
+  --size-body-small-height: calc(13px * 1.6);
   // md - body
   --size-md-font-size: 14px;
   --size-body-font-size: 14px;
   --size-md-line-height: 1.6;
   --size-body-line-height: 1.6;
+  --size-md-height: calc(14px * 1.6);
+  --size-body-height: calc(14px * 1.6);
   // lg - body large
   --size-lg-font-size: 16px;
   --size-body-large-font-size: 16px;
   --size-lg-line-height: 1.6;
   --size-body-large-line-height: 1.6;
+  --size-lg-height: calc(16px * 1.6);
+  --size-body-large-height: calc(16px * 1.6);
   // xl - title small
   --size-xl-font-size: 18px;
   --size-title-small-font-size: 18px;
   --size-xl-line-height: 1.4;
   --size-title-small-line-height: 1.4;
+  --size-xl-height: calc(18px * 1.4);
+  --size-title-small-height: calc(18px * 1.4);
   // x2l - title
   --size-x2l-font-size: 20px;
   --size-title-font-size: 20px;
   --size-x2l-line-height: 1.4;
   --size-title-line-height: 1.4;
+  --size-x2l-height: calc(20px * 1.4);
+  --size-title-height: calc(20px * 1.4);
   // x3l - title large
   --size-x3l-font-size: 24px;
   --size-title-large-font-size: 24px;
   --size-x3l-line-height: 1.4;
   --size-title-large-line-height: 1.4;
+  --size-x3l-height: calc(24px * 1.4);
+  --size-title-large-height: calc(24px * 1.4);
   // x4l - headline
   --size-x4l-font-size: 30px;
   --size-headline-font-size: 30px;
   --size-x4l-line-height: 1.2;
   --size-headline-line-height: 1.2;
+  --size-x4l-height: calc(30px * 1.2);
+  --size-headline-height: calc(30px * 1.2);
   // x5l - headline large
   --size-x5l-font-size: 34px;
   --size-headline-large-font-size: 34px;
   --size-x5l-line-height: 1.2;
   --size-headline-large-line-height: 1.2;
+  --size-x5l-height: calc(34px * 1.2);
+  --size-headline-large-height: calc(34px * 1.2);
 }
