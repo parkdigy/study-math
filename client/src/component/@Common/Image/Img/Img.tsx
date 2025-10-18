@@ -1,6 +1,6 @@
 import React from 'react';
 import { ImgHtmlProps, ImgProps as Props } from './Img.types';
-import { CustomComponent } from '../CustomComponent';
+import { CustomComponent } from '../../CustomComponent';
 import './Img.scss';
 
 export const Img = React.forwardRef<HTMLImageElement, Props>(({ className, rotate, ...props }, ref) => {

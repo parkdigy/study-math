@@ -9,7 +9,7 @@ import {
   CustomComponentProps,
   CustomComponentTransformStyles,
   CustomComponentTransitionStyles,
-} from '../CustomComponent';
+} from '../../CustomComponent';
 
 export const ImgStyles = {
   ...CustomComponentPaddingStyles,

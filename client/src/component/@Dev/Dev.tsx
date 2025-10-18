@@ -8,7 +8,7 @@ import { Dev_Css } from './Css';
 import { Dev_T } from './T';
 import { Dev_Button } from './Button';
 import { Dev_Icon } from './Icon';
-import { Dev_Img } from './Img';
+import { Dev_Image } from './Image';
 import { Dev_Grid } from './Grid';
 import { Dev_Dialog } from './Dialog';
 import { Dev_LoadingIndicator } from './LoadingIndicator';
@@ -116,7 +116,7 @@ export const Dev = ({}: Props) => {
       ) : activeTab === 'icon' ? (
         <Dev_Icon />
       ) : activeTab === 'img' ? (
-        <Dev_Img />
+        <Dev_Image />
       ) : activeTab === 'grid' ? (
         <Dev_Grid />
       ) : activeTab === 'dialog' ? (

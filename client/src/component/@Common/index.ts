@@ -3,7 +3,7 @@ export * from './Loadings';
 export * from './CustomComponent';
 export * from './Layout';
 export * from './Texts';
-export * from './Img';
+export * from './Image';
 export * from './Icon';
 export * from './Button';
 export * from './Form';

@@ -21,6 +21,9 @@ import {
   // Image
   Img as _Img,
   ImgProps as _ImgProps,
+  Svg as _Svg,
+  SvgProps as _SvgProps,
+  // Icon
   Icon as _Icon,
   IconProps as _IconProps,
   // Button
@@ -70,6 +73,9 @@ declare global {
   // Image
   var Img: typeof _Img;
   type ImgProps = _ImgProps;
+  var Svg: typeof _Svg;
+  type SvgProps = _SvgProps;
+  // Icon
   var Icon: typeof _Icon;
   type IconProps = _IconProps;
   // Button
@@ -108,6 +114,8 @@ globalThis.Row = _Row;
 globalThis.Col = _Col;
 // Image
 globalThis.Img = _Img;
+globalThis.Svg = _Svg;
+// Icon
 globalThis.Icon = _Icon;
 // Button
 globalThis.Button = _Button;
