@@ -24,7 +24,7 @@ export const AuthSignIn = ({}: Props) => {
       Const.Auth.signIn(values).then(({ data }) => {
         setAuth(data);
 
-        navigate(ifEmpty(searchParams.get('url'), '/'));
+        __navigate(ifEmpty(searchParams.get('url'), '/'));
       });
     },
     [searchParams, setAuth]

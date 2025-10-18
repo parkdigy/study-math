@@ -101,7 +101,7 @@ export const Dev = ({}: Props) => {
         items={TabItems}
         value={activeTab}
         onChange={(v) => {
-          v !== activeTab && navigate(`#m=${v}`);
+          v !== activeTab && __navigate(`#m=${v}`);
         }}
       />
 

@@ -76,7 +76,7 @@ export const Dev_Form = () => {
         items={TabItems}
         value={activeTab}
         onChange={(v) => {
-          v !== activeTab && navigate(`#m=form&sm=${v}`);
+          v !== activeTab && __navigate(`#m=form&sm=${v}`);
         }}
       />
 

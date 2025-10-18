@@ -22,7 +22,7 @@ export const AuthSignUp = ({}: Props) => {
       Const.Auth.signUp(values).then(({ data }) => {
         setAuth(data);
 
-        navigate('/');
+        __navigate('/');
       });
     },
     [setAuth]

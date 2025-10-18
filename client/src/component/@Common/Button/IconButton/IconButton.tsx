@@ -103,7 +103,7 @@ export const IconButton = React.forwardRef<HTMLDivElement, Props>(
             }
           } else {
             // 내부 URL
-            navigate(url);
+            __navigate(url);
           }
         }
 

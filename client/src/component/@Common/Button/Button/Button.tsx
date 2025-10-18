@@ -157,7 +157,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
             }
           } else {
             // 내부 URL
-            navigate(url);
+            __navigate(url);
           }
         }
 

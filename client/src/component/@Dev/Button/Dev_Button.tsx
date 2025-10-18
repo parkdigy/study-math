@@ -56,7 +56,7 @@ export const Dev_Button = () => {
         items={TabItems}
         value={activeTab}
         onChange={(v) => {
-          v !== activeTab && navigate(`#m=button&sm=${v}`);
+          v !== activeTab && __navigate(`#m=button&sm=${v}`);
         }}
       />
 

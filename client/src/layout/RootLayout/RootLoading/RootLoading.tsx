@@ -89,23 +89,23 @@ export const RootLoading = ({}: Props) => {
     __setLoading(showLoading, hideLoading);
   }, [showLoading, hideLoading]);
 
-  // /********************************************************************************************************************
-  //  * Render
-  //  * ******************************************************************************************************************/
-  //
-  // return isUse ? (
-  //   <div
-  //     className={classnames('RootLoading', isShow ? 'RootLoading-show' : 'RootLoading-hide')}
-  //     onClick={(e) => {
-  //       e.stopPropagation();
-  //       e.preventDefault();
-  //     }}
-  //   >
-  //     <div className='RootLoading__Content'>
-  //       <div className='RootLoading__Text' />
-  //     </div>
-  //   </div>
-  // ) : null;
+  /********************************************************************************************************************
+   * Render
+   * ******************************************************************************************************************/
+
+  return isUse ? (
+    <div
+      className={classnames('RootLoading', isShow ? 'RootLoading-show' : 'RootLoading-hide')}
+      onClick={(e) => {
+        e.stopPropagation();
+        e.preventDefault();
+      }}
+    >
+      <div className='RootLoading__Content'>
+        <div className='RootLoading__Text' />
+      </div>
+    </div>
+  ) : null;
 
   return null;
 };
