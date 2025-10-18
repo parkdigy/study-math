@@ -12,6 +12,7 @@ import RootLayoutAppInitializer from './RootLayoutAppInitializer';
 import { useErrorBoundary, withErrorBoundary } from 'react-use-error-boundary';
 import { loadable } from '@common';
 import DefaultLayout from '../DefaultLayout';
+import { RootLoading } from './RootLoading';
 import '../../sass/index.scss';
 
 const RootLayout = withErrorBoundary(() => {
@@ -147,6 +148,7 @@ const RootLayout = withErrorBoundary(() => {
     return (
       <BrowserRouter>
         <AppContextProvider value={{ showHtmlLoading, hideHtmlLoading, removeHtmlLoading }}>
+          <RootLoading />
           <RootLayoutAppInitializer />
 
           <Routes>
