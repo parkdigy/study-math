@@ -2,6 +2,7 @@ import './styled-components';
 import './react';
 import './mediaQuery';
 import './navigate';
+import './loading';
 import './pdg';
 import './log';
 import './classnames';
