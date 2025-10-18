@@ -3,7 +3,6 @@ import { AuthSignInProps as Props } from './AuthSignIn.types';
 import { Form, FormCheckbox, FormEmail, FormPassword, PageRootContainer, TTitle } from '@ccomp';
 import { Const } from '@const';
 import { useAppState, useScreenSize } from '@context';
-import app from '@app';
 import { useSearchParams } from 'react-router';
 
 export const AuthSignIn = ({}: Props) => {
@@ -25,7 +24,7 @@ export const AuthSignIn = ({}: Props) => {
       Const.Auth.signIn(values).then(({ data }) => {
         setAuth(data);
 
-        app.navigate(ifEmpty(searchParams.get('url'), '/'));
+        navigate(ifEmpty(searchParams.get('url'), '/'));
       });
     },
     [searchParams, setAuth]

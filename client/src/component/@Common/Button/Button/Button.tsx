@@ -8,7 +8,6 @@ import { ButtonHtmlProps, ButtonProps as Props, ButtonSizes } from './Button.typ
 import { LoadingIndicator } from '../../Loadings';
 import { CustomComponent } from '../../CustomComponent';
 import Color from 'color';
-import app from '@app';
 import './Button.scss';
 
 const Button = React.forwardRef<HTMLButtonElement, Props>(
@@ -158,7 +157,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
             }
           } else {
             // 내부 URL
-            app.navigate(url);
+            navigate(url);
           }
         }
 

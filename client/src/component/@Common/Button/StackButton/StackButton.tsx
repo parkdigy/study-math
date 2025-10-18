@@ -2,7 +2,6 @@ import React from 'react';
 import { StackButtonProps as Props } from './StackButton.types';
 import './StackButton.scss';
 import { isUrl } from '@pdg/compare';
-import app from '@app';
 
 export const StackButton = React.forwardRef<HTMLDivElement, Props>(
   ({ className, disabled, url, externalUrlOpenInThisTab, onClick, ...props }, ref) => {
@@ -23,7 +22,7 @@ export const StackButton = React.forwardRef<HTMLDivElement, Props>(
             }
           } else {
             // 내부 URL
-            app.navigate(url);
+            navigate(url);
           }
         }
 

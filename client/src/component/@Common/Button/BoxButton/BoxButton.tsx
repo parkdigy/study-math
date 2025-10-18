@@ -2,7 +2,6 @@ import React from 'react';
 import { BoxButtonProps as Props } from './BoxButton.types';
 import './BoxButton.scss';
 import { isUrl } from '@pdg/compare';
-import app from '@app';
 
 export const BoxButton = React.forwardRef<HTMLDivElement, Props>(
   ({ className, disabled, url, externalUrlOpenInThisTab, onClick, ...props }, ref) => {
@@ -23,7 +22,7 @@ export const BoxButton = React.forwardRef<HTMLDivElement, Props>(
             }
           } else {
             // 내부 URL
-            app.navigate(url);
+            navigate(url);
           }
         }
 

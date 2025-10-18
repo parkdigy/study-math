@@ -57,7 +57,7 @@ export const Dev_Css = () => {
         items={TabItems}
         value={activeTab}
         onChange={(v) => {
-          v !== activeTab && app.navigate(`#m=css&sm=${v}`);
+          v !== activeTab && navigate(`#m=css&sm=${v}`);
         }}
       />
 

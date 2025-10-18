@@ -2,7 +2,6 @@ import React from 'react';
 import { DevButtonsProps as Props } from './DevButtons.types';
 import DevButton from './DevButton';
 import { useAppState, useScreenSize } from '@context';
-import app from '@app';
 import { useLocation } from 'react-router';
 import util from '@util';
 import './DevButtons.scss';
@@ -26,7 +25,7 @@ export const DevButtons = ({}: Props) => {
         {util.css.toCssName(screen.sizes[screen.sizes.length - 1])}
       </T>
       {location.pathname !== '/dev/controls' && (
-        <DevButton icon='Extension' onClick={() => app.navigate('/dev/controls')} />
+        <DevButton icon='Extension' onClick={() => navigate('/dev/controls')} />
       )}
       <DevButton icon={colorScheme === 'light' ? 'DarkMode' : 'LightMode'} onClick={toggleColorScheme} />
     </Stack>

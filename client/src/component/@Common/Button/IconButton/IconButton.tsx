@@ -4,7 +4,6 @@ import { AllColors, AllSizes, ButtonColors, DefaultColors, getDefaultOnColor } f
 import Color from 'color';
 import './IconButton.scss';
 import { isUrl } from '@pdg/compare';
-import app from '@app';
 
 export const IconButton = React.forwardRef<HTMLDivElement, Props>(
   (
@@ -104,7 +103,7 @@ export const IconButton = React.forwardRef<HTMLDivElement, Props>(
             }
           } else {
             // 내부 URL
-            app.navigate(url);
+            navigate(url);
           }
         }
 

@@ -2,7 +2,6 @@ import React from 'react';
 import { AuthSignUpProps as Props } from './AuthSignUp.types';
 import { Form, FormEmail, FormPassword, PageRootContainer, TTitle } from '@ccomp';
 import { Const } from '@const';
-import app from '@app';
 import { useAppState, useScreenSize } from '@context';
 
 export const AuthSignUp = ({}: Props) => {
@@ -23,7 +22,7 @@ export const AuthSignUp = ({}: Props) => {
       Const.Auth.signUp(values).then(({ data }) => {
         setAuth(data);
 
-        app.navigate('/');
+        navigate('/');
       });
     },
     [setAuth]

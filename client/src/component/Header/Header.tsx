@@ -1,7 +1,6 @@
 import React from 'react';
 import { HeaderProps as Props } from './Header.types';
 import { ContentContainer, Logo } from '@ccomp';
-import app from '@app';
 import { useLocation } from 'react-router';
 import './Header.scss';
 
@@ -19,7 +18,7 @@ export const Header = ({ layout }: Props) => {
   return (
     <ContentContainer className='Header' pv={20} containerProps={{ backgroundColor: 'opacity05' }}>
       <Stack row center spaceBetweenJustify height={30}>
-        <Logo onClick={location.pathname === '/' ? undefined : () => app.navigate('/')} />
+        <Logo onClick={location.pathname === '/' ? undefined : () => navigate('/')} />
         {layout !== 'auth' && (
           <Stack row center spacing={5}>
             <Button

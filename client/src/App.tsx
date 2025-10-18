@@ -42,11 +42,11 @@ const App = () => {
    * ******************************************************************************************************************/
 
   return (
-    <ErrorBoundary root>
-      <BrowserRouter>
+    <BrowserRouter>
+      <ErrorBoundary root>
         <RootLayout />
-      </BrowserRouter>
-    </ErrorBoundary>
+      </ErrorBoundary>
+    </BrowserRouter>
   );
 };
 

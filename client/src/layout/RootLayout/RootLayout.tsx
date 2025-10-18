@@ -4,7 +4,7 @@
 
 import React, { useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router';
-import { AppContextProvider, AppContextValue, LoadingContextProvider, ScreenSizeContextProvider } from '@context';
+import { AppContextProvider, AppContextValue, ScreenSizeContextProvider } from '@context';
 import { AxiosLoading, ErrorRetry, ToastContainer } from '@ccomp';
 import RootLayoutAppInitializer from './RootLayoutAppInitializer';
 import { config } from '@common';
@@ -14,6 +14,7 @@ import { AuthInfo } from '@const';
 import { ThemeProvider } from '@theme';
 import app from '@app';
 import DevButtons from './DevButtons';
+import { RootLoading } from './RootLoading';
 
 const RootLayout = () => {
   /********************************************************************************************************************
@@ -56,12 +57,12 @@ const RootLayout = () => {
   }, [colorScheme]);
 
   useEffect(() => {
-    app.setLocation(location);
+    __setLocation(location);
   }, [location]);
 
   useEffect(() => {
-    window.scrollTo({ top: app.getNavigateScrollTopPos() });
-    app.setNavigateScrollTopPos(0);
+    window.scrollTo({ top: __getNavigateScrollTopPos() });
+    __setNavigateScrollTopPos(0);
   }, [location.pathname, location.search, location.hash]);
 
   useEffect(() => {
@@ -194,44 +195,40 @@ const RootLayout = () => {
     <ThemeProvider colorScheme={colorScheme}>
       <ScreenSizeContextProvider>
         <AppContextProvider value={contextValue}>
-          <LoadingContextProvider>
-            <div className='RootLayout'>
-              {auth === undefined ? (
-                <>
-                  {authError ? (
-                    <Flex height='100vh'>
-                      <ErrorRetry
-                        message={
-                          <>
-                            서버에 연결할 수 없습니다.
-                            <br />
-                            잠시 후 재시도 해주세요.
-                          </>
-                        }
-                        onRetry={() => loadAuth(true)}
-                      />
-                    </Flex>
-                  ) : null}
-                </>
-              ) : (
-                <>
-                  <RootLayoutAppInitializer />
+          <RootLoading />
 
-                  <AxiosLoading />
-
-                  <Routes>
-                    <Route path='/auth/*' element={<AuthLayout />} />
-                    <Route path='/*' element={<DefaultLayout />} />
-                  </Routes>
-
-                  {config.env === 'local' && <DevButtons />}
-
-                  <Dialog />
-                  <ToastContainer />
-                </>
-              )}
-            </div>
-          </LoadingContextProvider>
+          <div className='RootLayout'>
+            {auth === undefined ? (
+              <>
+                {authError ? (
+                  <Flex height='100vh'>
+                    <ErrorRetry
+                      message={
+                        <>
+                          서버에 연결할 수 없습니다.
+                          <br />
+                          잠시 후 재시도 해주세요.
+                        </>
+                      }
+                      onRetry={() => loadAuth(true)}
+                    />
+                  </Flex>
+                ) : null}
+              </>
+            ) : (
+              <>
+                <RootLayoutAppInitializer />
+                <AxiosLoading />
+                <Routes>
+                  <Route path='/auth/*' element={<AuthLayout />} />
+                  <Route path='/*' element={<DefaultLayout />} />
+                </Routes>
+                {config.env === 'local' && <DevButtons />}
+                <Dialog />
+                <ToastContainer />
+              </>
+            )}
+          </div>
         </AppContextProvider>
       </ScreenSizeContextProvider>
     </ThemeProvider>
