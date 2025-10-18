@@ -1,33 +1,45 @@
+/********************************************************************************************************************
+ * Variable
+ * ******************************************************************************************************************/
+
 let _showLoading: (() => void) | undefined;
 let _hideLoading: (() => void) | undefined;
 
-function $setLoading(showLoading: () => void, hideLoading: () => void) {
+/********************************************************************************************************************
+ * Function
+ * ******************************************************************************************************************/
+
+function setLoading(showLoading: () => void, hideLoading: () => void) {
   _showLoading = showLoading;
   _hideLoading = hideLoading;
 }
 
-function $showLoading() {
+function showLoading() {
   if (_showLoading) {
     _showLoading();
   }
 }
 
-function $hideLoading() {
+function hideLoading() {
   if (_hideLoading) {
     _hideLoading();
   }
 }
 
+/********************************************************************************************************************
+ * Global
+ * ******************************************************************************************************************/
+
 /* eslint-disable no-var */
 declare global {
-  var __setLoading: typeof $setLoading;
-  var showLoading: typeof $showLoading;
-  var hideLoading: typeof $hideLoading;
+  var __setLoading: typeof setLoading;
+  var __showLoading: typeof showLoading;
+  var __hideLoading: typeof hideLoading;
 }
 /* eslint-enable no-var */
 
-globalThis.__setLoading = $setLoading;
-globalThis.showLoading = showLoading;
-globalThis.hideLoading = hideLoading;
+globalThis.__setLoading = setLoading;
+globalThis.__showLoading = showLoading;
+globalThis.__hideLoading = hideLoading;
 
 export {};
