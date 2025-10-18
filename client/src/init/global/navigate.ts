@@ -1,18 +1,26 @@
 import { Location, NavigateFunction } from 'react-router';
 
+/********************************************************************************************************************
+ * Variable
+ * ******************************************************************************************************************/
+
 let _location: Location<any> | undefined;
 let _navigate: NavigateFunction | undefined;
 let _navigateScrollTopPos = 0;
 
-function $setLocation(location: Location<any>) {
+/********************************************************************************************************************
+ * Function
+ * ******************************************************************************************************************/
+
+function setLocation(location: Location<any>) {
   _location = location;
 }
 
-function $setNavigate(navigate: NavigateFunction) {
+function setNavigate(navigate: NavigateFunction) {
   _navigate = navigate;
 }
 
-function $navigate(path: string, replace = false, scrollTopPos = 0) {
+function navigate(path: string, replace = false, scrollTopPos = 0) {
   if (_navigate) {
     _navigateScrollTopPos = scrollTopPos;
     const currentPath = `${_location?.pathname}${_location?.search}${_location?.hash}`;
@@ -26,28 +34,32 @@ function $navigate(path: string, replace = false, scrollTopPos = 0) {
   }
 }
 
-function $setNavigateScrollTopPos(topPos: number) {
+function setNavigateScrollTopPos(topPos: number) {
   _navigateScrollTopPos = topPos;
 }
 
-function $getNavigateScrollTopPos() {
+function getNavigateScrollTopPos() {
   return _navigateScrollTopPos;
 }
 
+/********************************************************************************************************************
+ * Global
+ * ******************************************************************************************************************/
+
 /* eslint-disable no-var */
 declare global {
-  var __setLocation: typeof $setLocation;
-  var __setNavigate: typeof $setNavigate;
-  var __setNavigateScrollTopPos: typeof $setNavigateScrollTopPos;
-  var __getNavigateScrollTopPos: typeof $getNavigateScrollTopPos;
-  var navigate: typeof $navigate;
+  var __setLocation: typeof setLocation;
+  var __setNavigate: typeof setNavigate;
+  var __setNavigateScrollTopPos: typeof setNavigateScrollTopPos;
+  var __getNavigateScrollTopPos: typeof getNavigateScrollTopPos;
+  var __navigate: typeof navigate;
 }
 /* eslint-enable no-var */
 
-globalThis.__setLocation = $setLocation;
-globalThis.__setNavigate = $setNavigate;
-globalThis.__setNavigateScrollTopPos = $setNavigateScrollTopPos;
-globalThis.__getNavigateScrollTopPos = $getNavigateScrollTopPos;
-globalThis.navigate = $navigate;
+globalThis.__setLocation = setLocation;
+globalThis.__setNavigate = setNavigate;
+globalThis.__setNavigateScrollTopPos = setNavigateScrollTopPos;
+globalThis.__getNavigateScrollTopPos = getNavigateScrollTopPos;
+globalThis.__navigate = navigate;
 
 export {};
