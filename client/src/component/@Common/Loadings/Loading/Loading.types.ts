@@ -1,6 +1,8 @@
 export interface LoadingCommands {
-  show: () => void;
-  hide: () => void;
+  isShow(): boolean;
+  show(): void;
+  hide(): void;
+  getLastHideTime(): number;
 }
 
 export interface LoadingProps {}
