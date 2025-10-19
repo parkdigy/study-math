@@ -8,7 +8,7 @@ const ListItem = ({ content }: Props) => {
       <div className='ListItem__Bullet_Container'>
         <div className='ListItem__Bullet' />
       </div>
-      <div className='ListItem__Content'>{content}</div>
+      <div className='ListItem__Content'>{typeof content === 'string' ? <pre>{content}</pre> : content}</div>
     </div>
   );
 };
