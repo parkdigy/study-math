@@ -266,30 +266,40 @@ export const CustomComponent = ToForwardRefExoticComponent(
     if (borderBottomColor !== undefined) style.borderBottomColor = borderBottomColor;
 
     if (borderStyle !== undefined) style.borderStyle = borderStyle;
-    else if (border === undefined && borderWidth !== undefined) style.borderStyle = 'solid';
+    else if (border === undefined && borderColor !== undefined) style.borderStyle = 'solid';
 
     if (borderLeftStyle !== undefined) style.borderLeftStyle = borderLeftStyle;
-    else if (borderLeft === undefined && borderLeftWidth !== undefined) style.borderLeftStyle = 'solid';
+    else if (borderLeft === undefined && borderLeftColor !== undefined) style.borderLeftStyle = 'solid';
 
     if (borderRightStyle !== undefined) style.borderRightStyle = borderRightStyle;
-    else if (borderRight === undefined && borderRightWidth !== undefined) style.borderRightStyle = 'solid';
+    else if (borderRight === undefined && borderRightColor !== undefined) style.borderRightStyle = 'solid';
 
     if (borderTopStyle !== undefined) style.borderTopStyle = borderTopStyle;
-    else if (borderTop === undefined && borderTopWidth !== undefined) style.borderTopStyle = 'solid';
+    else if (borderTop === undefined && borderTopColor !== undefined) style.borderTopStyle = 'solid';
 
     if (borderBottomStyle !== undefined) style.borderBottomStyle = borderBottomStyle;
-    else if (borderBottom === undefined && borderBottomWidth !== undefined) style.borderBottomStyle = 'solid';
+    else if (borderBottom === undefined && borderBottomColor !== undefined) style.borderBottomStyle = 'solid';
+
+    if (borderWidth !== undefined) style.borderWidth = borderWidth;
+    else if (border === undefined && borderColor !== undefined) style.borderWidth = 1;
+
+    if (borderLeftWidth !== undefined) style.borderLeftWidth = borderLeftWidth;
+    else if (borderLeft === undefined && borderLeftColor !== undefined) style.borderLeftWidth = 1;
+
+    if (borderRightWidth !== undefined) style.borderRightWidth = borderRightWidth;
+    else if (borderRight === undefined && borderRightColor !== undefined) style.borderRightWidth = 1;
+
+    if (borderTopWidth !== undefined) style.borderTopWidth = borderTopWidth;
+    else if (borderTop === undefined && borderTopColor !== undefined) style.borderTopWidth = 1;
+
+    if (borderBottomWidth !== undefined) style.borderBottomWidth = borderBottomWidth;
+    else if (borderBottom === undefined && borderBottomColor !== undefined) style.borderBottomWidth = 1;
 
     if (border !== undefined) style.border = border;
-    if (borderWidth !== undefined) style.borderWidth = borderWidth;
     if (borderLeft !== undefined) style.borderLeft = borderLeft;
-    if (borderLeftWidth !== undefined) style.borderLeftWidth = borderLeftWidth;
     if (borderRight !== undefined) style.borderRight = borderRight;
-    if (borderRightWidth !== undefined) style.borderRightWidth = borderRightWidth;
     if (borderTop !== undefined) style.borderTop = borderTop;
-    if (borderTopWidth !== undefined) style.borderTopWidth = borderTopWidth;
     if (borderBottom !== undefined) style.borderBottom = borderBottom;
-    if (borderBottomWidth !== undefined) style.borderBottomWidth = borderBottomWidth;
 
     if (initBorderRadius !== undefined) style.borderRadius = initBorderRadius;
     else if (initRadius !== undefined) style.borderRadius = initRadius;
