@@ -1,4 +1,4 @@
-export interface StackButtonProps extends StackProps {
+export interface FlexButtonProps extends FlexProps {
   // 비활성 여부
   disabled?: boolean;
   // 버튼 클릭 시 이동할 URL (내부 URL은 / 로 시작)

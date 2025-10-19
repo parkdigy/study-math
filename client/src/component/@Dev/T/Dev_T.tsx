@@ -8,7 +8,7 @@ import Dev_T_Variant from './Dev_T_Variant';
 import { FlattenArray } from '@pdg/types';
 import Dev_T_Variant_Color from './Dev_T_Variant_Color';
 
-const _formOptions = [['color', 'fontWeight'], '|', ['size'], '|', ['icon', 'iconSpacing', 'iconPosition']] as const;
+const _formOptions = [['color', 'fontWeight'], '|', ['size'], '|', ['icon', 'iconGap', 'iconPosition']] as const;
 type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
 
 export const Dev_T = () => {
@@ -23,7 +23,7 @@ export const Dev_T = () => {
    * ******************************************************************************************************************/
 
   return (
-    <Panel spacing={20}>
+    <Panel gap={20}>
       <TTitleLarge700 color='primary'>텍스트 (T)</TTitleLarge700>
 
       <Dev_Panel>

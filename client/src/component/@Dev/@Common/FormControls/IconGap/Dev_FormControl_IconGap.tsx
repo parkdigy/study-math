@@ -1,9 +1,9 @@
 import React from 'react';
-import { Dev_FormControl_IconSpacingProps as Props } from './Dev_FormControl_IconSpacing.types';
+import { Dev_FormControl_IconGapProps as Props } from './Dev_FormControl_IconGap.types';
 import { FormRadioGroup, FormSelect } from '@ccomp';
 import { Dev_PanelItem } from '../../Layout';
 
-export const Dev_FormControl_IconSpacing = ({ variant = 'select', ...props }: Props) => {
+export const Dev_FormControl_IconGap = ({ variant = 'select', ...props }: Props) => {
   /********************************************************************************************************************
    * Memo
    * ******************************************************************************************************************/
@@ -21,14 +21,14 @@ export const Dev_FormControl_IconSpacing = ({ variant = 'select', ...props }: Pr
    * ******************************************************************************************************************/
 
   return (
-    <Dev_PanelItem icon='Expand' iconProps={{ rotate: 90 }} title='아이콘 간격 (iconSpacing)' mt={-5}>
+    <Dev_PanelItem icon='Expand' iconProps={{ rotate: 90 }} title='아이콘 간격 (iconGap)' mt={-5}>
       {variant === 'select' ? (
-        <FormSelect name='iconSpacing' items={selectItems} placeholder='미지정' clearable {...props} />
+        <FormSelect name='iconGap' items={selectItems} placeholder='미지정' clearable {...props} />
       ) : (
-        <FormRadioGroup type='smallButton' name='iconSpacing' items={radioItems} {...props} />
+        <FormRadioGroup type='smallButton' name='iconGap' items={radioItems} {...props} />
       )}
     </Dev_PanelItem>
   );
 };
 
-export default React.memo(Dev_FormControl_IconSpacing);
+export default React.memo(Dev_FormControl_IconGap);

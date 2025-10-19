@@ -5,7 +5,7 @@ import { CSSProperties } from 'react';
 export type ChipVariant = 'contained' | 'outlined';
 
 export interface ChipProps
-  extends Omit<StackProps, 'children' | 'label' | 'fontSize' | keyof CustomComponentBorderStyles> {
+  extends Omit<FlexProps, 'children' | 'label' | 'fontSize' | keyof CustomComponentBorderStyles> {
   // 유형
   variant?: ChipVariant;
   // 내용

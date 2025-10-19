@@ -56,7 +56,7 @@ export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
     const controlHelperText = useMemo(() => {
       if (rules) {
         return (
-          <Stack row center spacing={10} wrap>
+          <Flex row center gap={10} wrap>
             <FormRuleCheck title='영문' checked={isContainsAlphabet} error={error !== false && notEmpty(value)} />
             <FormRuleCheck title='숫자' checked={isContainsNumeric} error={error !== false && notEmpty(value)} />
             <FormRuleCheck
@@ -65,7 +65,7 @@ export const FormPassword = React.forwardRef<FormPasswordCommands, Props>(
               error={error !== false && notEmpty(value)}
             />
             <FormRuleCheck title='8자리 이상' checked={isOverLength} error={error !== false && notEmpty(value)} />
-          </Stack>
+          </Flex>
         );
       }
     }, [error, isContainsAlphabet, isContainsNumeric, isContainsSpecialChar, isOverLength, rules, value]);

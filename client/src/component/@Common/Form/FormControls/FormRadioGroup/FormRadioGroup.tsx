@@ -22,7 +22,7 @@ export const FormRadioGroup = ToForwardRefExoticComponent(
     {
       // FormRadioGroupProps
       type = 'radio',
-      spacing: initSpacing,
+      gap: initGap,
       items,
       grid: initGrid,
       requiredText,
@@ -46,7 +46,7 @@ export const FormRadioGroup = ToForwardRefExoticComponent(
      * Initialize
      * ******************************************************************************************************************/
 
-    const spacing = ifUndefined(initSpacing, type === 'radio' ? 17 : 6);
+    const gap = ifUndefined(initGap, type === 'radio' ? 17 : 6);
 
     /********************************************************************************************************************
      * Use
@@ -168,10 +168,10 @@ export const FormRadioGroup = ToForwardRefExoticComponent(
 
             let newAutoGridCols = 12;
 
-            let totalWidth = newAutoGridCols * itemMaxWidth + (newAutoGridCols - 1) * spacing;
+            let totalWidth = newAutoGridCols * itemMaxWidth + (newAutoGridCols - 1) * gap;
             while (newAutoGridCols > 1 && totalWidth > containerWidth) {
               newAutoGridCols -= 1;
-              totalWidth = newAutoGridCols * itemMaxWidth + (newAutoGridCols - 1) * spacing;
+              totalWidth = newAutoGridCols * itemMaxWidth + (newAutoGridCols - 1) * gap;
             }
             setAutoGridCols(newAutoGridCols as GridCols);
           },
@@ -179,7 +179,7 @@ export const FormRadioGroup = ToForwardRefExoticComponent(
         );
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [items, useAutoGrid, containerWidth, itemMaxWidth, spacing]);
+    }, [items, useAutoGrid, containerWidth, itemMaxWidth, gap]);
 
     /********************************************************************************************************************
      * Function
@@ -334,7 +334,7 @@ export const FormRadioGroup = ToForwardRefExoticComponent(
     if (initGrid) {
       grid = initGrid;
     } else if (isOverflowing) {
-      grid = { cols: autoGridCols, spacing };
+      grid = { cols: autoGridCols, gap };
     }
 
     return (
@@ -343,7 +343,7 @@ export const FormRadioGroup = ToForwardRefExoticComponent(
         type='radio_group'
         name={name}
         commands={commands}
-        spacing={type === 'radio' ? 12 : 10}
+        gap={type === 'radio' ? 12 : 10}
         title={title}
         required={required}
         disabled={disabled}
@@ -355,16 +355,16 @@ export const FormRadioGroup = ToForwardRefExoticComponent(
         <div ref={containerRef} className='FormRadioGroup__Body'>
           {grid ? (
             <div className='FormRadioGroup__Body__GridContainer'>
-              <Grid spacing={ifUndefined(grid.spacing, spacing)} {...grid}>
+              <Grid gap={ifUndefined(grid.gap, gap)} {...grid}>
                 {items.map((item, idx) => (
                   <Col key={idx}>{getItem(idx, item, grid?.cols === 1)}</Col>
                 ))}
               </Grid>
             </div>
           ) : (
-            <Stack row center spacing={spacing}>
+            <Flex row center gap={gap}>
               {items.map((item, idx) => getItem(idx, item))}
-            </Stack>
+            </Flex>
           )}
         </div>
       </FormControlBase>

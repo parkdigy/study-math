@@ -18,16 +18,16 @@ interface Props {}
 
 const Dev_Screen = ({}: Props) => {
   return (
-    <Panel spacing={20}>
+    <Panel gap={20}>
       <TTitleLarge700 color='primary'>화면</TTitleLarge700>
 
       <Divider />
 
       <Dev_Panel>
-        <Stack row stretchAlign spacing={10}>
+        <Flex row stretchAlign gap={10}>
           <Code customStyle={{ flex: 1 }}>{reactCode}</Code>
           <Code customStyle={{ flex: 1 }}>{scssCode}</Code>
-        </Stack>
+        </Flex>
       </Dev_Panel>
       <Item type='mobile' />
       <Item type='tablet' />
@@ -49,19 +49,19 @@ const Item = ({ type }: { type: 'mobile' | 'tablet' | 'desktop' }) => {
     type === 'mobile' ? MobileScreenAliases : type === 'tablet' ? TabletScreenAliases : DesktopScreenAliases;
 
   return (
-    <Stack spacing={5}>
+    <Flex gap={5}>
       <TTitleSmall700 color='lighten'>
         {type.substring(0, 1).toUpperCase()}
         {type.slice(1)}
       </TTitleSmall700>
 
-      <Grid cols={{ mobileLg: 2, desktop: 4 }} spacing={10}>
+      <Grid cols={{ mobileLg: 2, desktop: 4 }} gap={10}>
         {Object.keys(aliases).map((alias, idx) => {
           const [minAlias, maxAlias] = aliases[alias as keyof typeof aliases] as [AllMinScreens, AllMaxScreens];
           return (
             <Col key={idx}>
               <Dev_Panel>
-                <Stack spacing={10} center>
+                <Flex gap={10} center>
                   <TTitleSmall600 color={contains(GeneralScreens, alias) ? 'success' : 'secondary'}>
                     {util.css.toCssName(alias)}
                   </TTitleSmall600>
@@ -73,13 +73,13 @@ const Item = ({ type }: { type: 'mobile' | 'tablet' | 'desktop' }) => {
                   <CopyButton name={`screenSize.is.${alias}`} />
                   <CopyButton name={util.css.toCssVarName(minAlias, 'screen')} />
                   <CopyButton name={util.css.toCssVarName(maxAlias, 'screen')} />
-                </Stack>
+                </Flex>
               </Dev_Panel>
             </Col>
           );
         })}
       </Grid>
-    </Stack>
+    </Flex>
   );
 };
 

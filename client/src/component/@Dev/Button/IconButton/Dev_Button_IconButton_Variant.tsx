@@ -5,12 +5,12 @@ import { toast } from '@common';
 
 const Dev_Button_IconButton_Variant = () => {
   return (
-    <Stack spacing={20}>
+    <Flex gap={20}>
       <Dev_Panel>
-        <Dev_PanelItem title='색상별 기본 스타일' spacing={10}>
+        <Dev_PanelItem title='색상별 기본 스타일' gap={10}>
           <Divider />
 
-          <Stack row center spacing={10} wrap mt={5}>
+          <Flex row center gap={10} wrap mt={5}>
             <Tooltip place='top-start' content={'<IconButton>...</IconButton>'}>
               <IconButton onClick={() => toast.info('클릭')}>RocketLaunch</IconButton>
             </Tooltip>
@@ -22,15 +22,15 @@ const Dev_Button_IconButton_Variant = () => {
                 </IconButton>
               </Tooltip>
             ))}
-          </Stack>
+          </Flex>
         </Dev_PanelItem>
       </Dev_Panel>
 
       <Dev_Panel>
-        <Dev_PanelItem title='크기별 기본 스타일' spacing={10}>
+        <Dev_PanelItem title='크기별 기본 스타일' gap={10}>
           <Divider />
 
-          <Stack row center spacing={10} wrap mt={5}>
+          <Flex row center gap={10} wrap mt={5}>
             {AllSizes.map((size, idx) => (
               <Tooltip key={idx} place='top-start' content={`<IconButton size="${size}">...</IconButton>`}>
                 <IconButton size={size} onClick={() => toast.info('클릭')}>
@@ -38,15 +38,15 @@ const Dev_Button_IconButton_Variant = () => {
                 </IconButton>
               </Tooltip>
             ))}
-          </Stack>
+          </Flex>
         </Dev_PanelItem>
       </Dev_Panel>
 
       <Dev_Panel>
-        <Dev_PanelItem title='색상별 둥근 스타일' spacing={10}>
+        <Dev_PanelItem title='색상별 둥근 스타일' gap={10}>
           <Divider />
 
-          <Stack row center spacing={10} wrap mt={5}>
+          <Flex row center gap={10} wrap mt={5}>
             <Tooltip place='top-start' content={`<IconButton variant="rounded">...</IconButton>`}>
               <IconButton variant='rounded' onClick={() => toast.info('클릭')}>
                 RocketLaunch
@@ -64,15 +64,15 @@ const Dev_Button_IconButton_Variant = () => {
                 </IconButton>
               </Tooltip>
             ))}
-          </Stack>
+          </Flex>
         </Dev_PanelItem>
       </Dev_Panel>
 
       <Dev_Panel>
-        <Dev_PanelItem title='크기별 둥근 스타일' spacing={10}>
+        <Dev_PanelItem title='크기별 둥근 스타일' gap={10}>
           <Divider />
 
-          <Stack row center spacing={10} wrap mt={5}>
+          <Flex row center gap={10} wrap mt={5}>
             {AllSizes.map((size, idx) => (
               <Tooltip
                 key={idx}
@@ -84,10 +84,10 @@ const Dev_Button_IconButton_Variant = () => {
                 </IconButton>
               </Tooltip>
             ))}
-          </Stack>
+          </Flex>
         </Dev_PanelItem>
       </Dev_Panel>
-    </Stack>
+    </Flex>
   );
 };
 

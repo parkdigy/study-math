@@ -20,7 +20,7 @@ export interface FormControlCommonProps<T> extends Omit<BoxStyleProps, 's' | 'si
   error?: string | boolean;
   hideError?: boolean;
   subControl?: ReactNode;
-  spacing?: number;
+  gap?: number;
   value?: T;
   onChange?: (value: T) => void;
   onValidate?: (value: T) => string | boolean;

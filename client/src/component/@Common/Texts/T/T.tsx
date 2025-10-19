@@ -13,7 +13,7 @@ export const T = React.forwardRef<HTMLDivElement, Props>(
       c: initC,
       color: initColor,
       icon,
-      iconSpacing,
+      iconGap,
       iconPosition,
       iconProps,
       ellipsis,
@@ -51,21 +51,21 @@ export const T = React.forwardRef<HTMLDivElement, Props>(
      * ******************************************************************************************************************/
 
     return icon ? (
-      <Stack
+      <Flex
         ref={ref}
         className={classnames(className, 'T', ellipsis && 'T-ellipsis')}
         center
         flexDirection={iconPosition === 'end' ? 'row-reverse' : 'row'}
         size={size}
         color={finalColor}
-        spacing={iconSpacing !== undefined ? iconSpacing : fontSize ? Math.ceil(fontSize * 0.4) : 5}
+        gap={iconGap !== undefined ? iconGap : fontSize ? Math.ceil(fontSize * 0.4) : 5}
         {...props}
       >
         <Icon size={size} {...iconProps}>
           {icon}
         </Icon>
         <span className='T__Text'>{children}</span>
-      </Stack>
+      </Flex>
     ) : (
       <Box
         ref={ref}

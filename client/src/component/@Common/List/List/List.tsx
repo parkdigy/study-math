@@ -5,11 +5,11 @@ import ListItem from './ListItem';
 import './List.scss';
 
 export const List = React.forwardRef<HTMLDivElement, Props>(
-  ({ type = 'info', variant = 'default', items, spacing = 2, title, ...boxProps }, ref) => {
+  ({ type = 'info', variant = 'default', items, gap = 2, title, ...boxProps }, ref) => {
     return (
       <Box ref={ref} className={classnames('List', `List-variant-${variant}`)} {...boxProps}>
         {title && <ListTitle type={type} content={title} />}
-        <div className='List__Items' style={{ '--spacing': `${spacing}px` } as React.CSSProperties}>
+        <div className='List__Items' style={{ '--gap': `${gap}px` } as React.CSSProperties}>
           {items.map((item, idx) => (
             <ListItem key={idx} content={item} />
           ))}

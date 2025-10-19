@@ -17,7 +17,7 @@ export const DialogModal = ({ onCancelClick, onConfirmClick, onRequestClose, ...
     contentColor,
     ph,
     pv,
-    spacing,
+    gap,
     minWidth,
     maxWidth,
     reverseButtons,
@@ -92,13 +92,13 @@ export const DialogModal = ({ onCancelClick, onConfirmClick, onRequestClose, ...
   return (
     <Modal isOpen={true} portalClassName='Dialog' onRequestClose={() => onRequestClose(props)}>
       {type === undefined ? (
-        <Stack center spacing={ifUndefined(spacing, 14)} minWidth={minWidth} maxWidth={maxWidth}>
+        <Flex center gap={ifUndefined(gap, 14)} minWidth={minWidth} maxWidth={maxWidth}>
           {title}
           {content}
-        </Stack>
+        </Flex>
       ) : (
-        <Stack center spacing={ifUndefined(spacing, 14)} minWidth={minWidth} maxWidth={maxWidth}>
-          <Stack fullWidth>
+        <Flex center gap={ifUndefined(gap, 14)} minWidth={minWidth} maxWidth={maxWidth}>
+          <Flex fullWidth>
             {title}
             {content}
             <Flex center row reverse={reverseButtons}>
@@ -131,8 +131,8 @@ export const DialogModal = ({ onCancelClick, onConfirmClick, onRequestClose, ...
                 </Button>
               </Box>
             </Flex>
-          </Stack>
-        </Stack>
+          </Flex>
+        </Flex>
       )}
 
       <Dialog />

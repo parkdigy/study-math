@@ -1,9 +1,9 @@
 import React from 'react';
-import { StackButtonProps as Props } from './StackButton.types';
-import './StackButton.scss';
+import { FlexButtonProps as Props } from './FlexButton.types';
+import './FlexButton.scss';
 import { isUrl } from '@pdg/compare';
 
-export const StackButton = React.forwardRef<HTMLDivElement, Props>(
+export const FlexButton = React.forwardRef<HTMLDivElement, Props>(
   ({ className, disabled, url, externalUrlOpenInThisTab, onClick, ...props }, ref) => {
     /********************************************************************************************************************
      * Event Handler
@@ -36,9 +36,9 @@ export const StackButton = React.forwardRef<HTMLDivElement, Props>(
      * ******************************************************************************************************************/
 
     return (
-      <Stack
+      <Flex
         ref={ref}
-        className={classnames(className, 'StackButton', disabled && 'StackButton-disabled')}
+        className={classnames(className, 'FlexButton', disabled && 'FlexButton-disabled')}
         onClick={url !== undefined ? handleClick : onClick}
         {...props}
       />
@@ -46,4 +46,4 @@ export const StackButton = React.forwardRef<HTMLDivElement, Props>(
   }
 );
 
-export default StackButton;
+export default FlexButton;

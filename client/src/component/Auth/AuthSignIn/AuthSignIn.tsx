@@ -38,28 +38,28 @@ export const AuthSignIn = ({}: Props) => {
 
   return (
     <PageRootContainer fullScreen centerCenter ph={20}>
-      <Stack center width={isSmallScreen ? '100%' : 400} spacing={20}>
+      <Flex center width={isSmallScreen ? '100%' : 400} gap={20}>
         <TTitle bold>로그인</TTitle>
 
         <Form hideTitle onSubmit={handleSubmit}>
-          <Stack spacing={20}>
-            <Stack spacing={10}>
+          <Flex gap={20}>
+            <Flex gap={10}>
               <FormEmail name='email' title='이메일' placeholder='이메일을 입력해 주세요' required />
               <FormPassword name='password' title='비밀번호' placeholder='비밀번호를 입력해 주세요' required />
               <FormCheckbox name='stay' label='로그인 상태 유지' />
-            </Stack>
+            </Flex>
 
-            <Stack fullWidth spacing={10}>
+            <Flex fullWidth gap={10}>
               <Button type='submit' size='lg'>
                 로그인
               </Button>
               <Button type='button' url='/auth/signup' color='secondary' size='lg'>
                 회원가입
               </Button>
-            </Stack>
-          </Stack>
+            </Flex>
+          </Flex>
         </Form>
-      </Stack>
+      </Flex>
     </PageRootContainer>
   );
 };

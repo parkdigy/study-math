@@ -17,10 +17,10 @@ export const Header = ({ layout }: Props) => {
 
   return (
     <ContentContainer className='Header' pv={20} containerProps={{ backgroundColor: 'opacity05' }}>
-      <Stack row center spaceBetweenJustify height={30}>
+      <Flex row center spaceBetweenJustify height={30}>
         <Logo onClick={location.pathname === '/' ? undefined : () => __navigate('/')} />
         {layout !== 'auth' && (
-          <Stack row center spacing={5}>
+          <Flex row center gap={5}>
             <Button
               url={
                 location.pathname === '/' ? '/auth/signin' : `/auth/signin?url=${encodeURIComponent(location.pathname)}`
@@ -32,9 +32,9 @@ export const Header = ({ layout }: Props) => {
             <Button url='/auth/signup' size='xs'>
               회원가입
             </Button>
-          </Stack>
+          </Flex>
         )}
-      </Stack>
+      </Flex>
     </ContentContainer>
   );
 };

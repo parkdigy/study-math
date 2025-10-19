@@ -50,7 +50,7 @@ export const Dev_Css = () => {
    * ******************************************************************************************************************/
 
   return (
-    <Panel spacing={20}>
+    <Panel gap={20}>
       <TTitleLarge700 color='primary'>CSS</TTitleLarge700>
 
       <Tabs
@@ -62,7 +62,7 @@ export const Dev_Css = () => {
       />
 
       {activeTab === 'size' ? (
-        <Grid cols={{ mobileLg: 2, tabletMd: 3, desktopSm: 4 }} spacing={10}>
+        <Grid cols={{ mobileLg: 2, tabletMd: 3, desktopSm: 4 }} gap={10}>
           {Sizes.map((size, idx) => {
             const friendlyName = theme.css.names.sizes[getFriendlyNameOfSize(size)];
             const sizeInfo = theme.sizes[size];
@@ -76,7 +76,7 @@ export const Dev_Css = () => {
             return (
               <Col key={idx}>
                 <Container>
-                  <Stack spacing={10}>
+                  <Flex gap={10}>
                     <TTitleSmall color='primary' center>
                       {friendlyName} ({size})
                     </TTitleSmall>
@@ -113,14 +113,14 @@ export const Dev_Css = () => {
                     <CopyButton name={lineHeightVarName} />
                     <CopyButton name={`line-height-${friendlyName}`} />
                     <CopyButton name={`line-height-${size}`} />
-                  </Stack>
+                  </Flex>
                 </Container>
               </Col>
             );
           })}
         </Grid>
       ) : activeTab === 'color' ? (
-        <Grid cols={{ mobileLg: 2, tabletMd: 3, desktopSm: 4 }} spacing={10}>
+        <Grid cols={{ mobileLg: 2, tabletMd: 3, desktopSm: 4 }} gap={10}>
           {AllColors.map((color, idx) => (
             <Col key={idx}>
               <Container>
@@ -167,15 +167,15 @@ const Container = ({ children }: { children: ReactNode }) => {
   const theme = useTheme();
 
   return (
-    <Stack
-      spacing={10}
+    <Flex
+      gap={10}
       backgroundColor={theme.colors.background}
       p={10}
       border={`1px solid ${theme.colors.divider}`}
       borderRadius={10}
     >
       {children}
-    </Stack>
+    </Flex>
   );
 };
 
@@ -190,7 +190,7 @@ const Item = ({ color, onColor }: { color: keyof Theme['colors']; onColor?: keyo
   const onColorValue = ifUndefined(onColor, util.color.getOnColor(colorValue));
 
   return (
-    <Stack spacing={10}>
+    <Flex gap={10}>
       <Box backgroundColor={colorValue} color={onColorValue} pv={5} borderRadius={4} center>
         <T opacity={0.7}>{color}</T>
       </Box>
@@ -198,7 +198,7 @@ const Item = ({ color, onColor }: { color: keyof Theme['colors']; onColor?: keyo
       <CopyButton name={theme.css.vars.colors[color]} />
       <CopyButton name={`color-${theme.css.names.colors[color]}`} />
       <CopyButton name={`background-color-${theme.css.names.colors[color]}`} />
-    </Stack>
+    </Flex>
   );
 };
 

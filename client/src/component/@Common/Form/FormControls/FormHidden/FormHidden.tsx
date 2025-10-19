@@ -91,7 +91,7 @@ export const FormHidden = React.forwardRef<FormHiddenCommands, Props>(
         className={classnames(className, 'FormHidden')}
         type='hidden'
         hiddenControl
-        spacing={12}
+        gap={12}
         name={name}
         commands={commands}
         disabled={disabled}

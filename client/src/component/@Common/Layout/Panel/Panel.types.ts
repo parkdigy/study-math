@@ -1,1 +1,1 @@
-export interface PanelProps extends StackProps {}
+export interface PanelProps extends FlexProps {}

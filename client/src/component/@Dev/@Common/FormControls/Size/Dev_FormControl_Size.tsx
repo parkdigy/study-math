@@ -18,10 +18,10 @@ export const Dev_FormControl_Size = ({ variant = 'select', ...props }: Props) =>
   const radioItems = useMemo(() => {
     const _items = FriendlyNameSizes.map((size) => {
       return lv(
-        <Stack row center spacing={3}>
+        <Flex row center gap={3}>
           <T>{size}</T>
           <T opacity={0.5}>({getSizeOfFriendlyName(size)})</T>
-        </Stack>,
+        </Flex>,
         size
       );
     });

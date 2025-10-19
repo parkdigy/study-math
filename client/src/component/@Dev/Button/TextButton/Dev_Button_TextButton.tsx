@@ -10,7 +10,7 @@ import { FlattenArray } from '@pdg/types';
 const _formOptions = [
   ['color', 'size'],
   '|',
-  ['icon', 'iconSpacing', 'iconPosition'],
+  ['icon', 'iconGap', 'iconPosition'],
   '|',
   'url',
   '|',
@@ -37,7 +37,7 @@ const Dev_Button_TextButton = () => {
    * ******************************************************************************************************************/
 
   return (
-    <Stack spacing={20}>
+    <Flex gap={20}>
       <Dev_Panel>
         <Dev_FormOptions
           options={_formOptions}
@@ -56,7 +56,7 @@ const Dev_Button_TextButton = () => {
       </Dev_Panel>
 
       <Dev_Button_TextButton_Variant />
-    </Stack>
+    </Flex>
   );
 };
 

@@ -1,7 +1,7 @@
-.StackButton {
+.FlexButton {
   user-select: none;
 
-  &:not(.StackButton-disabled) {
+  &:not(.FlexButton-disabled) {
     cursor: pointer;
 
     * {
@@ -9,7 +9,7 @@
     }
   }
 
-  &.StackButton-disabled {
+  &.FlexButton-disabled {
     cursor: default;
     pointer-events: none;
     opacity: 0.5;

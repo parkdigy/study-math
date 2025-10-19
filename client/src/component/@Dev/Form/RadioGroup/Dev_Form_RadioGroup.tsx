@@ -6,7 +6,7 @@ import code from './Dev_Form_RadioGroup.code.md';
 import Dev_Form_RadioGroup_Variant from './Dev_Form_RadioGroup_Variant';
 
 const _formOptions = [
-  ['formRadioGroupType', 'spacing'],
+  ['formRadioGroupType', 'gap'],
   '|',
   ['title', 'helperText'],
   '|',
@@ -44,7 +44,7 @@ export const Dev_Form_RadioGroup = ({ titlePosition }: Props) => {
    * ******************************************************************************************************************/
 
   return (
-    <Stack spacing={20}>
+    <Flex gap={20}>
       <Dev_Panel>
         <Dev_FormOptions
           options={_formOptions}
@@ -54,16 +54,16 @@ export const Dev_Form_RadioGroup = ({ titlePosition }: Props) => {
           codePropsMap={{ props: { ...data } }}
           onChange={setData}
           onGetTest={() => (
-            <Stack spacing={20} fullWidth>
+            <Flex gap={20} fullWidth>
               <FormRadioGroup name='FormRadioGroup' titleWidth={120} items={Items} {...data} />
               <Button>Submit</Button>
-            </Stack>
+            </Flex>
           )}
         />
       </Dev_Panel>
 
       <Dev_Form_RadioGroup_Variant titlePosition={titlePosition} />
-    </Stack>
+    </Flex>
   );
 };
 

@@ -11,7 +11,7 @@ const Items = new Array(10).fill(0).map((_, i) => lv(`아이템 ${i + 1}`, `${i 
 const Dev_Form_RadioGroup_Variant = ({ titlePosition }: Props) => {
   return (
     <Dev_Panel>
-      <Form titlePosition={titlePosition} titleWidth={90} spacing={15} onSubmit={() => ll('submit')}>
+      <Form titlePosition={titlePosition} titleWidth={90} gap={15} onSubmit={() => ll('submit')}>
         <FormRadioGroup title='기본' name='FormRadioGroup_default' items={Items} />
 
         <Divider />

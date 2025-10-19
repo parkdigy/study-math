@@ -54,7 +54,7 @@ export const Dev_FormControl_Cols = ({
             desktopSm: 8,
             desktopMd: 9,
           }}
-          spacing={10}
+          gap={10}
         >
           {keys(AllScreenAliases).map((screen, idx) => {
             if (responsiveCols[screen] !== undefined) {

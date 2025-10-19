@@ -17,7 +17,7 @@ export const Form = React.forwardRef<FormCommands, Props>(
       disabled = false,
       focusName,
       onSubmit,
-      // StackProps
+      // FlexProps
       className,
       children,
       ...stackProps
@@ -156,7 +156,7 @@ export const Form = React.forwardRef<FormCommands, Props>(
     return (
       <FormContextProvider value={contextValue}>
         <form className={classnames(className, 'Form')} ref={innerRef} method='post' noValidate onSubmit={handleSubmit}>
-          <Stack {...stackProps}>{children}</Stack>
+          <Flex {...stackProps}>{children}</Flex>
         </form>
       </FormContextProvider>
     );

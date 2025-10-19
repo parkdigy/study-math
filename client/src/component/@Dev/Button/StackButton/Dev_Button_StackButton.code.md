@@ -1,5 +1,0 @@
-```react
-<StackButton $[button]>
-  ...
-</StackButton>
-```

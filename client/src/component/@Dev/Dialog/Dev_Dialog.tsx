@@ -3,13 +3,13 @@ import { Dev_Panel } from '../@Common';
 
 export const Dev_Dialog = () => {
   return (
-    <Panel spacing={20}>
+    <Panel gap={20}>
       <TTitleLarge700 color='primary'>다이얼로그 (Dialog)</TTitleLarge700>
 
       <Divider />
 
       <Dev_Panel>
-        <Grid cols={{ mobileMd: 2, tabletSm: 3, tabletMd: 4, tabletLg: 5 }} spacing={10}>
+        <Grid cols={{ mobileMd: 2, tabletSm: 3, tabletMd: 4, tabletLg: 5 }} gap={10}>
           <Col>
             <Tooltip place='top-start' content="Dialog.openAlert({ title: '제목', content: '내용' })">
               <Button

@@ -6,7 +6,7 @@ import { AllScreenAliases, GeneralScreens } from '@theme';
 import { useScreenSize } from '@context';
 
 export const Grid = React.forwardRef<HTMLDivElement, Props>(
-  ({ children, className, cols = 12, spacing = 0, ...props }, ref) => {
+  ({ children, className, cols = 12, gap = 0, ...props }, ref) => {
     /********************************************************************************************************************
      * Use
      * ******************************************************************************************************************/
@@ -66,7 +66,7 @@ export const Grid = React.forwardRef<HTMLDivElement, Props>(
 
     const style = {
       '--grid-cols': `${finalCols}`,
-      '--grid-spacing': typeof spacing === 'number' ? `${spacing}px` : spacing,
+      '--grid-gap': typeof gap === 'number' ? `${gap}px` : gap,
     };
 
     /********************************************************************************************************************

@@ -1,0 +1,5 @@
+```react
+<FlexButton $[button]>
+  ...
+</FlexButton>
+```

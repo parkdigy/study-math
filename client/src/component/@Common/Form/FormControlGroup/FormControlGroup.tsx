@@ -99,17 +99,9 @@ export const FormControlGroup = ({
           </FormTitle>
         )}
         <FormControlContentContainer>
-          <Stack
-            ref={titlePosition === 'left' ? childrenRef : undefined}
-            row
-            center
-            fullWidth
-            spacing={10}
-            wrap
-            relative
-          >
+          <Flex ref={titlePosition === 'left' ? childrenRef : undefined} row center fullWidth gap={10} wrap relative>
             {children}
-          </Stack>
+          </Flex>
           {notEmpty(helperText) && <FormHelperText>{helperText}</FormHelperText>}
           {isError && typeof error === 'string' && notEmpty(error) ? (
             <FormErrorText>{error}</FormErrorText>

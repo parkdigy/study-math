@@ -14,12 +14,12 @@ const Colors: [keyof Theme['colors'], keyof Theme['colors']][] = [
 
 export const Dev_Color = () => {
   return (
-    <Panel spacing={20}>
+    <Panel gap={20}>
       <TTitleLarge700 color='primary'>컬러</TTitleLarge700>
 
       <Divider />
 
-      <Grid cols={{ mobileLg: 2, tabletSm: 3, tabletMd: 4, desktopSm: 5 }} spacing={10}>
+      <Grid cols={{ mobileLg: 2, tabletSm: 3, tabletMd: 4, desktopSm: 5 }} gap={10}>
         {Array.from(Colors.values()).map(([color, onColor], idx) => (
           <Col key={idx}>
             <Container key={idx}>
@@ -75,15 +75,15 @@ const Container = ({
   const theme = useTheme();
 
   return (
-    <Stack
-      spacing={10}
+    <Flex
+      gap={10}
       backgroundColor={ifUndefined(backgroundColor, 'background')}
       p={10}
       border={`1px solid ${theme.colors.divider}`}
       borderRadius={10}
     >
       {children}
-    </Stack>
+    </Flex>
   );
 };
 

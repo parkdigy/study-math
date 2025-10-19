@@ -12,7 +12,7 @@ interface DialogCommonProps {
   maxWidth?: number;
   ph?: number;
   pv?: number;
-  spacing?: number;
+  gap?: number;
   transparent?: boolean;
   title?: string;
   content: ReactNode;

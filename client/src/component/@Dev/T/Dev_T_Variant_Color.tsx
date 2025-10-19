@@ -6,7 +6,7 @@ import util from '@util';
 const Dev_T_Variant_Color = () => {
   return (
     <Dev_Panel>
-      <Dev_PanelItem title='색상별 컴포넌트' row center spacing={10} wrap>
+      <Dev_PanelItem title='색상별 컴포넌트' row center gap={10} wrap>
         <Divider />
 
         {[...TextColors, ...DefaultColors, ...OpacityColors, ...OpacityReverseColors].map((color, idx) => (

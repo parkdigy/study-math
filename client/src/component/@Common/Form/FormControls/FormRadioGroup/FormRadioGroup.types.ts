@@ -13,7 +13,7 @@ export interface FormRadioGroupProps<T extends string | number | boolean>
   extends Omit<FormControlCommonProps<T | undefined>, 'subControl'> {
   type?: FormRadioGroupType;
   items: FormRadioGroupItemInfo<T>[];
-  spacing?: number;
+  gap?: number;
   grid?: GridProps;
   requiredText?: string;
 }

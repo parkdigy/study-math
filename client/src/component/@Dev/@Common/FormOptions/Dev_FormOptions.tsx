@@ -235,7 +235,7 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
    * ******************************************************************************************************************/
 
   return (
-    <Form className='Dev_FormOptions' spacing={20} {...formProps}>
+    <Form className='Dev_FormOptions' gap={20} {...formProps}>
       {testPosition === 'top' && testControl}
 
       {options.map((v, idx) => {
@@ -267,7 +267,7 @@ function Dev_FormOptions<TColors extends AllColors = AllColors, TBackgroundColor
           }
 
           return (
-            <Grid key={idx} className='Dev_FormOptions_Controls' cols={cols as any} spacing={20}>
+            <Grid key={idx} className='Dev_FormOptions_Controls' cols={cols as any} gap={20}>
               {op.map((v2, idx2) => {
                 const optionCols = Math.min(cols, v2 && typeof v2 === 'object' ? v2.cols : 1);
 

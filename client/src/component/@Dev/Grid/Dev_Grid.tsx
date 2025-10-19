@@ -3,9 +3,9 @@ import code from './Dev_Grid.code.md';
 import { Dev_FormOptions, Dev_FormOptionsData, Dev_Panel } from '../@Common';
 import { FlattenArray } from '@pdg/types';
 
-const _formOptions = ['cols', '|', 'spacing'] as const;
+const _formOptions = ['cols', '|', 'gap'] as const;
 type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
-const _formOptionsDefaultData: Dev_FormOptionsData = { spacing: 5 };
+const _formOptionsDefaultData: Dev_FormOptionsData = { gap: 5 };
 
 export const Dev_Grid = () => {
   /********************************************************************************************************************
@@ -19,7 +19,7 @@ export const Dev_Grid = () => {
    * ******************************************************************************************************************/
 
   return (
-    <Panel spacing={20}>
+    <Panel gap={20}>
       <TTitleLarge700 color='primary'>그리드 (Grid)</TTitleLarge700>
 
       <Dev_Panel>

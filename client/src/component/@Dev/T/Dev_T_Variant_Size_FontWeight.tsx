@@ -6,11 +6,11 @@ import util from '@util';
 const Dev_T_Variant_Size_FontWeight = () => {
   return (
     <Dev_Panel>
-      <Dev_PanelItem title='크기/두께별 컴포넌트' row center spacing={10} wrap>
+      <Dev_PanelItem title='크기/두께별 컴포넌트' row center gap={10} wrap>
         {FriendlyNameSizes.map((size, idx) => (
           <React.Fragment key={idx}>
             <Divider />
-            <Stack row center spacing={10} wrap>
+            <Flex row center gap={10} wrap>
               <Item size={size} />
               <Divider vertical />
               <Item size={size} fontWeight='bold' />
@@ -20,7 +20,7 @@ const Dev_T_Variant_Size_FontWeight = () => {
                   <Item size={size} fontWeight={((idx + 1) * 100) as any} />
                 </React.Fragment>
               ))}
-            </Stack>
+            </Flex>
           </React.Fragment>
         ))}
       </Dev_PanelItem>

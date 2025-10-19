@@ -11,7 +11,7 @@ const Items = new Array(20).fill(0).map((_, i) => lv(`아이템 ${i + 1}`, `${i 
 const Dev_Form_Select_Variant = ({ titlePosition }: Props) => {
   return (
     <Dev_Panel>
-      <Form titlePosition={titlePosition} titleWidth={60} spacing={15} onSubmit={() => ll('submit')}>
+      <Form titlePosition={titlePosition} titleWidth={60} gap={15} onSubmit={() => ll('submit')}>
         <FormSelect title='선택' name='FormSelect_default' placeholder='선택해 주세요' items={Items} />
 
         <FormSelect

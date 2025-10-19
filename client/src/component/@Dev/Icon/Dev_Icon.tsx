@@ -30,8 +30,8 @@ export const Dev_Icon = () => {
    * ******************************************************************************************************************/
 
   return (
-    <Panel spacing={20}>
-      <Stack row center spacing={30}>
+    <Panel gap={20}>
+      <Flex row center gap={30}>
         <TTitleLarge700 color='primary'>아이콘 (Icon)</TTitleLarge700>
         <Button
           size='sm'
@@ -40,7 +40,7 @@ export const Dev_Icon = () => {
         >
           아이콘 검색
         </Button>
-      </Stack>
+      </Flex>
 
       <Dev_Panel>
         <Dev_FormOptions

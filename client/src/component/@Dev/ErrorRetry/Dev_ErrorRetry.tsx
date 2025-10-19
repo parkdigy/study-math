@@ -24,7 +24,7 @@ export const Dev_ErrorRetry = () => {
    * ******************************************************************************************************************/
 
   return (
-    <Panel spacing={20}>
+    <Panel gap={20}>
       <TTitleLarge700 color='primary'>오류 (ErrorRetry)</TTitleLarge700>
 
       <Dev_Panel>

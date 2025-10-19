@@ -5,12 +5,12 @@ import { DefaultColors } from '@theme';
 
 const Dev_ErrorRetry_Variant = () => {
   return (
-    <Stack spacing={20}>
+    <Flex gap={20}>
       <Dev_Panel>
-        <Dev_PanelItem title='색상별' spacing={10}>
+        <Dev_PanelItem title='색상별' gap={10}>
           <Divider />
 
-          <Grid cols={{ tabletSm: 2, tabletLg: 3 }} spacing={20} mt={10}>
+          <Grid cols={{ tabletSm: 2, tabletLg: 3 }} gap={20} mt={10}>
             {DefaultColors.map((color, idx) => (
               <Col key={idx}>
                 <Tooltip content={'<ErrorRetry color={...} onRetry={...} />'}>
@@ -21,7 +21,7 @@ const Dev_ErrorRetry_Variant = () => {
           </Grid>
         </Dev_PanelItem>
       </Dev_Panel>
-    </Stack>
+    </Flex>
   );
 };
 

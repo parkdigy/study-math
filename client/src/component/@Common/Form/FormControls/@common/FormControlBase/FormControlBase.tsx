@@ -28,7 +28,7 @@ export const FormControlBase = ({
   // FormControlBaseProps
   type,
   commands,
-  spacing = 10,
+  gap = 10,
   focused,
   children,
   hiddenControl,
@@ -81,7 +81,7 @@ export const FormControlBase = ({
   return hiddenControl ? (
     children
   ) : (
-    <FormControlContainer className={classnames(className, 'FormControlBase')} gap={spacing} {...boxStyleProps}>
+    <FormControlContainer className={classnames(className, 'FormControlBase')} gap={gap} {...boxStyleProps}>
       {!hideTitle && notEmpty(title) && (
         <FormTitle
           labelProps={titleProps}
@@ -95,19 +95,19 @@ export const FormControlBase = ({
         </FormTitle>
       )}
 
-      <FormControlContentContainer spacing={spacing}>
-        <Stack
+      <FormControlContentContainer gap={gap}>
+        <Flex
           className='FormControlBase-ControlContainer'
           ref={titlePosition === 'left' ? childrenRef : undefined}
           row
           center
           fullWidth
-          spacing={10}
+          gap={10}
           relative
         >
           {children}
           {subControl}
-        </Stack>
+        </Flex>
         {controlHelperText}
         {notEmpty(helperText) && <FormHelperText focused={focused}>{helperText}</FormHelperText>}
         {!hideError && typeof error === 'string' && notEmpty(error) && <FormErrorText>{error}</FormErrorText>}

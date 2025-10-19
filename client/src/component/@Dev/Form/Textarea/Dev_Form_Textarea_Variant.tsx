@@ -9,7 +9,7 @@ interface Props {
 const Dev_Form_Textarea_Variant = ({ titlePosition }: Props) => {
   return (
     <Dev_Panel>
-      <Form titlePosition={titlePosition} titleWidth={70} spacing={15} onSubmit={() => ll('submit')}>
+      <Form titlePosition={titlePosition} titleWidth={70} gap={15} onSubmit={() => ll('submit')}>
         <FormTextarea title='문장' name='FormTextarea_default' placeholder='기본' />
 
         <FormTextarea title='문장' name='FormTextarea_required' placeholder='필수 입력' required />

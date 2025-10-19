@@ -27,7 +27,7 @@ export const Dev_Pagination = () => {
    * ******************************************************************************************************************/
 
   return (
-    <Panel spacing={20}>
+    <Panel gap={20}>
       <TTitleLarge700 color='primary'>페이징 (Pagination)</TTitleLarge700>
 
       <Dev_Panel>

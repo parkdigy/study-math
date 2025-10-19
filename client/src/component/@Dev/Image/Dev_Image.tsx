@@ -5,7 +5,7 @@ import SvgImage from './image.svg';
 
 export const Dev_Image = () => {
   return (
-    <Panel spacing={20}>
+    <Panel gap={20}>
       <TTitleLarge700 color='primary'>이미지 (Img)</TTitleLarge700>
 
       <Divider />

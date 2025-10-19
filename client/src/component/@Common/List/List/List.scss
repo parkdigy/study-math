@@ -15,6 +15,6 @@
   .List__Items {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing);
+    gap: var(--gap);
   }
 }

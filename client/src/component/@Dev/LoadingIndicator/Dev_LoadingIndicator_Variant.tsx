@@ -5,12 +5,12 @@ import { AllColors, FriendlyNameSizes, getSizeOfFriendlyName } from '@theme';
 
 const Dev_LoadingIndicator_Variant = () => {
   return (
-    <Stack spacing={20}>
+    <Flex gap={20}>
       <Dev_Panel>
-        <Dev_PanelItem title='색상별' spacing={10}>
+        <Dev_PanelItem title='색상별' gap={10}>
           <Divider />
 
-          <Stack row center spacing={10} wrap mt={10}>
+          <Flex row center gap={10} wrap mt={10}>
             <Tooltip place='top-start' content='<LoadingIndicator>...</LoadingIndicator>'>
               <Box>
                 <LoadingIndicator size='x2l' />
@@ -28,15 +28,15 @@ const Dev_LoadingIndicator_Variant = () => {
                 </Box>
               </Tooltip>
             ))}
-          </Stack>
+          </Flex>
         </Dev_PanelItem>
       </Dev_Panel>
 
       <Dev_Panel>
-        <Dev_PanelItem title='크기별' spacing={10}>
+        <Dev_PanelItem title='크기별' gap={10}>
           <Divider />
 
-          <Stack row center spacing={10} wrap mt={10}>
+          <Flex row center gap={10} wrap mt={10}>
             {FriendlyNameSizes.map((size, idx) => (
               <Tooltip
                 key={idx}
@@ -53,10 +53,10 @@ const Dev_LoadingIndicator_Variant = () => {
                 </Box>
               </Tooltip>
             ))}
-          </Stack>
+          </Flex>
         </Dev_PanelItem>
       </Dev_Panel>
-    </Stack>
+    </Flex>
   );
 };
 

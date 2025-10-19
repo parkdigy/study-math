@@ -2,8 +2,6 @@ import {
   // Layout
   Box as _Box,
   BoxProps as _BoxProps,
-  Stack as _Stack,
-  StackProps as _StackProps,
   Span as _Span,
   SpanProps as _SpanProps,
   Flex as _Flex,
@@ -33,8 +31,8 @@ import {
   TextButtonProps as _TextButtonProps,
   IconButton as _IconButton,
   IconButtonProps as _IconButtonProps,
-  StackButton as _StackButton,
-  StackButtonProps as _StackButtonProps,
+  FlexButton as _FlexButton,
+  FlexButtonProps as _FlexButtonProps,
   BoxButton as _BoxButton,
   BoxButtonProps as _BoxButtonProps,
   // Dialog
@@ -54,8 +52,6 @@ declare global {
   // Layout
   var Box: typeof _Box;
   type BoxProps = _BoxProps;
-  var Stack: typeof _Stack;
-  type StackProps = _StackProps;
   var Span: typeof _Span;
   type SpanProps = _SpanProps;
   var Flex: typeof _Flex;
@@ -85,8 +81,8 @@ declare global {
   type TextButtonProps = _TextButtonProps;
   var IconButton: typeof _IconButton;
   type IconButtonProps = _IconButtonProps;
-  var StackButton: typeof _StackButton;
-  type StackButtonProps = _StackButtonProps;
+  var FlexButton: typeof _FlexButton;
+  type FlexButtonProps = _FlexButtonProps;
   var BoxButton: typeof _BoxButton;
   type BoxButtonProps = _BoxButtonProps;
   // Dialog
@@ -104,7 +100,6 @@ declare global {
 
 // Layout
 globalThis.Box = _Box;
-globalThis.Stack = _Stack;
 globalThis.Span = _Span;
 globalThis.Flex = _Flex;
 globalThis.Divider = _Divider;
@@ -121,7 +116,7 @@ globalThis.Icon = _Icon;
 globalThis.Button = _Button;
 globalThis.TextButton = _TextButton;
 globalThis.IconButton = _IconButton;
-globalThis.StackButton = _StackButton;
+globalThis.FlexButton = _FlexButton;
 globalThis.BoxButton = _BoxButton;
 // Dialog
 globalThis.Dialog = _Dialog;

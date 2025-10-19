@@ -111,7 +111,7 @@ export const Chip = React.forwardRef<HTMLDivElement, Props>(
      * ******************************************************************************************************************/
 
     return (
-      <Stack
+      <Flex
         ref={ref}
         className={classnames(className, 'Chip', `Chip-variant-${variant}`, clickable && 'Chip-clickable')}
         cssVars={{
@@ -127,7 +127,7 @@ export const Chip = React.forwardRef<HTMLDivElement, Props>(
         borderWidth={borderWidth}
         borderStyle={borderStyle}
         borderColor={borderColor}
-        spacing={4}
+        gap={4}
         tabIndex={clickable ? 0 : undefined}
         onClick={onClick}
         {...boxProps}
@@ -145,7 +145,7 @@ export const Chip = React.forwardRef<HTMLDivElement, Props>(
             close
           </Icon>
         )}
-      </Stack>
+      </Flex>
     );
   }
 );

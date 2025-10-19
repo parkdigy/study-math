@@ -4,9 +4,9 @@ import { AllColors, AllSizes } from '@theme';
 
 const Dev_T_Colors = () => {
   return (
-    <Stack spacing={20}>
+    <Flex gap={20}>
       <Dev_Panel>
-        <Dev_PanelItem title='색상별' row center spacing={10} wrap>
+        <Dev_PanelItem title='색상별' row center gap={10} wrap>
           <Divider />
 
           <Tooltip place='top-start' content='<T>...</T>'>
@@ -25,7 +25,7 @@ const Dev_T_Colors = () => {
       </Dev_Panel>
 
       <Dev_Panel>
-        <Dev_PanelItem title='크기별' row center spacing={10} wrap>
+        <Dev_PanelItem title='크기별' row center gap={10} wrap>
           <Divider />
 
           {AllSizes.map((size, idx) => (
@@ -45,7 +45,7 @@ const Dev_T_Colors = () => {
           ))}
         </Dev_PanelItem>
       </Dev_Panel>
-    </Stack>
+    </Flex>
   );
 };
 

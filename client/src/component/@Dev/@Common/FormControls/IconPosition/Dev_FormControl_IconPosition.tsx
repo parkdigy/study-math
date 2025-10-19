@@ -13,17 +13,17 @@ export const Dev_FormControl_IconPosition = ({ variant = 'select', ...props }: P
   const radioItems = useMemo(() => {
     const _items = [
       lv(
-        <Stack row center spacing={3}>
+        <Flex row center gap={3}>
           <T>start</T>
           <T opacity={0.5}>(왼쪽)</T>
-        </Stack>,
+        </Flex>,
         'start' as const
       ),
       lv(
-        <Stack row center spacing={3}>
+        <Flex row center gap={3}>
           <T>end</T>
           <T opacity={0.5}>(오른쪽)</T>
-        </Stack>,
+        </Flex>,
         'end' as const
       ),
     ];

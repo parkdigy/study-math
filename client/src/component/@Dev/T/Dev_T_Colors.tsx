@@ -5,7 +5,7 @@ import { AllColors } from '@theme';
 const Dev_T_Colors = () => {
   return (
     <Dev_Panel>
-      <Dev_PanelItem title='색상 (color)' row center spacing={10} wrap>
+      <Dev_PanelItem title='색상 (color)' row center gap={10} wrap>
         <Divider />
 
         <Tooltip place='top-start' content='<T>...</T>'>

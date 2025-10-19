@@ -27,7 +27,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
       loading,
       wrapLabel,
       icon,
-      iconSpacing,
+      iconGap,
       iconPosition,
       iconProps,
       fs: initFs,
@@ -138,7 +138,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
       fontSize = sizeInfo.fontSize[variant];
     }
 
-    iconSpacing = ifUndefined(iconSpacing, Math.round(fontSize / 2.5));
+    iconGap = ifUndefined(iconGap, Math.round(fontSize / 2.5));
 
     /********************************************************************************************************************
      * Event Handler
@@ -218,12 +218,12 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
         onClick={url !== undefined ? handleClick : onClick}
         {...props}
       >
-        <Stack
+        <Flex
           className='Button__Label'
           flexDirection={iconPosition === 'end' ? 'row-reverse' : 'row'}
           center
           justifyContent={variant === 'text' ? 'flex-start' : 'center'}
-          spacing={iconSpacing}
+          gap={iconGap}
         >
           {loading ? (
             <LoadingIndicator size={fontSize} color={color} />
@@ -233,7 +233,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
             </Icon>
           ) : null}
           <div className='Button__Label__Text'>{children}</div>
-        </Stack>
+        </Flex>
       </CustomComponent>
     );
   }

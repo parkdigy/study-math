@@ -22,7 +22,7 @@ export const Dev_LoadingIndicator = () => {
    * ******************************************************************************************************************/
 
   return (
-    <Panel spacing={20}>
+    <Panel gap={20}>
       <TTitleLarge700 color='primary'>로딩 (LoadingIndicator)</TTitleLarge700>
 
       <Dev_Panel>

@@ -25,7 +25,7 @@ export const Dev_Tooltip = () => {
    * ******************************************************************************************************************/
 
   return (
-    <Panel spacing={20}>
+    <Panel gap={20}>
       <TTitleLarge700 color='primary'>툴팁 (Tooltip)</TTitleLarge700>
 
       <Dev_Panel>

@@ -57,12 +57,12 @@ export const Dev_Form = () => {
    * ******************************************************************************************************************/
 
   return (
-    <Panel spacing={20}>
-      <Stack row center spacing={30}>
+    <Panel gap={20}>
+      <Flex row center gap={30}>
         <TTitleLarge700 color='primary'>Form</TTitleLarge700>
-      </Stack>
+      </Flex>
 
-      <Dev_Panel row spacing={20} borderWidth={1} borderColor='opacity15' borderRadius={10}>
+      <Dev_Panel row gap={20} borderWidth={1} borderColor='opacity15' borderRadius={10}>
         <Form>
           <FormCheckbox
             name='titlePosition'

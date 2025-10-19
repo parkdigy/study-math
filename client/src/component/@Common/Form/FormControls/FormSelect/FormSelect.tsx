@@ -200,7 +200,7 @@ export const FormSelect = ToForwardRefExoticComponent(
         error={error}
         width={width}
         minWidth={width === undefined ? minWidth : undefined}
-        spacing={8}
+        gap={8}
         focused={isFocus}
         {...formControlBaseProps}
       >

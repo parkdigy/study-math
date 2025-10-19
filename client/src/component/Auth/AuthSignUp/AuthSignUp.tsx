@@ -36,12 +36,12 @@ export const AuthSignUp = ({}: Props) => {
 
   return (
     <PageRootContainer fullScreen centerCenter ph={20}>
-      <Stack center width={isSmallScreen ? undefined : 400} spacing={20}>
+      <Flex center width={isSmallScreen ? undefined : 400} gap={20}>
         <TTitle bold>회원가입</TTitle>
 
         <Form titlePosition='left' onSubmit={handleSubmit}>
-          <Stack spacing={20}>
-            <Stack spacing={10}>
+          <Flex gap={20}>
+            <Flex gap={10}>
               <FormEmail name='email' title='이메일' placeholder='이메일을 입력해 주세요' required />
               <FormPassword name='password' title='비밀번호' placeholder='비밀번호를 입력해 주세요' required rules />
               <FormPassword
@@ -51,16 +51,16 @@ export const AuthSignUp = ({}: Props) => {
                 required
                 linkName='password'
               />
-            </Stack>
+            </Flex>
 
-            <Stack fullWidth spacing={10}>
+            <Flex fullWidth gap={10}>
               <Button type='submit' size='lg'>
                 회원가입
               </Button>
-            </Stack>
-          </Stack>
+            </Flex>
+          </Flex>
         </Form>
-      </Stack>
+      </Flex>
     </PageRootContainer>
   );
 };

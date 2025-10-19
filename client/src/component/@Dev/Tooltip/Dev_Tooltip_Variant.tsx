@@ -5,14 +5,14 @@ import { DefaultColors } from '@theme';
 
 const Dev_Tooltip_Variant = () => {
   return (
-    <Stack spacing={20}>
+    <Flex gap={20}>
       <Dev_Panel>
-        <Dev_PanelItem title='위치별' spacing={10}>
+        <Dev_PanelItem title='위치별' gap={10}>
           <Divider />
 
-          <Grid cols={3} spacing={10} mt={5}>
+          <Grid cols={3} gap={10} mt={5}>
             <Col cols={3}>
-              <Stack row centerCenter spacing={10}>
+              <Flex row centerCenter gap={10}>
                 {['top-start', 'top', 'top-end'].map((place, idx) => (
                   <React.Fragment key={idx}>
                     {idx > 0 && <Divider vertical />}
@@ -21,10 +21,10 @@ const Dev_Tooltip_Variant = () => {
                     </Tooltip>
                   </React.Fragment>
                 ))}
-              </Stack>
+              </Flex>
             </Col>
             <Col>
-              <Stack flexEndAlign spacing={8}>
+              <Flex flexEndAlign gap={8}>
                 {['left-start', 'left', 'left-end'].map((place, idx) => (
                   <React.Fragment key={idx}>
                     {idx > 0 && <Divider width={55} />}
@@ -33,7 +33,7 @@ const Dev_Tooltip_Variant = () => {
                     </Tooltip>
                   </React.Fragment>
                 ))}
-              </Stack>
+              </Flex>
             </Col>
             <Col>
               <Flex centerCenter fullHeight>
@@ -43,7 +43,7 @@ const Dev_Tooltip_Variant = () => {
               </Flex>
             </Col>
             <Col display='flex' flexDirection='row'>
-              <Stack spacing={8}>
+              <Flex gap={8}>
                 {['right-start', 'right', 'right-end'].map((place, idx) => (
                   <React.Fragment key={idx}>
                     {idx > 0 && <Divider width={55} />}
@@ -52,10 +52,10 @@ const Dev_Tooltip_Variant = () => {
                     </Tooltip>
                   </React.Fragment>
                 ))}
-              </Stack>
+              </Flex>
             </Col>
             <Col cols={3}>
-              <Stack row centerCenter spacing={10}>
+              <Flex row centerCenter gap={10}>
                 {['bottom-start', 'bottom', 'bottom-end'].map((place, idx) => (
                   <React.Fragment key={idx}>
                     {idx > 0 && <Divider vertical />}
@@ -64,17 +64,17 @@ const Dev_Tooltip_Variant = () => {
                     </Tooltip>
                   </React.Fragment>
                 ))}
-              </Stack>
+              </Flex>
             </Col>
           </Grid>
         </Dev_PanelItem>
       </Dev_Panel>
 
       <Dev_Panel>
-        <Dev_PanelItem title='색상별' spacing={10}>
+        <Dev_PanelItem title='색상별' gap={10}>
           <Divider />
 
-          <Stack row centerCenter spacing={10} wrap mt={5}>
+          <Flex row centerCenter gap={10} wrap mt={5}>
             {DefaultColors.map((color, idx) => (
               <React.Fragment key={idx}>
                 {idx > 0 && <Divider vertical />}
@@ -85,10 +85,10 @@ const Dev_Tooltip_Variant = () => {
                 </Tooltip>
               </React.Fragment>
             ))}
-          </Stack>
+          </Flex>
         </Dev_PanelItem>
       </Dev_Panel>
-    </Stack>
+    </Flex>
   );
 };
 

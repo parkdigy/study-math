@@ -346,7 +346,7 @@ export const FormText = React.forwardRef<FormTextCommands, Props>(
         error={error}
         required={required}
         disabled={disabled}
-        spacing={8}
+        gap={8}
         focused={isFocus}
         controlHelperText={$controlHelperText}
         {...formControlBaseProps}

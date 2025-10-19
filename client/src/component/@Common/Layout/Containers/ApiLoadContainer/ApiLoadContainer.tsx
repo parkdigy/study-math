@@ -112,7 +112,7 @@ export const ApiLoadContainer = ToForwardRefExoticComponent(
     return loadStatus === 'loading' ? null : loadStatus === 'error' ? (
       <ErrorRetry onRetry={() => doLoad(true)} />
     ) : (
-      <Stack {...props}>{typeof children === 'function' ? children(apiData as any) : children}</Stack>
+      <Flex {...props}>{typeof children === 'function' ? children(apiData as any) : children}</Flex>
     );
   })
 );

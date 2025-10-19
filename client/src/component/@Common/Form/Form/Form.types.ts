@@ -6,7 +6,7 @@ export interface FormCommands {
   getControlCommands: <T extends FormControlCommands>(name: string) => T | undefined;
 }
 
-export interface FormProps extends Omit<StackProps, 'ref' | 'onSubmit'> {
+export interface FormProps extends Omit<FlexProps, 'ref' | 'onSubmit'> {
   titlePosition?: 'top' | 'left';
   titleWidth?: number;
   hideTitle?: boolean;

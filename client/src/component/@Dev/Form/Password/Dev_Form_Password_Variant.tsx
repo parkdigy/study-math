@@ -9,7 +9,7 @@ interface Props {
 const Dev_Form_Password_Variant = ({ titlePosition }: Props) => {
   return (
     <Dev_Panel>
-      <Form titlePosition={titlePosition} titleWidth={100} spacing={15} onSubmit={() => ll('submit')}>
+      <Form titlePosition={titlePosition} titleWidth={100} gap={15} onSubmit={() => ll('submit')}>
         <FormPassword title='비밀번호' name='FormPassword_default' placeholder='기본' />
 
         <FormPassword title='비밀번호' name='FormPassword_rules' placeholder='규칙 적용' rules />

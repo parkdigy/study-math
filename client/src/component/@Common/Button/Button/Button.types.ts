@@ -91,7 +91,7 @@ export interface ButtonProps
   // 아이콘 이름 (Material Icons 이름 사용)
   icon?: string;
   // 아이콘과 텍스트 사이 간격
-  iconSpacing?: CSSProperties['gap'];
+  iconGap?: CSSProperties['gap'];
   // 아이콘 위치 (start: 텍스트 앞, end: 텍스트 뒤)
   iconPosition?: 'start' | 'end';
   // 아이콘 추가 속성

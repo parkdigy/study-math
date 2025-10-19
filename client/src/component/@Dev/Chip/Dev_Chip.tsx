@@ -34,7 +34,7 @@ export const Dev_Chip = () => {
    * ******************************************************************************************************************/
 
   return (
-    <Panel spacing={20}>
+    <Panel gap={20}>
       <TTitleLarge700 color='primary'>Chip</TTitleLarge700>
 
       <Dev_Panel>

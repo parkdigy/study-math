@@ -6,7 +6,7 @@ export interface TProps extends Omit<BoxProps, 'display' | 'color'> {
   icon?: string;
   c?: BoxProps['color'] | 'accent' | 'blurry' | 'lighten';
   color?: BoxProps['color'] | 'accent' | 'blurry' | 'lighten';
-  iconSpacing?: CSSProperties['gap'];
+  iconGap?: CSSProperties['gap'];
   iconPosition?: 'start' | 'end';
   iconProps?: Omit<IconProps, 'children'>;
   ellipsis?: boolean;

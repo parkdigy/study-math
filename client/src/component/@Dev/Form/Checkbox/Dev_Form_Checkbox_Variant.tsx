@@ -9,7 +9,7 @@ interface Props {
 const Dev_Form_Checkbox_Variant = ({ titlePosition }: Props) => {
   return (
     <Dev_Panel>
-      <Form titlePosition={titlePosition} titleWidth={140} spacing={15} onSubmit={() => ll('submit')}>
+      <Form titlePosition={titlePosition} titleWidth={140} gap={15} onSubmit={() => ll('submit')}>
         <FormCheckbox title='체크박스' name='FormCheckbox_default' label='기본' />
 
         <Divider />

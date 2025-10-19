@@ -3,15 +3,15 @@ import { Dev_Panel, Dev_PanelItem } from '../@Common';
 
 const Dev_Icon_MaterialIcons = () => {
   return (
-    <Stack spacing={20}>
+    <Flex gap={20}>
       <Dev_Panel>
-        <Dev_PanelItem title='아이콘 세트' spacing={15}>
+        <Dev_PanelItem title='아이콘 세트' gap={15}>
           <Divider />
 
           <Alert type='info' message='/src/init/material-icons.ts 에서 사용할 아이콘 지정' showIcon mt={5} />
 
           {['filled', 'outlined', 'round', 'sharp'].map((type, idx) => (
-            <Stack key={idx} row center wrap spacing={10}>
+            <Flex key={idx} row center wrap gap={10}>
               <T width={80}>{type}</T>
               {!contains(LiveMaterialIconTypes, type) ? (
                 <TError width={140}>라이브에서 사용 불가</TError>
@@ -49,11 +49,11 @@ const Dev_Icon_MaterialIcons = () => {
               ) : (
                 <TOpacity50>사용 안함 (src/init/material-icons.ts 선택 가능)</TOpacity50>
               )}
-            </Stack>
+            </Flex>
           ))}
         </Dev_PanelItem>
       </Dev_Panel>
-    </Stack>
+    </Flex>
   );
 };
 

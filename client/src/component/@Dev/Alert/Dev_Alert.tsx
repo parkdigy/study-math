@@ -25,7 +25,7 @@ export const Dev_Alert = () => {
    * ******************************************************************************************************************/
 
   return (
-    <Panel spacing={20}>
+    <Panel gap={20}>
       <TTitleLarge700 color='primary'>Alert</TTitleLarge700>
 
       <Dev_Panel>

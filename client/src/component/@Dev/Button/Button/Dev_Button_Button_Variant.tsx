@@ -6,12 +6,12 @@ import { ButtonSizes } from '@ccomp';
 
 const Dev_Button_Button_Variant = () => {
   return (
-    <Stack spacing={20}>
+    <Flex gap={20}>
       <Dev_Panel>
-        <Dev_PanelItem title='색상별 기본 스타일' spacing={10}>
+        <Dev_PanelItem title='색상별 기본 스타일' gap={10}>
           <Divider />
 
-          <Stack row center spacing={10} wrap mt={5}>
+          <Flex row center gap={10} wrap mt={5}>
             <Tooltip place='top-start' content='<Button>...</Button>'>
               <Button onClick={() => toast.info('클릭')}>기본</Button>
             </Tooltip>
@@ -23,15 +23,15 @@ const Dev_Button_Button_Variant = () => {
                 </Button>
               </Tooltip>
             ))}
-          </Stack>
+          </Flex>
         </Dev_PanelItem>
       </Dev_Panel>
 
       <Dev_Panel>
-        <Dev_PanelItem title='크기별 기본 스타일' spacing={10}>
+        <Dev_PanelItem title='크기별 기본 스타일' gap={10}>
           <Divider />
 
-          <Stack row center spacing={10} wrap mt={5}>
+          <Flex row center gap={10} wrap mt={5}>
             {keys(ButtonSizes).map((size, idx) => (
               <Tooltip key={idx} place='top-start' content={`<Button size="${size}">...</Button>`}>
                 <Button size={size} onClick={() => toast.info('클릭')}>
@@ -39,15 +39,15 @@ const Dev_Button_Button_Variant = () => {
                 </Button>
               </Tooltip>
             ))}
-          </Stack>
+          </Flex>
         </Dev_PanelItem>
       </Dev_Panel>
 
       <Dev_Panel>
-        <Dev_PanelItem title='색상별 윤곽선 스타일' spacing={10}>
+        <Dev_PanelItem title='색상별 윤곽선 스타일' gap={10}>
           <Divider />
 
-          <Stack row center spacing={10} wrap mt={5}>
+          <Flex row center gap={10} wrap mt={5}>
             {ButtonColors.map((color, idx) => (
               <Tooltip key={idx} place='top-start' content={`<Button variant='outlined' color="${color}">...</Button>`}>
                 <Button variant='outlined' color={color} onClick={() => toast.info('클릭')}>
@@ -55,15 +55,15 @@ const Dev_Button_Button_Variant = () => {
                 </Button>
               </Tooltip>
             ))}
-          </Stack>
+          </Flex>
         </Dev_PanelItem>
       </Dev_Panel>
 
       <Dev_Panel>
-        <Dev_PanelItem title='크기별 윤곽선 스타일' spacing={10}>
+        <Dev_PanelItem title='크기별 윤곽선 스타일' gap={10}>
           <Divider />
 
-          <Stack row center spacing={10} wrap mt={5}>
+          <Flex row center gap={10} wrap mt={5}>
             {keys(ButtonSizes).map((size, idx) => (
               <Tooltip key={idx} place='top-start' content={`<Button variant='outlined' size="${size}">...</Button>`}>
                 <Button variant='outlined' size={size} onClick={() => toast.info('클릭')}>
@@ -71,15 +71,15 @@ const Dev_Button_Button_Variant = () => {
                 </Button>
               </Tooltip>
             ))}
-          </Stack>
+          </Flex>
         </Dev_PanelItem>
       </Dev_Panel>
 
       <Dev_Panel>
-        <Dev_PanelItem title='색상별 텍스트 스타일' spacing={10}>
+        <Dev_PanelItem title='색상별 텍스트 스타일' gap={10}>
           <Divider />
 
-          <Stack row center spacing={10} wrap mt={5}>
+          <Flex row center gap={10} wrap mt={5}>
             {ButtonColors.map((color, idx) => (
               <Tooltip key={idx} place='top-start' content={`<Button variant='text' color="${color}">...</Button>`}>
                 <Button variant='text' color={color} onClick={() => toast.info('클릭')}>
@@ -87,15 +87,15 @@ const Dev_Button_Button_Variant = () => {
                 </Button>
               </Tooltip>
             ))}
-          </Stack>
+          </Flex>
         </Dev_PanelItem>
       </Dev_Panel>
 
       <Dev_Panel>
-        <Dev_PanelItem title='크기별 텍스트 스타일' spacing={10}>
+        <Dev_PanelItem title='크기별 텍스트 스타일' gap={10}>
           <Divider />
 
-          <Stack row center spacing={10} wrap mt={5}>
+          <Flex row center gap={10} wrap mt={5}>
             {keys(ButtonSizes).map((size, idx) => (
               <Tooltip key={idx} place='top-start' content={`<Button variant='text' size="${size}">...</Button>`}>
                 <Button variant='text' size={size} onClick={() => toast.info('클릭')}>
@@ -103,10 +103,10 @@ const Dev_Button_Button_Variant = () => {
                 </Button>
               </Tooltip>
             ))}
-          </Stack>
+          </Flex>
         </Dev_PanelItem>
       </Dev_Panel>
-    </Stack>
+    </Flex>
   );
 };
 

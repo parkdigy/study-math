@@ -131,17 +131,12 @@ export const useDevFormOptionMultiOptionControls = ({
   });
 
   /********************************************************************************************************************
-   * spacing
+   * gap
    * ******************************************************************************************************************/
-  const [spacing, spacingControl] = useDevFormControl(
-    'spacing',
-    flatOptions.includes('spacing'),
-    defaultData?.spacing,
-    {
-      ...useFormControlData,
-      props: optionProps?.spacing,
-    }
-  );
+  const [gap, gapControl] = useDevFormControl('gap', flatOptions.includes('gap'), defaultData?.gap, {
+    ...useFormControlData,
+    props: optionProps?.gap,
+  });
 
   /********************************************************************************************************************
    * icon
@@ -165,15 +160,15 @@ export const useDevFormOptionMultiOptionControls = ({
   );
 
   /********************************************************************************************************************
-   * iconSpacing
+   * iconGap
    * ******************************************************************************************************************/
-  const [iconSpacing, iconSpacingControl] = useDevFormControl(
-    'iconSpacing',
-    flatOptions.includes('iconSpacing'),
-    defaultData?.iconSpacing,
+  const [iconGap, iconGapControl] = useDevFormControl(
+    'iconGap',
+    flatOptions.includes('iconGap'),
+    defaultData?.iconGap,
     {
       ...useFormControlData,
-      props: optionProps?.iconSpacing,
+      props: optionProps?.iconGap,
     }
   );
 
@@ -314,14 +309,14 @@ export const useDevFormOptionMultiOptionControls = ({
     tooltipPlaceControl,
     rotate,
     rotateControl,
-    spacing,
-    spacingControl,
+    gap,
+    gapControl,
     icon,
     iconControl,
     iconPosition,
     iconPositionControl,
-    iconSpacing,
-    iconSpacingControl,
+    iconGap,
+    iconGapControl,
     rows,
     rowsControl,
     formCheckboxType,

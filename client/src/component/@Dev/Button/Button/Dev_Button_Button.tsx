@@ -11,7 +11,7 @@ const _formOptions = [
   '|',
   ['color', 'backgroundColor'],
   '|',
-  ['icon', 'iconSpacing', 'iconPosition'],
+  ['icon', 'iconGap', 'iconPosition'],
   '|',
   'url',
   '|',
@@ -38,7 +38,7 @@ const Dev_Button_Button = () => {
    * ******************************************************************************************************************/
 
   return (
-    <Stack spacing={20}>
+    <Flex gap={20}>
       <Dev_Panel>
         <Dev_FormOptions
           options={_formOptions}
@@ -59,7 +59,7 @@ const Dev_Button_Button = () => {
       </Dev_Panel>
 
       <Dev_Button_Button_Variant />
-    </Stack>
+    </Flex>
   );
 };
 

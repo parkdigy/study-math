@@ -11,9 +11,9 @@ const Items = new Array(20).fill(0).map((_, i) => lv(`아이템 ${i + 1}`, `${i 
 export const Dev_Form_ControlGroup = ({ titlePosition }: Props) => {
   return (
     <Dev_Panel>
-      <Form titlePosition={titlePosition} titleWidth={130} spacing={15} onSubmit={() => ll('submit')}>
+      <Form titlePosition={titlePosition} titleWidth={130} gap={15} onSubmit={() => ll('submit')}>
         <FormControlGroup title='FormControlGroup' showControlError>
-          <Stack flex={1} row center wrap spacing={10}>
+          <Flex flex={1} row center wrap gap={10}>
             <FormText flex={1} title='FormText' name='FormText' placeholder='텍스트' required />
             <FormSelect
               flex={1}
@@ -25,7 +25,7 @@ export const Dev_Form_ControlGroup = ({ titlePosition }: Props) => {
               placeholder='선택'
             />
             <FormCheckbox title='체크박스' name='FormCheckbox' label='체크박스' />
-          </Stack>
+          </Flex>
         </FormControlGroup>
 
         <Button type='submit'>Submit</Button>

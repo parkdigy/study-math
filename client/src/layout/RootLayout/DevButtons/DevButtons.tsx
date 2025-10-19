@@ -20,7 +20,7 @@ export const DevButtons = ({}: Props) => {
    * ******************************************************************************************************************/
 
   return (
-    <Stack className='DevButtons' row center spacing={10}>
+    <Flex className='DevButtons' row center gap={10}>
       <T color='success' size='caption' absolute nowrap right={0} top={-20}>
         {util.css.toCssName(screen.sizes[screen.sizes.length - 1])}
       </T>
@@ -28,7 +28,7 @@ export const DevButtons = ({}: Props) => {
         <DevButton icon='Extension' onClick={() => __navigate('/dev/controls')} />
       )}
       <DevButton icon={colorScheme === 'light' ? 'DarkMode' : 'LightMode'} onClick={toggleColorScheme} />
-    </Stack>
+    </Flex>
   );
 };
 

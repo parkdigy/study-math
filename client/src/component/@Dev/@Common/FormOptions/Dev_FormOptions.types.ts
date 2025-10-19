@@ -17,7 +17,7 @@ import {
   Dev_FormControl_IconButtonVariantProps,
   Dev_FormControl_IconPositionProps,
   Dev_FormControl_IconProps,
-  Dev_FormControl_IconSpacingProps,
+  Dev_FormControl_IconGapProps,
   Dev_FormControl_LastPageProps,
   Dev_FormControl_ListTypeProps,
   Dev_FormControl_ListVariantProps,
@@ -34,7 +34,7 @@ import {
   Dev_FormControl_RulesProps,
   Dev_FormControl_ShowIconProps,
   Dev_FormControl_SizeProps,
-  Dev_FormControl_SpacingProps,
+  Dev_FormControl_GapProps,
   Dev_FormControl_SubControlProps,
   Dev_FormControl_TitleProps,
   Dev_FormControl_TooltipPlaceProps,
@@ -60,9 +60,9 @@ export type Dev_FormOptionsOption =
   | 'rotate'
   | 'icon'
   | 'iconPosition'
-  | 'iconSpacing'
+  | 'iconGap'
   | 'size'
-  | 'spacing'
+  | 'gap'
   | 'rows'
   | 'formCheckboxType'
   | 'formRadioGroupType'
@@ -108,9 +108,9 @@ export type Dev_FormOptionsRadioGroupOption =
   | 'rotate'
   | 'icon'
   | 'iconPosition'
-  | 'iconSpacing'
+  | 'iconGap'
   | 'size'
-  | 'spacing'
+  | 'gap'
   | 'rows'
   | 'formCheckboxType'
   | 'formRadioGroupType'
@@ -136,10 +136,10 @@ export interface Dev_FormOptionsData<
   fontWeight?: Dev_FormControl_FontWeightProps['value'];
   tooltipPlace?: Dev_FormControl_TooltipPlaceProps['value'];
   rotate?: Dev_FormControl_RotateProps['value'];
-  spacing?: Dev_FormControl_SpacingProps['value'];
+  gap?: Dev_FormControl_GapProps['value'];
   icon?: Dev_FormControl_IconProps['value'];
   iconPosition?: Dev_FormControl_IconPositionProps['value'];
-  iconSpacing?: Dev_FormControl_IconSpacingProps['value'];
+  iconGap?: Dev_FormControl_IconGapProps['value'];
   rows?: Dev_FormControl_RowsProps['value'];
   formCheckboxType?: Dev_FormControl_FormCheckboxTypeProps['value'];
   formRadioGroupType?: Dev_FormControl_FormRadioGroupTypeProps['value'];
@@ -191,11 +191,11 @@ export interface Dev_FormOptionsControlPropsMap {
   tooltipPlace?: Pick<Dev_FormControl_TooltipPlaceProps, keyof Dev_FormOptionsControlCommonProps>;
   icon?: Pick<Dev_FormControl_IconProps, keyof Dev_FormOptionsControlCommonProps>;
   iconPosition?: Pick<Dev_FormControl_IconPositionProps, keyof Dev_FormOptionsControlCommonProps>;
-  iconSpacing?: Pick<Dev_FormControl_IconSpacingProps, keyof Dev_FormOptionsControlCommonProps>;
+  iconGap?: Pick<Dev_FormControl_IconGapProps, keyof Dev_FormOptionsControlCommonProps>;
   iconButtonVariant?: Pick<Dev_FormControl_IconButtonVariantProps, keyof Dev_FormOptionsControlCommonProps>;
   rotate?: Pick<Dev_FormControl_RotateProps, keyof Dev_FormOptionsControlCommonProps>;
   size?: Pick<Dev_FormControl_SizeProps, keyof Dev_FormOptionsControlCommonProps>;
-  spacing?: Pick<Dev_FormControl_SpacingProps, keyof Dev_FormOptionsControlCommonProps>;
+  gap?: Pick<Dev_FormControl_GapProps, keyof Dev_FormOptionsControlCommonProps>;
   rows?: Pick<Dev_FormControl_RowsProps, keyof Dev_FormOptionsControlCommonProps>;
   formCheckboxType?: Pick<Dev_FormControl_FormCheckboxTypeProps, keyof Dev_FormOptionsControlCommonProps>;
   formRadioGroupType?: Pick<Dev_FormControl_FormRadioGroupTypeProps, keyof Dev_FormOptionsControlCommonProps>;

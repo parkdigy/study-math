@@ -7,5 +7,5 @@ export interface ListProps extends Omit<BoxProps, 'type' | 'title' | 'children'>
   variant?: ListVariant;
   items: ReactNode[];
   title?: string;
-  spacing?: number;
+  gap?: number;
 }

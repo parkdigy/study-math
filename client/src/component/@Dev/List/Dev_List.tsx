@@ -4,7 +4,7 @@ import { List } from '@ccomp';
 import { FlattenArray } from '@pdg/types';
 import code from './Dev_List.code.md';
 
-const _formOptions = [['listType', 'listVariant'], '|', ['title', 'spacing']] as const;
+const _formOptions = [['listType', 'listVariant'], '|', ['title', 'gap']] as const;
 type _formOptions = Exclude<FlattenArray<typeof _formOptions>, '|' | null>;
 
 const Items = new Array(10).fill(0).map((_, i) => `아이템 ${i + 1}`);
@@ -25,7 +25,7 @@ const Dev_List = () => {
    * ******************************************************************************************************************/
 
   return (
-    <Panel spacing={20}>
+    <Panel gap={20}>
       <TTitleLarge700 color='primary'>리스트 (List)</TTitleLarge700>
 
       <Dev_Panel>

@@ -4,54 +4,54 @@ import { AlertType } from '@ccomp';
 
 export const Dev_Alert_Variant = () => {
   return (
-    <Stack spacing={20}>
+    <Flex gap={20}>
       <Dev_Panel>
-        <Dev_PanelItem title='색상별' spacing={10}>
+        <Dev_PanelItem title='색상별' gap={10}>
           <Divider />
 
-          <Stack spacing={15} mt={5}>
+          <Flex gap={15} mt={5}>
             {AlertType.map((type, idx) => (
               <Tooltip key={idx} content={`<Alert type="${type}" message="..."  />`} place='top-start'>
                 <Alert type={type} message='메시지' />
               </Tooltip>
             ))}
-          </Stack>
+          </Flex>
         </Dev_PanelItem>
       </Dev_Panel>
 
       <Dev_Panel>
-        <Dev_PanelItem title='아아콘 노출 색상별' spacing={10}>
+        <Dev_PanelItem title='아아콘 노출 색상별' gap={10}>
           <Divider />
 
-          <Stack spacing={15} mt={5}>
+          <Flex gap={15} mt={5}>
             {AlertType.map((type, idx) => (
               <Tooltip key={idx} content={`<Alert type="${type}" message="..." showIcon  />`} place='top-start'>
                 <Alert type={type} message='메시지' showIcon />
               </Tooltip>
             ))}
-          </Stack>
+          </Flex>
         </Dev_PanelItem>
       </Dev_Panel>
 
       <Dev_Panel>
-        <Dev_PanelItem title='제목 색상별' spacing={10}>
+        <Dev_PanelItem title='제목 색상별' gap={10}>
           <Divider />
 
-          <Stack spacing={15} mt={5}>
+          <Flex gap={15} mt={5}>
             {AlertType.map((type, idx) => (
               <Tooltip key={idx} content={`<Alert type="${type}" message="..." showIcon />`} place='top-start'>
                 <Alert type={type} showIcon message='메시지' />
               </Tooltip>
             ))}
-          </Stack>
+          </Flex>
         </Dev_PanelItem>
       </Dev_Panel>
 
       <Dev_Panel>
-        <Dev_PanelItem title='제목 아아콘 노출 색상별' spacing={10}>
+        <Dev_PanelItem title='제목 아아콘 노출 색상별' gap={10}>
           <Divider />
 
-          <Stack spacing={15} mt={5}>
+          <Flex gap={15} mt={5}>
             {AlertType.map((type, idx) => (
               <Tooltip
                 key={idx}
@@ -61,10 +61,10 @@ export const Dev_Alert_Variant = () => {
                 <Alert type={type} title='제목' message='메시지' showIcon />
               </Tooltip>
             ))}
-          </Stack>
+          </Flex>
         </Dev_PanelItem>
       </Dev_Panel>
-    </Stack>
+    </Flex>
   );
 };
 

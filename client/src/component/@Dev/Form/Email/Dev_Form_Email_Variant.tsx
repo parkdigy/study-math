@@ -9,7 +9,7 @@ interface Props {
 const Dev_Form_Email_Variant = ({ titlePosition }: Props) => {
   return (
     <Dev_Panel>
-      <Form titlePosition={titlePosition} titleWidth={70} spacing={15} onSubmit={() => ll('submit')}>
+      <Form titlePosition={titlePosition} titleWidth={70} gap={15} onSubmit={() => ll('submit')}>
         <FormEmail title='이메일' name='FormEmail_default' placeholder='기본' />
 
         <FormEmail title='이메일' name='FormEmail_required' placeholder='필수 입력' required />

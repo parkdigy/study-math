@@ -14,10 +14,10 @@ import { Dev_FormControl_BackgroundColor } from './BackgroundColor';
 import { Dev_FormControl_Size } from './Size';
 import { Dev_FormControl_FontWeight } from './FontWeight';
 import { Dev_FormControl_Rotate } from './Rotate';
-import { Dev_FormControl_Spacing } from './Spacing';
+import { Dev_FormControl_Gap } from './Gap';
 import { Dev_FormControl_Icon } from './Icon';
 import { Dev_FormControl_IconPosition } from './IconPosition';
-import { Dev_FormControl_IconSpacing } from './IconSpacing';
+import { Dev_FormControl_IconGap } from './IconGap';
 import { Dev_FormControl_Title } from './Title';
 import { Dev_FormControl_Url } from './Url';
 import { Dev_FormControl_Loading } from './Loading';
@@ -119,14 +119,14 @@ function useDevFormControl<TOption extends Exclude<Dev_FormOptionsOption, 'cols'
     <Dev_FormControl_TooltipPlace {...multiOptionDefaultProps} />
   ) : option === 'rotate' ? (
     <Dev_FormControl_Rotate {...multiOptionDefaultProps} />
-  ) : option === 'spacing' ? (
-    <Dev_FormControl_Spacing {...multiOptionDefaultProps} />
+  ) : option === 'gap' ? (
+    <Dev_FormControl_Gap {...multiOptionDefaultProps} />
   ) : option === 'icon' ? (
     <Dev_FormControl_Icon {...multiOptionDefaultProps} />
   ) : option === 'iconPosition' ? (
     <Dev_FormControl_IconPosition {...multiOptionDefaultProps} />
-  ) : option === 'iconSpacing' ? (
-    <Dev_FormControl_IconSpacing {...multiOptionDefaultProps} />
+  ) : option === 'iconGap' ? (
+    <Dev_FormControl_IconGap {...multiOptionDefaultProps} />
   ) : option === 'rows' ? (
     <Dev_FormControl_Rows {...multiOptionDefaultProps} />
   ) : option === 'formCheckboxType' ? (

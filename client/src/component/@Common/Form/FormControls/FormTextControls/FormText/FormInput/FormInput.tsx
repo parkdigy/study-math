@@ -45,10 +45,10 @@ export const FormInput = React.forwardRef<HTMLInputElement, Props>(
         )}
       >
         <input ref={ref} disabled={disabled} onFocus={handleFocus} onBlur={handleBlur} {...inputProps} />
-        <Stack className='FormInput__Right' row center>
+        <Flex className='FormInput__Right' row center>
           {clear && !disabled && <ClearButton onClick={onClearClick} />}
           {endAdornment}
-        </Stack>
+        </Flex>
       </div>
     );
   }

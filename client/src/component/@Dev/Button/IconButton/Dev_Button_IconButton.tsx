@@ -39,7 +39,7 @@ const Dev_Button_IconButton = () => {
    * ******************************************************************************************************************/
 
   return (
-    <Stack spacing={20}>
+    <Flex gap={20}>
       <Dev_Panel>
         <Dev_FormOptions
           options={_formOptions}
@@ -61,7 +61,7 @@ const Dev_Button_IconButton = () => {
       </Dev_Panel>
 
       <Dev_Button_IconButton_Variant />
-    </Stack>
+    </Flex>
   );
 };
 

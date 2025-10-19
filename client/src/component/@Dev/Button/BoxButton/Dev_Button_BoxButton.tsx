@@ -27,7 +27,7 @@ const Dev_Button_BoxButton = () => {
    * ******************************************************************************************************************/
 
   return (
-    <Stack spacing={20}>
+    <Flex gap={20}>
       <Dev_Panel>
         <Dev_FormOptions
           options={_formOptions}
@@ -46,7 +46,7 @@ const Dev_Button_BoxButton = () => {
           )}
         />
       </Dev_Panel>
-    </Stack>
+    </Flex>
   );
 };
 

@@ -40,10 +40,10 @@ export const FormSelectRight = ({ size, isOpenDropdown, loading, showClear, clea
       )}
 
       {/* 화살표 */}
-      <Stack row center>
+      <Flex row center>
         <Divider vertical h={size === 'small' ? 16 : 24} />
         <IconArrowDown className='FormSelectRight__Arrow' />
-      </Stack>
+      </Flex>
     </div>
   );
 };

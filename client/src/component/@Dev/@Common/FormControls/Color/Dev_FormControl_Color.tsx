@@ -86,7 +86,7 @@ function Dev_FormControl_Color<TColors extends AllColors = AllColors>({
           />
         ) : (
           <Box relative>
-            <Stack row center spacing={10} absolute right={0} top={-30}>
+            <Flex row center gap={10} absolute right={0} top={-30}>
               <IconButton size={10} variant='rounded' onClick={() => setExpanded((prev) => !prev)}>
                 {expanded ? 'KeyboardArrowUp' : 'KeyboardArrowDown'}
               </IconButton>
@@ -98,7 +98,7 @@ function Dev_FormControl_Color<TColors extends AllColors = AllColors>({
                   onChange={onChange}
                 />
               )}
-            </Stack>
+            </Flex>
 
             <FormRadioGroup
               type='smallButton'

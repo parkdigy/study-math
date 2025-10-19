@@ -44,7 +44,7 @@ export const Dev_Form_Password = ({ titlePosition }: Props) => {
    * ******************************************************************************************************************/
 
   return (
-    <Stack spacing={20}>
+    <Flex gap={20}>
       <Dev_Panel>
         <Dev_FormOptions
           options={_formOptions}
@@ -54,7 +54,7 @@ export const Dev_Form_Password = ({ titlePosition }: Props) => {
           codePropsMap={{ props: { ...data, subControl: subControl ? '{...}' : undefined } }}
           onChange={setData}
           onGetTest={() => (
-            <Stack spacing={20} fullWidth>
+            <Flex gap={20} fullWidth>
               <FormPassword
                 name='FormPassword'
                 titleWidth={110}
@@ -68,13 +68,13 @@ export const Dev_Form_Password = ({ titlePosition }: Props) => {
                 {...data}
               />
               <Button>Submit</Button>
-            </Stack>
+            </Flex>
           )}
         />
       </Dev_Panel>
 
       <Dev_Form_Password_Variant titlePosition={titlePosition} />
-    </Stack>
+    </Flex>
   );
 };
 
