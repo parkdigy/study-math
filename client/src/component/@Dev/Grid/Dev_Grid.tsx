@@ -34,7 +34,7 @@ export const Dev_Grid = () => {
             <Box fullWidth>
               <Grid {...data}>
                 {new Array(24).fill(0).map((_, idx) => (
-                  <Col key={idx} backgroundColor='opacity05' center pv={5}>
+                  <Col key={idx} bg='opacity05' center pv={5}>
                     {idx + 1}
                   </Col>
                 ))}

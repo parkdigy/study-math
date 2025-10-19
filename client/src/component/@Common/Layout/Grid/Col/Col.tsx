@@ -6,13 +6,13 @@ export const Col = React.forwardRef<HTMLDivElement, Props>(({ children, classNam
   const innerNum = (props as any)['data-inner-num'];
 
   return (
-    <Box
+    <Flex
       ref={ref}
       className={classnames(className, 'GridCol', innerNum === 1 && 'GridCol-first', `GridCol-${cols}`)}
       {...props}
     >
       {children}
-    </Box>
+    </Flex>
   );
 });
 

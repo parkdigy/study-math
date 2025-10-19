@@ -11,60 +11,50 @@ const Dev_Tooltip_Variant = () => {
           <Divider />
 
           <Grid cols={3} gap={10} mt={5}>
-            <Col cols={3}>
-              <Flex row centerCenter gap={10}>
-                {['top-start', 'top', 'top-end'].map((place, idx) => (
-                  <React.Fragment key={idx}>
-                    {idx > 0 && <Divider vertical />}
-                    <Tooltip place={place as PlacesType} content={`<Tooltip place="${place}">...</Tooltip>`}>
-                      <T cursor='default'>{place}</T>
-                    </Tooltip>
-                  </React.Fragment>
-                ))}
-              </Flex>
+            <Col cols={3} row centerCenter gap={10}>
+              {['top-start', 'top', 'top-end'].map((place, idx) => (
+                <React.Fragment key={idx}>
+                  {idx > 0 && <Divider vertical />}
+                  <Tooltip place={place as PlacesType} content={`<Tooltip place="${place}">...</Tooltip>`}>
+                    <T cursor='default'>{place}</T>
+                  </Tooltip>
+                </React.Fragment>
+              ))}
             </Col>
-            <Col>
-              <Flex flexEndAlign gap={8}>
-                {['left-start', 'left', 'left-end'].map((place, idx) => (
-                  <React.Fragment key={idx}>
-                    {idx > 0 && <Divider width={55} />}
-                    <Tooltip place={place as PlacesType} content={`<Tooltip place="${place}">...</Tooltip>`}>
-                      <T cursor='default'>{place}</T>
-                    </Tooltip>
-                  </React.Fragment>
-                ))}
-              </Flex>
+            <Col flexEndAlign gap={8}>
+              {['left-start', 'left', 'left-end'].map((place, idx) => (
+                <React.Fragment key={idx}>
+                  {idx > 0 && <Divider width={55} />}
+                  <Tooltip place={place as PlacesType} content={`<Tooltip place="${place}">...</Tooltip>`}>
+                    <T cursor='default'>{place}</T>
+                  </Tooltip>
+                </React.Fragment>
+              ))}
             </Col>
-            <Col>
-              <Flex centerCenter fullHeight>
-                <Tooltip content='<Tooltip>...</Tooltip>'>
-                  <T cursor='default'>기본</T>
-                </Tooltip>
-              </Flex>
+            <Col centerCenter fullHeight>
+              <Tooltip content='<Tooltip>...</Tooltip>'>
+                <T cursor='default'>기본</T>
+              </Tooltip>
             </Col>
-            <Col display='flex' flexDirection='row'>
-              <Flex gap={8}>
-                {['right-start', 'right', 'right-end'].map((place, idx) => (
-                  <React.Fragment key={idx}>
-                    {idx > 0 && <Divider width={55} />}
-                    <Tooltip place={place as PlacesType} content={`<Tooltip place="${place}">...</Tooltip>`}>
-                      <T cursor='default'>{place}</T>
-                    </Tooltip>
-                  </React.Fragment>
-                ))}
-              </Flex>
+            <Col gap={8}>
+              {['right-start', 'right', 'right-end'].map((place, idx) => (
+                <React.Fragment key={idx}>
+                  {idx > 0 && <Divider width={55} />}
+                  <Tooltip place={place as PlacesType} content={`<Tooltip place="${place}">...</Tooltip>`}>
+                    <T cursor='default'>{place}</T>
+                  </Tooltip>
+                </React.Fragment>
+              ))}
             </Col>
-            <Col cols={3}>
-              <Flex row centerCenter gap={10}>
-                {['bottom-start', 'bottom', 'bottom-end'].map((place, idx) => (
-                  <React.Fragment key={idx}>
-                    {idx > 0 && <Divider vertical />}
-                    <Tooltip place={place as PlacesType} content={`<Tooltip place="${place}">...</Tooltip>`}>
-                      <T cursor='default'>{place}</T>
-                    </Tooltip>
-                  </React.Fragment>
-                ))}
-              </Flex>
+            <Col cols={3} row centerCenter gap={10}>
+              {['bottom-start', 'bottom', 'bottom-end'].map((place, idx) => (
+                <React.Fragment key={idx}>
+                  {idx > 0 && <Divider vertical />}
+                  <Tooltip place={place as PlacesType} content={`<Tooltip place="${place}">...</Tooltip>`}>
+                    <T cursor='default'>{place}</T>
+                  </Tooltip>
+                </React.Fragment>
+              ))}
             </Col>
           </Grid>
         </Dev_PanelItem>

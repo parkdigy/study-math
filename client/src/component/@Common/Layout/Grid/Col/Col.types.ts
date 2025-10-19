@@ -1,4 +1,4 @@
-export interface ColProps extends Omit<BoxProps, 'width' | 'minWidth' | 'maxWidth'> {
+export interface ColProps extends Omit<FlexProps, 'width' | 'minWidth' | 'maxWidth'> {
   children?: ReactNode;
   className?: string;
   cols?: number;
