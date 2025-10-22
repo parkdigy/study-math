@@ -1,7 +1,7 @@
 import React from 'react';
 import { ApiLoadContainerCommands, ApiLoadContainerProps as Props } from './ApiLoadContainer.types';
 import { ErrorRetry } from '../../../Errors';
-import { useAutoUpdateRef, useTimeoutRef } from '@pdg/react-hook';
+import { useTimeoutRef } from '@pdg/react-hook';
 
 export const ApiLoadContainer = ToForwardRefExoticComponent(
   AutoTypeForwardRef(function <T = any, TApiData = any>(
@@ -13,7 +13,6 @@ export const ApiLoadContainer = ToForwardRefExoticComponent(
      * ******************************************************************************************************************/
 
     const isShowLoadingRef = useRef(false);
-    const dataRef = useAutoUpdateRef<any>(data);
 
     /********************************************************************************************************************
      * Timeout
@@ -61,14 +60,12 @@ export const ApiLoadContainer = ToForwardRefExoticComponent(
 
         setLoadTimeout(
           () => {
-            onLoad(dataRef.current)
+            onLoad(data as any)
               .then((data) => {
                 setApiData(data);
                 setLoadStatus('success');
               })
-              .catch(() => {
-                setLoadStatus('error');
-              })
+              .catch(() => setLoadStatus('error'))
               .finally(() => {
                 if (isShowLoadingRef.current) {
                   __hideLoading();
@@ -79,7 +76,7 @@ export const ApiLoadContainer = ToForwardRefExoticComponent(
           retry ? retryDelay : 0
         );
       },
-      [dataRef, onLoad, retryDelay, setLoadTimeout]
+      [data, onLoad, retryDelay, setLoadTimeout]
     );
 
     /********************************************************************************************************************
