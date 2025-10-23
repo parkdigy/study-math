@@ -45,7 +45,7 @@ export const ApiLoadContainer = ToForwardRefExoticComponent(
         doLoad(false);
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [load]);
+    }, [load, data]);
 
     /********************************************************************************************************************
      * Function
