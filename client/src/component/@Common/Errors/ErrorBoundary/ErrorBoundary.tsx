@@ -91,7 +91,7 @@ const FallbackRender = ({ error, resetErrorBoundary, root }: FallbackProps & { r
             <i className={iconClassName} style={{ fontSize: 40 }}>
               error
             </i>
-            {config.env === 'local' && (
+            {config.isLocal && (
               <div style={{ textAlign: 'center' }}>
                 {error.stack && typeof error.stack === 'string' ? (
                   <div

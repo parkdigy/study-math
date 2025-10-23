@@ -14,7 +14,7 @@ const _LiveMaterialIconTypes = [
 type _LiveMaterialIconTypes = (typeof _LiveMaterialIconTypes)[number];
 
 /** 사용 아이콘 */
-const _MaterialIconTypes = config.env === 'local' ? _DevMaterialIconTypes : _LiveMaterialIconTypes;
+const _MaterialIconTypes = config.isLocal ? _DevMaterialIconTypes : _LiveMaterialIconTypes;
 type _MaterialIconTypes = (typeof _MaterialIconTypes)[number];
 
 /* eslint-disable no-var */

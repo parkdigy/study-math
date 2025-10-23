@@ -9,7 +9,7 @@ export const MainRouter = () => {
     <Routes>
       <Route path='/' element={<Home />} />
 
-      {config.env === 'local' && <Route path='/dev/controls' element={<Dev />} />}
+      {config.isLocal && <Route path='/dev/controls' element={<Dev />} />}
 
       <Route path='*' element={<Navigate to='/' />} />
     </Routes>

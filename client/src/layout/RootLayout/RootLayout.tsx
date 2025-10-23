@@ -208,7 +208,7 @@ const RootLayout = () => {
                   <Route path='/auth/*' element={<AuthLayout />} />
                   <Route path='/*' element={<DefaultLayout />} />
                 </Routes>
-                {config.env === 'local' && <DevButtons />}
+                {config.isLocal && <DevButtons />}
                 <Dialog />
                 <ToastContainer />
               </>
