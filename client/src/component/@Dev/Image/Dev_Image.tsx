@@ -17,7 +17,7 @@ export const Dev_Image = () => {
       </Dev_Panel>
 
       <Dev_Panel center>
-        <Tooltip place='top-start' content='<Img src="..." />'>
+        <Tooltip place='top-start' content='<Svg src="..." />'>
           <Svg src={SvgImage} w={50} h={50} c='primary' />
         </Tooltip>
       </Dev_Panel>
