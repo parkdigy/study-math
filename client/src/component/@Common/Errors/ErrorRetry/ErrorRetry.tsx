@@ -19,6 +19,7 @@ const ErrorRetry = React.forwardRef<HTMLDivElement, Props>(
       fullScreen,
       fullSize,
       retryLabel = '재시도',
+      retryButtonProps,
       onRetry,
       // Tooltip 지원
       ...props
@@ -57,7 +58,10 @@ const ErrorRetry = React.forwardRef<HTMLDivElement, Props>(
           <div>
             {title && <div className='ErrorRetry__Content__Title'>{title}</div>}
             {message ? (
-              <>{typeof message === 'string' ? <pre>{message}</pre> : message}</>
+              <>
+                <div>{typeof message === 'string' ? <pre>{message}</pre> : message}</div>
+                {onRetry && <div>잠시 후 {retryLabel} 해주세요.</div>}
+              </>
             ) : (
               <Box>
                 문제가 발생했습니다.
@@ -74,9 +78,9 @@ const ErrorRetry = React.forwardRef<HTMLDivElement, Props>(
             <Button
               color={ifUndefined(color, 'opacity15')}
               reverse={!!color}
-              className='ErrorRetry-button'
               mt={5}
               onClick={onRetry}
+              {...retryButtonProps}
             >
               {retryLabel}
             </Button>

@@ -24,7 +24,8 @@ export const ApiLoadContainer = ToForwardRefExoticComponent(
      * State
      * ******************************************************************************************************************/
 
-    const [loadStatus, setLoadStatus] = useState<'loading' | 'success' | 'error'>('loading');
+    const [loadStatus, setLoadStatus] = useState<'loading' | 'success' | 'error' | 'empty_error'>('loading');
+    const [error, setError] = useState<any>();
     const [apiData, setApiData] = useState<TApiData>();
 
     /********************************************************************************************************************
@@ -65,7 +66,10 @@ export const ApiLoadContainer = ToForwardRefExoticComponent(
                 setApiData(data);
                 setLoadStatus('success');
               })
-              .catch(() => setLoadStatus('error'))
+              .catch((err) => {
+                setLoadStatus(err === undefined ? 'empty_error' : 'error');
+                setError(err);
+              })
               .finally(() => {
                 if (isShowLoadingRef.current) {
                   __hideLoading();
@@ -106,8 +110,8 @@ export const ApiLoadContainer = ToForwardRefExoticComponent(
      * Render
      * ******************************************************************************************************************/
 
-    return loadStatus === 'loading' ? null : loadStatus === 'error' ? (
-      <ErrorRetry onRetry={() => doLoad(true)} />
+    return contains(['loading', 'empty_error'], loadStatus) ? null : loadStatus === 'error' ? (
+      <ErrorRetry message={error && error instanceof Error ? error.message : undefined} onRetry={() => doLoad(true)} />
     ) : (
       <Flex {...props}>{typeof children === 'function' ? children(apiData as any) : children}</Flex>
     );
