@@ -8,6 +8,6 @@ export interface ErrorRetryProps {
   fullScreen?: boolean;
   fullSize?: boolean;
   retryLabel?: string;
-  retryButtonProps?: Omit<ButtonProps, 'ref' | 'children' | 'onClick'>;
+  retryButtonProps?: Omit<ButtonProps, 'ref' | 'children' | 'className' | 'onClick'>;
   onRetry?: () => void;
 }

@@ -76,6 +76,7 @@ const ErrorRetry = React.forwardRef<HTMLDivElement, Props>(
           </div>
           {onRetry && (
             <Button
+              className='ErrorRetry__Content__RetryButton'
               color={ifUndefined(color, 'opacity15')}
               reverse={!!color}
               mt={5}

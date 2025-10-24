@@ -7,7 +7,7 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  padding: 10px;
+  padding: 15px;
 
   &.ErrorRetry-full-screen {
     position: absolute;
@@ -36,6 +36,12 @@
     .ErrorRetry__Content__Title {
       margin-bottom: 7px;
       font-weight: 600;
+    }
+
+    .ErrorRetry__Content__RetryButton {
+      font-size: var(--size-body-font-size);
+      line-height: var(--size-body-line-height);
+      font-weight: 500;
     }
   }
 }
