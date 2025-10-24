@@ -6,6 +6,7 @@ import React from 'react';
 import MainRouter from '../../router';
 import { useAppState } from '@context';
 import { useLocation } from 'react-router';
+import app from '@app';
 
 const DefaultLayout = () => {
   const { removeHtmlLoading } = useAppState();
@@ -21,7 +22,7 @@ const DefaultLayout = () => {
   }, []);
 
   useEffect(() => {
-    window.scrollTo({ top: __getNavigateScrollTopPos() });
+    app.scrollToTop(__getNavigateScrollTopPos());
     __setNavigateScrollTopPos(0);
   }, [location.pathname, location.hash]);
 

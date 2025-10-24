@@ -30,6 +30,18 @@ const app = {
   showErrorAlert(msg: string) {
     alert(msg);
   },
+
+  /********************************************************************************************************************
+   * 스크롤
+   * ******************************************************************************************************************/
+
+  getScrollTop() {
+    return window.scrollY || document.documentElement.scrollTop;
+  },
+
+  scrollToTop(top = 0, smooth = false) {
+    window.scrollTo({ left: 0, top, behavior: smooth ? 'smooth' : 'instant' });
+  },
 };
 
 export default app;
