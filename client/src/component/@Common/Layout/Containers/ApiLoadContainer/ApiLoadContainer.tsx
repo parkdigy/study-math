@@ -2,6 +2,7 @@ import React from 'react';
 import { ApiLoadContainerCommands, ApiLoadContainerProps as Props } from './ApiLoadContainer.types';
 import { ErrorRetry } from '../../../Errors';
 import { useTimeoutRef } from '@pdg/react-hook';
+import app from '@app';
 
 export const ApiLoadContainer = ToForwardRefExoticComponent(
   AutoTypeForwardRef(function <T = any, TApiData = any>(
@@ -110,8 +111,21 @@ export const ApiLoadContainer = ToForwardRefExoticComponent(
      * Render
      * ******************************************************************************************************************/
 
+    const errorMessage = useMemo(() => {
+      if (error) {
+        const apiErrorCode = app.getAxiosApiErrorResultCode(error);
+        if (apiErrorCode !== undefined) {
+          return `(A-${apiErrorCode})\n문제가 발생했습니다.`;
+        } else if (error.status) {
+          return `(E-${error.status})\n문제가 발생했습니다.`;
+        } else {
+          return '문제가 발생했습니다.';
+        }
+      }
+    }, [error]);
+
     return contains(['loading', 'empty_error'], loadStatus) ? null : loadStatus === 'error' ? (
-      <ErrorRetry message={error && error instanceof Error ? error.message : undefined} onRetry={() => doLoad(true)} />
+      <ErrorRetry message={errorMessage} onRetry={() => doLoad(true)} />
     ) : (
       <Flex {...props}>{typeof children === 'function' ? children(apiData as any) : children}</Flex>
     );
