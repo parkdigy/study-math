@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from 'react-router';
+import app from '@app';
 
 export const RootLayoutAppInitializer = () => {
   /********************************************************************************************************************
@@ -21,7 +22,7 @@ export const RootLayoutAppInitializer = () => {
   }, [location]);
 
   useEffect(() => {
-    window.scrollTo({ top: __getNavigateScrollTopPos() });
+    app.scrollToTop(__getNavigateScrollTopPos());
     __setNavigateScrollTopPos(0);
   }, [location.pathname, location.search, location.hash]);
 
