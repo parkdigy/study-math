@@ -5,5 +5,5 @@ export interface PaginationPaging {
 
 export interface PaginationProps {
   paging: PaginationPaging;
-  onChangePage?: (page: number) => void;
+  onPageChange?: (page: number) => void;
 }

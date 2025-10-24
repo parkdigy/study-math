@@ -5,7 +5,7 @@ import './Pagination.scss';
 const PAGE_LIMIT = 5;
 const SIDE_PAGES = Math.floor(PAGE_LIMIT / 2);
 
-export const Pagination = React.forwardRef<HTMLDivElement, Props>(({ paging, onChangePage }, ref) => {
+export const Pagination = React.forwardRef<HTMLDivElement, Props>(({ paging, onPageChange }, ref) => {
   /********************************************************************************************************************
    * Variable
    * ******************************************************************************************************************/
@@ -39,13 +39,13 @@ export const Pagination = React.forwardRef<HTMLDivElement, Props>(({ paging, onC
 
   return (
     <div ref={ref} className='Pagination'>
-      <div className='Pagination__NavigationBtn' data-disabled={currentPage === 1} onClick={() => onChangePage?.(1)}>
+      <div className='Pagination__NavigationBtn' data-disabled={currentPage === 1} onClick={() => onPageChange?.(1)}>
         <Icon size={20}>KeyboardDoubleArrowLeft</Icon>
       </div>
       <div
         className='Pagination__NavigationBtn'
         data-disabled={currentPage === 1}
-        onClick={() => onChangePage?.(currentPage - 1)}
+        onClick={() => onPageChange?.(currentPage - 1)}
       >
         <Icon size={20}>KeyboardArrowLeft</Icon>
       </div>
@@ -56,6 +56,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, Props>(({ paging, onC
             key={idx}
             className={classnames('Pagination__Page', page >= 1000 && 'Pagination__Page-over-1000')}
             data-active={page === currentPage}
+            onClick={() => onPageChange?.(page)}
           >
             {page}
           </div>
@@ -64,14 +65,14 @@ export const Pagination = React.forwardRef<HTMLDivElement, Props>(({ paging, onC
       <div
         className='Pagination__NavigationBtn'
         data-disabled={currentPage >= lastPage}
-        onClick={() => onChangePage?.(currentPage + 1)}
+        onClick={() => onPageChange?.(currentPage + 1)}
       >
         <Icon size={20}>KeyboardArrowRight</Icon>
       </div>
       <div
         className='Pagination__NavigationBtn'
         data-disabled={currentPage >= lastPage}
-        onClick={() => onChangePage?.(lastPage)}
+        onClick={() => onPageChange?.(lastPage)}
       >
         <Icon size={20}>KeyboardDoubleArrowRight</Icon>
       </div>
