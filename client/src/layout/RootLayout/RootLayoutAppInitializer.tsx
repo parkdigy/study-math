@@ -1,4 +1,5 @@
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
+import app from '@app';
 
 export const RootLayoutAppInitializer = () => {
   /********************************************************************************************************************
@@ -6,6 +7,7 @@ export const RootLayoutAppInitializer = () => {
    * ******************************************************************************************************************/
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   /********************************************************************************************************************
    * LayoutEffect
@@ -14,6 +16,19 @@ export const RootLayoutAppInitializer = () => {
   useLayoutEffect(() => {
     __setNavigate(navigate);
   }, [navigate]);
+
+  /********************************************************************************************************************
+   * Effect
+   * ******************************************************************************************************************/
+
+  useEffect(() => {
+    __setLocation(location);
+  }, [location]);
+
+  useEffect(() => {
+    app.scrollToTop(__getNavigateScrollTopPos());
+    __setNavigateScrollTopPos(0);
+  }, [location.pathname, location.search, location.hash]);
 
   /********************************************************************************************************************
    * Render
