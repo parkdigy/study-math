@@ -12,8 +12,8 @@ import { useFormControlGroupState, useFormState } from '../../FormContext';
 import IconActive from './icon_active.svg';
 import IconDefault from './icon_default.svg';
 import IconError from './icon_error.svg';
-import IconSwitchActive from './icon_switch_default.svg';
-import IconSwitchDefault from './icon_switch_active.svg';
+import IconSwitchDefault from './icon_switch_default.svg';
+import IconSwitchActive from './icon_switch_active.svg';
 import { koreanAppendRul } from '@pdg/korean';
 import './FormCheckbox.scss';
 
