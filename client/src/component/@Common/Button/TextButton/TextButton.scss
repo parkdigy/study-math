@@ -2,4 +2,8 @@
   &:hover {
     text-decoration: underline;
   }
+
+  *:not(.Badge__Content):hover {
+    text-decoration: underline;
+  }
 }

@@ -8,6 +8,6 @@ export interface BadgeProps {
   color?: AllColors | CSSProperties['color'];
   bgColor?: AllColors | CSSProperties['backgroundColor'];
   backgroundColor?: AllColors | CSSProperties['backgroundColor'];
-  content?: ReactNode;
-  offset?: { x: number; y: number };
+  content?: number | '';
+  offset?: { x?: number; y?: number };
 }
