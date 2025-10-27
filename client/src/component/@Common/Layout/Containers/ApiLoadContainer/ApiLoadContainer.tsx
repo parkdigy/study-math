@@ -13,6 +13,7 @@ export const ApiLoadContainer = ToForwardRefExoticComponent(
      * Ref
      * ******************************************************************************************************************/
 
+    const isLoadingRef = useRef(false);
     const isShowLoadingRef = useRef(false);
 
     /********************************************************************************************************************
@@ -55,6 +56,9 @@ export const ApiLoadContainer = ToForwardRefExoticComponent(
 
     const doLoad = useCallback(
       (retry: boolean) => {
+        if (isLoadingRef.current) return;
+        isLoadingRef.current = true;
+
         __showLoading();
         isShowLoadingRef.current = true;
 
@@ -75,6 +79,7 @@ export const ApiLoadContainer = ToForwardRefExoticComponent(
                 if (isShowLoadingRef.current) {
                   __hideLoading();
                   isShowLoadingRef.current = false;
+                  isLoadingRef.current = false;
                 }
               });
           },
