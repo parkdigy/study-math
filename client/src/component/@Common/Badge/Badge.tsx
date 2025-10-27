@@ -6,7 +6,7 @@ import Color from 'color';
 
 export const Badge = ({
   children,
-  variant = 'standard',
+  variant: initVariant,
   content,
   c: initC,
   color: initColor,
@@ -23,6 +23,9 @@ export const Badge = ({
   /********************************************************************************************************************
    * Variable
    * ******************************************************************************************************************/
+
+  const variant = ifUndefined(initVariant, content === '' ? 'dot' : 'standard');
+
   const finalInitColor = ifUndefined(ifUndefined(initColor, initC), 'error');
   const finalInitBackgroundColor = ifUndefined(initBackgroundColor, initBgColor);
 
