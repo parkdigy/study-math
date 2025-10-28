@@ -1,4 +1,5 @@
 import { SetURLSearchParams } from 'react-router';
+import { Location as RouterLocation } from 'react-router';
 
 const app = {
   /********************************************************************************************************************
@@ -49,7 +50,7 @@ const app = {
    * Hash
    * ******************************************************************************************************************/
 
-  deHash(location?: Location) {
+  deHash(location?: Location | RouterLocation) {
     const values: Dict<string> = {};
     const hash = ifUndefined(location, window.location).hash.substring(1);
     hash.replace(/([^=&]+)=([^&]*)/g, (substring, key, value) => {
