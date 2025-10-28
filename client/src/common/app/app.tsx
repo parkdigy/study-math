@@ -1,5 +1,5 @@
 import { ApiResult } from '@api';
-import { Location, SetURLSearchParams } from 'react-router';
+import { Location as RouterLocation, SetURLSearchParams } from 'react-router';
 import { toast } from '@toast';
 import _copyToClipboard from 'copy-to-clipboard';
 import { Theme } from '@theme';
@@ -116,7 +116,7 @@ const app = {
    * Hash
    * ******************************************************************************************************************/
 
-  deHash(location?: Location) {
+  deHash(location?: Location | RouterLocation) {
     const values: Dict<string> = {};
     const hash = ifUndefined(location, window.location).hash.substring(1);
     hash.replace(/([^=&]+)=([^&]*)/g, (substring, key, value) => {
