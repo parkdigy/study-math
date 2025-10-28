@@ -1,5 +1,4 @@
-import { SetURLSearchParams } from 'react-router';
-import { Location as RouterLocation } from 'react-router';
+import { Location as RouterLocation, SetURLSearchParams } from 'react-router';
 
 const app = {
   /********************************************************************************************************************
