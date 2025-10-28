@@ -59,7 +59,7 @@ const ErrorRetry = React.forwardRef<HTMLDivElement, Props>(
             {title && <div className='ErrorRetry__Content__Title'>{title}</div>}
             {message ? (
               <>
-                <div>{typeof message === 'string' ? <pre>{message}</pre> : message}</div>
+                <div>{typeof message === 'string' ? <T whiteSpace='pre-wrap'>{message}</T> : message}</div>
                 {onRetry && <div>잠시 후 {retryLabel} 해주세요.</div>}
               </>
             ) : (

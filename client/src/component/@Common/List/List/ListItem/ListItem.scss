@@ -29,13 +29,4 @@
       border-radius: 50%;
     }
   }
-
-  .ListItem__Content {
-    word-break: break-all;
-
-    > pre {
-      white-space: wrap;
-      word-break: break-all;
-    }
-  }
 }

@@ -19,7 +19,7 @@ export const Tabs = ToForwardRefExoticComponent(
             key={idx}
             onClick={item.disabled || item.value === value ? undefined : () => onChange(item.value)}
           >
-            <pre>{item.label}</pre>
+            <T whiteSpace='pre-wrap'>{item.label}</T>
           </div>
         ))}
       </div>

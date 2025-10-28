@@ -63,7 +63,9 @@ export const Alert = React.forwardRef<HTMLDivElement, Props>(
         )}
         <div className={classnames(className, 'Alert__Body')}>
           {title && <div className='Alert__Body__Title'>{title}</div>}
-          <div className='Alert__Body__Content'>{typeof message === 'string' ? <pre>{message}</pre> : message}</div>
+          <div className='Alert__Body__Content'>
+            {typeof message === 'string' ? <T whiteSpace='pre-wrap'>{message}</T> : message}
+          </div>
         </div>
       </Box>
     );
