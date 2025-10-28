@@ -3,6 +3,7 @@ import { Location } from 'react-router';
 import { toast } from '@toast';
 import _copyToClipboard from 'copy-to-clipboard';
 import { Theme } from '@theme';
+import { SetURLSearchParams } from 'react-router';
 
 let _colorScheme: 'light' | 'dark' = 'light';
 let _theme: Theme = Theme;
@@ -101,6 +102,18 @@ const app = {
   },
 
   /********************************************************************************************************************
+   * 스크롤
+   * ******************************************************************************************************************/
+
+  getScrollTop() {
+    return window.scrollY || document.documentElement.scrollTop;
+  },
+
+  scrollToTop(top = 0, smooth = false) {
+    window.scrollTo({ left: 0, top, behavior: smooth ? 'smooth' : 'instant' });
+  },
+
+  /********************************************************************************************************************
    * Hash
    * ******************************************************************************************************************/
 
@@ -115,15 +128,31 @@ const app = {
   },
 
   /********************************************************************************************************************
-   * 스크롤
+   * SearchParams
    * ******************************************************************************************************************/
 
-  getScrollTop() {
-    return window.scrollY || document.documentElement.scrollTop;
-  },
+  updateSearchParams(setSearchParams: SetURLSearchParams, params: Dict<string | undefined>, reset = false) {
+    setSearchParams((prev) => {
+      if (reset) {
+        prev
+          .keys()
+          .toArray()
+          .forEach((key) => prev.delete(key));
+      }
 
-  scrollToTop(top = 0, smooth = false) {
-    window.scrollTo({ left: 0, top, behavior: smooth ? 'smooth' : 'instant' });
+      Object.keys(params).forEach((key) => {
+        const value = params[key];
+        if (value !== undefined) {
+          if (value === '') {
+            prev.delete(key);
+          } else {
+            prev.set(key, String(value));
+          }
+        }
+      });
+
+      return prev;
+    });
   },
 };
 
