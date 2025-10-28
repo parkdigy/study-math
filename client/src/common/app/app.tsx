@@ -1,9 +1,8 @@
 import { ApiResult } from '@api';
-import { Location } from 'react-router';
+import { Location, SetURLSearchParams } from 'react-router';
 import { toast } from '@toast';
 import _copyToClipboard from 'copy-to-clipboard';
 import { Theme } from '@theme';
-import { SetURLSearchParams } from 'react-router';
 
 let _colorScheme: 'light' | 'dark' = 'light';
 let _theme: Theme = Theme;
