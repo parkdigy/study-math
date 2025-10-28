@@ -13,6 +13,7 @@ export const FormFile = React.forwardRef<FormFileCommands, Props>(
       placeholder,
       hideEmptyErrorText,
       maxFileSize,
+      accept,
       onFocus,
       onBlur,
       // FormControlCommonProps
@@ -278,7 +279,7 @@ export const FormFile = React.forwardRef<FormFileCommands, Props>(
             <input
               ref={inputFileRef}
               type='file'
-              accept='.jpg,.png,.pdf'
+              accept={accept}
               id={id}
               name={name}
               disabled={disabled}

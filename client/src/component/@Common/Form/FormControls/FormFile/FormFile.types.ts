@@ -10,6 +10,7 @@ export interface FormFileProps extends Omit<FormControlCommonProps<string>, 'val
   placeholder?: string;
   hideEmptyErrorText?: boolean;
   maxFileSize?: number;
+  accept?: string;
   onFocus?: (e: React.FocusEvent<HTMLButtonElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLButtonElement>) => void;
   onChange?: (file: File | undefined) => void;
