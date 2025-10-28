@@ -9,7 +9,8 @@ export type FormControlType =
   | 'checkbox'
   | 'radio_group'
   | 'select'
-  | 'hidden';
+  | 'hidden'
+  | 'file';
 
 export interface FormContextValue {
   titlePosition: 'top' | 'left';

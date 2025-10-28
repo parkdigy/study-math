@@ -11,7 +11,7 @@
     $text-color: color.$form-text;
     $background-color: color.$form-background;
     $border-color: color.$form-border;
-    $border-radius: 5px;
+    $border-radius: 10px;
     $outline-color: color.$form-primary;
     $error-border-outline-color: color.$form-error;
     $disabled-text-color: color.$form-disabled-text;
@@ -35,18 +35,18 @@
       outline-width: thin;
     }
 
+    &.FormTextarea_textarea-disabled {
+      color: $disabled-text-color;
+      border-color: $disabled-border-color;
+      background-color: $disabled-background-color;
+    }
+
     &.FormTextarea_textarea-error {
       border-color: $error-border-outline-color;
 
       &.FormTextarea_textarea-focused {
         outline-color: $error-border-outline-color;
       }
-    }
-
-    &.FormTextarea_textarea-disabled {
-      color: $disabled-text-color;
-      border-color: $disabled-border-color;
-      background-color: $disabled-background-color;
     }
 
     // Placeholder

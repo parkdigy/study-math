@@ -2,7 +2,7 @@ import React, { FormEvent } from 'react';
 import { FormCommands, FormProps as Props } from './Form.types';
 import { FormContextProvider, FormContextValue, FormControlType } from '../FormContext';
 import { FormControlCommands } from '../FormControls/@common';
-import { FormCheckboxCommands, FormTextCommands } from '../FormControls';
+import { FormCheckboxCommands, FormFileCommands, FormTextCommands } from '../FormControls';
 import { useForwardRef } from '@pdg/react-hook';
 import { FormRadioGroupCommands } from '../FormControls/FormRadioGroup';
 import { FormSelectCommands } from '../FormControls/FormSelect';
@@ -38,7 +38,7 @@ export const Form = React.forwardRef<FormCommands, Props>(
      * ******************************************************************************************************************/
 
     const submit = useCallback(() => {
-      const finalValues: Dict<string | number | undefined | boolean> = {};
+      const finalValues: Dict<string | number | undefined | boolean | File> = {};
       let isAllValid = true;
 
       for (const name of keys(formControls.current)) {
@@ -46,7 +46,7 @@ export const Form = React.forwardRef<FormCommands, Props>(
 
         if (active && commands) {
           if (commands.validate()) {
-            let value: string | number | boolean | undefined;
+            let value: string | number | boolean | File | undefined;
 
             switch (type) {
               case 'text':
@@ -56,6 +56,9 @@ export const Form = React.forwardRef<FormCommands, Props>(
               case 'textarea':
               case 'hidden':
                 value = (commands as FormTextCommands).getValue();
+                break;
+              case 'file':
+                value = (commands as FormFileCommands).getFile();
                 break;
               case 'checkbox':
                 value = (commands as FormCheckboxCommands).getChecked();

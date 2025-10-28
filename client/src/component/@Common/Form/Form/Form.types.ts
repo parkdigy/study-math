@@ -16,5 +16,5 @@ export interface FormProps extends Omit<FlexProps, 'ref' | 'onSubmit'> {
   // onSubmit?: (values) => void 를 사용하지 않고,
   // onSubmit?(values): void 로 사용
   // 예) const handleSubmit = (values: { name: string; age: number }) => { ... }
-  onSubmit?(values: Dict<string | number | boolean | undefined>, target: HTMLFormElement): void;
+  onSubmit?(values: Dict<string | number | boolean | File | undefined>, target: HTMLFormElement): void;
 }

@@ -1,31 +1,20 @@
-import React from 'react';
-import { FormTextareaCommands, FormTextareaProps as Props } from './FormTextarea.types';
-import { FormControlBase } from '../../@common';
-import {
-  useAutoUpdateRefState,
-  useAutoUpdateState,
-  useFirstSkipEffect,
-  useForwardRef,
-  useTimeoutRef,
-} from '@pdg/react-hook';
+import React, { ChangeEvent } from 'react';
+import { FormFileCommands, FormFileProps as Props } from './FormFile.types';
+import { FormControlBase } from '../@common';
+import { useAutoUpdateState, useFirstSkipEffect, useForwardRef, useRefState, useTimeoutRef } from '@pdg/react-hook';
 import { koreanAppendRul } from '@pdg/korean';
-import { useFormControlGroupState, useFormState } from '../../../FormContext';
-import './FormTextarea.scss';
+import { useFormControlGroupState, useFormState } from '../../FormContext';
+import './FormFile.scss';
 
-export const FormTextarea = React.forwardRef<FormTextareaCommands, Props>(
+export const FormFile = React.forwardRef<FormFileCommands, Props>(
   (
     {
-      // FormTextareaProps
+      // FormFileProps
       placeholder,
       hideEmptyErrorText,
-      onFinalValue,
-      // HTMLTextareaProps
-      maxLength,
-      rows = 5,
+      maxFileSize,
       onFocus,
       onBlur,
-      onKeyUp,
-      onKeyDown,
       // FormControlCommonProps
       className,
       name,
@@ -33,10 +22,8 @@ export const FormTextarea = React.forwardRef<FormTextareaCommands, Props>(
       required,
       disabled: initDisabled,
       error: initError = false,
-      value: initValue = '',
       onChange,
       onErrorChange,
-      onValidate,
       // FormControlBaseProps
       ...formControlBaseProps
     },
@@ -46,6 +33,7 @@ export const FormTextarea = React.forwardRef<FormTextareaCommands, Props>(
      * Use
      * ******************************************************************************************************************/
 
+    const id = useId();
     const { disabled: formDisabled } = useFormState();
     const controlGroupState = useFormControlGroupState();
 
@@ -60,6 +48,7 @@ export const FormTextarea = React.forwardRef<FormTextareaCommands, Props>(
      * ******************************************************************************************************************/
 
     const innerRef = useRef<HTMLTextAreaElement>(null);
+    const inputFileRef = useRef<HTMLInputElement>(null);
 
     /********************************************************************************************************************
      * State
@@ -68,7 +57,8 @@ export const FormTextarea = React.forwardRef<FormTextareaCommands, Props>(
     const [error, setError] = useAutoUpdateState(initError);
     const [isRequiredError, setIsRequiredError] = useState(false);
     const [isFocus, setIsFocus] = useState(false);
-    const [valueRef, value, _setValue] = useAutoUpdateRefState(initValue);
+    const [fileValue, setFileValue] = useState('');
+    const [fileRef, file, _setFile] = useRefState<File>();
 
     /********************************************************************************************************************
      * Variable
@@ -94,11 +84,10 @@ export const FormTextarea = React.forwardRef<FormTextareaCommands, Props>(
     }, []);
 
     const validate = useCallback(() => {
-      const currentValue = ifUndefined(valueRef.current, '');
       let error: string | boolean = false;
       let isRequiredError = false;
 
-      if (required && empty(currentValue)) {
+      if (required && !fileRef.current) {
         isRequiredError = true;
         if (hideEmptyErrorText) {
           error = true;
@@ -110,9 +99,6 @@ export const FormTextarea = React.forwardRef<FormTextareaCommands, Props>(
           }
         }
       }
-      if (error === false && onValidate) {
-        error = onValidate(currentValue);
-      }
 
       if (error === false) {
         setError(false);
@@ -123,18 +109,24 @@ export const FormTextarea = React.forwardRef<FormTextareaCommands, Props>(
         setIsRequiredError(isRequiredError);
         return false;
       }
-    }, [hideEmptyErrorText, onValidate, required, setError, title, valueRef]);
+    }, [fileRef, hideEmptyErrorText, required, setError, title]);
 
-    const getValue = useCallback(() => {
-      return ifNullOrUndefined(valueRef.current, '');
-    }, [valueRef]);
+    const getFile = useCallback(() => {
+      return file;
+    }, [file]);
 
-    const setValue = useCallback(
-      (newValue: string) => {
-        _setValue(newValue);
+    const setFile = useCallback(
+      (newFile: File | undefined) => {
+        _setFile(newFile);
+
+        if (newFile === undefined) {
+          setFileValue('');
+        }
+
+        onChange?.(newFile);
 
         if (error !== false) {
-          if (isRequiredError && notEmpty(newValue)) {
+          if (isRequiredError && newFile) {
             setError(false);
             setIsRequiredError(false);
           } else {
@@ -143,24 +135,46 @@ export const FormTextarea = React.forwardRef<FormTextareaCommands, Props>(
             }, 500);
           }
         }
-
-        onChange?.(newValue);
       },
-      [_setValue, error, isRequiredError, onChange, setError, setValidateTimeout, validate]
+      [_setFile, error, isRequiredError, onChange, setError, setValidateTimeout, validate]
     );
 
     const clear = useCallback(() => {
-      _setValue('');
-      onChange?.('');
-    }, [_setValue, onChange]);
+      setFile(undefined);
+    }, [setFile]);
+
+    const fileSizeCheck = useCallback(
+      (file: File | string) => {
+        if (maxFileSize) {
+          return new Promise<void>((resolve, reject) => {
+            if (file instanceof File) {
+              if (file.size > maxFileSize) {
+                Dialog.openAlert({
+                  title: '파일 사이즈 초과',
+                  content: `${getFileSizeText(maxFileSize)} 이하의 파일만 사용 가능합니다.\n(선택한 파일 사이즈 : ${getFileSizeText(file.size)})`,
+                });
+                reject();
+              } else {
+                resolve();
+              }
+            } else {
+              resolve();
+            }
+          });
+        } else {
+          return Promise.resolve();
+        }
+      },
+      [maxFileSize]
+    );
 
     /********************************************************************************************************************
      * Commands
      * ******************************************************************************************************************/
 
-    const commands = useMemo<FormTextareaCommands>(
-      () => ({ focus, validate, setError, getValue, setValue, clear }),
-      [clear, focus, getValue, setError, setValue, validate]
+    const commands = useMemo<FormFileCommands>(
+      () => ({ focus, validate, setError, getFile, clear }),
+      [clear, focus, getFile, setError, validate]
     );
 
     useForwardRef(ref, commands);
@@ -169,19 +183,8 @@ export const FormTextarea = React.forwardRef<FormTextareaCommands, Props>(
      * Event Handler
      * ******************************************************************************************************************/
 
-    const handleChange = useCallback(
-      (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        const newValue = onFinalValue ? onFinalValue(e.currentTarget.value) : e.currentTarget.value;
-
-        setValue(newValue);
-
-        onChange?.(newValue);
-      },
-      [onChange, onFinalValue, setValue]
-    );
-
     const handleFocus = useCallback(
-      (e: React.FocusEvent<HTMLTextAreaElement>) => {
+      (e: React.FocusEvent<HTMLButtonElement>) => {
         setIsFocus(true);
         onFocus?.(e);
       },
@@ -189,7 +192,7 @@ export const FormTextarea = React.forwardRef<FormTextareaCommands, Props>(
     );
 
     const handleBlur = useCallback(
-      (e: React.FocusEvent<HTMLTextAreaElement>) => {
+      (e: React.FocusEvent<HTMLButtonElement>) => {
         setIsFocus(false);
         onBlur?.(e);
         if (error) {
@@ -199,14 +202,32 @@ export const FormTextarea = React.forwardRef<FormTextareaCommands, Props>(
       [error, onBlur, validate]
     );
 
+    const handleFileChange = useCallback(
+      (e: ChangeEvent<HTMLInputElement>) => {
+        const target = e.currentTarget;
+        const file = (target.files as FileList)[0];
+
+        setFileValue(target.value);
+
+        fileSizeCheck(file)
+          .then(() => {
+            setFile(file);
+          })
+          .catch(() => {
+            setFile(undefined);
+          });
+      },
+      [fileSizeCheck, setFile]
+    );
+
     /********************************************************************************************************************
      * Render
      * ******************************************************************************************************************/
 
     return (
       <FormControlBase
-        className={classnames(className, 'FormTextarea')}
-        type='textarea'
+        className={classnames(className, 'FormFile')}
+        type='file'
         name={name}
         commands={commands}
         title={title}
@@ -217,31 +238,80 @@ export const FormTextarea = React.forwardRef<FormTextareaCommands, Props>(
         focused={isFocus}
         {...formControlBaseProps}
       >
-        <textarea
-          className={classnames(
-            'FormTextarea_textarea',
-            isFocus && 'FormTextarea_textarea-focused',
-            disabled && 'FormTextarea_textarea-disabled',
-            error !== false && 'FormTextarea_textarea-error'
-          )}
-          ref={innerRef}
-          name={name}
-          placeholder={placeholder}
-          disabled={disabled}
-          value={value}
-          maxLength={maxLength}
-          rows={rows}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          onKeyUp={onKeyUp}
-          onKeyDown={onKeyDown}
-        >
-          {value}
-        </textarea>
+        <div className='FormFile__Body'>
+          <div
+            className={classnames(
+              'FormFile__Url',
+              disabled && 'FormFile__Url-disabled',
+              !file && 'FormFile__Url-placeholder',
+              error !== false && 'FormFile__Url-error'
+            )}
+          >
+            <div className='FormFile__Url__Text'>{file ? file.name : ifEmpty(placeholder, <>&nbsp;</>)}</div>
+            {file && !disabled && (
+              <div className='FormFile__Url__Clear' onClick={clear}>
+                <Box width={22} height={22}>
+                  <svg
+                    focusable='false'
+                    aria-hidden='true'
+                    xmlns='http://www.w3.org/2000/svg'
+                    viewBox='0 0 24 24'
+                    fill='gray'
+                  >
+                    <path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z' />
+                  </svg>
+                </Box>
+              </div>
+            )}
+          </div>
+          <div>
+            <button
+              type='button'
+              className={classnames('FormFile__FileSelectButton', disabled && 'FormFile__FileSelectButton-disabled')}
+              disabled={disabled}
+              tabIndex={disabled ? -1 : 0}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            >
+              <label htmlFor={id}>파일 선택</label>
+            </button>
+            <input
+              ref={inputFileRef}
+              type='file'
+              accept='.jpg,.png,.pdf'
+              id={id}
+              name={name}
+              disabled={disabled}
+              value={fileValue}
+              onChange={handleFileChange}
+            />
+          </div>
+        </div>
       </FormControlBase>
     );
   }
 );
 
-export default FormTextarea;
+export default FormFile;
+
+/********************************************************************************************************************
+ * getFileSizeText
+ * ******************************************************************************************************************/
+function getFileSizeText(bytes: number, dp = 1) {
+  const thresh = 1024;
+
+  if (Math.abs(bytes) < thresh) {
+    return `${bytes} Byte`;
+  }
+
+  const units = ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  let u = -1;
+  const r = 10 ** dp;
+
+  do {
+    bytes /= thresh;
+    u += 1;
+  } while (Math.round(Math.abs(bytes) * r) / r >= thresh && u < units.length - 1);
+
+  return `${bytes.toFixed(dp)} ${units[u]}`;
+}

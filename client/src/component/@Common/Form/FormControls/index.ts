@@ -4,3 +4,4 @@ export * from './FormCheckbox';
 export * from './FormRadioGroup';
 export * from './FormSelect';
 export * from './FormHidden';
+export * from './FormFile';
