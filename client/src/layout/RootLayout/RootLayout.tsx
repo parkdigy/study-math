@@ -187,16 +187,7 @@ const RootLayout = () => {
               <>
                 {authError ? (
                   <Flex height='100vh'>
-                    <ErrorRetry
-                      message={
-                        <>
-                          서버에 연결할 수 없습니다.
-                          <br />
-                          잠시 후 재시도 해주세요.
-                        </>
-                      }
-                      onRetry={() => loadAuth(true)}
-                    />
+                    <ErrorRetry message='서버에 연결할 수 없습니다.' onRetry={() => loadAuth(true)} />
                   </Flex>
                 ) : null}
               </>
