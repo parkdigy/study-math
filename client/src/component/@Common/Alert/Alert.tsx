@@ -5,7 +5,7 @@ import Color from 'color';
 import './Alert.scss';
 
 export const Alert = React.forwardRef<HTMLDivElement, Props>(
-  ({ className, type = 'info', title, showIcon, message, ...boxProps }, ref) => {
+  ({ className, type = 'info', title, showIcon, message, wordBreak, ...boxProps }, ref) => {
     /********************************************************************************************************************
      * Use
      * ******************************************************************************************************************/
@@ -64,7 +64,13 @@ export const Alert = React.forwardRef<HTMLDivElement, Props>(
         <div className={classnames(className, 'Alert__Body')}>
           {title && <div className='Alert__Body__Title'>{title}</div>}
           <div className='Alert__Body__Content'>
-            {typeof message === 'string' ? <T whiteSpace='pre-wrap'>{message}</T> : message}
+            {typeof message === 'string' ? (
+              <T whiteSpace='pre-wrap' wordBreak={wordBreak}>
+                {message}
+              </T>
+            ) : (
+              message
+            )}
           </div>
         </div>
       </Box>
