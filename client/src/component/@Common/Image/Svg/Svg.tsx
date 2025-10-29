@@ -50,6 +50,7 @@ export const Svg = ({
     <ReactSVG
       className={classnames(className, 'Svg')}
       style={style}
+      httpRequestWithCredentials={true}
       afterInjection={(svg) => {
         if (width !== undefined) {
           svg.setAttribute('width', typeof width === 'number' ? `${width}px` : width);
