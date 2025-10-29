@@ -1,5 +1,5 @@
 {
-  "name": "react-ui-template",
+  "name": "study-math",
   "scripts": {
     "dev": "npm run client:dev",
     "build": "npm run server:build && npm run client:build",
@@ -37,7 +37,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/parkdigy/react-ui-template.git"
+    "url": "git+https://github.com/parkdigy/study-math.git"
   },
   "eslintConfig": {},
   "devDependencies": {

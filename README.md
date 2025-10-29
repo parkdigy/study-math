@@ -1,4 +1,4 @@
-# react-ui-template
+# study-math
 
 ## env
 `APP_HOST` 와 `API_URL` 의 도메인이 다르면 쿠키가 적용되지 않음.

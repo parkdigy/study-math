@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'react-ui-template',
+      name: 'study-math',
       script: './dist/app.js',
       instances: 1,
       exec_mode: 'cluster',
