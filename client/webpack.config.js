@@ -142,7 +142,7 @@ const options = {
               name(module) {
                 if (module.context.includes('/node_modules/')) {
                   const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
-                  return `vendors/_common_${packageName.replace('@', '')}`;
+                  return `common_${packageName.replace('@', '')}`;
                 }
               },
             },
