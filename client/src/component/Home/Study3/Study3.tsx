@@ -116,14 +116,6 @@ export const Study3 = ({}: Props) => {
 
       if (newNum1 > 0 && newNum2 > 0 && newNum3 > 0) continue;
 
-      if (newNum1 !== 0) {
-        newNum1 = 4;
-        newOperator1 = '-';
-        newNum2 = 2;
-        newOperator2 = '*';
-        newNum3 = -2;
-      }
-
       newAnswer = 0;
       if (contains(['*', '/'], newOperator2) && contains(['+', '-'], newOperator1)) {
         switch (newOperator2) {
