@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkstudy_math=self.webpackChunkstudy_math||[]).push([[7862],{9751:(e,a,s)=>{s.r(a),s.d(a,{Img:()=>r,default:()=>c});var t=s(7810),m=s(6079);const r=t.forwardRef(({className:e,rotate:a,...s},r)=>t.createElement(m.NO,{ref:r,component:"img",className:classnames(e,"Img"),transform:a?`rotate(${a}deg)`:void 0,...s})),c=r}}]);

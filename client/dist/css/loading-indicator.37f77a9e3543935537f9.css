@@ -1,0 +1,1 @@
+@keyframes spin{to{transform:rotate(360deg)}}.LoadingIndicator{display:inline-block;user-select:none;border-radius:50%;border-style:solid;border-bottom-color:rgba(0,0,0,0);animation:spin 1s linear infinite;border-width:3px}

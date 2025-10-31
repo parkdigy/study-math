@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkstudy_math=self.webpackChunkstudy_math||[]).push([[4593],{7786:(e,t,s)=>{s.r(t),s.d(t,{TextButton:()=>u,default:()=>c});var a=s(7810);const u=a.forwardRef(({className:e,children:t,...s},u)=>a.createElement(BoxButton,{ref:u,className:classnames(e,"TextButton"),...s},t)),c=u}}]);

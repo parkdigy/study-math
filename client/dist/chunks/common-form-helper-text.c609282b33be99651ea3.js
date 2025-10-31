@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkstudy_math=self.webpackChunkstudy_math||[]).push([[708],{573:(e,s,t)=>{t.r(s),t.d(s,{FormHelperText:()=>c,default:()=>r});var a=t(7810);const c=({children:e,className:s,focused:t})=>a.createElement("div",{className:classnames(s,"FormHelperText",t&&"FormHelperText-focused")},a.createElement(Icon,{c:"opacity35"},"Error"),e),r=c}}]);

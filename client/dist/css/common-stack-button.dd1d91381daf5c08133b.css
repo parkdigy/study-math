@@ -1,0 +1,2 @@
+.BoxButton{user-select:none}.BoxButton:not(.BoxButton-disabled){cursor:pointer}.BoxButton:not(.BoxButton-disabled) *{cursor:pointer}.BoxButton.BoxButton-disabled{cursor:default;pointer-events:none;opacity:.5}.BoxButton.BoxButton-disabled *{cursor:default}
+.FlexButton{user-select:none}.FlexButton:not(.FlexButton-disabled){cursor:pointer}.FlexButton:not(.FlexButton-disabled) *{cursor:pointer}.FlexButton.FlexButton-disabled{cursor:default;pointer-events:none;opacity:.5}

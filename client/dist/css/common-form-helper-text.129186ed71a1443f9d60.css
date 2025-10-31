@@ -1,0 +1,1 @@
+.FormHelperText{color:var(--color-text-lighten);font-size:var(--size-caption-font-size);line-height:var(--size-caption-line-height);display:flex;flex-direction:row;align-items:center;gap:6px}.FormHelperText.FormHelperText-focused{color:var(--color-form-primary)}

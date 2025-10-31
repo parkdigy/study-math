@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkstudy_math=self.webpackChunkstudy_math||[]).push([[5793],{426:(e,t,c)=>{c.r(t),c.d(t,{DevButton:()=>s,default:()=>a});var n=c(7810);const s=({icon:e,onClick:t})=>n.createElement("div",{className:"DevButton",onClick:t},n.createElement(Icon,{size:20,color:"text"},e)),a=s}}]);
