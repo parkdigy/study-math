@@ -236,10 +236,11 @@ export const Study3 = ({}: Props) => {
   const defaultGap = isMobile ? 15 : 30;
   const correctIncorrectFontSize = isMobile ? 50 : 70;
   const correctIncorrectTop = isMobile ? -100 : -150;
-  const buttonSize = isMobile ? 'md' : 'xl';
+  const buttonSize = isMobile ? 'xs' : 'xl';
+  const buttonHeight = isMobile ? 60 : undefined;
 
   return (
-    <Flex center gap={50}>
+    <Flex center gap={50} width={isMobile ? '100%' : undefined}>
       <Flex center>
         <Flex row center centerJustify fs={defaultFontSize} bold gap={defaultGap} relative c='textAccent'>
           {isShowAnswer && (
@@ -264,13 +265,14 @@ export const Study3 = ({}: Props) => {
         )}
       </Flex>
 
-      <Grid cols={6} gap={10}>
+      <Grid cols={6} gap={10} width={isMobile ? '100%' : undefined}>
         {new Array(10).fill(0).map((_, i) => (
           <Col key={i}>
             <Button
               disabled={isShowAnswer}
               s={buttonSize}
               c='opacity10'
+              h={buttonHeight}
               onClick={() => inputKey(i === 9 ? '0' : (i + 1).toString())}
             >
               <T fs={defaultSmallFontSize}>{i === 9 ? 0 : i + 1}</T>
@@ -278,12 +280,18 @@ export const Study3 = ({}: Props) => {
           </Col>
         ))}
         <Col>
-          <Button disabled={isShowAnswer} s={buttonSize} c='opacity10' onClick={() => inputKey('-')}>
-            <T fs={defaultSmallFontSize}>{inputAnswer.startsWith('-') ? '+' : '-'}</T>
+          <Button disabled={isShowAnswer} s={buttonSize} h={buttonHeight} c='opacity10' onClick={() => inputKey('-')}>
+            <T fs={defaultSmallFontSize + 3}>{inputAnswer.startsWith('-') ? '+' : '-'}</T>
           </Button>
         </Col>
         <Col>
-          <Button disabled={isShowAnswer} s={buttonSize} c='opacity20' onClick={() => inputKey('Backspace')}>
+          <Button
+            disabled={isShowAnswer}
+            s={buttonSize}
+            h={buttonHeight}
+            c='opacity20'
+            onClick={() => inputKey('Backspace')}
+          >
             <T fs={defaultSmallFontSize}>🔙</T>
           </Button>
         </Col>
