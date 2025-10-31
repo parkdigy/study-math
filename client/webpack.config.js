@@ -193,11 +193,11 @@ const options = {
           new CleanWebpackPlugin.CleanWebpackPlugin({
             cleanOnceBeforeBuildPatterns: ['*'],
           }),
-          new BundleAnalyzerPlugin({
-            openAnalyzer: true,
-            analyzerMode: 'static',
-            reportFilename: '../build/report.html',
-          }),
+          // new BundleAnalyzerPlugin({
+          //   openAnalyzer: true,
+          //   analyzerMode: 'static',
+          //   reportFilename: '../build/report.html',
+          // }),
         ]
       : [
           new SourceMapDevToolPlugin({
