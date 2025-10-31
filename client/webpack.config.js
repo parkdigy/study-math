@@ -100,7 +100,7 @@ const options = {
     : undefined,
   output: {
     path: outputPath,
-    publicPath: '/',
+    publicPath: isProduction ? '/study-math/client/dist/' : '/',
     filename: '[name].[chunkhash].js',
     chunkFilename: 'chunks/[name].[chunkhash].js',
   },
