@@ -117,34 +117,54 @@ export const Study3 = ({}: Props) => {
       if (newNum1 > 0 && newNum2 > 0 && newNum3 > 0) continue;
 
       newAnswer = 0;
-      switch (newOperator1) {
-        case '+':
-          newAnswer = newNum1 + newNum2;
-          break;
-        case '-':
-          newAnswer = newNum1 - newNum2;
-          break;
-        case '*':
-          newAnswer = newNum1 * newNum2;
-          break;
-        case '/':
-          newAnswer = parseFloat((newNum1 / newNum2).toFixed(2));
-          break;
-      }
+      if (contains(['*', '/'], newOperator2) && contains(['+', '-'], newOperator1)) {
+        switch (newOperator2) {
+          case '*':
+            newAnswer = newNum2 * newNum3;
+            break;
+          case '/':
+            newAnswer = parseFloat((newNum2 / newNum3).toFixed(2));
+            break;
+        }
 
-      switch (newOperator2) {
-        case '+':
-          newAnswer += newNum3;
-          break;
-        case '-':
-          newAnswer -= newNum3;
-          break;
-        case '*':
-          newAnswer *= newNum3;
-          break;
-        case '/':
-          newAnswer = parseFloat((newAnswer / newNum3).toFixed(2));
-          break;
+        switch (newOperator1) {
+          case '+':
+            newAnswer += newNum1;
+            break;
+          case '-':
+            newAnswer -= newNum1;
+            break;
+        }
+      } else {
+        switch (newOperator1) {
+          case '+':
+            newAnswer = newNum1 + newNum2;
+            break;
+          case '-':
+            newAnswer = newNum1 - newNum2;
+            break;
+          case '*':
+            newAnswer = newNum1 * newNum2;
+            break;
+          case '/':
+            newAnswer = parseFloat((newNum1 / newNum2).toFixed(2));
+            break;
+        }
+
+        switch (newOperator2) {
+          case '+':
+            newAnswer += newNum3;
+            break;
+          case '-':
+            newAnswer -= newNum3;
+            break;
+          case '*':
+            newAnswer *= newNum3;
+            break;
+          case '/':
+            newAnswer = parseFloat((newAnswer / newNum3).toFixed(2));
+            break;
+        }
       }
 
       if (newAnswer === Math.floor(newAnswer)) break;
@@ -200,26 +220,28 @@ export const Study3 = ({}: Props) => {
 
   return (
     <Flex center gap={50}>
-      <Flex row center centerJustify fs={60} bold gap={30} relative c='textAccent'>
-        {isShowAnswer && (
-          <Box absolute fs={70} top={-150}>
-            {isCorrect ? '👍' : '❌'}
+      <Flex center>
+        <Flex row center centerJustify fs={60} bold gap={30} relative c='textAccent'>
+          {isShowAnswer && (
+            <Box absolute fs={70} top={-150}>
+              {isCorrect ? '👍' : '❌'}
+            </Box>
+          )}
+          <Box mh={num1 < 0 ? -35 : undefined}>{num1 < 0 ? `（${num1}）` : num1}</Box>
+          <Box c='magenta'>{operator1 === '*' ? 'ⅹ' : operator1 === '/' ? '÷' : operator1}</Box>
+          <Box mh={num2 < 0 ? -35 : undefined}>{num2 < 0 ? `（${num2}）` : num2}</Box>
+          <Box c='magenta'>{operator2 === '*' ? 'ⅹ' : operator2 === '/' ? '÷' : operator2}</Box>
+          <Box mh={num3 < 0 ? -35 : undefined}>{num3 < 0 ? `（${num3}）` : num3}</Box>
+          <Box>=</Box>
+          <Box c={isShowAnswer ? (isCorrect ? 'primary' : 'error') : 'secondary'}>
+            {inputAnswer === '' ? '?' : inputAnswer}
+          </Box>
+        </Flex>
+        {isShowAnswer && !isCorrect && (
+          <Box fs={30} bold gap={30} c='primary'>
+            &nbsp;&nbsp;(정답: {answer})
           </Box>
         )}
-        <Box mh={num1 < 0 ? -35 : undefined}>{num1 < 0 ? `（${num1}）` : num1}</Box>
-        <Box c='magenta'>{operator1 === '*' ? 'ⅹ' : operator1 === '/' ? '÷' : operator1}</Box>
-        <Box mh={num2 < 0 ? -35 : undefined}>{num2 < 0 ? `（${num2}）` : num2}</Box>
-        <Box c='magenta'>{operator2 === '*' ? 'ⅹ' : operator2 === '/' ? '÷' : operator2}</Box>
-        <Box mh={num3 < 0 ? -35 : undefined}>{num3 < 0 ? `（${num3}）` : num3}</Box>
-        <Box>=</Box>
-        <Box c={isShowAnswer ? (isCorrect ? 'primary' : 'error') : 'secondary'}>
-          {inputAnswer === '' ? '?' : inputAnswer}
-          {isShowAnswer && !isCorrect && (
-            <T inline c='primary'>
-              &nbsp;&nbsp;(정답: {answer})
-            </T>
-          )}
-        </Box>
       </Flex>
 
       <Grid cols={6} gap={10}>
