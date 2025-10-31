@@ -277,6 +277,13 @@ const options = {
         test: /\.(txt|md)$/i,
         use: 'raw-loader',
       },
+      {
+        test: /\.(mp3|wav|ogg)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'static/media/[name].[hash:8][ext]',
+        },
+      },
     ],
   },
 };

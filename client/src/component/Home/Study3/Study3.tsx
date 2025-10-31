@@ -1,6 +1,7 @@
 import React from 'react';
 import { Study3Props as Props } from './Study3.types';
 import { useRefState } from '@pdg/react-hook';
+import { SoundCorrect, SoundIncorrect } from '../../../@assets/sounds';
 
 export const Study3 = ({}: Props) => {
   /********************************************************************************************************************
@@ -8,6 +9,8 @@ export const Study3 = ({}: Props) => {
    * ******************************************************************************************************************/
 
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const correctSoundRef = useRef<HTMLAudioElement>(null);
+  const incorrectSoundRef = useRef<HTMLAudioElement>(null);
 
   /********************************************************************************************************************
    * State
@@ -183,12 +186,14 @@ export const Study3 = ({}: Props) => {
   const confirmAnswer = useCallback(() => {
     setIsShowAnswer(true);
     if (answer !== Number(inputAnswer)) {
+      incorrectSoundRef.current?.play();
       setSerialCorrectCount(0);
       setDisabled(true);
       setTimeout(() => {
         setDisabled(false);
       }, 3000);
     } else {
+      correctSoundRef.current?.play();
       setSerialCorrectCount((prev) => prev + 1);
     }
   }, [answer, inputAnswer, setIsShowAnswer]);
@@ -284,6 +289,11 @@ export const Study3 = ({}: Props) => {
       >
         {isShowAnswer ? '다음 문제' : '정답 보기'}
       </Button>
+
+      <Box display='none'>
+        <audio ref={correctSoundRef} controls src={SoundCorrect} />
+        <audio ref={incorrectSoundRef} controls src={SoundIncorrect} />
+      </Box>
     </Flex>
   );
 };
