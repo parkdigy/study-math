@@ -29,6 +29,11 @@ export const Study3 = ({}: Props) => {
    * ******************************************************************************************************************/
 
   useEffect(() => {
+    next();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     const handler = (e: any) => {
       if (!isShowAnswerRef.current) {
         if (contains(['Backspace', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], e.key)) {
@@ -63,9 +68,18 @@ export const Study3 = ({}: Props) => {
     const operators = ['+', '-', '*', '/'];
 
     while (true) {
-      newOperator1 = operators[Math.floor(Math.random() * operators.length)] as any;
       newOperator2 = operators[Math.floor(Math.random() * operators.length)] as any;
-      if (newOperator1 === '/' && newOperator2 === '/') {
+      if (newOperator2 === '/') {
+        newOperator1 = '/';
+        newOperator2 = operators[Math.floor(Math.random() * operators.length)] as any;
+      } else {
+        newOperator1 = operators[Math.floor(Math.random() * operators.length)] as any;
+      }
+
+      if (newOperator1 === '*' && newOperator2 === '/') {
+        newOperator1 = '/';
+        newOperator2 = '*';
+      } else if (newOperator1 === '/' && newOperator2 === '/') {
         while (newOperator2 === '/') {
           newOperator2 = operators[Math.floor(Math.random() * operators.length)] as any;
         }
@@ -83,14 +97,18 @@ export const Study3 = ({}: Props) => {
       if (Math.random() < 0.5) newNum3 = -newNum3;
 
       if (newOperator2 === '/') {
-        newNum2 = newNum3 * (Math.floor(Math.random() * 5) + 2);
+        newNum2 = newNum3 * (Math.floor(Math.random() * 7) + 2);
+      } else if (newOperator2 === '*') {
+        newNum2 = Math.floor(Math.random() * 9) + 2;
       } else {
         newNum2 = Math.floor(Math.random() * 10) + 1;
       }
       if (Math.random() < 0.5) newNum3 = -newNum3;
 
       if (newOperator1 === '/') {
-        newNum1 = newNum2 * (Math.floor(Math.random() * 5) + 2);
+        newNum1 = newNum2 * (Math.floor(Math.random() * 7) + 2);
+      } else if (newOperator1 === '*') {
+        newNum1 = Math.floor(Math.random() * 9) + 2;
       } else {
         newNum1 = Math.floor(Math.random() * 10) + 1;
       }

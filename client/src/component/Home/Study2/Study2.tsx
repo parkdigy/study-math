@@ -27,6 +27,11 @@ export const Study2 = ({}: Props) => {
    * ******************************************************************************************************************/
 
   useEffect(() => {
+    next();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     const handler = (e: any) => {
       if (!isShowAnswerRef.current) {
         if (contains(['Backspace', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], e.key)) {
