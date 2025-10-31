@@ -2,8 +2,15 @@ import React from 'react';
 import { Study3Props as Props } from './Study3.types';
 import { useRefState } from '@pdg/react-hook';
 import { SoundCorrect, SoundIncorrect } from '../../../@assets/sounds';
+import { useScreenSize } from '@context';
 
 export const Study3 = ({}: Props) => {
+  /********************************************************************************************************************
+   * Use
+   * ******************************************************************************************************************/
+
+  const screen = useScreenSize();
+
   /********************************************************************************************************************
    * Ref
    * ******************************************************************************************************************/
@@ -222,28 +229,36 @@ export const Study3 = ({}: Props) => {
    * ******************************************************************************************************************/
 
   const isCorrect = Number(inputAnswer) === answer;
+  const isMobile = screen.smallerThanOrEqual.mobile;
+
+  const defaultFontSize = isMobile ? 30 : 60;
+  const defaultSmallFontSize = isMobile ? 20 : 30;
+  const defaultGap = isMobile ? 15 : 30;
+  const correctIncorrectFontSize = isMobile ? 50 : 70;
+  const correctIncorrectTop = isMobile ? -100 : -150;
+  const buttonSize = isMobile ? 'md' : 'xl';
 
   return (
     <Flex center gap={50}>
       <Flex center>
-        <Flex row center centerJustify fs={60} bold gap={30} relative c='textAccent'>
+        <Flex row center centerJustify fs={defaultFontSize} bold gap={defaultGap} relative c='textAccent'>
           {isShowAnswer && (
-            <Box absolute fs={70} top={-150}>
+            <Box absolute fs={correctIncorrectFontSize} top={correctIncorrectTop}>
               {isCorrect ? '👍' : '❌'}
             </Box>
           )}
-          <Box mh={num1 < 0 ? -35 : undefined}>{num1 < 0 ? `（${num1}）` : num1}</Box>
+          <Box mh={num1 < 0 ? -defaultSmallFontSize : undefined}>{num1 < 0 ? `（${num1}）` : num1}</Box>
           <Box c='magenta'>{operator1 === '*' ? 'ⅹ' : operator1 === '/' ? '÷' : operator1}</Box>
-          <Box mh={num2 < 0 ? -35 : undefined}>{num2 < 0 ? `（${num2}）` : num2}</Box>
+          <Box mh={num2 < 0 ? -defaultSmallFontSize : undefined}>{num2 < 0 ? `（${num2}）` : num2}</Box>
           <Box c='magenta'>{operator2 === '*' ? 'ⅹ' : operator2 === '/' ? '÷' : operator2}</Box>
-          <Box mh={num3 < 0 ? -35 : undefined}>{num3 < 0 ? `（${num3}）` : num3}</Box>
+          <Box mh={num3 < 0 ? -defaultSmallFontSize : undefined}>{num3 < 0 ? `（${num3}）` : num3}</Box>
           <Box>=</Box>
           <Box c={isShowAnswer ? (isCorrect ? 'primary' : 'error') : 'secondary'}>
             {inputAnswer === '' ? '?' : inputAnswer}
           </Box>
         </Flex>
         {isShowAnswer && !isCorrect && (
-          <Box fs={30} bold gap={30} c='primary'>
+          <Box fs={defaultSmallFontSize} bold gap={30} c='primary'>
             &nbsp;&nbsp;(정답: {answer})
           </Box>
         )}
@@ -254,22 +269,22 @@ export const Study3 = ({}: Props) => {
           <Col key={i}>
             <Button
               disabled={isShowAnswer}
-              s='xl'
+              s={buttonSize}
               c='opacity10'
               onClick={() => inputKey(i === 9 ? '0' : (i + 1).toString())}
             >
-              <T fs={30}>{i === 9 ? 0 : i + 1}</T>
+              <T fs={defaultSmallFontSize}>{i === 9 ? 0 : i + 1}</T>
             </Button>
           </Col>
         ))}
         <Col>
-          <Button disabled={isShowAnswer} s='xl' c='opacity10' onClick={() => inputKey('-')}>
-            <T fs={35}>{inputAnswer.startsWith('-') ? '+' : '-'}</T>
+          <Button disabled={isShowAnswer} s={buttonSize} c='opacity10' onClick={() => inputKey('-')}>
+            <T fs={defaultSmallFontSize}>{inputAnswer.startsWith('-') ? '+' : '-'}</T>
           </Button>
         </Col>
         <Col>
-          <Button disabled={isShowAnswer} s='xl' c='opacity20' onClick={() => inputKey('Backspace')}>
-            <T fs={35}>🔙</T>
+          <Button disabled={isShowAnswer} s={buttonSize} c='opacity20' onClick={() => inputKey('Backspace')}>
+            <T fs={defaultSmallFontSize}>🔙</T>
           </Button>
         </Col>
       </Grid>
