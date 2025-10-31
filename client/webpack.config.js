@@ -35,13 +35,13 @@ class MyHtmlPlugin {
         const splitText = '</head>';
         const htmls = data.html.split(splitText);
         const inject = `
-          <title>${isProduction ? '<%= title %>' : env.APP_NAME}</title>
+          <title>${isProduction ? '수학' : env.APP_NAME}</title>
           <script>window.$$MyAppConfig = {version: '${new Date().getTime()}'}</script>
           <script>
             window.$$MyAppConfig = {
               version: window.$$MyAppConfig.version,
-              env: '${isProduction ? '<%= appEnv %>' : env.APP_ENV}',
-              title: '${isProduction ? '<%= title %>' : env.APP_NAME}',
+              env: '${isProduction ? 'production' : env.APP_ENV}',
+              title: '${isProduction ? '수학' : env.APP_NAME}',
             };
           </script>
         `;
