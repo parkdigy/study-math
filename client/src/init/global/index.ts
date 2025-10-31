@@ -9,3 +9,4 @@ import './classnames';
 import './common-component-text';
 import './common-component';
 import './object';
+import './env';
